@@ -163,10 +163,10 @@ layout: default
         id: '{{ page.id }}',
         title: '{{ page.title }}',
         owner: '{{ site.github_username }}',
-        repo: '{{ site.github-repo }}',
+        repo: '{{ site.gitment-repo }}',
         oauth: {
-            client_id: '{{ site.github-client-id }}',
-            client_secret: '{{ site.github-client-secret }}',
+            client_id: '{{ site.gitment-client-id }}',
+            client_secret: '{{ site.gitment-client-secret }}',
         },
     })
     gitment.render('gitment-container')

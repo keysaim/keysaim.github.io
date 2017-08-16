@@ -55,9 +55,14 @@ netease_comment: false
 
 # For gitment
 gitment: true
-github-repo: keysaim.github.io
-github-client-id: 8d920ad685683a529e83,
-github-client-secret: ffabf134048e374883ee67d3786a9a6b7d8d3cdc
+gitment-repo: comments
+gitment-client-id: 8d920ad685683a529e83
+gitment-client-secret: ffabf134048e374883ee67d3786a9a6b7d8d3cdc
+
+# For test
+#gitment-repo: test-comments
+#gitment-client-id: 3687ee49c8a69a86e75e
+#gitment-client-secret: 53604cc6e16fe16160b36be7d2f379e46994b728
 
 
 # Analytics settings
