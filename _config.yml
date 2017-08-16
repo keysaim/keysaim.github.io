@@ -53,6 +53,11 @@ kramdown:
 # Netease setttings
 netease_comment: false
 
+# For gitment
+gitment: true
+github-repo: keysaim.github.io
+github-client-id: 8d920ad685683a529e83,
+github-client-secret: ffabf134048e374883ee67d3786a9a6b7d8d3cdc
 
 
 # Analytics settings

@@ -81,6 +81,9 @@ layout: default
                     {% endif %}
                 </ul>
 
+                {% if site.gitment %}
+                <div id="gitment-container"></div>
+                {% endif %}
 
                 {% if site.disqus_username %}
                 <!-- disqus 评论框 start -->
@@ -151,6 +154,24 @@ layout: default
         </div>
     </div>
 </article>
+
+{% if site.gitment %}
+<link rel="stylesheet" href="/js/gitment.css">
+<script src="/js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: '{{ page.id }}',
+        title: '{{ page.title }}',
+        owner: '{{ site.github_username }}',
+        repo: '{{ site.github-repo }}',
+        oauth: {
+            client_id: '{{ site.github-client-id }}',
+            client_secret: '{{ site.github-client-secret }}',
+        },
+    })
+    gitment.render('gitment-container')
+</script>
+{% endif %}
 
 
 {% if site.netease_comment %}
