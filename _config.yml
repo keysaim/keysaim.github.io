@@ -4,7 +4,7 @@ SEOTitle: 窗外蟋蟀的博客 | Keysaim Blog
 header-img: img/home-bg-hill.jpg
 email: keysaim@gmail.com
 description: "描述"
-keyword: "窗外蟋蟀, keysaim"
+keyword: "窗外蟋蟀, keysaim, cdn, docker, go, golang, python, C/C++, 流媒体, 分发网络, 音视频, 编解码"
 url: "https://keysaim.github.io"              # your host, for absolute URL
 baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
 
