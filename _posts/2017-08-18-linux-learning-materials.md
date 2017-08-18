@@ -170,6 +170,12 @@ cat linux-basic.tgz.* | tar xz
 
 Linux博大精深，很多人即便从事一辈子Linux开发也未必能够熟悉Linux的各个方面。为了能够支撑自己在Linux的路上走的足够远，一个牢固的基础是必须得有的，本文侧重推荐Linux系统管理的有关书籍，希望读者能够对Linux的宏观整体有个非常透彻的理解，为以后选择某个方向深入研究铺好路。同时，也欢迎各位的其它推荐，欢迎在评论区留言，有合适的书籍，博主也会不定时更新在博文之中。
 
+# 参考
+
+* [Linux Document Project](Linux_Doc_Proj)
+* [Ubuntu Manual](https://ubuntu-manual.org/)
+* [LPIC wikipedia](LPIC)
+* [learn linux for free](https://itsfoss.com/learn-linux-for-free/)
 
 [Linux_Doc_Proj]: http://www.tldp.org/index.html
 [LPIC]: https://en.wikipedia.org/wiki/Linux_Professional_Institute_Certification
