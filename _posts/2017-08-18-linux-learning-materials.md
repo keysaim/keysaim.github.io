@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Linux系统管理学习推荐书籍"
+title:      "Linux学习从入门到精通推荐书籍"
 subtitle:   "从入门到精通"
 date:       2017-08-18
 author:     "keysaim"
