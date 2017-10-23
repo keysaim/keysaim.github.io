@@ -191,3 +191,35 @@ systemctl enable supervisord
 
 至此，系统迁移完成，可以用浏览器打开系统`http://<server2 IP>:9999`。
 
+# 系统维护篇
+
+## 备份数据库
+
+请务必定期备份数据库，
+
+* 备份命令
+
+```sh
+cd /
+mysqldump -u root -p rushgps > rushgps.sql
+```
+
+请将生成的备份文件`rushgps.sql`拷贝到贵公司的保存数据的服务器上。
+
+* 恢复命令
+
+```sh
+mysql -u root -p rushgps < rushgps.sql
+```
+
+## 重启GPS系统
+
+如果碰到任何问题，请重启GPS系统：
+
+命令如下:
+
+```sh
+systemctl restart supervisord
+```
+
+
