@@ -119,7 +119,7 @@ cp -f /supervisord.conf /etc/
 
     ```sh
     yum -y install mysql-community-client mysql-community-devel mysql-community-server
-    systemctl enable mysql
+    systemctl enable mysqld
     ```
 
 * 初始化mysql
@@ -127,8 +127,8 @@ cp -f /supervisord.conf /etc/
     安装完成之后需要初始化mysql的root用户密码，请执行：
 
     ```sh
+    systemctl start mysqld
     /usr/bin/mysqladmin -u root password 'default'
-    systemctl start mysql
     ```
 
     这里假定密码是`default`。
@@ -175,7 +175,15 @@ systemctl enable supervisord
 
 ## 配置GPS系统
 
-* 编辑GPS配置文件
+* 创建日志目录
+
+    命令如下：
+
+    ```sh
+    mkdir -p /var/log/gpssys
+    ```
+
+* 编辑GPS配置文件`/root/ws/gpssys/carerp/settings.py`
 
     * 找到`ALLOWED_HOSTS =`这行，将server2的本地IP以及外网IP加入进去。
     * 找到`DATABASES =`这行，往下找到`PASSWORD`配置项，将它改成配置的mysql密码
@@ -190,6 +198,7 @@ systemctl enable supervisord
 
 
 至此，系统迁移完成，可以用浏览器打开系统`http://<server2 IP>:9999`。
+
 
 # 系统维护篇
 
