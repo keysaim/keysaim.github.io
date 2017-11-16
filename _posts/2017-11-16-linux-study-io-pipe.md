@@ -32,7 +32,7 @@ Linux的有一个强大之处就是可以通过管道(Pipe)跟IO重定向将一�
 
 可以用`>`大于号将stdout重定向到另一个IO，比如文件：
 
-```terminal
+```
 # echo "hello" > test.log
 # cat test.log
 hello
@@ -42,7 +42,7 @@ hello
 
 必须注意的是，默认情况下，改重定向会覆盖已有文件，这个在有时候可能不经意间丢失重要数据。`shell`提供了选项使得我们可以禁止这种覆盖，`set -o noclobber`可以打开该选项。
 
-```terminal
+```
 # cat test.log
 hello
 # set -o noclobber
@@ -52,7 +52,7 @@ hello
 
 此外，在打开该选项之后，其实还是可以强制执行覆盖，可以采用`>|`来强制重定向到已存在的文件：
 
-```terminal
+```
 # echo "world" > test.log
 -bash: test.log: cannot overwrite existing file
 # echo "world" >| test.log
@@ -64,7 +64,7 @@ world
 
 可以采用`>>`将输出重定向到文件并追加在文件结尾，这样就可以避免覆盖文件了。
 
-```terminal
+```
 # cat test.log
 world
 # echo hello >> test.log
@@ -81,7 +81,8 @@ hello
 
 我们可以在同一行命令中同时将stdout跟stderr重定向，如：
 
-{% highlight shell_session %}
+```
+{% highlight javascript %}
 # ls test* tttt*
 ls: cannot access tttt*: No such file or directory
 test.log  test2
@@ -91,13 +92,13 @@ test.log
 test2
 # cat stderr.log
 ls: cannot access tttt*: No such file or directory
-{% endhighlight %}
+```
 
 可以看出，stdout跟stderr被分别重定向到`stdout.log`跟`stderr.log`文件中了。
 
 此外，还有一个常见的用法是将stderr重定向到stdout，这样就可以将所有输出都定向在一起了。
 
-```terminal
+```
 # ls test* tttt* > stdout.log
 ls: cannot access tttt*: No such file or directory
 # cat stdout.log
@@ -112,7 +113,7 @@ test2
 
 可见，通过`2>&1`将stderr重定向给stdout，而stdout又重定向给文件`stdout.log`，这样所有的输出都重定向到文件`stdout.log`中了。另外，还可以通过`&>`直接将stderr跟stdout合并：
 
-```terminal
+```
 # ls -l test* tttt* &> stdout.log
 # cat stdout.log
 ls: cannot access tttt*: No such file or directory
@@ -124,7 +125,7 @@ ls: cannot access tttt*: No such file or directory
 
 将stderr重定向给stdout的时候，请务必注意其顺序，如上面的重定向如果写成这样，结果就完全不同了：
 
-```terminal
+```
 # ls test* tttt* 2>&1 > stdout.log
 ls: cannot access tttt*: No such file or directory
 # cat stdout.log
@@ -153,7 +154,7 @@ test2
 
 既然输出有重定向，那么输入是否也可以呢？答案是肯定的，可以采用`<`将输入重定向，`<`其实是`0<`的简写。
 
-```terminal
+```
 # cat stdout.log
 ls: cannot access tttt*: No such file or directory
 -rw-r--r--. 1 root root 12 Nov 16 01:02 test.log
@@ -172,7 +173,7 @@ ls: cannot access tttt*: No such file or directory
 
 该符号可以直接将一个字符串重定向给输入
 
-```terminal
+```
 # base64 <<< hello
 aGVsbG8K
 ```
@@ -183,7 +184,7 @@ aGVsbG8K
 
 `shell`是可以支持同时重定向输入跟输出的，以下方式都会被准确解析：
 
-```terminal
+```
 # cat <test.log > stdout.log 2> stderr.log
 # <test.log > stdout.log 2> stderr.log cat
 ```
@@ -192,7 +193,7 @@ aGVsbG8K
 
 可以通过重定向快速的清空文件内容：
 
-```terminal
+```
 # cat test.log
 hello world
 # > test.log
@@ -206,7 +207,7 @@ hello world
 
 在Linux中，我们可以使用管道(Pipe)将前一个命令的stdout作为输入给后面一个命令，管道由`|`表示。
 
-```terminal
+```
 # ls test* tttt*
 ls: cannot access tttt*: No such file or directory
 test.log  test2
@@ -217,7 +218,7 @@ ls: cannot access tttt*: No such file or directory
 
 请务必注意的是，管道只会将stdout传递给下一个命令，stderr并不会传递，为了证明这一点，咱们将后一个命令的stderr重定向到文件：
 
-```terminal
+```
 # ls -l test* tttt* | grep log 2> stderr.log
 ls: cannot access tttt*: No such file or directory
 -rw-r--r--. 1 root root 12 Nov 16 01:02 test.log
@@ -227,14 +228,14 @@ ls: cannot access tttt*: No such file or directory
 
 这时可以看出，第二个命令的stderr为空，而第一个命令的stderr仍输出到屏幕了。当然，咱们也可以将第一个命令的stderr重定向到stdout上，这样`grep`命令也可以收到了。
 
-```terminal
+```
 # ls -l test* tttt* 2>&1 | grep "No "
 ls: cannot access tttt*: No such file or directory
 ```
 
 再回到上一节的问题，咱们如何将stdout跟stderr互相交换一下呢？可以这么做：
 
-```terminal
+```
 # ls -l test* tttt* 3>&1 1>&2 2>&3 | grep "No " 2> stderr.log
 ls: cannot access tttt*: No such file or directory
 -rw-r--r--. 1 root root 12 Nov 16 01:02 test.log
