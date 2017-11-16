@@ -49,7 +49,7 @@ Linux有着海量的命令，而每个命令又有很多的不同参数，要记
 
     Linux命令实在太多，有时候如果不记得准确的命令的名字，可以采用`man -k $keyword`来搜索，如`man -k syslog`将列出相关命令：
 
-    ```terminal
+    ```
     # man -k syslog
     ipmievd (8)          - IPMI event daemon for sending events to syslog
     logger (1)           - a shell command interface to the syslog(3) system log module
@@ -95,14 +95,14 @@ Linux有着海量的命令，而每个命令又有很多的不同参数，要记
 
 查看文件的类型，如：
 
-```terminal
+```
 # file bugs.tgz
 bugs.tgz: gzip compressed data, from Unix, last modified: Tue Dec 13 01:38:27 2016
 ```
 
 可以显示文件的类型及修改时间等信息。查看特殊文件如设备文件的时候，还可以带上`-s`的参数，这样可以识别更多的信息：
 
-```terminal
+```
 # file /dev/sda
 /dev/sda: block special
 # file -s /dev/sda
@@ -113,7 +113,7 @@ bugs.tgz: gzip compressed data, from Unix, last modified: Tue Dec 13 01:38:27 20
 
 `touch`用来创建空文件，或者用来更新文件时间为当前时间。如果加上`-t`参数，可以为文件设置指定的时间。
 
-```terminal
+```
 # date
 Mon Oct  9 03:19:24 EDT 2017
 # ls -l
@@ -155,7 +155,7 @@ total 4
 
 查看某个文件的头几行，可以用`head`命令：
 
-```terminal
+```
 # head -n 5 /var/log/messages
 Oct  9 03:10:01 traffic-base1 rsyslogd: [origin software="rsyslogd" swVersion="7.4.7" x-pid="697" x-info="http://www.rsyslog.com"] rsyslogd was HUPed
 Oct  9 03:20:01 traffic-base1 systemd: Started Session 79213 of user root.
@@ -174,7 +174,7 @@ Oct
 
 `tail`有个非常重要的用处，***就是用来监听某个动态文件的内容，比如实时查看某个日志文件***：
 
-```terminal
+```
 # tail -n 5 -F /var/log/messages
 Oct  9 03:28:27 traffic-base1 puppet: from /usr/share/ruby/vendor_ruby/puppet/util/command_line.rb:146:in `run'
 Oct  9 03:28:27 traffic-base1 puppet: from /usr/share/ruby/vendor_ruby/puppet/util/command_line.rb:92:in `execute'
@@ -192,7 +192,7 @@ Oct  9 03:40:01 traffic-base1 systemd: Starting Session 79223 of user root.
 
 要显示文件的所有内容，可以用`cat`命令。`cat`也可以用来创建新文件：
 
-```terminal
+```
 # cat > test.txt
 Today is a good day!
 # cat test.txt
@@ -200,7 +200,7 @@ Today is a good day!
 ```
 这样就可以直接输入文件内容了，输入完成之后按Ctrl+d结束输入。当然，也可以定制结束符：
 
-```terminal
+```
 # cat > test.txt <<stop
 > It's a good day!
 > stop
@@ -220,7 +220,7 @@ It's a good day!
 
 `strings`命令会将文件中的可读字符显示出来，即便改文件是一个二进制文件。
 
-```terminal
+```
 # strings a.out | tail -n 5
 _edata
 _Znwm@@GLIBCXX_3.4

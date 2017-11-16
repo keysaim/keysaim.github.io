@@ -32,7 +32,7 @@ tags:
 
 这里的空格包括了制表符（Tab）。当Shell程序扫描输入的命令时，会以*连续*的空格为界，将命令切分成一组参数，因此你输入多个空格为界跟输入一个空格的效果是一样的。通常来讲，第一个参数就是要执行的命令，而后面的参数则是改命令的参数。一下几个命令其实是等效的：
 
-```terminal
+```
 # echo Hello World
 Hello World
 # echo Hello
@@ -51,7 +51,7 @@ Hello World
 
 > 特别提一下，对于`echo`命令，如果需要输出需要转义的字符，如回车等，则需要执行`echo -e "Hello World!\n"`，如果不加`-e`，则`\n`会被直接显示出来。
 >
->    ```terminal
+>    ```
 >    # echo "hello\n"
 >    hello\n
 >    # echo -e "hello\n"
@@ -85,7 +85,7 @@ Hello World
 
 我们可以通过`type`命令来查看一个命令是否是内部命令：
 
-```terminal
+```
 # type cd
 cd is a shell builtin
 # type awk
@@ -94,7 +94,7 @@ awk is /usr/bin/awk
 
 另外，对于很多内部命令，它们可能对应的会有外部命令版本，可以通过`type`命令来查看：
 
-```terminal
+```
 # type -a echo
 echo is a shell builtin
 echo is /usr/bin/echo
@@ -105,7 +105,7 @@ cd is /usr/bin/cd
 
 反过来，我们一般可以通过命令`which`来查询一个命令是否是外部命令：
 
-```terminal
+```
 # which awk
 /usr/bin/awk
 # which .
@@ -114,7 +114,7 @@ cd is /usr/bin/cd
 
 不过得注意，很多内部命令都有外部版本，因此通过`which`查询出来的是其外部命令版本：
 
-```terminal
+```
 # which echo
 /usr/bin/echo
 # type echo
@@ -127,7 +127,7 @@ echo is a shell builtin
 
 可以用`alias`命令给一个命令取一个别名：
 
-```terminal
+```
 # alias print=echo
 # print "hello"
 hello
@@ -137,7 +137,7 @@ print is aliased to `echo'
 
 别名一个常用的用法是用来缩写已知的命令：
 
-```terminal
+```
 # type ls
 ls is aliased to `ls --color=auto'
 ```
@@ -146,7 +146,7 @@ ls is aliased to `ls --color=auto'
 
 前面咱们通过`type`命令来查看命令的别名，实际上更加推荐采用`alias`或者`which`来查看：
 
-```terminal
+```
 # alias ls
 alias ls='ls --color=auto'
 # which ls
@@ -156,7 +156,7 @@ alias ls='ls --color=auto'
 
 如果要取消别名，则可以采用`unalias`命令:
 
-```terminal
+```
 # which ls
 alias ls='ls --color=auto'
     /usr/bin/ls
@@ -169,7 +169,7 @@ alias ls='ls --color=auto'
 
 由于`shell`展开的存在，你输入的命令被展开之后可能会发生变化，如果需要知道`shell`展开之后的命令，可以使用内部命令`set`来修改`shell`的默认参数来显示：
 
-```terminal
+```
 # set -x
 ++ printf '\033]0;%s@%s:%s\007' root traffic-base1 '~'
 # echo hello         world
@@ -200,7 +200,7 @@ hello world
 
 此操作符表示逻辑与，你可以将两个命令用此操作符连接起来，如`cmd1 && cmd2`，只有当`cmd1`执行成功之后，`cmd2`才会被执行。这里的成功指的是`cmd1`的退出码是0。
 
-```terminal
+```
 # hello && echo world
 -bash: hello: command not found
 # echo hello && echo world
@@ -218,7 +218,7 @@ world
 
 这两个操作符是可以混合使用的，其遵循的原则保持一致，且是从左向右依次判断，结合这两种操作符，可以实现类似于`if then else`的逻辑结构。如`cmd1 && cmd2 || cmd3`意思就是如果`cmd1`成功，则执行`cmd2`，否则执行`cmd3`。但务必注意的是，此处并非真正意思上的`if then else`逻辑，因为如果`cmd2`也执行失败，`cmd3`其实也会被执行。如下例：
 
-```terminal
+```
 # echo hello && echo ok || echo world
 hello
 ok
@@ -230,7 +230,7 @@ world
 
 `&&`相当于将两条命令逻辑上连成了一条命令，这样就变成了`cmd1-2 || cmd3`，其中`cmd1-2`就是`cmd1 && cmd2`，因此，`cmd3`只要在`cmd1-2`失败的情况下都会被执行，而`cmd1-2`失败的情况有两种，一种是`cmd1`失败，一种是`cmd1`成功但是`cmd2`失败。同样的，`||`也会将两条命令连成一条命令，如`cmd1-2 || cmd3 && cmd4`就相当于`cmd1-2_3 && cmd4`，`cmd4`是否会执行，决定于`cmd1-2_3`是否失败，以具体例子说明：
 
-```terminal
+```
 # echo hello && echo ok || echo world && rm dsdfsf || echo end
 hello
 ok
@@ -267,7 +267,7 @@ end
 
 在`shell`展开中会自动展开变量的引用，即便该变量处在双引号中。但是，如果变量引用在单引号中，`shell`不会对其进行解析。
 
-```terminal
+```
 # name="Mr. Hao"
 # echo "$name"
 Mr. Hao
@@ -281,7 +281,7 @@ $name
 
 可以使用`set`命令来查找所定义的变量：
 
-```terminal
+```
 # set | grep -E '^name='
 name='Mr. Hao'
 ```
@@ -290,7 +290,7 @@ name='Mr. Hao'
 
 与很多语言不同的是，在`shell`中定义的变量是可以删除的，使用`unset`命令删除定义的变量。
 
-```terminal
+```
 # set | grep -E '^name='
 name='Mr. Hao'
 # unset name
@@ -301,7 +301,7 @@ name='Mr. Hao'
 
 通常情况下，`shell`在执行命令的时候会为该命令创建子进程。如果希望将当前的变量作用到子进程，则需要将变量`export`声明，这种变量称之为环境变量，如：
 
-```terminal
+```
 # var1="hello"
 # export var2="world"
 # bash
@@ -311,7 +311,7 @@ var1=, var2=world
 
 其中，`bash`命令开启了一个新的`shell`，可见只有`export`声明的变量在新的`shell`中才是可见的。环境变量可以通过`env`命令列举出来，在后面一节会详细讲述。此外，如果需要将非`export`变量重新声明为`export`变量，则只需要用`export`重新声明一下即可：
 
-```terminal
+```
 # var1=hello
 # env | grep var1
 # export var1
@@ -325,7 +325,7 @@ var1=hello
 
 此外，`env`也常用来为子`shell`预先定义一些临时变量，如：
 
-```terminal
+```
 # var1="hello"
 # env var1="tmp" bash -c 'echo "$var1"'
 tmp
@@ -335,7 +335,7 @@ hello
 
 其中，用`env`命令定义了临时变量`var1`，然后`bash`命令开启了一个子`shell`，并在子`shell`中执行了`echo "$var1"`命令。可见，输出了定义的临时变量，在命令结束后，又回到之前的`shell`，输出的也是之前`shell`中定义的值。当然，在使用`env`定义临时变量的时候，为了方便，通常我们可以省略`env`命令，如：
 
-```terminal
+```
 # var1="hello"
 # var1="tmp" bash -c 'echo "$var1"'
 tmp
@@ -345,7 +345,7 @@ hello
 
 另外，`env`命令还有一种常用的用法，就是用来开启一个干净的子`shell`，即在子`shell`中不继承所有的变量，即便这些变量在之前的`shell`中采用`export`声明，此时`env`命令需要加入`-i`的参数，如：
 
-```terminal
+```
 # export var1="hello world"
 # bash -c 'echo "var1=$var1"'
 var1=hello world
@@ -359,7 +359,7 @@ var1=
 
 在前面章节，我们知道`shell`采用`$`符号引用变量，在`$`符号后紧跟变量的名字。而`shell`在提取变量名字的时候一般以非字母数字（non-alphanumeric）为边界，因此，这有时候就会产生问题，如：
 
-```terminal
+```
 # prefix=Super
 # echo Hello $prefixman and $prefixgirl
 Hello  and
@@ -367,7 +367,7 @@ Hello  and
 
 可见，`shell`并不能提取我们定义的变量`prefix`，因为其后并没有非字母数字的字符为界。这种情况下，我们可以使用`{}`将变量名保护起来。
 
-```terminal
+```
 # prefix=Super
 # echo Hello ${prefix}man and ${prefix}girl
 Hello Superman and Supergirl
@@ -377,14 +377,14 @@ Hello Superman and Supergirl
 
 所谓非绑定（unbound）变量其实指的是没有预先定义的变量，或者说不存在的变量。默认情况下，`shell`在解释这种变量的时候会以空字符串替代：
 
-```terminal
+```
 # echo $unbound_var
 
 ```
 
 如果需要`shell`在这种情况下报错，可以配置`shell`选项`set -o nounset`，或者简写为`set -u`：
 
-```terminal
+```
 # echo $unbound_var
 bash: unbound_var: unbound variable
 # set +u
@@ -402,13 +402,13 @@ bash: unbound_var: unbound variable
 
 在`shell`终端输入命令时，咱们总是可以看到在输入行首总是会有提示符，如：
 
-```terminal
+```
 mrhao:~$
 ```
 
 其中，`mrhao:~# `就是提示符，这个字串实际上是由`shell`变量`$PS1`决定的。如果咱们改变一下该变量的值，提示符也会相应的改变：
 
-```terminal
+```
 mrhao:~$ PS1="hello > "
 hello > echo "PS1 value is '$PS1'"
 PS1 value is 'hello > '
@@ -427,7 +427,7 @@ hello >
 
 当然，这里只列举了几个，详细的可以查看Linux手册。另外，`$PS1`中还可以对对其中不同部分采用不同颜色显示，如：
 
-```terminal
+```
 # RED='\[\033[01;31m\]'
 # WHITE='\[\033[01;00m\]'
 # GREEN='\[\033[01;32m\]'
@@ -441,14 +441,14 @@ mrhao@mrhao-host~$ echo "$PS1"
 
 当我们再Linux的terminal里面输入命令的时候，`shell`需要在一系列的目录中查找输入的命令，如果没有查找到会直接报`command not found`的错误。而这些查找的目录就定义在`$PATH`变量中。
 
-```terminal
+```
 # echo $PATH
 /opt/rh/rh-python34/root/usr/bin:/usr/java/default/bin/:/usr/local/git/bin:/opt/ActiveTcl-8.5/bin:/root/perl5/bin:/root/env/maven/apache-maven-3.3.3/bin:/root/soft/wrk/wrk-4.0.1:/root/usr/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin
 ```
 
 其中，每个目录以`:`隔开，如果需要增加目录，可以：
 
-```terminal
+```
 # PATH=$PATH:/opt/local/bin
 # echo $PATH
 /opt/rh/rh-python34/root/usr/bin:/usr/java/default/bin/:/usr/local/git/bin:/opt/ActiveTcl-8.5/bin:/root/perl5/bin:/root/env/maven/apache-maven-3.3.3/bin:/root/soft/wrk/wrk-4.0.1:/root/usr/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin:/opt/local/bin
@@ -479,7 +479,7 @@ mrhao@mrhao-host~$ echo "$PS1"
 
 `shell`可以嵌入在同一个命令行中，也就是`shell`在扫描解释命令行的时候，可能会从当前的`shell`进程中`fork`出一个新的`shell`进程，并将有关命令放在新进程中运行。如下例：
 
-```terminal
+```
 # var1=hello
 # echo $(var1=world; echo $var1)
 world
@@ -491,7 +491,7 @@ hello
 
 ***特别注意的是，因为子`shell`是`fork`出来的进程，根据Linux进程`fork`的特点，子进程将共享父进程的数据空间，而只在写的时候拷贝新的数据空间，因此，创建出来的子`shell`是会继承所有父`shell`的变量，不论该变量是否被`export`声明***
 
-```terminal
+```
 # var1=hello
 # var2="$(echo $var1 world)"
 # echo $var2
@@ -502,7 +502,7 @@ hello world
 
 用`$()`可以将子`shell`嵌入到命令行中，当然，`$()`是可以嵌套使用的，这样可以用来在子`shell`中开启它的子`shell`。
 
-```terminal
+```
 # A=shell
 # echo $C$B$A $(B=sub;echo $C$B$A; echo $(C=sub;echo $C$B$A))
 shell subshell subsubshell
@@ -512,7 +512,7 @@ shell subshell subsubshell
 
 在上面我们可以通过`$()`将子`shell`嵌入命令行中，为了方便，我们同样可以用反引号`\``将子`shell`嵌入。
 
-```terminal
+```
 # var1=hello
 # echo `var1=world; echo $var1`
 world
@@ -543,7 +543,7 @@ hello
 
 首先，咱们先显示一下过去的10个命令，可以看到每个命令前面都有其对应的序号。
 
-```terminal
+```
 # history 10
  1000  history
  1001  history 10
@@ -569,7 +569,7 @@ hello
 
 另外，对于`!keyword`的用法，还有一个高级功能，你可以将符合该条件的命令进行改造后执行，如：
 
-```terminal
+```
 # echo "test1"
 test1
 # !ec:s/1/2/
@@ -605,7 +605,7 @@ export HISTIGNORE="[ \t]*"
 
 例如：
 
-```terminal
+```
 # history 5
  1023  ls -l
  1024  echo ""
@@ -647,7 +647,7 @@ password=123456
 
 `*`星号在`shell`中用来匹配任意数量的字符，比如文件名`File*.mp4`，将匹配以`File`开头，`.mp4`结尾的任何文件名。`shell`在扫描解释命令的时候会自动去查找如何改匹配的所有文件或目录。当然，你也可以只用`*`来匹配所有的文件及目录，但请注意，只使用`*`跟不带`*`还是有所区别的，
 
-```terminal
+```
 # ls
 definition.yaml  example  __init__.py  tags.yaml  test.py  test_sample.html  test_sample.py
 # ls *
@@ -667,7 +667,7 @@ testcase
 
 `[]`方括号也用来匹配一个字符，但是在括号里面可以指定一个字符集用来限定匹配的字符必须在该字符集内，字符集里面的字符顺序没有关系。
 
-```terminal
+```
 # ls
 file1  file2  file3  File4  File55  FileA  fileab  Fileab  FileAB  fileabc
 # ls File[5A]
@@ -680,7 +680,7 @@ File55
 
 如果需要匹配不在某个字符集里面的字符，可以在`[]`第一个字符加入`!`：
 
-```terminal
+```
 # ls file[!5]*
 file1  file2  file3  fileab  fileabc
 ```
@@ -701,7 +701,7 @@ file1  file2  file3  fileab  fileabc
 
     对于`[]`的Range匹配，还有一点很重要。在很多发行版本中，默认情况下，`[]`的匹配是忽略大小写的
 
-    ```terminal
+    ```
     # ls
     Test1  test2
     # ls [a-z]*
@@ -716,7 +716,7 @@ file1  file2  file3  fileab  fileabc
 
     如果需要大小写敏感，可以设置环境变量`LC_ALL`：
 
-    ```terminal
+    ```
     # LC_ALL=C
     # ls [a-z]*
     test2
@@ -730,7 +730,7 @@ file1  file2  file3  fileab  fileabc
 
 有时候我们就是需要输出`*`等匹配符号，这个时候就需要阻止`shell`做相应的匹配。可以使用转义符号`\\`来做到这点，或者将匹配符号放在引号中：
 
-```terminal
+```
 # echo *
 Test1 test2
 # echo \*
