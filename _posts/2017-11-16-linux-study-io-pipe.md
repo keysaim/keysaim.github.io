@@ -84,7 +84,7 @@ hello
 ```shell_session
 # ls test* tttt*
 ls: cannot access tttt*: No such file or directory
-test.log  test2
+test.log  test2  
 # ls test* tttt* > stdout.log 2> stderr.log
 # cat stdout.log
 test.log
