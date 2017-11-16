@@ -81,7 +81,7 @@ hello
 
 我们可以在同一行命令中同时将stdout跟stderr重定向，如：
 
-```console
+{% highlight shell_session %}
 # ls test* tttt*
 ls: cannot access tttt*: No such file or directory
 test.log  test2
@@ -91,7 +91,7 @@ test.log
 test2
 # cat stderr.log
 ls: cannot access tttt*: No such file or directory
-```
+{% endhighlight %}
 
 可以看出，stdout跟stderr被分别重定向到`stdout.log`跟`stderr.log`文件中了。
 
