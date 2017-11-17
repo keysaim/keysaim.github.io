@@ -82,7 +82,6 @@ hello
 我们可以在同一行命令中同时将stdout跟stderr重定向，如：
 
 ```
-{% highlight javascript %}
 # ls test* tttt*
 ls: cannot access tttt*: No such file or directory
 test.log  test2
