@@ -2,7 +2,7 @@
 layout:     post
 title:      "Linux系统学习"
 subtitle:   ""
-date:       2017-10-09
+date:       2017-10-08
 author:     "keysaim"
 header-img: ""
 catalog: true
