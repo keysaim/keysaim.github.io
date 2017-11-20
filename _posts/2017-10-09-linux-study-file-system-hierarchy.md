@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Linux系统学习（二）文件系统结构"
+title:      "Linux系统介绍（二）文件系统结构"
 subtitle:   ""
 date:       2017-10-09
 author:     "keysaim"

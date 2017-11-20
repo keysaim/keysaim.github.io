@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Linux系统学习（五）常用命令"
+title:      "Linux系统介绍（五）常用命令"
 subtitle:   ""
 date:       2017-11-17
 author:     "keysaim"

@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Linux系统学习（一）命令行"
+title:      "Linux系统介绍（一）命令行"
 subtitle:   ""
 date:       2017-10-09
 author:     "keysaim"

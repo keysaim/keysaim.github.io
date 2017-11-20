@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Linux系统学习（三）shell基础"
+title:      "Linux系统介绍（三）shell基础"
 subtitle:   ""
 date:       2017-10-10
 author:     "keysaim"

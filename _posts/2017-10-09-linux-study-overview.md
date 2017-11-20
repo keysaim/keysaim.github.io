@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Linux系统学习"
+title:      "Linux系统介绍--综述"
 subtitle:   ""
 date:       2017-10-08
 author:     "keysaim"

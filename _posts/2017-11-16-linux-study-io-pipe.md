@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Linux系统学习（四）IO重定向与管道"
+title:      "Linux系统介绍（四）IO重定向与管道"
 subtitle:   ""
 date:       2017-11-16
 author:     "keysaim"
