@@ -543,6 +543,26 @@ Usage: tar [OPTION...] [FILE]...
     tmp/test.log
     ```
 
+# split命令
+
+`split`命令用来将一个文件分成多个文件，比如将一个特别大的文件分成平均大小为100M的多个文件等。
+
+```
+# split -b 40M go1.6.linux-amd64.tar.gz go1.6.linux-amd64.tar.gz.part
+# ll go1.6.linux-amd64.tar.gz.part*
+-rw-r--r--. 1 root root 41943040 Nov 20 15:03 go1.6.linux-amd64.tar.gz.partaa
+-rw-r--r--. 1 root root 41943040 Nov 20 15:03 go1.6.linux-amd64.tar.gz.partab
+-rw-r--r--. 1 root root   913400 Nov 20 15:03 go1.6.linux-amd64.tar.gz.partac
+```
+
+其中，`go1.6.linux-amd64.tar.gz`是要被拆分的文件，`go1.6.linux-amd64.tar.gz.part`是拆分后文件的前缀，可以看到文件被拆分为三部分了。
+
+`split`非常常见的用法是来将某个被压缩的文件拆分成小的部分，正如上例所示。那么，如何将拆分的文件重新合并呢？我们可以用`cat`将它们合并：
+
+```shell
+cat go1.6.linux-amd64.tar.gz.part* > go1.6.linux-amd64.tar.gz
+```
+
 # grep命令
 
 过滤数据来说，用的最多的估计就是`grep`命令了，`grep`命令可以从文件或者管道中搜索数据并打印出来，当然，其也可以直接在目录中搜索所有的文件，并把其中符合条件的行打印出来。
