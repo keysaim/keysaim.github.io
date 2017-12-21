@@ -76,6 +76,16 @@ tags:
     $ git clone git@github.com:Huxpro/huxblog-boilerplate.git
     ```
 
+* 添加自己的github.io repo
+
+    clone了Huxpro的repo之后，还需要将自己的github.io repo添加到Huxpro repo中，以方便后面讲修改同步到自己的repo中：
+
+    ```
+    $ git remote add mine https://github.com/tobiasalin/tobiasalin.github.io
+    ```
+
+    其中，`mine`是你自己repo的别名，当然，你完全可以用其它任何合法的名字。
+
 * 修改必要的配置
 
     clone之后的repo其实是Huxpro自己的博客网站，里面有非常多作者自己的博文，可根据自己的需要进行必要的删减。基于`Jekyll`的博客网站，对于配置，非常重要的一个文件是`_config.yml`文件，代开这个文件进行必要的修改：
@@ -102,10 +112,10 @@ tags:
 ```
 $ git add _posts/2017-08-15-how-to-setup-your-github-io-blog.md
 $ git commit -m "Add how to setup your github.io blog"
-$ git push origin master
+$ git push mine master
 ```
 
-等一会（通常几秒到几十秒不等），就可以打开自己的博客网站查看博文了，这里是我的博客网站`https://keysaim.github.io`。
+*请务必注意，这里提交的repo是`mine`，也就是你自己的github.io repo。*等一会（通常几秒到几十秒不等），就可以打开自己的博客网站查看博文了，这里是我的博客网站`https://keysaim.github.io`。
 
 ## 本地查看自己的博客
 
