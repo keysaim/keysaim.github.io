@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on 窗外蟋蟀博客</title>
+    <link>https://keysaim.github.io/tags/</link>
+    <description>Recent content in Tags on 窗外蟋蟀博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 16 Aug 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://keysaim.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Blog</title>
+      <link>https://keysaim.github.io/tags/blog/</link>
+      <pubDate>Wed, 16 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/tags/blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Development</title>
+      <link>https://keysaim.github.io/tags/development/</link>
+      <pubDate>Sun, 28 Sep 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/tags/development/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>https://keysaim.github.io/tags/docker/</link>
+      <pubDate>Thu, 23 Jun 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Git</title>
+      <link>https://keysaim.github.io/tags/git/</link>
+      <pubDate>Mon, 04 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Github</title>
+      <link>https://keysaim.github.io/tags/github/</link>
+      <pubDate>Tue, 15 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/tags/github/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Go</title>
+      <link>https://keysaim.github.io/tags/go/</link>
+      <pubDate>Sat, 23 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Golang</title>
+      <link>https://keysaim.github.io/tags/golang/</link>
+      <pubDate>Sun, 28 Sep 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://keysaim.github.io/tags/linux/</link>
+      <pubDate>Fri, 17 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rushgps</title>
+      <link>https://keysaim.github.io/tags/rushgps/</link>
+      <pubDate>Wed, 11 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/tags/rushgps/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Serverless</title>
+      <link>https://keysaim.github.io/tags/serverless/</link>
+      <pubDate>Thu, 21 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/tags/serverless/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Study</title>
+      <link>https://keysaim.github.io/tags/study/</link>
+      <pubDate>Fri, 17 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/tags/study/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sysadmin</title>
+      <link>https://keysaim.github.io/tags/sysadmin/</link>
+      <pubDate>Fri, 18 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/tags/sysadmin/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Templates</title>
+      <link>https://keysaim.github.io/tags/templates/</link>
+      <pubDate>Sun, 28 Sep 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/tags/templates/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Themes</title>
+      <link>https://keysaim.github.io/tags/themes/</link>
+      <pubDate>Sun, 28 Sep 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/tags/themes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>书籍</title>
+      <link>https://keysaim.github.io/tags/%E4%B9%A6%E7%B1%8D/</link>
+      <pubDate>Fri, 18 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/tags/%E4%B9%A6%E7%B1%8D/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>命令行</title>
+      <link>https://keysaim.github.io/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/</link>
+      <pubDate>Fri, 18 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>学习</title>
+      <link>https://keysaim.github.io/tags/%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Fri, 17 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/tags/%E5%AD%A6%E4%B9%A0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>安全</title>
+      <link>https://keysaim.github.io/tags/%E5%AE%89%E5%85%A8/</link>
+      <pubDate>Fri, 18 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/tags/%E5%AE%89%E5%85%A8/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>推荐</title>
+      <link>https://keysaim.github.io/tags/%E6%8E%A8%E8%8D%90/</link>
+      <pubDate>Fri, 18 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/tags/%E6%8E%A8%E8%8D%90/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>教程</title>
+      <link>https://keysaim.github.io/tags/%E6%95%99%E7%A8%8B/</link>
+      <pubDate>Thu, 21 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/tags/%E6%95%99%E7%A8%8B/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>系统管理</title>
+      <link>https://keysaim.github.io/tags/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/</link>
+      <pubDate>Fri, 18 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/tags/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>网络</title>
+      <link>https://keysaim.github.io/tags/%E7%BD%91%E7%BB%9C/</link>
+      <pubDate>Fri, 18 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/tags/%E7%BD%91%E7%BB%9C/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>脚本</title>
+      <link>https://keysaim.github.io/tags/%E8%84%9A%E6%9C%AC/</link>
+      <pubDate>Fri, 18 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/tags/%E8%84%9A%E6%9C%AC/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>读书笔记</title>
+      <link>https://keysaim.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sat, 23 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

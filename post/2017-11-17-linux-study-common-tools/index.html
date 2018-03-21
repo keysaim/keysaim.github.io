@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Linux系统介绍（五）常用命令 - 窗外蟋蟀博客</title>
+  <link rel="alternate" hreflang="zh-cn" href="https://keysaim.github.io" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="keysaim" />
+  <meta name="description" content="cat命令 很多时候我们通过cat命令来查看文件内容，它会将文件的所有内容显示出来。当然，cat也可以通过管道接收数据，它主要完成的是将从管道接收的输入导到输出。
+more跟less命令 有时候用cat命令来显示一个较大的文件并不方便，整个文件内容一次性显示出来简直就是刷屏了。如果需要一页页的显示内容，可以使用more或者less命令，这两个命令会以分页的形式显示文件内容，至于使用哪个命令完全看个人习惯了。此外，这两个命令不仅可以分页显示，而且在分页模式下，你可以用快捷键方便的浏览及搜索：
+* 按`d`下翻页 * 按空格下翻页 * 按回车下移一行 * 按`/`进入搜索模式，输入要搜索的关键字，按回车搜索。 * 按`n`搜索下一个 * 按`q`退出查看  tee命令 tee命令一般从管道接收数据，这点与cat类似，将stdin导到stdout。不同的是，tee同时还可以指定一个文件作为输出。这点非常有用，有时候我们想一般看到命令的输出，同时又希望将输出保存到文件中，这时候用tee最为合适。
+# date | tee time.log Mon Nov 20 14:05:02 EST 2017 # cat time.log Mon Nov 20 14:05:02 EST 2017  date命令 date命令用来显示时间跟时区，比较常见的用法有：
+ 默认显示
+# date Sun Nov 19 20:08:21 EST 2017 # date -u Mon Nov 20 01:08:28 UTC 2017  其中，-u参数表示显示UTC标准时间，即时区为0的时间。
+ 指定显示格式
+除了默认输出，我们也可以指定显示的格式：
+# date &#43;&#39;%A %d-%m-%Y UTC %:z&#39; Sunday 19-11-2017 UTC -05:00  date支持非常多元化的格式，具体可以参考这里。" />
+
+  <meta name="keywords" content="Hugo, blog, keysaim, 窗外蟋蟀" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.37.1" />
+
+
+<link rel="canonical" href="https://keysaim.github.io/post/2017-11-17-linux-study-common-tools/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" href="/favicon.ico" />
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+<link href="/dist/jane.min.css?v=2.7.0" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="Linux系统介绍（五）常用命令" />
+<meta property="og:description" content="cat命令 很多时候我们通过cat命令来查看文件内容，它会将文件的所有内容显示出来。当然，cat也可以通过管道接收数据，它主要完成的是将从管道接收的输入导到输出。
+more跟less命令 有时候用cat命令来显示一个较大的文件并不方便，整个文件内容一次性显示出来简直就是刷屏了。如果需要一页页的显示内容，可以使用more或者less命令，这两个命令会以分页的形式显示文件内容，至于使用哪个命令完全看个人习惯了。此外，这两个命令不仅可以分页显示，而且在分页模式下，你可以用快捷键方便的浏览及搜索：
+* 按`d`下翻页 * 按空格下翻页 * 按回车下移一行 * 按`/`进入搜索模式，输入要搜索的关键字，按回车搜索。 * 按`n`搜索下一个 * 按`q`退出查看  tee命令 tee命令一般从管道接收数据，这点与cat类似，将stdin导到stdout。不同的是，tee同时还可以指定一个文件作为输出。这点非常有用，有时候我们想一般看到命令的输出，同时又希望将输出保存到文件中，这时候用tee最为合适。
+# date | tee time.log Mon Nov 20 14:05:02 EST 2017 # cat time.log Mon Nov 20 14:05:02 EST 2017  date命令 date命令用来显示时间跟时区，比较常见的用法有：
+ 默认显示
+# date Sun Nov 19 20:08:21 EST 2017 # date -u Mon Nov 20 01:08:28 UTC 2017  其中，-u参数表示显示UTC标准时间，即时区为0的时间。
+ 指定显示格式
+除了默认输出，我们也可以指定显示的格式：
+# date &#43;&#39;%A %d-%m-%Y UTC %:z&#39; Sunday 19-11-2017 UTC -05:00  date支持非常多元化的格式，具体可以参考这里。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://keysaim.github.io/post/2017-11-17-linux-study-common-tools/" />
+
+
+
+<meta property="article:published_time" content="2017-11-17T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2017-11-17T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Linux系统介绍（五）常用命令">
+<meta itemprop="description" content="cat命令 很多时候我们通过cat命令来查看文件内容，它会将文件的所有内容显示出来。当然，cat也可以通过管道接收数据，它主要完成的是将从管道接收的输入导到输出。
+more跟less命令 有时候用cat命令来显示一个较大的文件并不方便，整个文件内容一次性显示出来简直就是刷屏了。如果需要一页页的显示内容，可以使用more或者less命令，这两个命令会以分页的形式显示文件内容，至于使用哪个命令完全看个人习惯了。此外，这两个命令不仅可以分页显示，而且在分页模式下，你可以用快捷键方便的浏览及搜索：
+* 按`d`下翻页 * 按空格下翻页 * 按回车下移一行 * 按`/`进入搜索模式，输入要搜索的关键字，按回车搜索。 * 按`n`搜索下一个 * 按`q`退出查看  tee命令 tee命令一般从管道接收数据，这点与cat类似，将stdin导到stdout。不同的是，tee同时还可以指定一个文件作为输出。这点非常有用，有时候我们想一般看到命令的输出，同时又希望将输出保存到文件中，这时候用tee最为合适。
+# date | tee time.log Mon Nov 20 14:05:02 EST 2017 # cat time.log Mon Nov 20 14:05:02 EST 2017  date命令 date命令用来显示时间跟时区，比较常见的用法有：
+ 默认显示
+# date Sun Nov 19 20:08:21 EST 2017 # date -u Mon Nov 20 01:08:28 UTC 2017  其中，-u参数表示显示UTC标准时间，即时区为0的时间。
+ 指定显示格式
+除了默认输出，我们也可以指定显示的格式：
+# date &#43;&#39;%A %d-%m-%Y UTC %:z&#39; Sunday 19-11-2017 UTC -05:00  date支持非常多元化的格式，具体可以参考这里。">
+
+
+<meta itemprop="datePublished" content="2017-11-17T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2017-11-17T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1620">
+
+
+
+<meta itemprop="keywords" content="Linux,study,学习," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Linux系统介绍（五）常用命令"/>
+<meta name="twitter:description" content="cat命令 很多时候我们通过cat命令来查看文件内容，它会将文件的所有内容显示出来。当然，cat也可以通过管道接收数据，它主要完成的是将从管道接收的输入导到输出。
+more跟less命令 有时候用cat命令来显示一个较大的文件并不方便，整个文件内容一次性显示出来简直就是刷屏了。如果需要一页页的显示内容，可以使用more或者less命令，这两个命令会以分页的形式显示文件内容，至于使用哪个命令完全看个人习惯了。此外，这两个命令不仅可以分页显示，而且在分页模式下，你可以用快捷键方便的浏览及搜索：
+* 按`d`下翻页 * 按空格下翻页 * 按回车下移一行 * 按`/`进入搜索模式，输入要搜索的关键字，按回车搜索。 * 按`n`搜索下一个 * 按`q`退出查看  tee命令 tee命令一般从管道接收数据，这点与cat类似，将stdin导到stdout。不同的是，tee同时还可以指定一个文件作为输出。这点非常有用，有时候我们想一般看到命令的输出，同时又希望将输出保存到文件中，这时候用tee最为合适。
+# date | tee time.log Mon Nov 20 14:05:02 EST 2017 # cat time.log Mon Nov 20 14:05:02 EST 2017  date命令 date命令用来显示时间跟时区，比较常见的用法有：
+ 默认显示
+# date Sun Nov 19 20:08:21 EST 2017 # date -u Mon Nov 20 01:08:28 UTC 2017  其中，-u参数表示显示UTC标准时间，即时区为0的时间。
+ 指定显示格式
+除了默认输出，我们也可以指定显示的格式：
+# date &#43;&#39;%A %d-%m-%Y UTC %:z&#39; Sunday 19-11-2017 UTC -05:00  date支持非常多元化的格式，具体可以参考这里。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">keysaim</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">keysaim</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">Linux系统介绍（五）常用命令</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2017-11-17 </span>
+        
+        <span class="more-meta"> 约 1620 字 </span>
+        <span class="more-meta"> 预计阅读 8 分钟 </span>
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#cat命令">cat命令</a></li>
+<li><a href="#more跟less命令">more跟less命令</a></li>
+<li><a href="#tee命令">tee命令</a></li>
+<li><a href="#date命令">date命令</a></li>
+<li><a href="#cal命令">cal命令</a></li>
+<li><a href="#time命令">time命令</a></li>
+<li><a href="#wc命令">wc命令</a></li>
+<li><a href="#find命令">find命令</a></li>
+<li><a href="#sort命令">sort命令</a></li>
+<li><a href="#uniq命令">uniq命令</a></li>
+<li><a href="#od命令">od命令</a></li>
+<li><a href="#压缩类命令">压缩类命令</a>
+<ul>
+<li><a href="#tar命令">tar命令</a></li>
+</ul></li>
+<li><a href="#split命令">split命令</a></li>
+<li><a href="#grep命令">grep命令</a>
+<ul>
+<li><a href="#基本查找">基本查找</a></li>
+<li><a href="#正则表达式匹配">正则表达式匹配</a></li>
+</ul></li>
+<li><a href="#awk命令">awk命令</a></li>
+<li><a href="#cut命令">cut命令</a></li>
+<li><a href="#tr命令">tr命令</a></li>
+<li><a href="#sed命令">sed命令</a>
+<ul>
+<li><a href="#高级用法">高级用法</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<h1 id="cat命令">cat命令</h1>
+
+<p>很多时候我们通过<code>cat</code>命令来查看文件内容，它会将文件的所有内容显示出来。当然，<code>cat</code>也可以通过管道接收数据，它主要完成的是将从管道接收的输入导到输出。</p>
+
+<h1 id="more跟less命令">more跟less命令</h1>
+
+<p>有时候用<code>cat</code>命令来显示一个较大的文件并不方便，整个文件内容一次性显示出来简直就是刷屏了。如果需要一页页的显示内容，可以使用<code>more</code>或者<code>less</code>命令，这两个命令会以分页的形式显示文件内容，至于使用哪个命令完全看个人习惯了。此外，这两个命令不仅可以分页显示，而且在分页模式下，你可以用快捷键方便的浏览及搜索：</p>
+
+<pre><code>* 按`d`下翻页
+* 按空格下翻页
+* 按回车下移一行
+* 按`/`进入搜索模式，输入要搜索的关键字，按回车搜索。
+* 按`n`搜索下一个
+* 按`q`退出查看
+</code></pre>
+
+<h1 id="tee命令">tee命令</h1>
+
+<p><code>tee</code>命令一般从管道接收数据，这点与<code>cat</code>类似，将stdin导到stdout。不同的是，<code>tee</code>同时还可以指定一个文件作为输出。这点非常有用，有时候我们想一般看到命令的输出，同时又希望将输出保存到文件中，这时候用<code>tee</code>最为合适。</p>
+
+<pre><code># date | tee time.log
+Mon Nov 20 14:05:02 EST 2017
+# cat time.log
+Mon Nov 20 14:05:02 EST 2017
+</code></pre>
+
+<h1 id="date命令">date命令</h1>
+
+<p><code>date</code>命令用来显示时间跟时区，比较常见的用法有：</p>
+
+<ul>
+<li><p>默认显示</p>
+
+<pre><code># date
+Sun Nov 19 20:08:21 EST 2017
+# date -u
+Mon Nov 20 01:08:28 UTC 2017
+</code></pre>
+
+<p>其中，<code>-u</code>参数表示显示UTC标准时间，即时区为0的时间。</p></li>
+
+<li><p>指定显示格式</p>
+
+<p>除了默认输出，我们也可以指定显示的格式：</p>
+
+<pre><code># date +'%A %d-%m-%Y UTC %:z'
+Sunday 19-11-2017 UTC -05:00
+</code></pre>
+
+<p><code>date</code>支持非常多元化的格式，具体可以参考<a href="https://www.cyberciti.biz/faq/linux-unix-formatting-dates-for-display/">这里</a>。</p></li>
+
+<li><p>显示当前时间的秒数</p>
+
+<p>通常，在计算当前时间的秒数的时候，我们通常会以<a href="https://en.wikipedia.org/wiki/Unix_time">Unix Epoch Time</a>为基准，用<code>date</code>命令可以非常方便的显示当前时间的秒数：</p>
+
+<pre><code># date +%s
+1511141040
+# date +%s --date='2017/11/19 09:56:00'
+1511103360
+</code></pre>
+
+<p>其中，也可以通过参数<code>--date</code>指定时间来计算。反过来，如果我们知道了时间的秒数，需要显示其相对于Unix Epoch Time的时间，可以这么做：</p>
+
+<pre><code># date; date +%s
+Mon Nov 20 10:33:07 EST 2017
+1511191987
+# date --date=@1511191987
+Mon Nov 20 10:33:07 EST 2017
+</code></pre></li>
+
+<li><p>时间偏移计算</p>
+
+<p>有时候需要知道多少天前是什么时间，这时候需要用到时间偏移计算了：</p>
+
+<pre><code># date --date='100 seconds ago'
+Sun Nov 19 20:35:44 EST 2017
+# date --date='100 hours ago'
+Wed Nov 15 16:37:28 EST 2017
+# date --date='100 days ago'
+Fri Aug 11 21:37:34 EDT 2017
+</code></pre>
+
+<p><code>date</code>命令可以识别多种时间偏移写法，除了示例中的，还有<code>minutes months years</code>等，当然，也可以这样写:</p>
+
+<pre><code># date --date='+ 1000 seconds'
+Sun Nov 19 20:56:28 EST 2017
+# date --date='- 1000 seconds'
+Sun Nov 19 20:23:41 EST 2017
+# date --date='2017-11-19 00:00:00 + 1000 seconds'
+Sat Nov 18 09:00:01 EST 2017
+</code></pre>
+
+<p>直接用<code>+</code>或者<code>-</code>表示以后或者以前的时间，也可以指定某个时间点然后偏移。</p></li>
+
+<li><p>设置时间</p>
+
+<p>当然，你也可以通过<code>date</code>命令来设置时间：</p>
+
+<pre><code># date
+Sun Nov 19 20:44:11 EST 2017
+# date --set='Sun Nov 19 20:44:30 EST 2017'
+Sun Nov 19 20:44:30 EST 2017
+# date
+Sun Nov 19 20:44:31 EST 2017
+</code></pre>
+
+<p>其中<code>--set</code>也可以简写为<code>-s</code>，时间格式非常灵活：</p>
+
+<pre><code># date -s '2017/11/20 10:19:50'
+Mon Nov 20 10:19:50 EST 2017
+</code></pre></li>
+</ul>
+
+<h1 id="cal命令">cal命令</h1>
+
+<p>我们用<code>date</code>可以显示时间，同时咱们还可以通过<code>cal</code>命令来显示日历：</p>
+
+<pre><code># cal
+    November 2017
+Su Mo Tu We Th Fr Sa
+          1  2  3  4
+ 5  6  7  8  9 10 11
+12 13 14 15 16 17 18
+19 20 21 22 23 24 25
+26 27 28 29 30
+</code></pre>
+
+<p>当然，你也可以指定要显示的日期，比如1949年10月的日历：</p>
+
+<pre><code># cal 10 1949
+    October 1949
+Su Mo Tu We Th Fr Sa
+                   1
+ 2  3  4  5  6  7  8
+ 9 10 11 12 13 14 15
+16 17 18 19 20 21 22
+23 24 25 26 27 28 29
+30 31
+</code></pre>
+
+<h1 id="time命令">time命令</h1>
+
+<p>有时候我们需要知道一个命令运行了多少时间，这时候我们可以用<code>time</code>命令来计时：</p>
+
+<pre><code># time sleep 1
+
+real	0m1.018s
+user	0m0.001s
+sys  	0m0.002s
+</code></pre>
+
+<p>其中<code>sleep 1</code>用来睡眠1秒，<code>real</code>表示实际用了多少时间，<code>user</code>表示在用户态花了多少时间，<code>sys</code>则表示在内核花了多少时间。详细可以参考<a href="https://stackoverflow.com/questions/556405/what-do-real-user-and-sys-mean-in-the-output-of-time1">这篇问答</a>。</p>
+
+<h1 id="wc命令">wc命令</h1>
+
+<p><code>wc</code>命令是<code>Word Count</code>的简称，顾名思义就是用来统计单词的。</p>
+
+<pre><code># cat test.log
+Nov 17 00:27:20 traffic-base1 named[1212]: managed-keys-zone: Unable to fetch DNSKEY set .: timed out
+# cat test.log | wc -w
+14
+</code></pre>
+
+<p>参数<code>-w</code>表示统计单词数，这里的单词实际上指的是被空格分开的字符串。下面列举出<code>wc</code>命令的有关参数：</p>
+
+<p>|&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|
+| 参数 | 说明                   |
+|&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|
+| -w   | 统计多少单词           |
+| -l   | 统计多少行             |
+| -c   | 统计有多少个字节       |
+| -m   | 统计有多少个字符       |
+| -L   | 统计长度最长的行的长度 |
+|&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|</p>
+
+<p>注意，这里的字节跟字符的差别，在英文中基本上是一样的，但是在多字节语言中，其意义就不一样了：</p>
+
+<pre><code># echo '你好' | wc -c
+7
+# echo '你好' | wc -m
+3
+</code></pre>
+
+<h1 id="find命令">find命令</h1>
+
+<p><code>find</code>命令用来查找文件或目录，这又是一个非常强大的且常用的命令，这里只介绍几种常见的用法：</p>
+
+<ul>
+<li><p>根据名字查找</p>
+
+<p>这是基本且常见的用法：</p>
+
+<pre><code># find . -name &quot;test*&quot;
+./test.log
+./test2
+</code></pre>
+
+<p>示例中表示在当前目录（用<code>.</code>表示）下包括其子目录，查找文件名以<code>test</code>开头的文件或者目录。默认情况下，<code>find</code>命令是大小写敏感的，如果需要忽略大小写，则可以改用参数<code>-iname</code>。</p></li>
+
+<li><p>根据路径查找</p>
+
+<p><code>-name</code>参数会根据名字查找，如果需要对路径进行匹配查找，则可以用<code>-path</code>参数：</p>
+
+<pre><code># find . -path &quot;./tmp/*&quot;
+./tmp/Test1
+./tmp/test2
+./tmp/test.log
+./tmp/test.cpp
+./tmp/time.log
+</code></pre></li>
+
+<li><p>根据类型查找</p>
+
+<p>可以根据类型查找文件：</p>
+
+<pre><code># find . -type f
+./Test1
+./test.log
+./test2
+</code></pre>
+
+<p>当然，也可以同时根据类型跟文件名一起查找：</p>
+
+<pre><code># find . -type f -name &quot;test*&quot;
+./test.log
+./test2
+</code></pre>
+
+<p><code>f</code>表示文件，如果是查找目录的话则用<code>d</code>。</p></li>
+
+<li><p>根据时间查找</p>
+
+<p><code>find</code>命令还可以根据时间来查找文件目录，其中一个用法如下：</p>
+
+<pre><code class="language-sh">find . -newer base_file
+</code></pre>
+
+<p>表示在当前目录下查找比<code>base_file</code>文件更新的文件或者目录。此外，<code>find</code>还可以根据文件的<a href="https://www.unixtutorial.org/2008/04/atime-ctime-mtime-in-unix-filesystems/">atime, ctime, mtime</a>来查找文件，如下，根据修改时间来查找：</p>
+
+<pre><code># date
+Fri Nov 17 20:34:52 EST 2017
+# ll
+total 20
+drwxr-xr-x.  2 root root   45 Nov 17 02:46 ./
+dr-xr-x---. 48 root root 8192 Nov 17 02:46 ../
+-rw-r--r--.  1 root root    0 Nov 16 00:17 Test1
+-rw-r--r--.  1 root root   34 Nov 17 02:46 test2
+-rw-r--r--.  1 root root  102 Nov 17 00:30 test.log
+# find . -mtime -1
+.
+./test.log
+./test2
+</code></pre>
+
+<p>其中<code>-mtime</code>表示根据修改时间查找，<code>-1</code>表示最近一天。<code>find</code>支持的时间查找总结如下：</p>
+
+<p>|&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-|
+| 参数   | 说明                                         |
+|&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-|
+| -mtime | 根据修改时间，也就是<code>ls -l</code>显示的时间        |
+| -atime | 根据访问时间，也就是<code>ls -lu</code>显示的时间       |
+| -ctime | 根据状态改变的时间，也就是<code>ls -lc</code>显示的时间 |
+|&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-|</p>
+
+<p>时间值的表示说明：基准<code>+0</code>表示一天前，<code>-1.5</code>表示最近1.5天，<code>+1.5</code>表示2.5天前</p></li>
+
+<li><p>逻辑查找</p>
+
+<p><code>find</code>支持与或非逻辑的查找，比如查找所有C++的源文件，实际上需要找出后缀为<code>.cpp</code>跟<code>.h</code>的文件，需要用到<code>find</code>的逻辑或的查找：</p>
+
+<pre><code class="language-sh">find . -name &quot;*.cpp&quot; -o -name &quot;*.h&quot;
+</code></pre>
+
+<p>其中<code>-o</code>是<code>-or</code>的缩写，用来表示逻辑或的关系，而<code>-name &quot;*.cpp&quot;</code>与<code>-name &quot;*.h&quot;</code>为表达式，构成了<code>EXP1 or EXP2</code>的关系，只要文件或者目录满足其中一个表达式就会输出。<code>find</code>支持的逻辑关系如下：</p>
+
+<p>|&mdash;&mdash;+&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|
+| 逻辑 | 参数 | 说明                                                               |
+|&mdash;&mdash;+&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|
+| 与   | -a   | <code>-and</code>的缩写，逻辑与的关系，如<code>find . -type f -a -name &quot;*.log&quot;</code>    |
+| 或   | -o   | <code>-or</code>的缩写，逻辑或的关系, 如<code>find . -name &quot;*.cpp&quot; -o -name &quot;*.h&quot;</code> |
+| 非   | !    | <code>-not</code>的缩写，逻辑非的关系, 如<code>find . ! -name &quot;*.cpp&quot;</code>             |
+|&mdash;&mdash;+&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|</p></li>
+</ul>
+
+<p>此外，<code>find</code>命令还有一个非常重要且常见的用法，就是在找到文件后执行某个命令，改用法如下：</p>
+
+<pre><code class="language-shell">find . -name &quot;*.log&quot; -exec rm {} \;
+</code></pre>
+
+<p>表示删除当前目录包括子目录中以<code>.log</code>为后缀的所有文件。其中，<code>-exec</code>表示在找到后需要执行命令，而命令为<code>rm {} \;</code>，实际上此命令就是一般的<code>shell</code>命令，其中<code>{}</code>用来指代找到的文件或目录，这里<code>;</code>必须转义，因为需要传递给<code>find</code>本身，如果不转义，则会直接被<code>shell</code>解析使用了。每找到一个文件或目录，都会执行指定的命令，其中<code>{}</code>部分以文件路径替代。如果需要只执行一次命令，而把所有找到的文件作为参数传递给该命令，则需要用<code>+</code>替代<code>\;</code>，如：</p>
+
+<pre><code class="language-shell">find . -name &quot;*.log&quot; -exec rm {} +
+</code></pre>
+
+<p>假定找到的文件有<code>test.log</code>，<code>test1.log</code>，用<code>\;</code>的方式相当于执行两次：<code>rm test.log</code>跟<code>rm test1.log</code>；如果使用<code>+</code>则只有一次命令<code>rm test.log test1.log</code>。</p>
+
+<h1 id="sort命令">sort命令</h1>
+
+<p>顾名思义，这个命令就是用来排序的。</p>
+
+<pre><code># head -n 5 /etc/passwd | sort
+adm❌3:4:adm:/var/adm:/sbin/nologin
+bin❌1:1:bin:/bin:/sbin/nologin
+daemon❌2:2:daemon:/sbin:/sbin/nologin
+lp❌4:7:lp:/var/spool/lpd:/sbin/nologin
+root❌0:0:root:/root:/bin/bash
+</code></pre>
+
+<p>默认情况下，<code>sort</code>命令以字典顺序对每行进行排序，如果不带参数，会将整行作为一个字符串进行比较。当然，你也可以指定以第几列进行排序：</p>
+
+<pre><code># head -n 5 /etc/passwd | tr : &quot; &quot; | sort -k 3
+root x 0 0 root /root /bin/bash
+bin x 1 1 bin /bin /sbin/nologin
+daemon x 2 2 daemon /sbin /sbin/nologin
+adm x 3 4 adm /var/adm /sbin/nologin
+lp x 4 7 lp /var/spool/lpd /sbin/nologin
+</code></pre>
+
+<p>这里先将<code>:</code>换成空格（关于<code>tr</code>命令，请参照本文关于<code>tr</code>命令的章节），然后以<code>-k</code>为参数，指定以第三列进行排序。下面列举其常用的一些参数：</p>
+
+<p>|&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|
+| 参数 | 说明                                                                                                       |
+|&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|
+| -k   | 以第几列排序，列以空格为分隔                                                                               |
+| -r   | 默认<code>sort</code>以升序输出，<code>-r</code>参数则可以以降序输出                                                             |
+| -n   | 在指定第几列的时候，可以强制<code>sort</code>把列的值以数字值进行排序，如下面的例子                                   |
+| -t   | 默认情况下认为列是以空格为分隔，<code>-t</code>参数则可以指定分隔符，这样，上面的例子其实可以直接写成<code>sort -t : -k 3</code> |
+| -f   | 忽略大小写                                                                                                 |
+| -u   | 如果排序后出现重复的行，加上这个参数将只显示一行                                                           |
+|&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|</p>
+
+<pre><code># cat test2
+10
+3
+5
+3
+# cat test2 | sort
+10
+3
+3
+5
+# cat test2 | sort -n
+3
+3
+5
+10
+# cat test2 | sort -n -u
+3
+5
+10
+</code></pre>
+
+<h1 id="uniq命令">uniq命令</h1>
+
+<p><code>uniq</code>是<code>unique</code>的简写，用来消除<code>sort</code>排序后重复的行，即相当于<code>sort</code>命令中的<code>-u</code>参数。但是，<code>uniq</code>不仅可以消除重复行，它还可以显示分别重复了多少行：</p>
+
+<pre><code># cat test2 | sort -n | uniq -c
+      2 3
+      1 5
+      1 10
+</code></pre>
+
+<p>还有些常用的参数如下：</p>
+
+<p>|&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|
+| 参数 | 说明                                                       |
+|&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|
+| -i   | 忽略大小写                                                 |
+| -d   | 只打印有重复的行，每组一个，如果要打印组内所有的，则用<code>-D</code> |
+| -u   | 只打印没有重复的行                                         |
+| -f   | 比较的时候，忽略前面的N列                                  |
+| -s   | 比较的时候，忽略前面的N个字符                              |
+|&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|</p>
+
+<h1 id="od命令">od命令</h1>
+
+<p><code>od</code>可以用来显示二进制文件：</p>
+
+<pre><code># cat test2
+abcdefg
+1234567
+# od -t x1 test2
+0000000 61 62 63 64 65 66 67 0a 31 32 33 34 35 36 37 0a
+0000020
+</code></pre>
+
+<p>当然，也可以直接显示字符：</p>
+
+<pre><code># od -c test2
+0000000   a   b   c   d   e   f   g  \n   1   2   3   4   5   6   7  \n
+0000020
+</code></pre>
+
+<p>当然，如果仅仅只是显示二进制内容，还可以使用<code>hexdump</code>命令了。</p>
+
+<h1 id="压缩类命令">压缩类命令</h1>
+
+<h2 id="tar命令">tar命令</h2>
+
+<p>在Linux中，用的最多的压缩命令就是<code>tar</code>命令了，在介绍其用法之前，需要清楚几个概念：</p>
+
+<ul>
+<li><p>存档文件(Archive File)</p>
+
+<p>存档文件用来打包多个文件成一个文件，以方便在网络上传输。请注意，打包成的文件并没有被压缩。在Linux或Unix系统中，TAR文件是最为常用的存档文件（通常以<code>.tar</code>为文件后缀）。TAR文件的更多解释可以参考<a href="http://www.bitzipper.com/tar-file.html">这里</a>。用<code>tar</code>命令可以生产TAR文件，示例如下：</p>
+
+<pre><code class="language-shell">tar cvf tmp.tar tmp/
+</code></pre>
+
+<p>具体参数在下面会具体解释，不带任何压缩格式的话，<code>tar</code>命令会生成一个TAR文件。相应的，如果需要解开TAR文件，可以这么做：</p>
+
+<pre><code class="language-shell">tar xvf tmp.tar
+</code></pre></li>
+
+<li><p>压缩文件(Compressed File)</p>
+
+<p>TAR文件是没有被压缩的，大小基本保持不变。如果需要对文件进行压缩，则需要在<code>tar</code>命令中加入压缩格式对应的参数，具体在下面会说明。</p></li>
+</ul>
+
+<p>下面来详细介绍<code>tar</code>命令的用法，<code>tar</code>的用法如下：</p>
+
+<pre><code># tar --help
+Usage: tar [OPTION...] [FILE]...
+</code></pre>
+
+<p><code>tar</code>命令支持非常多的参数，这里列举比较常用的几种使用方式：</p>
+
+<ul>
+<li><p>压缩文件或目录</p>
+
+<pre><code># tar czvf tmp.tgz tmp/
+tmp/
+tmp/Test1
+tmp/test.log
+tmp/test2
+</code></pre>
+
+<p>其中，<code>czvf</code>表示参数选项；<code>tmp.tgz</code>表示压缩后的文件名，通常<code>tgz</code>是<code>tar.gz</code>的简写；<code>tmp/</code>表示被压缩的目录。参数的解释如下：</p>
+
+<p>|&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-|
+| 参数 | 说明                                                        |
+|&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-|
+| c    | <code>Create</code>的简写，表示生产压缩文件                            |
+| z    | 表示采用<code>gzip</code>的压缩格式，文件后缀通常为<code>.tar.gz</code>或者<code>.tgz</code> |
+| v    | 表示显示压缩的过程，会列出所有被压缩的文件                  |
+| f    | 指定压缩文件                                                |
+|&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-|</p>
+
+<p>需要注意的是，<code>tar</code>支持不同的压缩格式，除了<code>gzip</code>之外，还有：</p>
+
+<p>|&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|
+| 参数     | 说明                                        |
+|&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|
+| j        | 采用<code>bzip2</code>的压缩格式，文件后缀通常为<code>.bz2</code> |
+| <code>--lzip</code> | 采用<code>lzip</code>的压缩格式，文件后缀通常为<code>.lz</code>   |
+| <code>--xz</code>   | 采用<code>xz</code>的压缩格式，文件后缀通常为<code>.xz</code>     |
+| <code>--lzma</code> | 采用<code>lzma</code>的压缩格式，文件后缀通常为<code>.lzma</code> |
+|&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|</p>
+
+<p>更多格式可以参考<a href="http://www.gnu.org/software/tar/manual/html_node/gzip.html">这里</a>。当然，最为常用的两种格式为<code>gzip</code>跟<code>bzip2</code>，用法示例如下：</p>
+
+<pre><code class="language-shell">tar czvf tmp.tgz tmp/
+tar cjvf tmp.bz2 tmp/
+</code></pre>
+
+<p>其中<code>v</code>参数可选，如果不需要显示压缩过程的话。需要注意的是，<code>tar</code>压缩目录的时候会保持目录的结构。</p></li>
+
+<li><p>解压文件</p>
+
+<p>对应于不同的压缩格式，解压参数稍微不一样，对于<code>gzip</code>跟<code>bzip2</code>分别示例如下：</p>
+
+<pre><code class="language-shell">tar xzvf tmp.tgz
+tar xjvf tmp.tgz
+</code></pre>
+
+<p>与压缩不同，<code>c</code>换成<code>x</code>表示解压，其它参数含义与压缩一样。默认情况下，解压的文件会放在当前目录，如果需要解压到某个目录下，则可以用<code>-C</code>参数：</p>
+
+<pre><code class="language-shell">tar xzvf -C /tmp/ tmp.tgz
+tar xjvf -C /tmp/ tmp.tgz
+</code></pre></li>
+
+<li><p>列出压缩包里面的文件</p>
+
+<p>有时候我们需要先看看压缩包里面有哪些文件，但又并不想解压文件，可以采用<code>-t</code>参数：</p>
+
+<pre><code># tar czf tmp.tgz tmp/
+# tar tvf tmp.tgz
+drwxr-xr-x root/root         0 2017-11-17 02:46 tmp/
+-rw-r--r-- root/root         0 2017-11-16 00:17 tmp/Test1
+-rw-r--r-- root/root       102 2017-11-17 00:30 tmp/test.log
+-rw-r--r-- root/root        34 2017-11-17 02:46 tmp/test2
+</code></pre>
+
+<p>其中，<code>tvf</code>会列出压缩包中的文件，不论采用何种压缩格式，甚至是没有被压缩的TAR文件。</p></li>
+
+<li><p>从压缩包中提取特定的文件</p>
+
+<p>在列出压缩包里面的内容后，如果只想提取里面的某些文件，可以这么做：</p>
+
+<pre><code># tar xzvf tmp.tgz tmp/test.log tmp/test2
+tmp/test.log
+tmp/test2
+</code></pre>
+
+<p>其中，根据不同的压缩格式请替换成不同的参数。请务必注意，指定的文件必须是完整的路径，而不能只是文件名。</p>
+
+<p>另外，如果想提取一组匹配某种条件的文件，可以使用<code>--wildcards</code>参数：</p>
+
+<pre><code># tar xzvf tmp.tgz --wildcards &quot;*.log&quot;
+tmp/test.log
+</code></pre></li>
+</ul>
+
+<h1 id="split命令">split命令</h1>
+
+<p><code>split</code>命令用来将一个文件分成多个文件，比如将一个特别大的文件分成平均大小为40M的多个文件等。</p>
+
+<pre><code># split -b 40M go1.6.linux-amd64.tar.gz go1.6.linux-amd64.tar.gz.part
+# ll go1.6.linux-amd64.tar.gz.part*
+-rw-r--r--. 1 root root 41943040 Nov 20 15:03 go1.6.linux-amd64.tar.gz.partaa
+-rw-r--r--. 1 root root 41943040 Nov 20 15:03 go1.6.linux-amd64.tar.gz.partab
+-rw-r--r--. 1 root root   913400 Nov 20 15:03 go1.6.linux-amd64.tar.gz.partac
+</code></pre>
+
+<p>其中，<code>go1.6.linux-amd64.tar.gz</code>是要被拆分的文件，<code>go1.6.linux-amd64.tar.gz.part</code>是拆分后文件的前缀，可以看到文件被拆分为三部分了。</p>
+
+<p><code>split</code>非常常见的用法是来将某个被压缩的文件拆分成小的部分，正如上例所示。那么，如何将拆分的文件重新合并呢？我们可以用<code>cat</code>将它们合并：</p>
+
+<pre><code class="language-shell">cat go1.6.linux-amd64.tar.gz.part* &gt; go1.6.linux-amd64.tar.gz
+</code></pre>
+
+<h1 id="grep命令">grep命令</h1>
+
+<p>过滤数据来说，用的最多的估计就是<code>grep</code>命令了，<code>grep</code>命令可以从文件或者管道中搜索数据并打印出来，当然，其也可以直接在目录中搜索所有的文件，并把其中符合条件的行打印出来。</p>
+
+<pre><code># cat test.log | grep hello
+hello
+# grep hello test.log
+hello
+# grep hello . -r
+./test.log:hello
+</code></pre>
+
+<p>上面就是三种方式搜索包括<code>hello</code>关键字的行。</p>
+
+<p><code>grep</code>是Linux中使用最为频繁的命令之一，其本身也有非常强大的功能，这一节咱们将详细讲述其比较常见的用法。</p>
+
+<h2 id="基本查找">基本查找</h2>
+
+<p>查看<code>grep</code>的帮助可以看到：</p>
+
+<pre><code># grep --help
+Usage: grep [OPTION]... PATTERN [FILE]...
+</code></pre>
+
+<p>其中<code>OPTION</code>指的是命令参数，<code>PATTERN</code>指的是匹配的字符串，比如关键字搜索。<code>FILE</code>指的是文件，当然，没有文件的时候也可以通过管道接收数据并搜索过滤。<code>grep</code>提供了非常多的命令参数用来控制查找的方式跟效果，下面列举其常用的一些参数：</p>
+
+<p>|&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|
+| 参数 | 说明                                                                                                       |
+|&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|
+| -i   | 默认情况下，<code>grep</code>命令的搜索是大小写敏感的，如果需要忽略大小写可以用这个参数                               |
+| -v   | 该参数表示不包含的意思                                                                                     |
+| -A2  | 其中<code>A</code>是<code>after</code>的意思，表示同时显示搜索出来行后面两行。有时候我们需要知道匹配行后面是什么，可以用这个参数 |
+| -B2  | 与<code>A</code>相反，其是<code>before</code>的意思，表示同时显示匹配行前两行                                                    |
+| -C2  | 有时候我们想既显示前面两行也显示后面两行，这时候就用这个参数                                               |
+| -r   | 搜索目录的时候需要带上这个参数                                                                             |
+| -n   | 有些时候，我们需要知道匹配到的行是第几行，可以加上这个参数把行号打印出来                                   |
+|&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|</p>
+
+<p>对于<code>PATTERN</code>，<code>grep</code>命令也支持不同的用法：
+* 关键字匹配</p>
+
+<p>这个是最常用的基本用法，匹配是否包括该关键字的行。</p>
+
+<ul>
+<li>正则匹配</li>
+</ul>
+
+<p>除了基本的关键字匹配，<code>grep</code>还支持极为强大的正则表达式的匹配。我们将在下一小节专门讲述正则表达式匹配。</p>
+
+<ul>
+<li>或匹配</li>
+</ul>
+
+<p>有时候我们需要匹配某个PATTERN1或者PATTERN2的行，这时候可以这么写<code>PATTERN</code>：<code>PATTERN1\|PATTERN2</code>。通过<code>\|</code>将多个<code>PATTERN</code>连在一起表示或的意思，只要匹配其中任一个的行都会被打印出来。</p>
+
+<pre><code># grep '12306\|test' . -r
+./test2:http://abcdefg.test.com
+./test2:12306.com
+</code></pre>
+
+<h2 id="正则表达式匹配">正则表达式匹配</h2>
+
+<p><code>grep</code>命令支持非常强大的正则匹配，支持三种不同的正则表达式：</p>
+
+<ul>
+<li><a href="https://en.wikibooks.org/wiki/Regular_Expressions/POSIX-Extended_Regular_Expressions">ERE</a>(POSIX-Extended Regular Expressions)</li>
+<li><a href="https://en.wikibooks.org/wiki/Regular_Expressions/POSIX_Basic_Regular_Expressions">BRE</a>(POSIX_Basic_Regular_Expressions)</li>
+<li><a href="https://perldoc.perl.org/perlre.html">Perl Regular expression</a></li>
+</ul>
+
+<p>当然，比较常用的是<code>ERE</code>正则表达式了。在<code>grep</code>命令中，采用<code>-E</code>参数即可以使用该表达式，正则表达式非常灵活，用法非常多，这里列举几个示例：</p>
+
+<ul>
+<li><p>匹配以关键字开头的行</p>
+
+<pre><code class="language-shell">grep -E &quot;^keyword&quot; . -r
+</code></pre></li>
+
+<li><p>匹配以关键字结尾的行</p>
+
+<pre><code class="language-shell">grep -E &quot;keyword$&quot; . -r
+</code></pre></li>
+
+<li><p>匹配包含如<code>2017/10/11</code>日期的行</p>
+
+<pre><code class="language-shell">grep -E &quot;[0-9]{4}/[0-9]{2}/[0-9]{2}&quot; . -r
+</code></pre>
+
+<p>注意的是，对于数字的表示，其不支持如<code>\d</code>这样的表达方式，而需要<code>[0-9]</code>这样表达。</p></li>
+</ul>
+
+<p>当然，如果需要熟练掌握<code>grep</code>的正则表达式匹配，你必须对正则表达式非常熟悉，这个就不在本篇的范畴了。</p>
+
+<h1 id="awk命令">awk命令</h1>
+
+<p>要说Linux中最为强大的基本命令有哪些，那<code>awk</code>无疑会榜上有名，其强大的流式处理能力，很多人甚至写书来专门讲这个命令。这里咱们暂时介绍基本的功能，以后有机会将专门开辟一文来展开。</p>
+
+<p>一个常见的用法就是把文件中的某几列打印出来：</p>
+
+<pre><code># cat test.log
+Nov 17 00:27:20 traffic-base1 named[1212]: managed-keys-zone: Unable to fetch DNSKEY set .: timed out
+# cat test.log | awk '{print $1, $2, $3}'
+Nov 17 00:27:20
+</code></pre>
+
+<p>如上例，空格将一行分成了不同的列，咱们希望只把时间显示出来，而时间包括了第1，2，3列，因此，通过<code>awk '{print $1, $2, $3}'</code>就实现了此功能，其中<code>$1</code>就是引用第一列。</p>
+
+<h1 id="cut命令">cut命令</h1>
+
+<p>有时候，一行内的数据并不是通过空格分隔开的，而是通过其它分隔符，那如何显示想要的列呢？通过<code>cut</code>命令，咱们同样可以轻松实现：</p>
+
+<pre><code># head -n 5 /etc/passwd
+root❌0:0:root:/root:/bin/bash
+bin❌1:1:bin:/bin:/sbin/nologin
+daemon❌2:2:daemon:/sbin:/sbin/nologin
+adm❌3:4:adm:/var/adm:/sbin/nologin
+lp❌4:7:lp:/var/spool/lpd:/sbin/nologin
+# head -n 5 /etc/passwd | cut -d: -f1
+root
+bin
+daemon
+adm
+lp
+</code></pre>
+
+<p><code>/etc/passwd</code>中的每一行基本上都是通过<code>:</code>进行分隔，其中第一列表示用户名，如果咱们只想把用户名输出的话，可以通过<code>cut -d: -f1</code>来实现，其中<code>-d:</code>表示以<code>:</code>号为分隔符，<code>-f1</code>表示显示第一列。可见，对于<code>cut</code>命令来说，咱们可以指定分隔符，那么前面通过<code>awk</code>实现的例子也可以通过<code>cut</code>来做：</p>
+
+<pre><code># cat test.log
+Nov 17 00:27:20 traffic-base1 named[1212]: managed-keys-zone: Unable to fetch DNSKEY set .: timed out
+# cat test.log | cut -d&quot; &quot; -f1-3
+Nov 17 00:27:20
+</code></pre>
+
+<p>其中<code>-d&quot; &quot;</code>表示以空格为分隔符（注意，这里的空格必须以引号括起来，不然会被shell展开去除多余空格），<code>-f1-3</code>表示输出第1到3列，这里简用了<code>-</code>来表示范围，当然也可以写成<code>-f1,2,3</code>了。</p>
+
+<p>此外，<code>cut</code>命令还可以指定输出哪些位的字符：</p>
+
+<pre><code># cat test.log
+Nov 17 00:27:20 traffic-base1 named[1212]: managed-keys-zone: Unable to fetch DNSKEY set .: timed out
+# cat test.log | cut -c1-16
+Nov 17 00:27:20
+</code></pre>
+
+<p>其中，<code>-c1-16</code>表示输出第1到16个字符，当然，你同样可以以<code>,</code>来分别列举要输出哪几个。</p>
+
+<h1 id="tr命令">tr命令</h1>
+
+<p><code>tr</code>其实是<code>translate</code>的缩写，这个命令用来将某些字符翻译成另外的字符。</p>
+
+<pre><code># tr --help
+Usage: tr [OPTION]... SET1 [SET2]
+</code></pre>
+
+<p>这个命令就是把字符集<code>SET1</code>中的字符对应的转成字符集<code>SET2</code>中的字符。如将小写转成大写：</p>
+
+<pre><code># cat test.log
+Nov 17 00:27:20 traffic-base1 named[1212]: managed-keys-zone: Unable to fetch DNSKEY set .: timed out
+# cat test.log | tr a-z A-Z
+NOV 17 00:27:20 TRAFFIC-BASE1 NAMED[1212]: MANAGED-KEYS-ZONE: UNABLE TO FETCH DNSKEY SET .: TIMED OUT
+</code></pre>
+
+<p>这里用<code>-</code>来方便的表示一定范围的字符集，当然，你完全可以一个个列出来你要的字符集。通常情况下，<code>SET1</code>跟<code>SET2</code>的长度保持一致，因为这个转换实际上是一对一的转换，当然，<code>SET2</code>的长度是可以大于<code>SET1</code>的，多余的字符不会被使用。但是，当<code>SET2</code>长度小于<code>SET1</code>时，<code>tr</code>命令会将<code>SET2</code>中最后一个字符填充不足的位数：</p>
+
+<pre><code># echo 'abcdefg' | tr ab wyz
+wycdefg
+# echo 'abcdefg' | tr abcdefg wyz
+wyzzzzz
+</code></pre>
+
+<p>对于<code>tr</code>还有一个常见的用途，就是用来去除字符串中的换行符：</p>
+
+<pre><code># head -n 5 /etc/passwd
+root❌0:0:root:/root:/bin/bash
+bin❌1:1:bin:/bin:/sbin/nologin
+daemon❌2:2:daemon:/sbin:/sbin/nologin
+adm❌3:4:adm:/var/adm:/sbin/nologin
+lp❌4:7:lp:/var/spool/lpd:/sbin/nologin
+# head -n 5 /etc/passwd | tr '\n' ' '
+root❌0:0:root:/root:/bin/bash bin❌1:1:bin:/bin:/sbin/nologin daemon❌2:2:daemon:/sbin:/sbin/nologin adm❌3:4:adm:/var/adm:/sbin/nologin lp❌4:7:lp:/var/spool/lpd:/sbin/nologin
+</code></pre>
+
+<p>其中，<code>\n</code>表示换行符，示例中将换行符全部换成了空格。</p>
+
+<p>最后，<code>tr</code>还有一个常见的用法，可以加上<code>-d</code>参数来删除字符集中的字符。</p>
+
+<pre><code># echo abcdeWXYZ | tr -d a-z
+WXYZ
+</code></pre>
+
+<p>示例中删除了所有小写字母。</p>
+
+<h1 id="sed命令">sed命令</h1>
+
+<p>流式处理中，<code>sed</code>也是一个极为常用的命令，它可以用来替换字串，比之前的<code>tr</code>那是要强大无数倍了。</p>
+
+<p>查看<code>sed</code>的帮助：</p>
+
+<pre><code># sed --help
+Usage: sed [OPTION]... {script-only-if-no-other-script} [input-file]...
+</code></pre>
+
+<p>它既可以直接在文件中替换字符串，也可以加收管道的数据。如基本用法：</p>
+
+<pre><code># echo abcdefgabcd | sed 's/abc/ABC/'
+ABCdefgabcd
+</code></pre>
+
+<p>其中<code>'s/abc/ABC/'</code>指定了替换的规则，默认情况下只替换一次，如果需要全部替换，则需要在规则后面加入<code>g</code>：</p>
+
+<pre><code># echo abcdefgabcd | sed 's/abc/ABC/g'
+ABCdefgABCd
+</code></pre>
+
+<p>规则中默认使用了<code>/</code>为分隔。当然，你也可以使用其他分隔符，这在要替换的字串中带有<code>/</code>的时候特别有用：</p>
+
+<pre><code># echo &quot;http://abc.test.com&quot; | sed 's/http:\/\//https:\/\//'
+https://abc.test.com
+# echo &quot;http://abc.test.com&quot; | sed 's|http://|https://|'
+https://abc.test.com
+</code></pre>
+
+<p>如果不指定新的分隔符<code>|</code>，那么就得使用转义符<code>\</code>将<code>//</code>进行转义了，这样可读性就差了很多，采用<code>|</code>就自然多了。<code>sed</code>支持的分隔符还包括了<code>:</code>，<code>_</code>。</p>
+
+<p>此外，<code>sed</code>不仅可以用来替换字串，还可以用来删除匹配的行：</p>
+
+<pre><code># cat test2
+http://abcdefg.test.com
+12306.com
+# cat test2 | sed '/12306/d'
+http://abcdefg.test.com
+</code></pre>
+
+<h2 id="高级用法">高级用法</h2>
+
+<ul>
+<li><p>后向引用（Back Referencing）</p>
+
+<p><code>sed</code>规则匹配到的字符串还可以在规则定义中被引用，如下例：</p>
+
+<pre><code># echo &quot;hello world&quot; | sed 's/hello/&amp;&amp;/'
+hellohello world
+</code></pre>
+
+<p>其中，<code>&amp;</code>可以用来引用被匹配到的字串，在本例中，匹配到的字串是<code>hello</code>，这样通过<code>&amp;</code>就可以引用被匹配到的字串了。此外，我们还可以通过<code>()</code>来指定匹配的字串，并用<code>\1</code>（数字表示第一个<code>()</code>）来引用（实际上是正则表达式中的Grouping）：</p>
+
+<pre><code># echo Sunday | sed 's/\(Sun\)/\1ny/'
+Sunnyday
+# echo Sunday | sed 's/\(Sun\)/\1ny \1/'
+Sunny Sunday
+</code></pre></li>
+
+<li><p>正则匹配</p>
+
+<p>由上述可以看出，<code>sed</code>的规则使用了正则表达式规则，但是其书写跟一般的正则书写不一样，你必须将有关的字符转义，否则<code>sed</code>仍然会将其当做普通字符进行匹配：</p>
+
+<pre><code># echo &quot;this is aaaa cat&quot; | sed 's/a{4}/a/'
+this is aaaa cat
+# echo &quot;this is aaaa cat&quot; | sed 's/a\{4\}/a/'
+this is a cat
+</code></pre>
+
+<p>可以看出，在没有转义<code>{</code>及<code>}</code>之前，<code>sed</code>并没有匹配到目标字串<code>aaaa</code>，而将其转义之后，则以正则表达式<code>a{4}</code>匹配到了<code>aaaa</code>并进行了替换。</p></li>
+
+<li><p>递归替换</p>
+
+<p>有时候我们需要在项目目录下替换某个字串，比如把手误写错的<code>#include&lt;stdllib.h&gt;</code>全部替换成<code>#include&lt;stdlib.h&gt;</code>，希望被替换的文件包括<code>*.cpp</code>，<code>*.h</code>的文件。其中的一种做法如下：</p>
+
+<pre><code>$ head -n 1 test.cpp
+#include &lt;stdllib.h&gt;
+$ sed -i 's/#include &lt;stdllib.h&gt;/#include &lt;stdlib.h&gt;/' `find . -name &quot;*.cpp&quot; -o -name &quot;*.h&quot;`
+$ head -n 1 test.cpp
+#include &lt;stdlib.h&gt;
+</code></pre>
+
+<p>这里用到了shell嵌入的用法（可以参看<a href="https://keysaim.github.io/2017/10/10/linux-study-shell-basic/#shell嵌入与shell选项">这一篇博文</a>)，通过<code>find</code>命令找出所有的源文件，然后用<code>sed -i</code>进行替换，其中<code>-i</code>表示从文件里面替换。这一用法会将<code>find</code>找到的所有文件作为参数都追加到<code>sed</code>命令后，在项目非常大的情况下可能会导致命令执行失败（因为数量庞大的文件导致追加的参数太大了），通常我们推荐采用<code>find</code>的这种用法：</p>
+
+<pre><code class="language-sh">find . -name &quot;*.cpp&quot; -o -name &quot;*.h&quot; -exec sed -i 's/#include &lt;stdllib.h&gt;/#include &lt;stdlib.h&gt;/' {} \;
+</code></pre>
+
+<p>具体可以参照本文中关于<code>find</code>命令的介绍。</p></li>
+</ul>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">keysaim</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2017-11-17</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/linux/">Linux</a>
+          
+          <a href="/tags/study/">study</a>
+          
+          <a href="/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/2017-12-21-openfaas-practise/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">无服务（Serverless）Openfaas实战</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/2017-11-16-linux-study-io-pipe/">
+            <span class="next-text nav-default">Linux系统介绍（四）IO重定向与管道</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+    
+
+  
+
+  
+
+  <div id="comments-gitment"></div>
+  <link rel="stylesheet" href="/lib/gitment/gitment-0.0.3.min.css">
+    <script src="/lib/gitment/gitment-0.0.3.min.js"></script>
+  <script type="text/javascript">
+  const gitment = new Gitment({
+    id: '2017-11-17 00:00:00 \x2b0000 UTC',
+    title: 'Linux系统介绍（五）常用命令',
+    link: decodeURI(location.href),
+    desc: 'cat命令 很多时候我们通过cat命令来查看文件内容，它会将文件的所有内容显示出来。当然，cat也可以通过管道接收数据，它主要完成的是将从管道接收的输入导到输出。\nmore跟less命令 有时候用cat命令来显示一个较大的文件并不方便，整个文件内容一次性显示出来简直就是刷屏了。如果需要一页页的显示内容，可以使用more或者less命令，这两个命令会以分页的形式显示文件内容，至于使用哪个命令完全看个人习惯了。此外，这两个命令不仅可以分页显示，而且在分页模式下，你可以用快捷键方便的浏览及搜索：\n* 按`d`下翻页 * 按空格下翻页 * 按回车下移一行 * 按`\/`进入搜索模式，输入要搜索的关键字，按回车搜索。 * 按`n`搜索下一个 * 按`q`退出查看  tee命令 tee命令一般从管道接收数据，这点与cat类似，将stdin导到stdout。不同的是，tee同时还可以指定一个文件作为输出。这点非常有用，有时候我们想一般看到命令的输出，同时又希望将输出保存到文件中，这时候用tee最为合适。\n# date | tee time.log Mon Nov 20 14:05:02 EST 2017 # cat time.log Mon Nov 20 14:05:02 EST 2017  date命令 date命令用来显示时间跟时区，比较常见的用法有：\n 默认显示\n# date Sun Nov 19 20:08:21 EST 2017 # date -u Mon Nov 20 01:08:28 UTC 2017  其中，-u参数表示显示UTC标准时间，即时区为0的时间。\n 指定显示格式\n除了默认输出，我们也可以指定显示的格式：\n# date \x2b\x27%A %d-%m-%Y UTC %:z\x27 Sunday 19-11-2017 UTC -05:00  date支持非常多元化的格式，具体可以参考这里。',
+    owner: 'keysaim',
+    repo: 'comments',
+    oauth: {
+      client_id: '8d920ad685683a529e83',
+      client_secret: 'ffabf134048e374883ee67d3786a9a6b7d8d3cdc'
+    }
+  })
+  gitment.render('comments-gitment')
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+  </article>
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:keysaim@gmail.com" rel="me" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/keysaim" rel="me" class="iconfont icon-github" title="github"></a>
+  <a href="https://keysaim.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2017 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">窗外蟋蟀(keysaim)</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+<script type="text/javascript" src="/dist/jane.min.js?v=2.7.0"></script>
+
+
+
+
+
+</body>
+</html>

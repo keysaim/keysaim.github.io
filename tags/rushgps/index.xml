@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rushgps on 窗外蟋蟀博客</title>
+    <link>https://keysaim.github.io/tags/rushgps/</link>
+    <description>Recent content in Rushgps on 窗外蟋蟀博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 11 Oct 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://keysaim.github.io/tags/rushgps/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>GPS管理系统服务器迁移指南</title>
+      <link>https://keysaim.github.io/post/2017-10-11-rushgps-migrate/</link>
+      <pubDate>Wed, 11 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/post/2017-10-11-rushgps-migrate/</guid>
+      <description>概述 本指南主要讲述如何将GPS管理系统服务器迁移到另一台新的服务器，假定要迁移的服务器为server1，新服务器为server2，假定的服务器参数如下：
+|&amp;mdash;&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;| | 服务器 | 操作系统 | IP | 外网地址 | 外网开放端口 | |&amp;mdash;&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;| | server1 | Centos 7 | 10.10.10.100 | 55.55.55.100 | 9999, 9998 | | server2 | Centos 7 | 10.10.10.101 | 55.55.55.101 | 9999, 9998 | |&amp;mdash;&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;|
+一下所有操作都以root权限进行，请务必注意
+备份server1上的数据 请以ssh登陆到服务器，并切换到root用户。
+备份repo数据 请执行以下命令：
+cd / cp -f /etc/yum.repos.d/mysql-community.repo /  备份数据库数据 请执行以下命令：
+cd / mysqldump -u root -p rushgps &amp;gt; rushgps.sql  输入数据库密码完成备份，生成的备份文件为rushgps.sql，其中数据库密码请联系维护人员索取，这里假定是default。
+备份管理系统部署文件 请执行以下命令：</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Linux系统介绍--综述 - 窗外蟋蟀博客</title>
+  <link rel="alternate" hreflang="zh-cn" href="https://keysaim.github.io" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="keysaim" />
+  <meta name="description" content="概述 从大二（2006年）开始接触Linux到现在已经有10几年了，遥记得那时候Ubuntu还是个位数时代，现在都到17了，真的是光阴如梭啊。这这些年里面，Linux也有了长足的发展，是时候再次系统的对Linux进行重新学习了，所谓温故而知新，何况Linux本身也有很多新的变化。本系列博文将基于博主的这一篇博文中推荐的书籍为基础，结合一些网上的资料，对Linux进行一次系统的整理。希望通过此次整理能够使自己对Linux的理解更进一步，也希望能够给读者一定的参考。
+说明 本系列博文中各种例子都将基于Centos 7的Linux系统，可能与其它发行版本会有些许出入，还望读者留意。
+相关博文  Linux系统介绍（一）命令行 Linux系统介绍（二）文件系统结构 Linux系统介绍（三）shell基础 Linux系统学习（四）IO重定向与管道 Linux系统介绍（五）常用命令  本系列博文将持续更新，并在此章节中进行统一整理。" />
+
+  <meta name="keywords" content="Hugo, blog, keysaim, 窗外蟋蟀" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.37.1" />
+
+
+<link rel="canonical" href="https://keysaim.github.io/post/2017-10-09-linux-study-overview/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" href="/favicon.ico" />
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+<link href="/dist/jane.min.css?v=2.7.0" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="Linux系统介绍--综述" />
+<meta property="og:description" content="概述 从大二（2006年）开始接触Linux到现在已经有10几年了，遥记得那时候Ubuntu还是个位数时代，现在都到17了，真的是光阴如梭啊。这这些年里面，Linux也有了长足的发展，是时候再次系统的对Linux进行重新学习了，所谓温故而知新，何况Linux本身也有很多新的变化。本系列博文将基于博主的这一篇博文中推荐的书籍为基础，结合一些网上的资料，对Linux进行一次系统的整理。希望通过此次整理能够使自己对Linux的理解更进一步，也希望能够给读者一定的参考。
+说明 本系列博文中各种例子都将基于Centos 7的Linux系统，可能与其它发行版本会有些许出入，还望读者留意。
+相关博文  Linux系统介绍（一）命令行 Linux系统介绍（二）文件系统结构 Linux系统介绍（三）shell基础 Linux系统学习（四）IO重定向与管道 Linux系统介绍（五）常用命令  本系列博文将持续更新，并在此章节中进行统一整理。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://keysaim.github.io/post/2017-10-09-linux-study-overview/" />
+
+
+
+<meta property="article:published_time" content="2017-10-08T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2017-10-08T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Linux系统介绍--综述">
+<meta itemprop="description" content="概述 从大二（2006年）开始接触Linux到现在已经有10几年了，遥记得那时候Ubuntu还是个位数时代，现在都到17了，真的是光阴如梭啊。这这些年里面，Linux也有了长足的发展，是时候再次系统的对Linux进行重新学习了，所谓温故而知新，何况Linux本身也有很多新的变化。本系列博文将基于博主的这一篇博文中推荐的书籍为基础，结合一些网上的资料，对Linux进行一次系统的整理。希望通过此次整理能够使自己对Linux的理解更进一步，也希望能够给读者一定的参考。
+说明 本系列博文中各种例子都将基于Centos 7的Linux系统，可能与其它发行版本会有些许出入，还望读者留意。
+相关博文  Linux系统介绍（一）命令行 Linux系统介绍（二）文件系统结构 Linux系统介绍（三）shell基础 Linux系统学习（四）IO重定向与管道 Linux系统介绍（五）常用命令  本系列博文将持续更新，并在此章节中进行统一整理。">
+
+
+<meta itemprop="datePublished" content="2017-10-08T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2017-10-08T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="12">
+
+
+
+<meta itemprop="keywords" content="Linux,study,学习," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Linux系统介绍--综述"/>
+<meta name="twitter:description" content="概述 从大二（2006年）开始接触Linux到现在已经有10几年了，遥记得那时候Ubuntu还是个位数时代，现在都到17了，真的是光阴如梭啊。这这些年里面，Linux也有了长足的发展，是时候再次系统的对Linux进行重新学习了，所谓温故而知新，何况Linux本身也有很多新的变化。本系列博文将基于博主的这一篇博文中推荐的书籍为基础，结合一些网上的资料，对Linux进行一次系统的整理。希望通过此次整理能够使自己对Linux的理解更进一步，也希望能够给读者一定的参考。
+说明 本系列博文中各种例子都将基于Centos 7的Linux系统，可能与其它发行版本会有些许出入，还望读者留意。
+相关博文  Linux系统介绍（一）命令行 Linux系统介绍（二）文件系统结构 Linux系统介绍（三）shell基础 Linux系统学习（四）IO重定向与管道 Linux系统介绍（五）常用命令  本系列博文将持续更新，并在此章节中进行统一整理。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">keysaim</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">keysaim</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">Linux系统介绍--综述</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2017-10-08 </span>
+        
+        <span class="more-meta"> 约 12 字 </span>
+        <span class="more-meta"> 预计阅读 1 分钟 </span>
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#概述">概述</a></li>
+<li><a href="#说明">说明</a></li>
+<li><a href="#相关博文">相关博文</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<h1 id="概述">概述</h1>
+
+<p>从大二（2006年）开始接触Linux到现在已经有10几年了，遥记得那时候Ubuntu还是个位数时代，现在都到17了，真的是光阴如梭啊。这这些年里面，Linux也有了长足的发展，是时候再次系统的对Linux进行重新学习了，所谓温故而知新，何况Linux本身也有很多新的变化。本系列博文将基于博主的<a href="https://keysaim.github.io/2017/08/18/linux-learning-materials/">这一篇</a>博文中推荐的书籍为基础，结合一些网上的资料，对Linux进行一次系统的整理。希望通过此次整理能够使自己对Linux的理解更进一步，也希望能够给读者一定的参考。</p>
+
+<h1 id="说明">说明</h1>
+
+<p>本系列博文中各种例子都将基于Centos 7的Linux系统，可能与其它发行版本会有些许出入，还望读者留意。</p>
+
+<h1 id="相关博文">相关博文</h1>
+
+<ul>
+<li><a href="https://keysaim.github.io/2017/10/09/linux-study-command-line/">Linux系统介绍（一）命令行</a></li>
+<li><a href="https://keysaim.github.io/2017/10/09/linux-study-file-system-hierarchy/">Linux系统介绍（二）文件系统结构</a></li>
+<li><a href="https://keysaim.github.io/2017/10/10/linux-study-shell-basic/">Linux系统介绍（三）shell基础</a></li>
+<li><a href="https://keysaim.github.io/2017/11/16/linux-study-io-pipe/">Linux系统学习（四）IO重定向与管道</a></li>
+<li><a href="https://keysaim.github.io/2017/11/17/linux-study-common-tools/">Linux系统介绍（五）常用命令</a></li>
+</ul>
+
+<p>本系列博文将持续更新，并在此章节中进行统一整理。</p>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">keysaim</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2017-10-08</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/linux/">Linux</a>
+          
+          <a href="/tags/study/">study</a>
+          
+          <a href="/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/2017-10-09-linux-study-file-system-hierarchy/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Linux系统介绍（二）文件系统结构</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/2017-09-04-how-to-setup-git-server/">
+            <span class="next-text nav-default">如何搭建本地的Git服务器</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+    
+
+  
+
+  
+
+  <div id="comments-gitment"></div>
+  <link rel="stylesheet" href="/lib/gitment/gitment-0.0.3.min.css">
+    <script src="/lib/gitment/gitment-0.0.3.min.js"></script>
+  <script type="text/javascript">
+  const gitment = new Gitment({
+    id: '2017-10-08 00:00:00 \x2b0000 UTC',
+    title: 'Linux系统介绍--综述',
+    link: decodeURI(location.href),
+    desc: '概述 从大二（2006年）开始接触Linux到现在已经有10几年了，遥记得那时候Ubuntu还是个位数时代，现在都到17了，真的是光阴如梭啊。这这些年里面，Linux也有了长足的发展，是时候再次系统的对Linux进行重新学习了，所谓温故而知新，何况Linux本身也有很多新的变化。本系列博文将基于博主的这一篇博文中推荐的书籍为基础，结合一些网上的资料，对Linux进行一次系统的整理。希望通过此次整理能够使自己对Linux的理解更进一步，也希望能够给读者一定的参考。\n说明 本系列博文中各种例子都将基于Centos 7的Linux系统，可能与其它发行版本会有些许出入，还望读者留意。\n相关博文  Linux系统介绍（一）命令行 Linux系统介绍（二）文件系统结构 Linux系统介绍（三）shell基础 Linux系统学习（四）IO重定向与管道 Linux系统介绍（五）常用命令  本系列博文将持续更新，并在此章节中进行统一整理。',
+    owner: 'keysaim',
+    repo: 'comments',
+    oauth: {
+      client_id: '8d920ad685683a529e83',
+      client_secret: 'ffabf134048e374883ee67d3786a9a6b7d8d3cdc'
+    }
+  })
+  gitment.render('comments-gitment')
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+  </article>
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:keysaim@gmail.com" rel="me" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/keysaim" rel="me" class="iconfont icon-github" title="github"></a>
+  <a href="https://keysaim.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2017 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">窗外蟋蟀(keysaim)</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+<script type="text/javascript" src="/dist/jane.min.js?v=2.7.0"></script>
+
+
+
+
+
+</body>
+</html>

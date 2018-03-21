@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Go on 窗外蟋蟀博客</title>
+    <link>https://keysaim.github.io/tags/go/</link>
+    <description>Recent content in Go on 窗外蟋蟀博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 23 Apr 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://keysaim.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>The golang programming language</title>
+      <link>https://keysaim.github.io/post/2016-04-23-the-golang-book/</link>
+      <pubDate>Sat, 23 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/post/2016-04-23-the-golang-book/</guid>
+      <description>Notes Section 2, Program Structure nested block in if-else if-else block if x, y := 100, 200; x &amp;gt; 1000 { } else if x := &amp;quot;hello&amp;quot;; y &amp;gt; 0 { //this x shadow the &#39;x&#39; in if fmt.Println(x, y) }  scope shaw issue var cwd string func init() { cwd, err := os.Getwd() //compile error: the &#39;cwd&#39; declared but not used if err != nil { log.Fatalf(&amp;quot;os.Getwd failed: %v&amp;quot;, err) } }  &amp;lsquo;cwd&amp;rsquo;, &amp;lsquo;err&amp;rsquo; are not declared in their block, so the compiler will declare them and will shadow the global &amp;lsquo;cwd&amp;rsquo; variable.</description>
+    </item>
+    
+    <item>
+      <title>Sample test</title>
+      <link>https://keysaim.github.io/post/sample/</link>
+      <pubDate>Sun, 28 Sep 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/post/sample/</guid>
+      <description>Introduction This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content. I&amp;rsquo;ll explain how Hugo uses templates and how you can organize your templates to create a theme. I won&amp;rsquo;t cover using CSS to style your theme.
+We&amp;rsquo;ll start with creating a new site with a very basic template.</description>
+    </item>
+    
+  </channel>
+</rss>

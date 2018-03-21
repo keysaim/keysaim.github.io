@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on 窗外蟋蟀博客</title>
+    <link>https://keysaim.github.io/post/</link>
+    <description>Recent content in Posts on 窗外蟋蟀博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 21 Dec 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://keysaim.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>无服务（Serverless）Openfaas实战</title>
+      <link>https://keysaim.github.io/post/2017-12-21-openfaas-practise/</link>
+      <pubDate>Thu, 21 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/post/2017-12-21-openfaas-practise/</guid>
+      <description>简述 技术的世界真的是一日千里，当有的人还满足与经典的C/S架构时，SOA（面向服务）架构已经遍地都是了；当很多人正打算将系统微服务改造的时候，别人都已经开始玩起无服务器（Serverless）架构了。随着2014年AWS发布Lambda，无服务器架构已经是越来越热了。那么，无服务器（Serverless）到底是个什么东东呢？这里推荐阅读以下这篇文章从IaaS到FaaS—— Serverless架构的前世今生，对于Serverless，目前业内并没有一个明确的定义，引用这篇文章中所采用的定义如下：“无服务器架构是基于互联网的系统，其中应用开发不使用常规的服务进程。相反，它们仅依赖于第三方服务（例如AWS Lambda服务），客户端逻辑和服务托管远程过程调用的组合。”这么说，估计很多人还是一头雾水，所以还请仔细阅读以下上面推荐的那篇文章。形象的来说，以后开发一个需要网络交互的移动APP，如果这个APP比较简单，基于Serverless架构，你甚至根本不需要进行服务端的开发，这放在以前是根本是无法想象的。当然，这可能是比较理想的情况，很多情况下，你可能还是需要参与服务端的开发，但跟以往决然不同的是，你并不需要开发一个完整的服务端，而只需要设计好几个函数，然后将这些函数上传到服务器提供商，如AWS的Lambda，服务器引擎便帮你提供完整的服务端功能，甚至包括了当流量激增时，需要动态的扩展服务器的数量等工作。虽然仍需要部分服务端的开发工作，但是毫无疑问，Serverless的架构将极大的减少服务端的开发量，同时也将极大的减少运维的工作量。
+对于Serverless，目前使用最多的是Faas（Function as a Service）范式。本文将基于开源项目Openfaas来讲述如何搭建一套Serverless系统。
+TODO</description>
+    </item>
+    
+    <item>
+      <title>Linux系统介绍（五）常用命令</title>
+      <link>https://keysaim.github.io/post/2017-11-17-linux-study-common-tools/</link>
+      <pubDate>Fri, 17 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/post/2017-11-17-linux-study-common-tools/</guid>
+      <description>cat命令 很多时候我们通过cat命令来查看文件内容，它会将文件的所有内容显示出来。当然，cat也可以通过管道接收数据，它主要完成的是将从管道接收的输入导到输出。
+more跟less命令 有时候用cat命令来显示一个较大的文件并不方便，整个文件内容一次性显示出来简直就是刷屏了。如果需要一页页的显示内容，可以使用more或者less命令，这两个命令会以分页的形式显示文件内容，至于使用哪个命令完全看个人习惯了。此外，这两个命令不仅可以分页显示，而且在分页模式下，你可以用快捷键方便的浏览及搜索：
+* 按`d`下翻页 * 按空格下翻页 * 按回车下移一行 * 按`/`进入搜索模式，输入要搜索的关键字，按回车搜索。 * 按`n`搜索下一个 * 按`q`退出查看  tee命令 tee命令一般从管道接收数据，这点与cat类似，将stdin导到stdout。不同的是，tee同时还可以指定一个文件作为输出。这点非常有用，有时候我们想一般看到命令的输出，同时又希望将输出保存到文件中，这时候用tee最为合适。
+# date | tee time.log Mon Nov 20 14:05:02 EST 2017 # cat time.log Mon Nov 20 14:05:02 EST 2017  date命令 date命令用来显示时间跟时区，比较常见的用法有：
+ 默认显示
+# date Sun Nov 19 20:08:21 EST 2017 # date -u Mon Nov 20 01:08:28 UTC 2017  其中，-u参数表示显示UTC标准时间，即时区为0的时间。
+ 指定显示格式
+除了默认输出，我们也可以指定显示的格式：
+# date +&#39;%A %d-%m-%Y UTC %:z&#39; Sunday 19-11-2017 UTC -05:00  date支持非常多元化的格式，具体可以参考这里。</description>
+    </item>
+    
+    <item>
+      <title>Linux系统介绍（四）IO重定向与管道</title>
+      <link>https://keysaim.github.io/post/2017-11-16-linux-study-io-pipe/</link>
+      <pubDate>Thu, 16 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/post/2017-11-16-linux-study-io-pipe/</guid>
+      <description>IO重定向(IO redirection) Linux的有一个强大之处就是可以通过管道(Pipe)跟IO重定向将一系列命令的输出跟输入连接起来。IO重定向是Linux中非常重要的概念，是理解Linux命令，脚本以及Linux IO的基础。
+标准输入输出 对于shell来说，有三个基础的流，标准输入流(stdin或者stream 0)，标准输出流(stdout或者stream 1)，标准错误流(stderr或者stream2)。
+举个例子，当我们用键盘在shell中执行命令的时候，可以如下图：
+通常，stdout跟stderr都输出到了屏幕上，但对于Linux来说，其实是两种不同的输出。
+输出重定向 可以用&amp;gt;大于号将stdout重定向到另一个IO，比如文件：
+# echo &amp;quot;hello&amp;quot; &amp;gt; test.log # cat test.log hello  上面的命令将stdout重定向到文件test.log中，此时，如果该文件不存在则创建新文件，如果存在则覆盖已有文件。事实上，&amp;gt;重定向是1&amp;gt;的简写，1&amp;gt;可以更清楚的看到实际上是把stdout(stream 1)重定向。
+必须注意的是，默认情况下，该重定向会覆盖已有文件，这个在有时候可能不经意间丢失重要数据。shell提供了选项使得我们可以禁止这种覆盖，set -o noclobber可以打开该选项。
+# cat test.log hello # set -o noclobber # echo &amp;quot;world&amp;quot; &amp;gt; test.log -bash: test.log: cannot overwrite existing file  此外，在打开该选项之后，其实还是可以强制执行覆盖，可以采用&amp;gt;|来强制重定向到已存在的文件：
+# echo &amp;quot;world&amp;quot; &amp;gt; test.log -bash: test.log: cannot overwrite existing file # echo &amp;quot;world&amp;quot; &amp;gt;| test.log # cat test.log world  追加输出 可以采用&amp;gt;&amp;gt;将输出重定向到文件并追加在文件结尾，这样就可以避免覆盖文件了。</description>
+    </item>
+    
+    <item>
+      <title>GPS管理系统服务器迁移指南</title>
+      <link>https://keysaim.github.io/post/2017-10-11-rushgps-migrate/</link>
+      <pubDate>Wed, 11 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/post/2017-10-11-rushgps-migrate/</guid>
+      <description>概述 本指南主要讲述如何将GPS管理系统服务器迁移到另一台新的服务器，假定要迁移的服务器为server1，新服务器为server2，假定的服务器参数如下：
+|&amp;mdash;&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;| | 服务器 | 操作系统 | IP | 外网地址 | 外网开放端口 | |&amp;mdash;&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;| | server1 | Centos 7 | 10.10.10.100 | 55.55.55.100 | 9999, 9998 | | server2 | Centos 7 | 10.10.10.101 | 55.55.55.101 | 9999, 9998 | |&amp;mdash;&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;|
+一下所有操作都以root权限进行，请务必注意
+备份server1上的数据 请以ssh登陆到服务器，并切换到root用户。
+备份repo数据 请执行以下命令：
+cd / cp -f /etc/yum.repos.d/mysql-community.repo /  备份数据库数据 请执行以下命令：
+cd / mysqldump -u root -p rushgps &amp;gt; rushgps.sql  输入数据库密码完成备份，生成的备份文件为rushgps.sql，其中数据库密码请联系维护人员索取，这里假定是default。
+备份管理系统部署文件 请执行以下命令：</description>
+    </item>
+    
+    <item>
+      <title>Linux系统介绍（三）shell基础</title>
+      <link>https://keysaim.github.io/post/2017-10-10-linux-study-shell-basic/</link>
+      <pubDate>Tue, 10 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/post/2017-10-10-linux-study-shell-basic/</guid>
+      <description>概述 首先，咱们来了解一下，什么是Shell。操作系统内核给我们提供了各种接口，同时也提供了各种用户层的库，理论上我们基于这些可以编写程序实现各种我们想要的功能，不过问题是，咱们不可能做什么事情都要重新编写程序，这样使用起来也太困难了。因此，操作系统（包括Linux）通常都会引入一个Shell这样的特殊程序，这个程序会接受输入的命令然后执行，并可能将执行结果呈现出来。总结来说，Shell是一个从输入设备或者文件读取命令，并且解释、执行的用户态程序。
+在Linux系统中，通常使用的Shell程序包括有： * Sh (Bourne Shell) * Bash (Bourne Again Shell) * Csh (C Shell) * Ksh (Korn Shell)
+一般来说，Bash应该是使用最多的Shell程序了，本文也主要基于Bash来展开。
+Shell展开（Shell Expansion） Shell程序是一个命令解释器，因此在终端输入命令之后，Shell将扫描命令并做适当的修改，这个过程称为Shell展开。Shell展开是Shell解释执行之前极为重要的一步，了解它将有利于你对Shell命令或者脚本的理解，本章节将逐步带大家来了解这个过程。
+命令参数解析 这里的空格包括了制表符（Tab）。当Shell程序扫描输入的命令时，会以*连续*的空格为界，将命令切分成一组参数，因此你输入多个空格为界跟输入一个空格的效果是一样的。通常来讲，第一个参数就是要执行的命令，而后面的参数则是改命令的参数。一下几个命令其实是等效的：
+# echo Hello World Hello World # echo Hello World Hello World # echo Hello World Hello World  引号 当然，有时候你需要在一个参数中包括空格，这样的话你就需要将这个参数以引号引起来，引号包括了单引号&#39;跟双引号&amp;quot;，两者都可以。shell会将引号中的字符串视为一个参数，不论里面有没有空格。当然，特别指出的是，不要用反引号`，反引号将在后面详细讲述。
+如命令echo &#39;Hello World!&#39;在shell解析之后会有两个参数，分别为echo跟Hello World!。而如果不用引号echo Hello World!，则将解析为三个参数。
+ 特别提一下，对于echo命令，如果需要输出需要转义的字符，如回车等，则需要执行echo -e &amp;quot;Hello World!\n&amp;quot;，如果不加-e，则\n会被直接显示出来。
+&amp;gt; # echo &amp;quot;hello\n&amp;quot; &amp;gt; hello\n &amp;gt; # echo -e &amp;quot;hello\n&amp;quot; &amp;gt; hello &amp;gt; &amp;gt; ``` ## 命令 对于`shell`来说，命令有内部命令（Builtin Commands）跟外部命令（External Commands）之分，所谓内部命令指的是包含在`shell`解析器中的命令。内部命令一般有[4种类型](http://www.</description>
+    </item>
+    
+    <item>
+      <title>Linux系统介绍（一）命令行</title>
+      <link>https://keysaim.github.io/post/2017-10-09-linux-study-command-line/</link>
+      <pubDate>Mon, 09 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/post/2017-10-09-linux-study-command-line/</guid>
+      <description>概述 随着Linux的发展，现在已经有了非常多的桌面版本，比如著名的Ubuntu。用这些桌面版本系统，可以满足基本的操作，然而对于一些高级点的操作，还是离不开Linux的命令行(Command Line)。而Linux的精髓也更多的体现在命令行上，其强大的功能，海量的工具，可以帮你轻而易举的完成各种复杂的系统管理操作。本文将详细讲述Linux命令行。
+基础命令 帮助类 man Linux有着海量的命令，而每个命令又有很多的不同参数，要记住所有的这些命令是比较困难的，因此，在使用Linux命令行的时候，必须时刻记着查看Linux的帮助，而查看帮助就是采用man命令。
+ 查看命令帮助
+以ls命令为例，如果要查看帮助的话可以输入man ls，查看基本的帮助信息也可以直接ls --help。其将以分页的形式显示该命令的完整文档，操作该文档的基本命令有：
+ 按u上翻页 按d下翻页 按空格下翻页 按回车下移一行 按/进入搜索模式，输入要搜索的关键字，按回车搜索。 按n搜索下一个 按N搜索上一个 按q退出查看  查看配置文件的帮助
+有些系统的配置文件也同样有对应的帮助文档，可以通过man $configfile来查看，比如/etc/system/sysctl.conf配置文件，查看其帮助可以采用命令man sysctl.conf。
+ 查看后台进程(daemon)的帮助
+Linux在后台运行着很多的程序（称为daemon），如果需要查看某个daemon的帮助，可以用命令man $daemon来查看。如man ntpd将查看时间同步daemon的帮助文档。
+ 搜索需要查看的命令
+Linux命令实在太多，有时候如果不记得准确的命令的名字，可以采用man -k $keyword来搜索，如man -k syslog将列出相关命令：
+# man -k syslog ipmievd (8) - IPMI event daemon for sending events to syslog logger (1) - a shell command interface to the syslog(3) system log module rsyslog.conf (5) - rsyslogd(8) configuration file rsyslogd (8) - reliable and extended syslogd   whatis man命令将展示完整的文档，可以通过whatis来查看命令的简单介绍。</description>
+    </item>
+    
+    <item>
+      <title>Linux系统介绍（二）文件系统结构</title>
+      <link>https://keysaim.github.io/post/2017-10-09-linux-study-file-system-hierarchy/</link>
+      <pubDate>Mon, 09 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/post/2017-10-09-linux-study-file-system-hierarchy/</guid>
+      <description>概述 多数Linux发行版本都是遵循文件系统结构标准（Filesystem Hierarchy Standard, 简称FHS），可以在这里找到该标准。本文对Linux的文件系统结构进行简单的介绍。
+根目录/ 所有的Linux系统都有根目录，由/表示。Linux系统的所有内容都在该目录下。
+二进制目录 |&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;| | 目录 | 说明 | |&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;| | /bin | 包括了可执行的二进制文件，通常这些二进制文件可以被所有用户访问。FHS规定，该目录至少包括/bin/cat跟/bin/date文件 | | /sbin | 包括了系统的二进制文件，通过需要root权限，用来配置系统 | | /lib | 包括了/bin所依赖的库 | | /lib/modules | Linux将从/lib/modules/$kernel-version/目录下载入内核模块 | | /lib32和/lib64 | 顾名思义，分别存放不同位数的库 | | /opt | 该目录用来存放一些可选的软件，通常情况下，很多第三方的客户软件会选择安装在该目录下 | |&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;|
+配置文件目录 |&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;| | 目录 | 说明 | |&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;| | /boot | 顾名思义，用来存放系统启动的配置文件，如grub引导的配置文件/boot/grub/grub.cfg | | /etc | 几乎大部分配置文件都放在改目录下。历史上etc的全称是etcetera，不过，现在一般认为是Editable Text Configuration的缩写 | | /etc/init.d | 存放daemon启动、停止等的脚本文件。不过在引入systemd之后，启动脚本有所变化 | | /etc/skel | 存放创建新用户之后所需的配置文件的模板，如.</description>
+    </item>
+    
+    <item>
+      <title>Linux系统介绍--综述</title>
+      <link>https://keysaim.github.io/post/2017-10-09-linux-study-overview/</link>
+      <pubDate>Sun, 08 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/post/2017-10-09-linux-study-overview/</guid>
+      <description>概述 从大二（2006年）开始接触Linux到现在已经有10几年了，遥记得那时候Ubuntu还是个位数时代，现在都到17了，真的是光阴如梭啊。这这些年里面，Linux也有了长足的发展，是时候再次系统的对Linux进行重新学习了，所谓温故而知新，何况Linux本身也有很多新的变化。本系列博文将基于博主的这一篇博文中推荐的书籍为基础，结合一些网上的资料，对Linux进行一次系统的整理。希望通过此次整理能够使自己对Linux的理解更进一步，也希望能够给读者一定的参考。
+说明 本系列博文中各种例子都将基于Centos 7的Linux系统，可能与其它发行版本会有些许出入，还望读者留意。
+相关博文  Linux系统介绍（一）命令行 Linux系统介绍（二）文件系统结构 Linux系统介绍（三）shell基础 Linux系统学习（四）IO重定向与管道 Linux系统介绍（五）常用命令  本系列博文将持续更新，并在此章节中进行统一整理。</description>
+    </item>
+    
+    <item>
+      <title>如何搭建本地的Git服务器</title>
+      <link>https://keysaim.github.io/post/2017-09-04-how-to-setup-git-server/</link>
+      <pubDate>Mon, 04 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/post/2017-09-04-how-to-setup-git-server/</guid>
+      <description>概述 本文将介绍如何在本地搭建Git服务器。我们知道Git其实是个分布式的版本管理系统，与中心化的版本管理系统如SVN有根本的不同，每个使用者都可以在本地存储一份独立的备份，每个Git的使用者并不会因为没有中心服务器而不能工作（如果是SVN之类的，如果服务器挂了是不能够提交改动的）。然而，在进行团队开发的时候，有时候还是非常需要有一个统一的地方管理唯一的一份完整的代码，这样可以非常方便的进行团队协作开发。这里讲述一种极为简单的搭建本地Git服务器的方法。
+如何搭建 准备一台Linux服务器 这里不考虑windows系统，所以请务必准备一台Linux系统，分发版本没有关系，这里假定使用的是Centos 7。
+配置Git服务器  添加用户
+$ sudo adduser git $ sudo passwd git Changing password for user git. New password: Retype new password: passwd: all authentication tokens updated successfully.  配置好ssh
+$ sudo su git $ cd $ mkdir .ssh &amp;amp;&amp;amp; chmod 700 .ssh $ touch .ssh/authorized_keys &amp;amp;&amp;amp; chmod 600 .ssh/authorized_keys   初始化项目 假定我们有一个叫test的项目需要管理，那么首先我们需要在Git服务器上面创建并初始化该项目。
+$ sudo su git $ cd $ mkdir test $ cd test $ git init --bare Initialized empty Git repository in /home/git/test  注意，其中git init --bare就是用来初始化Git项目的，--bare参数表示只存储Git的管理文件而不展现test项目本身的文件。查看下初始化之后的目录：</description>
+    </item>
+    
+    <item>
+      <title>Linux学习从入门到精通推荐书籍</title>
+      <link>https://keysaim.github.io/post/2017-08-18-linux-learning-materials/</link>
+      <pubDate>Fri, 18 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/post/2017-08-18-linux-learning-materials/</guid>
+      <description>如何学习Linux 在现在的生活，生产，研究等领域，Linux已经无所不在，从我们使用的手机，车载设备，到服务器，桌面电脑等，Linux已经成为这个世界方方面面的基石。尤其对于参与技术有关工作的你学习Linux是必须的，那么，该如何有效的学习呢？Linux从诞生至今，已经是一个非常庞大且复杂的系统，下图是Linux系统代码行数的统计（参考linuxcounter）： 可见截止本文为止，Linux的代码行数逼近2千万行，你就每天看1万行也得要6，7年，况且这还只是Linux内核的代码量，再加上每个Linux发行版本有关的代码，估计得突破天际了。因此，要在短期内全面的学习Linux的方方面面对于一个正常的人来说几乎不太可能。所以，学习Linux的关键便在于对于学习Linux的目的一定要明确，通常来讲可能会涉及到一下方面：
+ 了解及入门 成为Linux的系统管理员 学习Linux应用编程 学习Linux内核开发  当然，这只是其中几个大的方面，即便如此，其中每个方面都是一个非常大的议题。比如说学习Linux内核开发，这个就包括了无数小的方面，内核本身就包括了非常多的细分方向，比如有的搞网络，有的搞文件系统，有的搞驱动开发等等。所以，对于Linux，还请千万慎重的评价自己是否真的精通，学无止境，真要精通Linux的主要方面，有可能需要穷尽你的个人生涯。
+当然，对于学习Linux，前人已经铺好了无数的基石，有无数可以参考学习的资料，而且内核也是开源的，必要的时候可以查看其代码，甚至已经有非常多帮你分析内核代码的书籍资料，甚至还有很多中文资料。所以，不论你打算要学习到如何的程度，已经有无数的资料可以参考，也有极为庞大的社区可以依靠。本文将就Linux学习推荐一些经典免费的书籍，主要侧重覆盖从入门到成为系统管理员的有关方面，学习对象为初学Linux，以及需要重新系统学习Linux的读者，将涵盖以下方面：
+ 入门基础 Linux命令行及工具 Linux Bash脚本 Linux发行版本 Linux系统管理 Linux基本开发   为啥需要重点学习系统管理方面呢？有的Linux开发人员可能会说，不是有专门的Linux系统管理员吗，有必要花大力气学习系统管理吗？这个博主表示是非常有必要，开发可能侧重于功能的实现，而且往往侧重于细节，然而系统管理则直接面向功能本身，更多的是从整个系统的宏观角度来熟悉Linux。咱们有句话说不识庐山真面目，只缘身在此山中便是这个道理，开发者对于细节或许极为了解，但是未必对整个系统功能有足够的熟悉。而如果对于宏观的系统整体有足够的理解，对于开发本身来说也是有很大的促进作用的。
+ 书籍推荐 入门基础书籍 Introduction to Linux 这是一本免费的书，来自于Linux文档项目。虽然免费，但是不影响它的流行程度，该书比较系统的介绍了Linux的一些基本概念，包括文件系统，命令行，网络等。但是鉴于Linux现在也是版本帝，有些内容可能跟不上最新的版本，但是，这完全不影响对于基本概念的理解。
+Linux Fundamentals 从这本书的书名就可以看出，作者Paul Cobbaut就是侧重于介绍Linux最基础的有关知识。涉及到Linux的历史，如何安装以及一些简单但是常用的命令。
+Linux命令行及工具书籍 GNU/Linux Command−Line Tools Summary 这本书同样来自于Linux文档项目。适于初学Linux命令行的读者。
+Bash Reference Manual from GNU 此书来自于GNU，着重介绍Linux命令行。
+The Linux Command Line 如果你把前面的几本基本的命令行的书籍啃完，并迫切希望能够进一步深入了解命令行，那么这本出自William Shotts的书是必须一读的，此书500多页的篇幅，极为详尽的介绍了Linux命令行，也许你自诩比较熟悉命令行，相信此书还是能够带个你新的见识。
+Linux Bash脚本书籍 Bash Beginners Guide 顾名思义，此书就是为初学者准备的，同样来自于Linux文档项目。
+Advanced Bash-Scripting Guide 如果你对Linux Bash脚本有了基本的认识，那么这本书将是你进阶的必备书籍。此书900多页的篇幅涉及Bash脚本的方方面面，不论对于打算进阶或者已经较为熟悉的人来说都是一本重要的参考书籍。
+The AWK Programming Language AWK命令是一个极为强大的Linux命令，同时提供非常强大的脚本支持。也正是因为强大，所以就有专门的书籍来介绍这个命令，如果你要把自己的Linux命令再提升一点的话，建议看下这本书来深入的学习该命令。
+Linux 101 Hacks 不论从这本书的书名，还是这本书的来源The Geek Stuff，此书都暗示着其将以新颖独特的角度为你介绍Linux脚本。</description>
+    </item>
+    
+    <item>
+      <title>如何给自己的博客网站加入评论系统</title>
+      <link>https://keysaim.github.io/post/2017-08-16-how-to-add-comments/</link>
+      <pubDate>Wed, 16 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/post/2017-08-16-how-to-add-comments/</guid>
+      <description>前言 在这一篇博文中，咱们介绍了如何快速的搭建个人的博客网站，但是这个博客网站是基于Github Pages的纯静态网站，自身是不带任何的可交互的元素的，自然也就没有评论系统。但是，对于一个好的博客网站，如果没有评论系统，那基本上就属于自娱自乐了，也违背了博客分享的精神。因此，本文将着重介绍如何快速的给自己的博客网站加入评论系统。
+评论系统介绍 所谓评论系统，相信对于关注博客的你来说肯定不陌生。通常来讲有两大类，一类是网站自己提供评论系统，这个在很多较大的博客平台比较常见；一类是基于第三方的评论系统，这个在个人博客网站较为常见。对于个人博客，由于很多都是简单的托管在其他平台上面，比如博主网站托管于Github，因此很多都基本上是静态的网站，自身是没法提供评论系统。也正因为如此，也就催生了非常多的第三方的评论系统。这些系统国外比较有名的是Disqus，国内更加五花八门了。国外的由于天朝特殊的网络环境，并不十分稳定，所以对于国内的博客网站来说，通常都会选择国内的第三方评论系统。至于国内的评论系统有哪些选择呢，建议参考这篇博文。总的来说，由于评论系统这个东东，目前还没有明显的盈利的地方，倒闭关门是很有可能的，因此尽量选择大公司为后台的吧。
+最近在研究评论系统的时候，偶然发现有人居然直接使用Github的Issue系统来做评价系统，顿时眼前一亮啊。鉴于咱们的博客便是基于Github的，如果可行，那简直绝配了。于是博主就开始疯狂的搜索有关现状，Github都多少年了，博主深信应该已经有人造过轮子了。这类轮子肯定是属于前端方面的，于是在npm网站上面搜索，果然发现不少。比较下来，发现一款国人开发的gitment最为完整。这也就本文要介绍的评论系统了，本博客网站在可见的未来将采用该评论系统，这里对作者的分享表示感谢。
+gitment使用 gitment的使用在官网有较为详细的介绍，步骤写的还是比较清楚的。这里只是对于讲述可能踩到的坑：
+ 请务必不要使用你的&amp;lt;username&amp;gt;.github.io这个repo作为gitment的repo
+可能这个repo作为Github特殊的repo，使用它作为gitment的repo时，总是不能够认证成功。建议再创建一个专门用来存放评论的repo。
+ 生成oauth授权的时候，请务必确保Authorization callback URL是你的博客网站，如博主的是https://keysaim.github.io。否则会授权失败。
+ 每次提交博文的时候，请务必记得初始化改博文的评论，否则读者无法进行评论
+所谓初始化其实就是在你的博文下面用自己的Github账号登陆之后，会出现一个Initialize Comments字样的按钮，点击该按钮完成初始化。改初始化其实就是在你的Github repo里面针对这篇博文生成一个新的Issue。
+  结语 gitment之类的评论系统是基于Github的Issue系统，每篇博文都对应于你的Github repo里面的一个Issue，博文里面的评论其实都是在改Issue里面的评论，因此，你是有绝对权限对所有评论进行管理的。另外，由于gitment项目开始不久，并且貌似作者比较忙，因此功能性，质量方面还是存在不足，当你使用过程中如果遇到任何问题，可以直接去gitment repo里面查看一下是不是别人也碰到类似问题。可能的情况下，你也可以提交自己的解决方案。</description>
+    </item>
+    
+    <item>
+      <title>如何使用特定的SSH Key提交GIT</title>
+      <link>https://keysaim.github.io/post/2017-08-15-how-to-git-with-specific-ssh-key/</link>
+      <pubDate>Tue, 15 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/post/2017-08-15-how-to-git-with-specific-ssh-key/</guid>
+      <description>问题提出 最近在自己的MAC上面提交Github代码的时候发现居然失败了：
+$ git push origin master Permission denied (publickey). fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists.  这不是坑爹吗，Github都提交过无数次了，咋就失败了呢？莫非Github上的ssh key被删掉了么。于是打开github ssh，尝试再次把ssh key加上，却提示key已经存在了。于是赶紧回到本地repo查看下用户是不是对的:
+$ git config -l ... user.email=keysaim@gmail.com user.name=keysaim  再查看下本地的ssh key：
+$ cat ~/.ssh/id_rsa.pub ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCu4Jy/+uFGiC89luBejzCEyPbY0SRoppyzrB4g1v3zv1OleylMzdf+eTTRcYgMbYoY6ZQs4M2NHX20iO6vf6j2uPvUsB++pP0G6Q7+VlrUlC19B07IVx7Mo2xmHCe4bMshFSugqOl+hV6zVjGpYJcLI9XtWQ6F/br4tkYD/J8KWns+SNha8gJVBckV1ncGlR+Q7ji4OM4+eIhKEEK4Wo7Cf7KaT71fIVFl7XRx5kmdtEN3F+wT4LjNb2okl8Pu4mmxCMwJvXzj0Jr9PkVzhSAhDkWG3mMt3kC5PhhRhCP7uwkGFsOEm5uGS907wTxY9cJNIl8FikOfmvDa5XrfMbMx nbaoping@xxx.com  发现邮件居然是nbaoping@xxx.com（此处已打码），显然跟本地repo的keysaim@gmail.com不同，git提交的时候没有特殊配置，会使用默认的ssh key，也就是~/.ssh/id_rsa.pub，而提交的用户信息跟此key并不能对应上，故此github拒绝了此次提交。既然如此，那把本地repo的用户信息改成key所对应的信息不就好了吗？是的，但是此信息都已经打码了就充分说明本博主是十分不愿暴露它的，咱必须得想其它辙。
+好了，现在的问题就是，如何使用特定的ssh key提交Git？本文就来讲述一种通用的解决办法。
+指定git提交使用的ssh key  查看repo对应的hostname
+$ git remote -v origin git@github.com:keysaim/keysaim.github.io.git (fetch) origin git@github.com:keysaim/keysaim.github.io.git (push)  其中github.</description>
+    </item>
+    
+    <item>
+      <title>如何快速搭建自己的github.io博客</title>
+      <link>https://keysaim.github.io/post/2017-08-15-how-to-setup-your-github-io-blog/</link>
+      <pubDate>Tue, 15 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/post/2017-08-15-how-to-setup-your-github-io-blog/</guid>
+      <description>闲聊一下 在这知识剧烈膨胀的时代，如何记录、整理、分享自己的所学所感无疑显得十分重要，而博客便是最好的方式之一。现在已经有了各式各样的博客平台，有基于第三方的平台的（如博客园等），也有自己搭建的（如基于Ghost等，当然，也有很多干脆自己动手DIY了）。总之，博客的世界已然丰富多彩，留给咱们更多的不是有没有，而是哪个好。这里咱不讨论博客哪家强的问题，只推荐一款博主觉得不错的选择：github.io。
+要问全球最大的基佬交友网站是哪个，我相信不少答案必须是咱们的github。而github.io便是其出品，品质必须是有保证的，最重要的一点是基于github的repo管理，这意味着咱们对其是有觉得的控制，这个跟放在第三方的平台比，可控性要好太多。下面咱们将详细讲述如何基于github.io打造属于自己的博客网站。
+要完成自己的github.io博客网站，总共分三步：
+ 开通自己的github.io repo 选择一款Jekyll的主题 编写发布博客  开通自己的github.io repo github.io是完全基于github创建的，其本质上是在你的github账户下创建一个特殊的repo。你可以参照如下步骤完成：
+ 创建repo
+当然，一切的前提是你得首先有个github的账户，这里还请自行解决。登陆你的账户后，你可以创建一个新的repo。请务必注意该repo的名字，必须保持格式&amp;lt;username&amp;gt;.github.io，其中&amp;lt;username&amp;gt;替换成你的github账户名，这里假定创建的repo为tobiasalin.github.io
+ 把你创建的repo clone到本地
+本文假定你已经有一定的git使用基础了，如果没有也没关系，Google一下，git的基本使用极为简单。
+$ git clone https://github.com/tobiasalin/tobiasalin.github.io  编写简单的博客首页
+$ cd tobiasalin.github.io $ echo &amp;quot;Hello World!&amp;quot; &amp;gt; index.html $ git add index.html $ git commit -m &amp;quot;Init commit&amp;quot; $ git push origin master  打开博客网站https://&amp;lt;username&amp;gt;.github.io
+不出意外，你就可以看到你的Hello World!博客首页了。如果不小心出了意外，通常情况下，你只需等一会再刷新就会好，要是还没好，通常说明你的运气实在太背，请自行了断。
+  选择一款Jekyll的主题 github.io默认采用Jekyll作为建站工具。Jekyll是一款当前火热的开源的静态网站建站工具，拥有非常庞大的使用群里和社区，其Github截止本文，已经有超过3W+的star，拥有丰富的插件，丰富的主题，并且有无数的人已经帮你早出了无数的轮子可供参考。Jekyll自身的强大功能已经足够你打造自己心仪的静态网站（这里注意的是静态网站，Jekyll没有任何的后台数据库），然而前提是你自己还是得有一定的前端功底，而为了不至于长的太难看，你还得有一定的设计能力。这一下子把大部分人给难住了，咱们只是为了单纯的写写博客啊，至于有这么多要求吗？看到这里，很多人可能觉得此法不怎么方便啊，然则，正如刚刚反复强调的，Jekyll已经有一个非常庞大的社区，这就意味着，你完全可以借鉴别人已经造好的轮子，放在Jekyll这里，咱们应该成为主体（Theme）比较合适。本文推荐国内用户可以考虑一款国人开发的主题。本博客即是采用了这个主题。
+ Fork出自己的repo
+为了便于管理，建议先把Huxpro fork到自己的账户下
+ clone主题
+$ git clone git@github.com:keysaim/huxpro.github.io.git  当然，你也可以直接clone它的样板repo</description>
+    </item>
+    
+    <item>
+      <title>用docker搭建全栈式应用（三）管理篇</title>
+      <link>https://keysaim.github.io/post/2016-06-23-full-stack-demo3/</link>
+      <pubDate>Thu, 23 Jun 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/post/2016-06-23-full-stack-demo3/</guid>
+      <description>用docker搭建全栈式应用 (三）—— 管理篇 简介 在上一篇我们讲述了如何基于Dockerfile实现docker image的自动构建，并基于此重新实现了咱们本系列中的全栈式应用。然而，虽然构建过程实现了自动化，但是在实际部署的时候我们还是需要手动的理清所有服务的依赖关系，并依次启动所有服务，更严重的是，每次重启的时候，我们都需要重复这些操作，这个是不能接受的。
+那么有啥办法改善么？记得业内似乎总有这么个说法，大凡超过重复操作必须得用脚本实现自动化，此谓IT男的基本素养。既然如此，咱们也得用脚本自动化咱们的操作了。非常直接的一种方案就是咱自己写个shell的脚本，如下： * 启动脚本
+```shell docker run -d --name redis-master redis-master docker run -d --name redis-slave1 --link redis-master:master redis-slave1 docker run -d --name redis-slave2 --link redis-master:master redis-slave2 docker run -d --name app2 --link redis-master:redis app 0.0.0.0:8002 docker run -d --name haproxy --link app1:app1 --link app2:app2 -p 6301:6301 ha-app ``` 看起来还可以吗，简单的几条语句。但是，咱可不要忘了一点，每个语句咱还木有检查执行的结果。还有这个只是启动的脚本，还有停止的脚本，清除的脚本等等。更要命的是，如果下次我部署其它类型的应用，尼玛还得把这一些列的脚本复制并修改一通，这个有点弱爆了的感觉啊。  一般来讲，IT界总是存在这一的规律，当一个烦恼只是你一个人的时候，OK你可以随便整了；当你觉得可能会是很多人的烦恼的时候，这时必须得已经有人提供了解决方案了。所以，在当下技术更新如此剧烈的年代，切记不要随便就自己吭哧吭哧的闷声瞎搞了，第一要务就是google之。一般情况下，总是与大神提供了解决方案，如果真心没有，那么恭喜你，赶紧自己整一个并开放出来，那么你就是那个大神了。
+同样，在咱们本文碰到的问题中，早就有对应的解决方案了，那就是基于Docker compose工具的服务管理。本文将详述如何基于Docker compose管理服务。当然，例子还是那个例子咯。
+Docker Compose工具简介 关于Docker Compose，官方其实有非常详尽的介绍。这里就简单的总结一下。
+那么，Docker Compose是什么呢？ * Docker的一个工具 * 定义，运行并管理多个容器应用 * 基于Compose文件 * 通常应用于开发、测试、CI环境</description>
+    </item>
+    
+    <item>
+      <title>用docker搭建全栈式应用 (二）构建篇</title>
+      <link>https://keysaim.github.io/post/2016-05-30-full-stack-demo2/</link>
+      <pubDate>Mon, 30 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/post/2016-05-30-full-stack-demo2/</guid>
+      <description>用docker搭建全栈式应用 (二）—— 构建篇 简介 在上一篇中, 我们已经较为详细的描述如何基于docker，搭建一套全栈式应用。web端采用Django，并使用HaProxy作为负载均衡。数据库采用redis，并使用master-slave的部署方式。前文基于从官方的docker registry的images，讲述了一步步如何启动配置各项服务。但是在实际部署中，不可能全部手动的完成这些事情，本文将讲述基于Dockerfile，来自动生成所需的Docker image，并将讲述基于构建的image如何启动服务。
+在前篇博文中，如何在docker中一步步部署服务。基本上主要包括了几个大的步骤：将配置拷贝到相应目录，同时做好修改；基于image启动docker container，同时挂载配置的目录；在container中启动服务。这样的部署方式有几个问题： * 全部手动操作，每次多事重复劳动 * 需要手动进入container中启动服务，部署非常耗时 * 配置需要在外面修改，极大地违背了docker隔离性的设计理念
+那么，如何解决这些问题呢？这里将引入本文将要讲述的Docker的自动化构建机制。所谓自动化构建，其实主要指的是基于Dockerfile的构建方式。利用Dockerfile，我们可以非常方便的构建一个独立完整的应用，同时集成一系列部署时候的操作，使得自动化的部署得以实现。Dockerfile是一个文本文件，里面记录了一系列的命令和操作，给出了一个docker image组成的完整定义。关于Dockerfile的详细介绍，请务必参考官方的文档，千万不要用X度，官方的文档其实讲述的非常清楚，而且基本上就一页就讲完了。
+ok, 下面咱们就开始讲述Docker的自动化构建部分。讲述之前，这里还是引入一下前文中的应用架构图，方便讲述及阅读。
+ Redis-master构建 在上一篇中，redis-master的构建主要包括如下步骤：
+ 获取redis image
+# docker pull redis  启动redis master container
+# docker run -it --name redis-master -v `pwd`/master:/data redis /bin/bash  配置redis master
+主要是修改配置文件master/redis.conf
+ 在container中启动redis service
+  全部手动的操作比较繁琐，使用Dockerfile将可以实现自动化构建。这里先将构建redis-master的Dockerfile先列出，然后在详细介绍。
+FROM redis COPY ./redis.conf /data/ CMD redis-server /data/redis.conf  此Dockerfile主要采用了三个命令。 * FROM redis
+对应于手动操作中的`docker pull redis`，表示构建此image是基于官方docker registry中的redis image。Docker看到这个指令之后会首先从本地的cache中查找是否已经存在，如果存在就直接使用本地cache，如果不存在将自动的从docker registry下载。   COPY .</description>
+    </item>
+    
+    <item>
+      <title>用docker搭建全栈式应用（一）基础篇</title>
+      <link>https://keysaim.github.io/post/2016-05-16-full-stack-demo/</link>
+      <pubDate>Mon, 16 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/post/2016-05-16-full-stack-demo/</guid>
+      <description>用docker搭建全栈式应用 简介 本文将以docker为基础，搭建一套简单的应用案例。该案例的应用架构将采用redis的master-slave模式作为数据存储，以django为框架提供web访问，以haproxy作为负载均衡。其架构图如下.
+ 其中App1和App2属于同一个Django的APP.
+准备工作 获取相应的docker images  可以直接从docker官方获取images
+$ docker pull django $ docker pull redis $ docker pull haproxy  获取成功之后，检查一下images是否真的ok
+$ docker images REPOSITORY TAG IMAGE ID CREATED VIRTUAL SIZE haproxy latest 46bc5babcc18 3 days ago 139.1 MB redis latest 84dbf5edc313 4 days ago 184.8 MB django latest 3b0bc67346a2 9 days ago 433.5 MB  检查一下各自的版本(root权限) redis版本
+# docker run -it redis /bin/bash root@a3ca293915cb:/data# redis-server -v Redis server v=3.</description>
+    </item>
+    
+    <item>
+      <title>The golang programming language</title>
+      <link>https://keysaim.github.io/post/2016-04-23-the-golang-book/</link>
+      <pubDate>Sat, 23 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/post/2016-04-23-the-golang-book/</guid>
+      <description>Notes Section 2, Program Structure nested block in if-else if-else block if x, y := 100, 200; x &amp;gt; 1000 { } else if x := &amp;quot;hello&amp;quot;; y &amp;gt; 0 { //this x shadow the &#39;x&#39; in if fmt.Println(x, y) }  scope shaw issue var cwd string func init() { cwd, err := os.Getwd() //compile error: the &#39;cwd&#39; declared but not used if err != nil { log.Fatalf(&amp;quot;os.Getwd failed: %v&amp;quot;, err) } }  &amp;lsquo;cwd&amp;rsquo;, &amp;lsquo;err&amp;rsquo; are not declared in their block, so the compiler will declare them and will shadow the global &amp;lsquo;cwd&amp;rsquo; variable.</description>
+    </item>
+    
+    <item>
+      <title>Sample test</title>
+      <link>https://keysaim.github.io/post/sample/</link>
+      <pubDate>Sun, 28 Sep 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/post/sample/</guid>
+      <description>Introduction This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content. I&amp;rsquo;ll explain how Hugo uses templates and how you can organize your templates to create a theme. I won&amp;rsquo;t cover using CSS to style your theme.
+We&amp;rsquo;ll start with creating a new site with a very basic template.</description>
+    </item>
+    
+  </channel>
+</rss>

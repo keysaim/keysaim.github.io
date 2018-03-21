@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Linux系统介绍（一）命令行 - 窗外蟋蟀博客</title>
+  <link rel="alternate" hreflang="zh-cn" href="https://keysaim.github.io" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="keysaim" />
+  <meta name="description" content="概述 随着Linux的发展，现在已经有了非常多的桌面版本，比如著名的Ubuntu。用这些桌面版本系统，可以满足基本的操作，然而对于一些高级点的操作，还是离不开Linux的命令行(Command Line)。而Linux的精髓也更多的体现在命令行上，其强大的功能，海量的工具，可以帮你轻而易举的完成各种复杂的系统管理操作。本文将详细讲述Linux命令行。
+基础命令 帮助类 man Linux有着海量的命令，而每个命令又有很多的不同参数，要记住所有的这些命令是比较困难的，因此，在使用Linux命令行的时候，必须时刻记着查看Linux的帮助，而查看帮助就是采用man命令。
+ 查看命令帮助
+以ls命令为例，如果要查看帮助的话可以输入man ls，查看基本的帮助信息也可以直接ls --help。其将以分页的形式显示该命令的完整文档，操作该文档的基本命令有：
+ 按u上翻页 按d下翻页 按空格下翻页 按回车下移一行 按/进入搜索模式，输入要搜索的关键字，按回车搜索。 按n搜索下一个 按N搜索上一个 按q退出查看  查看配置文件的帮助
+有些系统的配置文件也同样有对应的帮助文档，可以通过man $configfile来查看，比如/etc/system/sysctl.conf配置文件，查看其帮助可以采用命令man sysctl.conf。
+ 查看后台进程(daemon)的帮助
+Linux在后台运行着很多的程序（称为daemon），如果需要查看某个daemon的帮助，可以用命令man $daemon来查看。如man ntpd将查看时间同步daemon的帮助文档。
+ 搜索需要查看的命令
+Linux命令实在太多，有时候如果不记得准确的命令的名字，可以采用man -k $keyword来搜索，如man -k syslog将列出相关命令：
+# man -k syslog ipmievd (8) - IPMI event daemon for sending events to syslog logger (1) - a shell command interface to the syslog(3) system log module rsyslog.conf (5) - rsyslogd(8) configuration file rsyslogd (8) - reliable and extended syslogd   whatis man命令将展示完整的文档，可以通过whatis来查看命令的简单介绍。" />
+
+  <meta name="keywords" content="Hugo, blog, keysaim, 窗外蟋蟀" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.37.1" />
+
+
+<link rel="canonical" href="https://keysaim.github.io/post/2017-10-09-linux-study-command-line/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" href="/favicon.ico" />
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+<link href="/dist/jane.min.css?v=2.7.0" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="Linux系统介绍（一）命令行" />
+<meta property="og:description" content="概述 随着Linux的发展，现在已经有了非常多的桌面版本，比如著名的Ubuntu。用这些桌面版本系统，可以满足基本的操作，然而对于一些高级点的操作，还是离不开Linux的命令行(Command Line)。而Linux的精髓也更多的体现在命令行上，其强大的功能，海量的工具，可以帮你轻而易举的完成各种复杂的系统管理操作。本文将详细讲述Linux命令行。
+基础命令 帮助类 man Linux有着海量的命令，而每个命令又有很多的不同参数，要记住所有的这些命令是比较困难的，因此，在使用Linux命令行的时候，必须时刻记着查看Linux的帮助，而查看帮助就是采用man命令。
+ 查看命令帮助
+以ls命令为例，如果要查看帮助的话可以输入man ls，查看基本的帮助信息也可以直接ls --help。其将以分页的形式显示该命令的完整文档，操作该文档的基本命令有：
+ 按u上翻页 按d下翻页 按空格下翻页 按回车下移一行 按/进入搜索模式，输入要搜索的关键字，按回车搜索。 按n搜索下一个 按N搜索上一个 按q退出查看  查看配置文件的帮助
+有些系统的配置文件也同样有对应的帮助文档，可以通过man $configfile来查看，比如/etc/system/sysctl.conf配置文件，查看其帮助可以采用命令man sysctl.conf。
+ 查看后台进程(daemon)的帮助
+Linux在后台运行着很多的程序（称为daemon），如果需要查看某个daemon的帮助，可以用命令man $daemon来查看。如man ntpd将查看时间同步daemon的帮助文档。
+ 搜索需要查看的命令
+Linux命令实在太多，有时候如果不记得准确的命令的名字，可以采用man -k $keyword来搜索，如man -k syslog将列出相关命令：
+# man -k syslog ipmievd (8) - IPMI event daemon for sending events to syslog logger (1) - a shell command interface to the syslog(3) system log module rsyslog.conf (5) - rsyslogd(8) configuration file rsyslogd (8) - reliable and extended syslogd   whatis man命令将展示完整的文档，可以通过whatis来查看命令的简单介绍。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://keysaim.github.io/post/2017-10-09-linux-study-command-line/" />
+
+
+
+<meta property="article:published_time" content="2017-10-09T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2017-10-09T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Linux系统介绍（一）命令行">
+<meta itemprop="description" content="概述 随着Linux的发展，现在已经有了非常多的桌面版本，比如著名的Ubuntu。用这些桌面版本系统，可以满足基本的操作，然而对于一些高级点的操作，还是离不开Linux的命令行(Command Line)。而Linux的精髓也更多的体现在命令行上，其强大的功能，海量的工具，可以帮你轻而易举的完成各种复杂的系统管理操作。本文将详细讲述Linux命令行。
+基础命令 帮助类 man Linux有着海量的命令，而每个命令又有很多的不同参数，要记住所有的这些命令是比较困难的，因此，在使用Linux命令行的时候，必须时刻记着查看Linux的帮助，而查看帮助就是采用man命令。
+ 查看命令帮助
+以ls命令为例，如果要查看帮助的话可以输入man ls，查看基本的帮助信息也可以直接ls --help。其将以分页的形式显示该命令的完整文档，操作该文档的基本命令有：
+ 按u上翻页 按d下翻页 按空格下翻页 按回车下移一行 按/进入搜索模式，输入要搜索的关键字，按回车搜索。 按n搜索下一个 按N搜索上一个 按q退出查看  查看配置文件的帮助
+有些系统的配置文件也同样有对应的帮助文档，可以通过man $configfile来查看，比如/etc/system/sysctl.conf配置文件，查看其帮助可以采用命令man sysctl.conf。
+ 查看后台进程(daemon)的帮助
+Linux在后台运行着很多的程序（称为daemon），如果需要查看某个daemon的帮助，可以用命令man $daemon来查看。如man ntpd将查看时间同步daemon的帮助文档。
+ 搜索需要查看的命令
+Linux命令实在太多，有时候如果不记得准确的命令的名字，可以采用man -k $keyword来搜索，如man -k syslog将列出相关命令：
+# man -k syslog ipmievd (8) - IPMI event daemon for sending events to syslog logger (1) - a shell command interface to the syslog(3) system log module rsyslog.conf (5) - rsyslogd(8) configuration file rsyslogd (8) - reliable and extended syslogd   whatis man命令将展示完整的文档，可以通过whatis来查看命令的简单介绍。">
+
+
+<meta itemprop="datePublished" content="2017-10-09T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2017-10-09T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="564">
+
+
+
+<meta itemprop="keywords" content="Linux,study,学习," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Linux系统介绍（一）命令行"/>
+<meta name="twitter:description" content="概述 随着Linux的发展，现在已经有了非常多的桌面版本，比如著名的Ubuntu。用这些桌面版本系统，可以满足基本的操作，然而对于一些高级点的操作，还是离不开Linux的命令行(Command Line)。而Linux的精髓也更多的体现在命令行上，其强大的功能，海量的工具，可以帮你轻而易举的完成各种复杂的系统管理操作。本文将详细讲述Linux命令行。
+基础命令 帮助类 man Linux有着海量的命令，而每个命令又有很多的不同参数，要记住所有的这些命令是比较困难的，因此，在使用Linux命令行的时候，必须时刻记着查看Linux的帮助，而查看帮助就是采用man命令。
+ 查看命令帮助
+以ls命令为例，如果要查看帮助的话可以输入man ls，查看基本的帮助信息也可以直接ls --help。其将以分页的形式显示该命令的完整文档，操作该文档的基本命令有：
+ 按u上翻页 按d下翻页 按空格下翻页 按回车下移一行 按/进入搜索模式，输入要搜索的关键字，按回车搜索。 按n搜索下一个 按N搜索上一个 按q退出查看  查看配置文件的帮助
+有些系统的配置文件也同样有对应的帮助文档，可以通过man $configfile来查看，比如/etc/system/sysctl.conf配置文件，查看其帮助可以采用命令man sysctl.conf。
+ 查看后台进程(daemon)的帮助
+Linux在后台运行着很多的程序（称为daemon），如果需要查看某个daemon的帮助，可以用命令man $daemon来查看。如man ntpd将查看时间同步daemon的帮助文档。
+ 搜索需要查看的命令
+Linux命令实在太多，有时候如果不记得准确的命令的名字，可以采用man -k $keyword来搜索，如man -k syslog将列出相关命令：
+# man -k syslog ipmievd (8) - IPMI event daemon for sending events to syslog logger (1) - a shell command interface to the syslog(3) system log module rsyslog.conf (5) - rsyslogd(8) configuration file rsyslogd (8) - reliable and extended syslogd   whatis man命令将展示完整的文档，可以通过whatis来查看命令的简单介绍。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">keysaim</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">keysaim</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">Linux系统介绍（一）命令行</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2017-10-09 </span>
+        
+        <span class="more-meta"> 约 564 字 </span>
+        <span class="more-meta"> 预计阅读 3 分钟 </span>
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#概述">概述</a></li>
+<li><a href="#基础命令">基础命令</a>
+<ul>
+<li><a href="#帮助类">帮助类</a>
+<ul>
+<li><a href="#man">man</a></li>
+<li><a href="#whatis">whatis</a></li>
+<li><a href="#whereis">whereis</a></li>
+</ul></li>
+<li><a href="#目录操作类">目录操作类</a></li>
+<li><a href="#文件操作类">文件操作类</a>
+<ul>
+<li><a href="#说明">说明</a></li>
+<li><a href="#file命令">file命令</a></li>
+<li><a href="#touch">touch</a></li>
+<li><a href="#删除-复制-移动">删除、复制、移动</a></li>
+</ul></li>
+<li><a href="#文件内容操作类">文件内容操作类</a>
+<ul>
+<li><a href="#head">head</a></li>
+<li><a href="#tail">tail</a></li>
+<li><a href="#cat-file1-file2-file3">cat $file1 $file2 $file3 &hellip;</a></li>
+<li><a href="#tac">tac</a></li>
+<li><a href="#more跟less">more跟less</a></li>
+<li><a href="#strings">strings</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<h1 id="概述">概述</h1>
+
+<p>随着Linux的发展，现在已经有了非常多的桌面版本，比如著名的Ubuntu。用这些桌面版本系统，可以满足基本的操作，然而对于一些高级点的操作，还是离不开Linux的命令行(Command Line)。而Linux的精髓也更多的体现在命令行上，其强大的功能，海量的工具，可以帮你轻而易举的完成各种复杂的系统管理操作。本文将详细讲述Linux命令行。</p>
+
+<h1 id="基础命令">基础命令</h1>
+
+<h2 id="帮助类">帮助类</h2>
+
+<h3 id="man">man</h3>
+
+<p>Linux有着海量的命令，而每个命令又有很多的不同参数，要记住所有的这些命令是比较困难的，因此，在使用Linux命令行的时候，必须时刻记着查看Linux的帮助，而查看帮助就是采用<code>man</code>命令。</p>
+
+<ul>
+<li><p>查看命令帮助</p>
+
+<p>以<code>ls</code>命令为例，如果要查看帮助的话可以输入<code>man ls</code>，查看基本的帮助信息也可以直接<code>ls --help</code>。其将以分页的形式显示该命令的完整文档，操作该文档的基本命令有：</p>
+
+<ul>
+<li>按<code>u</code>上翻页</li>
+<li>按<code>d</code>下翻页</li>
+<li>按空格下翻页</li>
+<li>按回车下移一行</li>
+<li>按<code>/</code>进入搜索模式，输入要搜索的关键字，按回车搜索。</li>
+<li>按<code>n</code>搜索下一个</li>
+<li>按<code>N</code>搜索上一个</li>
+<li>按<code>q</code>退出查看</li>
+</ul></li>
+
+<li><p>查看配置文件的帮助</p>
+
+<p>有些系统的配置文件也同样有对应的帮助文档，可以通过<code>man $configfile</code>来查看，比如<code>/etc/system/sysctl.conf</code>配置文件，查看其帮助可以采用命令<code>man sysctl.conf</code>。</p></li>
+
+<li><p>查看后台进程(daemon)的帮助</p>
+
+<p>Linux在后台运行着很多的程序（称为daemon），如果需要查看某个daemon的帮助，可以用命令<code>man $daemon</code>来查看。如<code>man ntpd</code>将查看时间同步daemon的帮助文档。</p></li>
+
+<li><p>搜索需要查看的命令</p>
+
+<p>Linux命令实在太多，有时候如果不记得准确的命令的名字，可以采用<code>man -k $keyword</code>来搜索，如<code>man -k syslog</code>将列出相关命令：</p>
+
+<pre><code># man -k syslog
+ipmievd (8)          - IPMI event daemon for sending events to syslog
+logger (1)           - a shell command interface to the syslog(3) system log module
+rsyslog.conf (5)     - rsyslogd(8) configuration file
+rsyslogd (8)         - reliable and extended syslogd
+</code></pre></li>
+</ul>
+
+<h3 id="whatis">whatis</h3>
+
+<p><code>man</code>命令将展示完整的文档，可以通过<code>whatis</code>来查看命令的简单介绍。</p>
+
+<h3 id="whereis">whereis</h3>
+
+<p>如果需要知道某个命令的完整路径，可以采用<code>whereis $command</code>来查看。</p>
+
+<h2 id="目录操作类">目录操作类</h2>
+
+<p>|&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|
+| 命令     | 解释                                     |
+|&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|
+| pwd      | 查看当前目录路径                         |
+| cd $path | 切换到其它路径                           |
+| cd ~     | 返回home目录                             |
+| cd ..    | 返回上一级                               |
+| cd -     | 返回上一次的目录                         |
+| ls $path | 查看目录下的内容                         |
+| ls -a    | 显示目录下所有文件，包括隐藏文件         |
+| ls -lh   | 列表的形式显示，<code>-h</code>以可读的方式显示大小 |
+| mkdir    | 创建目录，要递归创建采用<code>mkdir -p</code>       |
+|&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|</p>
+
+<h2 id="文件操作类">文件操作类</h2>
+
+<h3 id="说明">说明</h3>
+
+<ul>
+<li><p>大小写敏感
+在Linux系统中，文件名都是大小写敏感的。</p></li>
+
+<li><p>所有都是文件
+Linux基本上将文件，目录，设备等等都视为文件。</p></li>
+</ul>
+
+<h3 id="file命令">file命令</h3>
+
+<p>查看文件的类型，如：</p>
+
+<pre><code># file bugs.tgz
+bugs.tgz: gzip compressed data, from Unix, last modified: Tue Dec 13 01:38:27 2016
+</code></pre>
+
+<p>可以显示文件的类型及修改时间等信息。查看特殊文件如设备文件的时候，还可以带上<code>-s</code>的参数，这样可以识别更多的信息：</p>
+
+<pre><code># file /dev/sda
+/dev/sda: block special
+# file -s /dev/sda
+/dev/sda: x86 boot sector; partition 1: ID=0x83, active, starthead 32, startsector 2048, 1024000 sectors; partition 2: ID=0x8e, starthead 221, startsector 1026048, 208689152 sectors, code offset 0x63
+</code></pre>
+
+<h3 id="touch">touch</h3>
+
+<p><code>touch</code>用来创建空文件，或者用来更新文件时间为当前时间。如果加上<code>-t</code>参数，可以为文件设置指定的时间。</p>
+
+<pre><code># date
+Mon Oct  9 03:19:24 EDT 2017
+# ls -l
+total 4
+-rw-r--r--. 1 root root 6 Jun 19  2016 login.html
+# touch test.txt
+# ls -l
+total 4
+-rw-r--r--. 1 root root 6 Jun 19  2016 login.html
+-rw-r--r--. 1 root root 0 Oct  9 03:19 test.txt
+# touch login.html
+# ls -l
+total 4
+-rw-r--r--. 1 root root 6 Oct  9 03:19 login.html
+-rw-r--r--. 1 root root 0 Oct  9 03:19 test.txt
+# touch -t 201701011010 login.html
+# ls -l
+total 4
+-rw-r--r--. 1 root root 6 Jan  1  2017 login.html
+-rw-r--r--. 1 root root 0 Oct  9 03:19 test.txt
+</code></pre>
+
+<h3 id="删除-复制-移动">删除、复制、移动</h3>
+
+<p>|&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|
+| 命令   | 解释                                                                                 |
+|&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|
+| rm     | 永久删除一个文件，对于此命令，没有所谓的垃圾箱，请慎重                               |
+| rm -i  | 询问是否真的要删除                                                                   |
+| rm -rf | 通常<code>rm</code>只是删除文件，如果需要删除目录的时候，必须带上<code>-r</code>参数，<code>-f</code>参数表示强制删除 |
+| cp     | 拷贝文件                                                                             |
+| cp -rf | 拷贝目录下所有的文件，并强制覆盖                                                     |
+| mv     | 移动文件到另一个目录，或者在当前目录下对某个文件改名字                               |
+|&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|</p>
+
+<h2 id="文件内容操作类">文件内容操作类</h2>
+
+<h3 id="head">head</h3>
+
+<p>查看某个文件的头几行，可以用<code>head</code>命令：</p>
+
+<pre><code># head -n 5 /var/log/messages
+Oct  9 03:10:01 traffic-base1 rsyslogd: [origin software=&quot;rsyslogd&quot; swVersion=&quot;7.4.7&quot; x-pid=&quot;697&quot; x-info=&quot;http://www.rsyslog.com&quot;] rsyslogd was HUPed
+Oct  9 03:20:01 traffic-base1 systemd: Started Session 79213 of user root.
+Oct  9 03:20:01 traffic-base1 systemd: Starting Session 79213 of user root.
+Oct  9 03:28:26 traffic-base1 puppet-agent[14530]: Unable to fetch my node definition, but the agent run will continue:
+Oct  9 03:28:26 traffic-base1 puppet-agent[14530]: Connection refused - connect(2)
+# head -c 5 /var/log/messages
+Oct  
+</code></pre>
+
+<p>其中<code>-n</code>参数表示显示多少行，不带此参数，默认显示10行。<code>-c</code>表示显示多少个字符，这里显示了前面5个字符。</p>
+
+<h3 id="tail">tail</h3>
+
+<p>与<code>head</code>相反，<code>tail</code>用来显示文件最后几行。同样<code>-n</code>可以用来限制多少行。</p>
+
+<p><code>tail</code>有个非常重要的用处，<strong><em>就是用来监听某个动态文件的内容，比如实时查看某个日志文件</em></strong>：</p>
+
+<pre><code># tail -n 5 -F /var/log/messages
+Oct  9 03:28:27 traffic-base1 puppet: from /usr/share/ruby/vendor_ruby/puppet/util/command_line.rb:146:in `run'
+Oct  9 03:28:27 traffic-base1 puppet: from /usr/share/ruby/vendor_ruby/puppet/util/command_line.rb:92:in `execute'
+Oct  9 03:28:27 traffic-base1 puppet: from /usr/bin/puppet:8:in `&lt;main&gt;'
+Oct  9 03:30:01 traffic-base1 systemd: Started Session 79218 of user root.
+Oct  9 03:30:01 traffic-base1 systemd: Starting Session 79218 of user root.
+Oct  9 03:40:01 traffic-base1 systemd: Started Session 79223 of user root.
+Oct  9 03:40:01 traffic-base1 systemd: Starting Session 79223 of user root.
+
+</code></pre>
+
+<p>它将不停的侦听文件的改变，并实时的将最后新写入的行打印出来。</p>
+
+<h3 id="cat-file1-file2-file3">cat $file1 $file2 $file3 &hellip;</h3>
+
+<p>要显示文件的所有内容，可以用<code>cat</code>命令。<code>cat</code>也可以用来创建新文件：</p>
+
+<pre><code># cat &gt; test.txt
+Today is a good day!
+# cat test.txt
+Today is a good day!
+</code></pre>
+
+<p>这样就可以直接输入文件内容了，输入完成之后按Ctrl+d结束输入。当然，也可以定制结束符：</p>
+
+<pre><code># cat &gt; test.txt &lt;&lt;stop
+&gt; It's a good day!
+&gt; stop
+# cat test.txt
+It's a good day!
+</code></pre>
+
+<h3 id="tac">tac</h3>
+
+<p><code>tac</code>名字其实就是<code>cat</code>倒过来写，所以其作用也是一样，就是把文件以倒着的顺序显示出来。</p>
+
+<h3 id="more跟less">more跟less</h3>
+
+<p><code>cat</code>会直接把整个文件一次性的显示出来，当文件较大时，显示可能会刷屏，这样不利于查看。如果需要以翻页的形式显示文件的内容，可以采用<code>more</code>或者<code>less</code>命令，其查看方式跟<code>man</code>命令的查看方式类似，可以参考前面的说明。</p>
+
+<h3 id="strings">strings</h3>
+
+<p><code>strings</code>命令会将文件中的可读字符显示出来，即便改文件是一个二进制文件。</p>
+
+<pre><code># strings a.out | tail -n 5
+_edata
+_Znwm@@GLIBCXX_3.4
+_ZN3Out5InnerC1EPS_
+main
+_init
+</code></pre>
+
+<p>其中，<code>a.out</code>是一个二进制文件。</p>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">keysaim</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2017-10-09</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/linux/">Linux</a>
+          
+          <a href="/tags/study/">study</a>
+          
+          <a href="/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/2017-10-10-linux-study-shell-basic/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Linux系统介绍（三）shell基础</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/2017-10-09-linux-study-file-system-hierarchy/">
+            <span class="next-text nav-default">Linux系统介绍（二）文件系统结构</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+    
+
+  
+
+  
+
+  <div id="comments-gitment"></div>
+  <link rel="stylesheet" href="/lib/gitment/gitment-0.0.3.min.css">
+    <script src="/lib/gitment/gitment-0.0.3.min.js"></script>
+  <script type="text/javascript">
+  const gitment = new Gitment({
+    id: '2017-10-09 00:00:00 \x2b0000 UTC',
+    title: 'Linux系统介绍（一）命令行',
+    link: decodeURI(location.href),
+    desc: '概述 随着Linux的发展，现在已经有了非常多的桌面版本，比如著名的Ubuntu。用这些桌面版本系统，可以满足基本的操作，然而对于一些高级点的操作，还是离不开Linux的命令行(Command Line)。而Linux的精髓也更多的体现在命令行上，其强大的功能，海量的工具，可以帮你轻而易举的完成各种复杂的系统管理操作。本文将详细讲述Linux命令行。\n基础命令 帮助类 man Linux有着海量的命令，而每个命令又有很多的不同参数，要记住所有的这些命令是比较困难的，因此，在使用Linux命令行的时候，必须时刻记着查看Linux的帮助，而查看帮助就是采用man命令。\n 查看命令帮助\n以ls命令为例，如果要查看帮助的话可以输入man ls，查看基本的帮助信息也可以直接ls --help。其将以分页的形式显示该命令的完整文档，操作该文档的基本命令有：\n 按u上翻页 按d下翻页 按空格下翻页 按回车下移一行 按\/进入搜索模式，输入要搜索的关键字，按回车搜索。 按n搜索下一个 按N搜索上一个 按q退出查看  查看配置文件的帮助\n有些系统的配置文件也同样有对应的帮助文档，可以通过man $configfile来查看，比如\/etc\/system\/sysctl.conf配置文件，查看其帮助可以采用命令man sysctl.conf。\n 查看后台进程(daemon)的帮助\nLinux在后台运行着很多的程序（称为daemon），如果需要查看某个daemon的帮助，可以用命令man $daemon来查看。如man ntpd将查看时间同步daemon的帮助文档。\n 搜索需要查看的命令\nLinux命令实在太多，有时候如果不记得准确的命令的名字，可以采用man -k $keyword来搜索，如man -k syslog将列出相关命令：\n# man -k syslog ipmievd (8) - IPMI event daemon for sending events to syslog logger (1) - a shell command interface to the syslog(3) system log module rsyslog.conf (5) - rsyslogd(8) configuration file rsyslogd (8) - reliable and extended syslogd   whatis man命令将展示完整的文档，可以通过whatis来查看命令的简单介绍。',
+    owner: 'keysaim',
+    repo: 'comments',
+    oauth: {
+      client_id: '8d920ad685683a529e83',
+      client_secret: 'ffabf134048e374883ee67d3786a9a6b7d8d3cdc'
+    }
+  })
+  gitment.render('comments-gitment')
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+  </article>
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:keysaim@gmail.com" rel="me" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/keysaim" rel="me" class="iconfont icon-github" title="github"></a>
+  <a href="https://keysaim.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2017 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">窗外蟋蟀(keysaim)</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+<script type="text/javascript" src="/dist/jane.min.js?v=2.7.0"></script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>The golang programming language - 窗外蟋蟀博客</title>
+  <link rel="alternate" hreflang="zh-cn" href="https://keysaim.github.io" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="keysaim" />
+  <meta name="description" content="Notes Section 2, Program Structure nested block in if-else if-else block if x, y := 100, 200; x &amp;gt; 1000 { } else if x := &amp;quot;hello&amp;quot;; y &amp;gt; 0 { //this x shadow the &#39;x&#39; in if fmt.Println(x, y) }  scope shaw issue var cwd string func init() { cwd, err := os.Getwd() //compile error: the &#39;cwd&#39; declared but not used if err != nil { log.Fatalf(&amp;quot;os.Getwd failed: %v&amp;quot;, err) } }  &amp;lsquo;cwd&amp;rsquo;, &amp;lsquo;err&amp;rsquo; are not declared in their block, so the compiler will declare them and will shadow the global &amp;lsquo;cwd&amp;rsquo; variable." />
+
+  <meta name="keywords" content="Hugo, blog, keysaim, 窗外蟋蟀" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.37.1" />
+
+
+<link rel="canonical" href="https://keysaim.github.io/post/2016-04-23-the-golang-book/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" href="/favicon.ico" />
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+<link href="/dist/jane.min.css?v=2.7.0" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="The golang programming language" />
+<meta property="og:description" content="Notes Section 2, Program Structure nested block in if-else if-else block if x, y := 100, 200; x &gt; 1000 { } else if x := &quot;hello&quot;; y &gt; 0 { //this x shadow the &#39;x&#39; in if fmt.Println(x, y) }  scope shaw issue var cwd string func init() { cwd, err := os.Getwd() //compile error: the &#39;cwd&#39; declared but not used if err != nil { log.Fatalf(&quot;os.Getwd failed: %v&quot;, err) } }  &lsquo;cwd&rsquo;, &lsquo;err&rsquo; are not declared in their block, so the compiler will declare them and will shadow the global &lsquo;cwd&rsquo; variable." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://keysaim.github.io/post/2016-04-23-the-golang-book/" />
+
+
+
+<meta property="article:published_time" content="2016-04-23T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2016-04-23T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="The golang programming language">
+<meta itemprop="description" content="Notes Section 2, Program Structure nested block in if-else if-else block if x, y := 100, 200; x &gt; 1000 { } else if x := &quot;hello&quot;; y &gt; 0 { //this x shadow the &#39;x&#39; in if fmt.Println(x, y) }  scope shaw issue var cwd string func init() { cwd, err := os.Getwd() //compile error: the &#39;cwd&#39; declared but not used if err != nil { log.Fatalf(&quot;os.Getwd failed: %v&quot;, err) } }  &lsquo;cwd&rsquo;, &lsquo;err&rsquo; are not declared in their block, so the compiler will declare them and will shadow the global &lsquo;cwd&rsquo; variable.">
+
+
+<meta itemprop="datePublished" content="2016-04-23T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2016-04-23T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="4160">
+
+
+
+<meta itemprop="keywords" content="go,读书笔记," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="The golang programming language"/>
+<meta name="twitter:description" content="Notes Section 2, Program Structure nested block in if-else if-else block if x, y := 100, 200; x &gt; 1000 { } else if x := &quot;hello&quot;; y &gt; 0 { //this x shadow the &#39;x&#39; in if fmt.Println(x, y) }  scope shaw issue var cwd string func init() { cwd, err := os.Getwd() //compile error: the &#39;cwd&#39; declared but not used if err != nil { log.Fatalf(&quot;os.Getwd failed: %v&quot;, err) } }  &lsquo;cwd&rsquo;, &lsquo;err&rsquo; are not declared in their block, so the compiler will declare them and will shadow the global &lsquo;cwd&rsquo; variable."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">keysaim</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">keysaim</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">The golang programming language</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-04-23 </span>
+        
+        <span class="more-meta"> 约 4160 字 </span>
+        <span class="more-meta"> 预计阅读 20 分钟 </span>
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#notes">Notes</a>
+<ul>
+<li><a href="#section-2-program-structure">Section 2, Program Structure</a>
+<ul>
+<li><a href="#nested-block-in-if-else-if-else-block">nested block in if-else if-else block</a></li>
+<li><a href="#scope-shaw-issue">scope shaw issue</a></li>
+</ul></li>
+<li><a href="#section-3-basic-data-type">Section 3, Basic Data Type</a>
+<ul>
+<li><a href="#go-types">Go types</a></li>
+<li><a href="#types-synonym">Types synonym</a></li>
+<li><a href="#operators">Operators</a></li>
+<li><a href="#conversion-and-format">Conversion and format</a>
+<ul>
+<li><a href="#printf">Printf</a></li>
+<li><a href="#unicode">Unicode</a></li>
+</ul></li>
+<li><a href="#enumeratio">enumeratio</a></li>
+</ul></li>
+<li><a href="#section-4-composite-types">Section 4, Composite Types</a>
+<ul>
+<li><a href="#about-array-type">About array type</a></li>
+<li><a href="#about-the-slice-type">About the slice type</a></li>
+<li><a href="#about-the-map-type">About the map type</a></li>
+<li><a href="#about-the-struct-type">About the struct type</a></li>
+<li><a href="#about-the-json">About the JSON</a></li>
+</ul></li>
+<li><a href="#section-4-functions">Section 4, Functions</a>
+<ul>
+<li><a href="#function-definition">Function definition</a></li>
+<li><a href="#go-function-stack">Go function stack</a></li>
+<li><a href="#about-the-defer">About the defer</a></li>
+</ul></li>
+<li><a href="#section-6-methods">Section 6, Methods</a>
+<ul>
+<li><a href="#about-the-receiver">About the receiver</a></li>
+<li><a href="#about-the-embedding">About the embedding</a></li>
+<li><a href="#about-the-encapsulation">About the encapsulation</a></li>
+</ul></li>
+<li><a href="#section-7-interfaces">Section 7, Interfaces</a>
+<ul>
+<li><a href="#about-the-interface-satisfaction">About the interface satisfaction</a></li>
+<li><a href="#interface-values">interface values</a></li>
+<li><a href="#type-assertion">Type assertion</a></li>
+<li><a href="#type-switch">Type switch</a></li>
+</ul></li>
+<li><a href="#section-8-goroutines-and-channels">Section 8, Goroutines and Channels</a>
+<ul>
+<li><a href="#channels">Channels</a></li>
+</ul></li>
+<li><a href="#section-9-concurrency-with-shared-variables">Section 9, Concurrency with Shared Variables</a>
+<ul>
+<li><a href="#mutex">Mutex</a></li>
+<li><a href="#goroutines-vs-os-threads">Goroutines vs OS threads</a></li>
+</ul></li>
+<li><a href="#section-10-packages-and-the-go-tool">Section 10, Packages and The Go Tool</a>
+<ul>
+<li><a href="#go-build">Go build</a></li>
+<li><a href="#go-doc">Go doc</a></li>
+<li><a href="#internal-packages">Internal packages</a></li>
+<li><a href="#go-list">Go list</a></li>
+</ul></li>
+<li><a href="#section-11-testing">Section 11, Testing</a>
+<ul>
+<li><a href="#tests">Tests</a>
+<ul>
+<li><a href="#external-test-package">External Test Package</a></li>
+</ul></li>
+<li><a href="#benchmark-testing">Benchmark Testing</a></li>
+<li><a href="#profiling">Profiling</a></li>
+<li><a href="#example-testing">Example Testing</a></li>
+</ul></li>
+<li><a href="#section-12-reflection">Section 12, Reflection</a>
+<ul>
+<li><a href="#reflect-type-and-value">reflect, type and value</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<h1 id="notes">Notes</h1>
+
+<h2 id="section-2-program-structure">Section 2, Program Structure</h2>
+
+<h3 id="nested-block-in-if-else-if-else-block">nested block in if-else if-else block</h3>
+
+<pre><code class="language-go">	if x, y := 100, 200; x &gt; 1000 {
+	} else if x := &quot;hello&quot;; y &gt; 0 { //this x shadow the 'x' in if
+		fmt.Println(x, y)
+	}
+</code></pre>
+
+<h3 id="scope-shaw-issue">scope shaw issue</h3>
+
+<pre><code class="language-go">	var cwd string
+     func init() {
+         cwd, err := os.Getwd() //compile error: the 'cwd' declared but not used
+         if err != nil {
+             log.Fatalf(&quot;os.Getwd failed: %v&quot;, err)
+         }
+	}
+</code></pre>
+
+<p>&lsquo;cwd&rsquo;, &lsquo;err&rsquo; are not declared in their block, so the compiler will declare them and will shadow the global &lsquo;cwd&rsquo; variable.</p>
+
+<h2 id="section-3-basic-data-type">Section 3, Basic Data Type</h2>
+
+<h3 id="go-types">Go types</h3>
+
+<ul>
+<li>basic types: numbers, strings, booleans</li>
+<li>aggregate types: arrays and structs</li>
+<li>reference types: slices, maps, functions, channels. (Each includes pointers that point to internal data)</li>
+<li>interface types</li>
+</ul>
+
+<h3 id="types-synonym">Types synonym</h3>
+
+<ul>
+<li>int/uint types&rsquo; size are platform and compiler dependent. <strong><em>Never make assumption for the size!</em></strong></li>
+<li>&lsquo;rune&rsquo; is synonym to &lsquo;int32&rsquo;, while &lsquo;byte&rsquo; to &lsquo;uint8&rsquo;</li>
+<li>&lsquo;uintptr&rsquo; is for the low level programming, like Go with C</li>
+</ul>
+
+<h3 id="operators">Operators</h3>
+
+<ul>
+<li>the &lsquo;%&rsquo; for negative:</li>
+</ul>
+
+<pre><code class="language-go">    fmt.Println(-5 % -2) //-1
+    fmt.Println(5 % -2) //1
+    fmt.Println(-5 % 2) //-1
+</code></pre>
+
+<ul>
+<li>the result is <strong><em>the same type as the operators</em></strong>, so overflow may happen</li>
+</ul>
+
+<pre><code class="language-go">	var u uint8 = 255
+    fmt.Println(u, u+1, u*u) // &quot;255 0 1&quot;
+    var i int8 = 127
+    fmt.Println(i, i+1, i*i) // &quot;127 -128 1&quot;
+</code></pre>
+
+<ul>
+<li><p>&lsquo;unary operators&rsquo;: &lsquo;+&rsquo;, &lsquo;-&rsquo;, &lsquo;^&rsquo;</p>
+
+<p>** For integers, &lsquo;+x&rsquo; is short for &lsquo;0 + x&rsquo; while &lsquo;-x&rsquo; is short for &lsquo;0 - x&rsquo;
+** For floating and complex numbers, &lsquo;+x&rsquo; is just for &lsquo;x&rsquo; while &lsquo;-x&rsquo; is the negative of &lsquo;x&rsquo;
+** &lsquo;^x&rsquo; return the value with each bit inverted</p></li>
+
+<li><p>&lsquo;NaN&rsquo; is from like &lsquo;0/0&rsquo; or &lsquo;sqrt(-1)&rsquo;. Any comparation of &lsquo;NaN&rsquo; always yield false</p></li>
+</ul>
+
+<pre><code class="language-go">    nan := math.NaN()
+    fmt.Println(nan == nan, nan &lt; nan, nan &gt; nan) // &quot;false false false&quot;
+</code></pre>
+
+<ul>
+<li><strong><em>Row string literal</em></strong>: no escape happens and can cross multiple lines</li>
+</ul>
+
+<h3 id="conversion-and-format">Conversion and format</h3>
+
+<h4 id="printf">Printf</h4>
+
+<pre><code class="language-go">	o := 0666
+	fmt.Printf(&quot;%d %[1]o %#[1]o\n&quot;, o) // &quot;438 666 0666&quot;
+	x := int64(0xdeadbeef)
+	fmt.Printf(&quot;%d %[1]x %#[1]x %#[1]X\n&quot;, x)
+	// Output:
+	// 3735928559 deadbeef 0xdeadbeef 0XDEADBEEF
+</code></pre>
+
+<ul>
+<li><p>The &lsquo;[1]&rsquo; means use the first argument, so no need to provide the same argument again and again</p></li>
+
+<li><p>The &lsquo;#&rsquo; is used to add the &lsquo;0&rsquo;, &lsquo;0x&rsquo;, &lsquo;0X&rsquo;</p></li>
+
+<li><p>If space is after the &lsquo;%&rsquo;, like &lsquo;% x&rsquo;, then it will insert the space for each hex digits, like &lsquo;e3 83 97 e3 83 ad e3 82 b0 e3 83 a9 e3 83 a0&rsquo;</p></li>
+
+<li><p>The &lsquo;strconv&rsquo; package includes many format functions</p></li>
+
+<li><p>The &lsquo;%t&rsquo; show true or false, &lsquo;%T&rsquo; show the type</p></li>
+</ul>
+
+<h4 id="unicode">Unicode</h4>
+
+<ul>
+<li><p>Unicode version 8 use 4 bytes for each charactor, also knows as UTF-32/UCS-4. In Go, the &lsquo;rune&rsquo; is used for this.</p></li>
+
+<li><p>Unicode wasts lots of space, so the &lsquo;UTF-8&rsquo; is invented.</p>
+
+<pre><code>00xxxxxx runes0−127 (ASCII)
+111xxxxx 10xxxxxx 128−2047 (values &lt;128 unused)
+1110xxxx 10xxxxxx 10xxxxxx 2048−65535 (values &lt;2048 unused)
+11110xxx 10xxxxxx 10xxxxxx 10xxxxxx 65536−0x10ffff (other values unused)
+</code></pre></li>
+
+<li><p>Code point</p>
+
+<p>Same values:</p>
+
+<pre><code class="language-go">&quot;世界&quot;
+&quot;\xe4\xb8\x96\xe7\x95\x8c&quot; //the binary using the UTF-8 coding
+&quot;\u4e16\u754c&quot; //the binary using the Unicode, will be encoded as UTF-8 by the compiler
+&quot;\U00004e16\U0000754c&quot; //the binary using the Unicode, will be encoded as UTF-8 by the compiler
+</code></pre>
+
+<p>They are all valid UTF-8 encoding of code point, but in Go, when for &lsquo;rune&rsquo;, value below 256 can used as &lsquo;\x&rsquo;, while above 256, must use &lsquo;\u&rsquo; or &lsquo;\U&rsquo;.</p></li>
+</ul>
+
+<h3 id="enumeratio">enumeratio</h3>
+
+<pre><code class="language-go">const (
+    _ = 1 &lt;&lt; (10 * iota)
+    KiB // 1024
+    MiB // 1048576
+    GiB // 1073741824
+    TiB // 1099511627776 (exceeds 1 &lt;&lt; 32)
+    PiB // 1125899906842624
+    EiB // 1152921504606846976
+    ZiB // 1180591620717411303424
+    YiB // 1208925819614629174706176
+)
+</code></pre>
+
+<p>The &lsquo;iota&rsquo; is &lsquo;int&rsquo; type, so it will overflow.</p>
+
+<h2 id="section-4-composite-types">Section 4, Composite Types</h2>
+
+<h3 id="about-array-type">About array type</h3>
+
+<ul>
+<li><p>The size is part of the type, so &lsquo;[3]int&rsquo; is different type from &lsquo;[5]int&rsquo;</p></li>
+
+<li><p>Can init with specific indices</p>
+
+<pre><code class="language-go">symbol := [...]string{0: &quot;$&quot;, 2: &quot;9&quot;, 5: &quot;!&quot;, 9: &quot;&quot;&quot;}
+r := [...]int{99: -1}
+</code></pre>
+
+<p>All the ones not in the indices will be init as the zero value.</p></li>
+
+<li><p>Arrays are comparable, &lsquo;equal&rsquo; when the two arrays have the same type and all the elements are the same</p></li>
+</ul>
+
+<h3 id="about-the-slice-type">About the slice type</h3>
+
+<ul>
+<li><p>Index beyonds the capcity will cause panic, while beyonds length will expend the slice</p></li>
+
+<li><p>&rsquo;s[i:j]&rsquo; will share the same underlying array with slice &rsquo;s&rsquo;</p></li>
+
+<li><p>Slices are <strong><em>not comparable</em></strong>. For &lsquo;[]byte], using the &lsquo;bytes.Equal&rsquo; to compare</p></li>
+
+<li><p>Nil slice has zero length and zero capcity, while the reverse is not right.</p>
+
+<pre><code class="language-go">var s []int    // len(s) == 0, s == nil
+s = nil        // len(s) == 0, s == nil
+s = []int(nil) // len(s) == 0, s == nil
+s = []int{}    // len(s) == 0, s != nil
+</code></pre></li>
+
+<li><p>Nil slice and non-nil slice with zero length should be treated in the same way, so using &lsquo;len(s) == 0&rsquo; to check if a slice is empty</p></li>
+
+<li><p>Under the hood, &lsquo;make&rsquo; creates an unnamed array variable and returns a slice of it</p></li>
+
+<li><p>With append, slice may enlarge its space to hold new elements. The copy will handle the overlap of the underlying array.</p></li>
+</ul>
+
+<h3 id="about-the-map-type">About the map type</h3>
+
+<ul>
+<li><p>Lookup using a key not existing will return the zero value of the value type.</p>
+
+<pre><code class="language-go">a := make(map[string]int)
+a[&quot;bob&quot;] = a[&quot;bob&quot;] + 1
+fmt.Println(a[&quot;bob&quot;]) //will output 1
+</code></pre></li>
+
+<li><p>You can use the &lsquo;++&rsquo; to increase the value</p>
+
+<pre><code class="language-go">a := make(map[string]int)
+a[&quot;bob&quot;]++
+fmt.Println(a[&quot;bob&quot;]) //will output 1
+</code></pre></li>
+
+<li><p>A map element is not variable, you can never try to get its address. <strong><em>But on the different, you can get the address of a slice element</em></strong></p>
+
+<pre><code class="language-go">_ = &amp;a[&quot;bob&quot;] //compile error
+</code></pre></li>
+
+<li><p>Zero value of the map is nil.</p>
+
+<pre><code class="language-go">var ages map[string]int
+fmt.Println(ages == nil)    // &quot;true&quot;
+fmt.Println(len(ages) == 0) // &quot;true&quot;
+</code></pre></li>
+
+<li><p>A nil map supprts operations: lookup, delete, len, range, but not <strong><em>store value</em></strong>.</p>
+
+<pre><code class="language-go">var aa map[string]int
+aa[&quot;bob&quot;] = 100 //panic, the map must be created before storing any value
+</code></pre></li>
+
+<li><p>The maps are not comparable except for comparision with nil.</p></li>
+</ul>
+
+<h3 id="about-the-struct-type">About the struct type</h3>
+
+<ul>
+<li><p>Will compile error</p>
+
+<pre><code class="language-go">func create(id int) Employee {
+//...
+}
+create(100).Name = &quot;bob&quot; //compile error, change the return type to *Employee will be ok
+</code></pre></li>
+
+<li><p>Fields not exported in a struct cannot be inited in another package</p>
+
+<pre><code class="language-go">package p
+type T struct{ a, b int } // a and b are not exported
+
+</code></pre>
+
+<pre><code class="language-go">package q
+import &quot;p&quot;
+var _ = p.T{a: 1, b: 2} // compile error: can't reference a, b
+var _ = p.T{1, 2}       // compile error: can't reference a, b
+
+</code></pre>
+
+<p>And this is also wrong:</p>
+
+<pre><code class="language-go">package p
+type T struct{ A, b, C int } // a and b are not exported
+
+</code></pre>
+
+<pre><code class="language-go">package q
+import &quot;p&quot;
+var _ = p.T{1, 2}       // compile error: can't reference A, b
+var _ = p.T{A: 1, C: 2} // ok
+</code></pre></li>
+
+<li><p>Embedding will form an <strong>anoymous</strong> field of the struct with the implicit field name of the embedded type.</p>
+
+<pre><code class="language-go">type Point struct {
+    X, Y int
+}
+
+type Circle struct {
+    Point // form a anoymous field with implicit field name &quot;Point&quot;
+    Radius int 
+}
+
+type Wheel struct {
+    Circle // form a anoymous field with implicit field name &quot;Circle&quot;
+    Spokes int 
+}
+</code></pre>
+
+<p>So you cannot embed the same type for more than twice, as their implicit names will conflict.</p></li>
+
+<li><p>The implicit name can be optional for dot expression</p>
+
+<pre><code class="language-go">w := new(Wheel)
+w.Circle.Radius = 100
+w.Radius = 100 // Both of the two are valid
+</code></pre></li>
+
+<li><p>The embedded struct cannot init by normal struct literal</p>
+
+<pre><code class="language-go">w = Wheel{8, 8, 5, 20}                       // compile error: unknown fields
+w = Wheel{X: 8, Y: 8, Radius: 5, Spokes: 20} // compile error: unknown fields
+</code></pre>
+
+<p>You must init like this:</p>
+
+<pre><code class="language-go">w = Wheel{Circle{Point{8, 8}, 5}, 20}
+w = Wheel{
+  Circle: Circle{
+       Point:  Point{X: 8, Y: 8},
+  Radius: 5,
+  },
+  Spokes: 20, // NOTE: trailing comma necessary here (and at Radius)
+}
+fmt.Printf(&quot;%#v\n&quot;, w)
+// Output:
+// Wheel{Circle:Circle{Point:Point{X:8, Y:8}, Radius:5}, Spokes:20}
+w.X = 42
+fmt.Printf(&quot;%#v\n&quot;, w)
+// Output:
+// Wheel{Circle:Circle{Point:Point{X:42, Y:8}, Radius:5}, Spokes:20}
+</code></pre></li>
+</ul>
+
+<h3 id="about-the-json">About the JSON</h3>
+
+<ul>
+<li><p><strong><em>field tag</em></strong> is a string of metadata associated at compile time with the field of a struct. It&rsquo;s a &lsquo;key:&ldquo;value&rdquo;&rsquo; pair.</p>
+
+<pre><code class="language-go">Year  int  `json:&quot;released&quot;`
+Color bool `json:&quot;color,omitempty&quot;`
+</code></pre></li>
+
+<li><p>The JSON field tag format: <code>json:&quot;&lt;json name&gt;,[addition option]&quot;</code></p></li>
+
+<li><p>When Marshal, the not exported fields will be ignored; When Unmarshal, the fields of JSON that are not in the data struct will be ignored</p></li>
+
+<li><p>Associating JSON names with Go struct names during Unmarshaling is <strong><em>case-insensitive</em></strong>, so no need to add the JSON field tag for simple field name. But for the Marshal, you must define the JSON field tag, or the capital name will be used.</p></li>
+</ul>
+
+<h2 id="section-4-functions">Section 4, Functions</h2>
+
+<h3 id="function-definition">Function definition</h3>
+
+<ul>
+<li><p>If return only one unamed type, the &lsquo;()&rsquo; can be omitted in the return result definition.</p></li>
+
+<li><p>Parameters and named results share the same level of the function outermost block.</p></li>
+</ul>
+
+<h3 id="go-function-stack">Go function stack</h3>
+
+<ul>
+<li>Go has a variable size function stack, so the recursive is always safe.</li>
+</ul>
+
+<h3 id="about-the-defer">About the defer</h3>
+
+<ul>
+<li><p>The &lsquo;defer&rsquo; forms a stack and wil be called by stack before the function return.</p></li>
+
+<li><p>Even panic in the function, the &lsquo;defer&rsquo; will be called too.</p></li>
+</ul>
+
+<h2 id="section-6-methods">Section 6, Methods</h2>
+
+<h3 id="about-the-receiver">About the receiver</h3>
+
+<ul>
+<li><p>The compiler will perform implicit &lsquo;&amp;p&rsquo; on the variable when the receiver is the pointer.</p>
+
+<pre><code class="language-go">type Point struct {
+    x int
+    y int
+}
+
+func (p *Point) Offset(off int) {
+    p.x += off
+    p.y += off
+}
+
+//...
+p := Point{}
+p.Offset(10) // This is valid, as the compiler will perform implicit '&amp;p' on this.
+Point{1, 2}.Offset(100) // compile error, as it's not the variable and cannot be addressed.
+</code></pre></li>
+
+<li><p>It&rsquo;s true on these three scenarios:</p>
+
+<p>1) The type of the variable is the same as the receiver parameter
+2) The type of the variable is T, while the receiver parameter is *T (The compiler will implicitly perform &lsquo;&amp;p&rsquo;)
+3) The type of the variable is *T, while the receiver parameter is T (The compiler will implicitly perform &lsquo;*p&rsquo;)</p></li>
+
+<li><p>Bind the method with the receiver and assign to a variable, then you can call the method without the receiver via the variable. This is called <strong><em>method value</em></strong></p>
+
+<pre><code class="language-go">p := Point{1, 2}
+q := Point{4, 6}
+distanceFromP := p.Distance
+fmt.Println(distanceFromP(q))
+</code></pre></li>
+
+<li><p>Assigning the method to variable directly is called <strong><em>method expression</em></strong>, you can then call it by providing the receiver as the first parameter.</p>
+
+<pre><code class="language-go">p := Point{1, 2}
+q := Point{4, 6}
+distance := Point.Distance   // method expression
+fmt.Println(distance(p, q))  // &quot;5&quot;
+</code></pre></li>
+</ul>
+
+<h3 id="about-the-embedding">About the embedding</h3>
+
+<ul>
+<li>Embedding a type will inherit all its methods. In terms of implementation, the compiler will generate the wrapped methods with the type.</li>
+</ul>
+
+<h3 id="about-the-encapsulation">About the encapsulation</h3>
+
+<ul>
+<li>All fields in the struct is visible to any function or any method in the same package</li>
+</ul>
+
+<h2 id="section-7-interfaces">Section 7, Interfaces</h2>
+
+<h3 id="about-the-interface-satisfaction">About the interface satisfaction</h3>
+
+<ul>
+<li>Though you can use the type T to access <code>*T</code> method (the compiler will perform it implicitly), but you cannot use type T to satisfy the <code>*T</code> type interface.</li>
+</ul>
+
+<h3 id="interface-values">interface values</h3>
+
+<ul>
+<li><p>An interface value is composed of: dynamic type and dynamic value. The type is the dynamic type of the value.</p>
+
+<pre><code class="language-go">var w io.Writer // both the type and value are nil
+if w == nil { // this is true
+    fmt.Println('is nil')
+}
+
+var buf *bytes.Buffer // buf is a nil pointer
+w = nil // both the type and value are nil
+w = buf // the type is '*bytes.Buffer' (not nil), while the value is nil
+if w == nil { // this is false, as the type of w is not nil, so the w is not nil
+    fmt.Println('is nil')
+}
+
+</code></pre></li>
+
+<li><p>interface value comparation may cause panic</p>
+
+<pre><code class="language-go">var x interface{} = []int{1, 2, 3}
+fmt.Println(x == x) // panic: comparing uncomparable type []int
+</code></pre>
+
+<p>When comparation, both the type and value must be comparable. Similar risk eixsts when using the interfaces as the map keys.</p></li>
+
+<li><p>To report the dynamic type of an interface value, using the &lsquo;%T&rsquo;</p>
+
+<pre><code class="language-go">var w io.Writer
+fmt.Printf(&quot;%T\n&quot;, w) // &quot;&lt;nil&gt;&quot;
+w = os.Stdout
+fmt.Printf(&quot;%T\n&quot;, w) // &quot;*os.File&quot;
+w = new(bytes.Buffer)
+fmt.Printf(&quot;%T\n&quot;, w) // &quot;*bytes.Buffer&quot;
+</code></pre></li>
+</ul>
+
+<h3 id="type-assertion">Type assertion</h3>
+
+<ul>
+<li><p>x.(T), if T is a concrete type, it will check if x&rsquo;s dynamic type is identical to T, if so the results is the dynamic value, or it will panic. If the T is a interface type, it will first check if x&rsquo;s dynamic type satisfies T, if so, a new interface value will be returned with the new dynamic type T and the same dynamic value.</p></li>
+
+<li><p>No matter what type was asserted, if the operand is a nil interface value, the type assertion fails</p></li>
+</ul>
+
+<h3 id="type-switch">Type switch</h3>
+
+<ul>
+<li><p>take one example, you can assign the x.(type) to a new variable</p>
+
+<pre><code class="language-go">func sqlQuote(x interface{}) string {
+         switch x := x.(type) {
+         case nil:
+             return &quot;NULL&quot;
+         case int, uint:
+             return fmt.Sprintf(&quot;%d&quot;, x) // x has type interface{} here.
+         case bool:
+             if x {
+                 return &quot;TRUE&quot;
+            }
+             return &quot;FALSE&quot;
+         case string:
+             return sqlQuoteString(x) // (not shown)
+         default:
+            panic(fmt.Sprintf(&quot;unexpected type %T: %v&quot;,wxw,wx.i)t)-ebooks.info }
+}
+</code></pre></li>
+</ul>
+
+<h2 id="section-8-goroutines-and-channels">Section 8, Goroutines and Channels</h2>
+
+<h3 id="channels">Channels</h3>
+
+<ul>
+<li><p>The channel is a reference.</p></li>
+
+<li><p>channels are comparable, it&rsquo;s true when both are references to the same channel data structure.</p></li>
+
+<li><p>A channel can be closed, send to a closed channel will cause panic, while receive on a closed channel, it will yield zero value of the channel element type after the channel is empty.</p></li>
+
+<li><p>To test on a closed channel, use like <code>x, ok := &lt;- c</code>, to be comvinent, you can use the &lsquo;range&rsquo; to loop the channel until it&rsquo;s drain and closed.</p>
+
+<pre><code class="language-go">for x := range naturals { // the loop will exit when the channel 'naturals' is drained and closed.
+    squares &lt;- x * x
+}
+</code></pre></li>
+
+<li><p>It&rsquo;s not necessary to close the channel when you finish with it. Only close it when you want to tell the receive that you will sent anymore data. It&rsquo;s different from the file, you must always close a file after finishing with it.</p></li>
+
+<li><p>Unidirectional channels: the <code>chan&lt;- int</code> is send-only channel, the <code>&lt;-chan int</code> is the receive-only channel. And the <code>close</code> must not be applied on the receive-only channel. It will implicitly convert <code>chan int</code> to <code>chan&lt;- int</code> and <code>&lt;-chan int</code>.</p></li>
+
+<li><p>To get the capcity of the channel, using the <code>cap(c)</code>, while the <code>len(c)</code> returns the currently number of the buffered elements.</p></li>
+
+<li><p>An typical example for loop paralle</p>
+
+<pre><code class="language-go">func makeThumbnails6(filenames &lt;-chan string) int64 {
+         sizes := make(chan int64)
+         var wg sync.WaitGroup // number of working goroutines
+         for f := range filenames {
+             wg.Add(1)
+             // worker
+             go func(f string) {
+                 defer wg.Done()
+                 thumb, err := thumbnail.ImageFile(f)
+                 if err != nil {
+                     log.Println(err)
+                         return
+                         }
+                 info, _ := os.Stat(thumb) // OK to ignore error
+                 sizes &lt;- info.Size()
+             }(f)
+         }
+         // closer
+         go func() {
+             wg.Wait()
+             close(sizes)
+         }()
+         var total int64
+         for size := range sizes {
+             total += size
+         }
+         return total
+     }
+</code></pre></li>
+
+<li><p>Using a buffered channel as a semaphore</p>
+
+<pre><code class="language-go">var sema = make(chan struct{}, 10)
+func dowork() {
+    sema &lt;- struct{}{} // acquire the sema
+    defer func() { &lt;-sema }() // release the sema
+    // do something here
+    //...
+}
+</code></pre></li>
+
+<li><p>Using select with a closeable channel to cancel the goroutines. Closing the channel is like broadcasting the goroutines to let them exit gracefully.</p>
+
+<pre><code class="language-go">func main() {
+    done := make(chan struct{})
+    jc := make(chan string)
+    go func() {
+        select {
+        case &lt;-done:
+            return
+        case job := &lt;-jc:
+            //do something with the job
+        }
+    }()
+
+    jc&lt;- &quot;hello&quot;
+    close(done)
+}
+</code></pre></li>
+</ul>
+
+<h2 id="section-9-concurrency-with-shared-variables">Section 9, Concurrency with Shared Variables</h2>
+
+<h3 id="mutex">Mutex</h3>
+
+<ul>
+<li><p>defer will be be executed even the func panic</p></li>
+
+<li><p>The mutex is not <strong><em>re-entrant</em></strong>, which means that it can not be locked recursively.</p></li>
+
+<li><p>Different goroutines may run on different CPU, different statements may be reordered by the modern compiler and CPU when they are not dependent on each other.</p>
+
+<pre><code class="language-go">     var x, y int
+     go func() {
+         x = 1 // A1
+         fmt.Print(&quot;y:&quot;, y, &quot; &quot;) // A2
+     }()
+     go func() {
+         y = 1                   // B1
+         fmt.Print(&quot;x:&quot;, x, &quot; &quot;) // B2
+     }()
+</code></pre>
+
+<p>The result may be &ldquo;x = 0, y = 0&rdquo;, as the CPU or compiler may reorder the statements; the different goroutines may run on different CPU, and the update may happen on each CPU cache and doesn&rsquo;t sync with main memory on time. The mutex will make sure the right order.</p></li>
+
+<li><p>Duplicate suppression</p>
+
+<pre><code class="language-go">type entry struct {
+         res   result
+         ready chan struct{} // closed when res is ready
+     }
+
+func New(f Func) *Memo {
+     return &amp;Memo{f: f, cache: make(map[string]*entry)}
+}
+
+type Memo struct {
+    f     Func
+    mu    sync.Mutex // guards cache
+    cache map[string]*entry
+}
+
+func (memo *Memo) Get(key string) (value interface{}, err error) {
+    memo.mu.Lock()
+    e := memo.cache[key]
+    if e == nil {
+        // This is the first request for this key.
+        // This goroutine becomes responsible for computing
+        // the value and broadcasting the ready condition.
+        e = &amp;entry{ready: make(chan struct{})}
+        memo.cache[key] = e
+        memo.mu.Unlock()
+        e.res.value, e.res.err = memo.f(key)
+        close(e.ready) // broadcast ready condition
+    } else {
+        // This is a repeat request for this key.
+        memo.mu.Unlock()
+        &lt;-e.ready // wait for ready condition
+    }
+    return e.res.value, e.res.err
+}
+</code></pre></li>
+</ul>
+
+<h3 id="goroutines-vs-os-threads">Goroutines vs OS threads</h3>
+
+<ul>
+<li><p>Goroutine has dynamic size of stack, which is up to 1GB while the OS thread is typical 2MB.</p></li>
+
+<li><p>Goroutines schedule implicitly by certain Go language constructs, like time.Sleep, channel block, mutex block, etc, no need to switch kernel context. While the OS threads schedule is invoked every few ms, need to switch kernel context.</p></li>
+
+<li><p>GOMAXPROCS is the default the number of the CPU on the machine.</p></li>
+</ul>
+
+<h2 id="section-10-packages-and-the-go-tool">Section 10, Packages and The Go Tool</h2>
+
+<h3 id="go-build">Go build</h3>
+
+<ul>
+<li><p>Using flag &lsquo;-u&rsquo; in &lsquo;go get&rsquo; will update the current repo to the latest version.</p></li>
+
+<li><p>The &lsquo;go build -i&rsquo; will install the dependent packages and will decrease the compile time next time.</p></li>
+
+<li><p>Cross compile</p>
+
+<pre><code>$ GOARCH=386 go build -i gopl.io/ch10/cross // it will install in $GOPATH/pkg/386
+</code></pre></li>
+
+<li><p>Files like <code>net_linux.go</code> or <code>asm_amd64.s</code>, the compiler will compile it based on the env.</p></li>
+
+<li><p>Comment <em>before</em> the file package declaration can also control the compiling. <code>// +build linux darwin</code> means only compile it for linux and darwin, <code>// +build ignore</code> means never compile this file.</p></li>
+</ul>
+
+<h3 id="go-doc">Go doc</h3>
+
+<ul>
+<li><p>The first sentence is usually a summary that starts with the declared name.</p>
+
+<pre><code class="language-go">// Fprintf formats according to a format specifier and writes to w.
+// It returns the number of bytes written and any write error encountered.
+func Fprintf(w io.Writer, format string, a ...interface{}) (int, error)
+</code></pre></li>
+
+<li><p>Check the doc</p>
+
+<pre><code>$ go doc json.encode
+func (dec *Decoder) Decode(v interface{}) error
+    Decode reads the next JSON-encoded value from its input and stores
+    it in the value pointed to by v.
+</code></pre></li>
+
+<li><p>Export the doc to html and serve it</p>
+
+<pre><code>$ godoc -http :8000
+</code></pre>
+
+<p>And then, access the doc via <a href="http://localhost:8000/pkg">http://localhost:8000/pkg</a></p></li>
+</ul>
+
+<h3 id="internal-packages">Internal packages</h3>
+
+<ul>
+<li><p>package under the &lsquo;internal&rsquo; directory is the internal package</p></li>
+
+<li><p>Can be seen by the packages under the parent of the &lsquo;internal&rsquo; directory</p>
+
+<pre><code>net/http
+net/http/internal/chunked
+net/http/httputil
+net/url
+</code></pre>
+
+<p>The &lsquo;net/http/internal/chunked&rsquo; can be seen by &lsquo;net/http&rsquo;, &lsquo;net/http/httputil&rsquo;, while not seen by &lsquo;net/url&rsquo;</p></li>
+</ul>
+
+<h3 id="go-list">Go list</h3>
+
+<ul>
+<li><p>list the packages</p></li>
+
+<li><p>List all the packages under the workspace.</p>
+
+<pre><code>$ go list ...
+</code></pre></li>
+
+<li><p>List all under path</p>
+
+<pre><code>$ go list gopl.io/ch3/...
+</code></pre></li>
+
+<li><p>List by matched pattern</p>
+
+<pre><code>$ go list ...xml...
+encoding/xml
+gopl.io/ch7/xmlselect
+</code></pre></li>
+
+<li><p><code>go list -json</code> to show by json format of the package detail info.</p>
+
+<pre><code>$ go list -json hash
+{
+    &quot;Dir&quot;: &quot;/home/gopher/go/src/hash&quot;,
+        &quot;ImportPath&quot;: &quot;hash&quot;,
+        &quot;Name&quot;: &quot;hash&quot;,
+        &quot;Doc&quot;: &quot;Package hash provides interfaces for hash functions.&quot;,
+        &quot;Target&quot;: &quot;/home/gopher/go/pkg/darwin_amd64/hash.a&quot;,
+        &quot;Goroot&quot;: true,
+        &quot;Standard&quot;: true,
+        &quot;Root&quot;: &quot;/home/gopher/go&quot;,
+        &quot;GoFiles&quot;: [
+            &quot;hash.go&quot; ],
+            &quot;Imports&quot;: [
+                &quot;io&quot;
+            ],
+            &quot;Deps&quot;: [
+                &quot;errors&quot;,
+            &quot;io&quot;,
+            &quot;runtime&quot;,
+            &quot;sync&quot;,
+            &quot;sync/atomic&quot;,
+            &quot;unsafe&quot;
+            ] 
+}
+</code></pre></li>
+
+<li><p>&rsquo;-f &lsquo; to customize the output format</p>
+
+<pre><code>$ go list -f '{{join .Deps &quot; &quot;}}' strconv
+ errors math runtime unicode/utf8 unsafe
+</code></pre>
+
+<p>It lists all the dependencies. Actually, the &lsquo;-f&rsquo; is like using the text template to format the output.</p></li>
+</ul>
+
+<h2 id="section-11-testing">Section 11, Testing</h2>
+
+<ul>
+<li>Within <code>*_test.go</code> files, three kinds of functions are treated specially : tests, benchmarks, and examples. Function starts with &lsquo;Test&rsquo; is for tests, &lsquo;Benchmark&rsquo; is for benchmarks, &lsquo;Example&rsquo; is for examples.</li>
+</ul>
+
+<h3 id="tests">Tests</h3>
+
+<ul>
+<li><p>&rsquo;-run&rsquo; to run specific cases using the regular expression</p>
+
+<pre><code>$ go test -v -run=&quot;French|Canal&quot;
+     === RUN TestFrenchPalindrome
+     --- FAIL: TestFrenchPalindrome (0.00s)
+         word_test.go:28: IsPalindrome(&quot;été&quot;) = false
+     === RUN TestCanalPalindrome
+     --- FAIL: TestCanalPalindrome (0.00s)
+         word_test.go:35: IsPalindrome(&quot;A man, a plan, a canal: Panama&quot;) = false
+     FAIL
+     exit status 1
+     FAIL    gopl.io/ch11/word1  0.014s
+</code></pre></li>
+</ul>
+
+<h4 id="external-test-package">External Test Package</h4>
+
+<ul>
+<li><p>Sometimes, in case of a cycle of dependencies in test files, use the <code>_test</code> to declare a external test package. For example, in &lsquo;net/url&rsquo;, the test file may declare package like <code>package url_test</code>, the compiler will create an external package for this implicitly.</p>
+
+<pre><code>$ go list -f={{.GoFiles}} fmt
+     [doc.go format.go print.go scan.go]
+$ go list -f={{.TestGoFiles}} fmt
+     [export_test.go]
+$ go list -f={{.XTestGoFiles}} fmt
+     [fmt_test.go scan_test.go stringer_test.go]
+</code></pre>
+
+<p>The &lsquo;XTestGoFiles&rsquo; is the external test package files.</p></li>
+
+<li><p>In external package test file, you cannot access the private variable or functions in the tested package. In order to do while-box testing in external package test files, using a export file to export the private things. And this file is always called <code>export_test.go</code></p>
+
+<p>For example, the <code>export_test.go</code> file for the &lsquo;fmt&rsquo; package is:</p>
+
+<pre><code class="language-go">package fmt
+var IsSpace = isSpace
+</code></pre></li>
+</ul>
+
+<h3 id="benchmark-testing">Benchmark Testing</h3>
+
+<ul>
+<li><p>Test and check the memory</p>
+
+<pre><code>$ go test -bench=. -benchmem
+     PASS
+          BenchmarkIsPalindrome    2000000    807 ns/op  128 B/op  1 allocs/op
+</code></pre></li>
+</ul>
+
+<h3 id="profiling">Profiling</h3>
+
+<ul>
+<li><p>Profiling when testing</p>
+
+<pre><code>$ go test -cpuprofile=cpu.out
+$ go test -blockprofile=block.out
+$ go test -memprofile=mem.out
+</code></pre>
+
+<p>And then run the pprof tool</p>
+
+<pre><code>    $ go test -run=NONE -bench=ClientServerParallelTLS64 \
+             -cpuprofile=cpu.log net/http
+     PASS
+     BenchmarkClientServerParallelTLS64-8  1000
+        3141325 ns/op  143010 B/op  1747 allocs/op
+     ok      net/http       3.395s
+     $ go tool pprof -text -nodecount=10 ./http.test cpu.log
+     2570ms of 3590ms total (71.59%)
+     Dropped 129 nodes (cum &lt;= 17.95ms)
+     Showing top 10 nodes out of 166 (cum &gt;= 60ms)
+         flat  flat%   sum%     cum   cum%
+       1730ms 48.19% 48.19%  1750ms 48.75%  crypto/elliptic.p256ReduceDegree
+        230ms  6.41% 54.60%   250ms  6.96%  crypto/elliptic.p256Diff
+        120ms  3.34% 57.94%   120ms  3.34%  math/big.addMulVVW
+        110ms  3.06% 61.00%   110ms  3.06%  syscall.Syscall
+         90ms  2.51% 63.51%  1130ms 31.48%  crypto/elliptic.p256Square
+         70ms  1.95% 65.46%   120ms  3.34%  runtime.scanobject
+         60ms  1.67% 67.13%   830ms 23.12%  crypto/elliptic.p256Mul
+         60ms  1.67% 68.80%   190ms  5.29%  math/big.nat.montgomery
+         50ms  1.39% 70.19%    50ms  1.39%  crypto/elliptic.p256ReduceCarry
+         50ms  1.39% 71.59%    60ms  1.67%  crypto/elliptic.p256Sum
+</code></pre>
+
+<p>The <code>-nodecount=10</code> means showing only 10 rows</p></li>
+</ul>
+
+<h3 id="example-testing">Example Testing</h3>
+
+<ul>
+<li>For example test <code>ExampleFuncName</code>, the <code>go doc</code> will add this example to the function <code>FuncName</code> automatically.</li>
+</ul>
+
+<h2 id="section-12-reflection">Section 12, Reflection</h2>
+
+<h3 id="reflect-type-and-value">reflect, type and value</h3>
+
+<ul>
+<li><p><code>reflect.TypeOf</code> return the dynamic type of the interface value. The &lsquo;%T&rsquo; in <code>fmt</code> is using this.</p>
+
+<pre><code class="language-go">var w io.Writer = os.Stdout
+fmt.Println(reflect.TypeOf(w)) // &quot;*os.File&quot;
+</code></pre></li>
+
+<li><p><code>reflect.ValueOf</code> to get the value</p>
+
+<pre><code class="language-go">v := reflect.ValueOf(3) // a reflect.Value
+fmt.Println(v)          // &quot;3&quot;
+fmt.Printf(&quot;%v\n&quot;, v)   // &quot;3&quot;
+fmt.Println(v.String()) // NOTE: &quot;&lt;int Value&gt;&quot;
+t := v.Type() // a reflect.Type
+fmt.Println(t.String()) // &quot;int&quot;
+v := reflect.ValueOf(3) // a reflect.Value
+x := v.Interface() // an interface{}
+i := x.(int) // an int 
+fmt.Printf(&quot;%d\n&quot;, i) // &quot;3&quot;
+</code></pre></li>
+
+<li><p><code>reflect.Value.Kind</code> usage. Kind of zero value is <code>reflect.Invalid</code></p>
+
+<pre><code class="language-go">func formatAtom(v reflect.Value) string {
+         switch v.Kind() {
+         case reflect.Invalid:
+             return &quot;invalid&quot;
+         case reflect.Int, reflect.Int8, reflect.Int16,
+             reflect.Int32, reflect.Int64:
+             return strconv.FormatInt(v.Int(), 10)
+         case reflect.Uint, reflect.Uint8, reflect.Uint16,
+             reflect.Uint32, reflect.Uint64, reflect.Uintptr:
+             return strconv.FormatUint(v.Uint(), 10)
+         // ...floating-point and complex cases omitted for brevity...
+         case reflect.Bool:
+             return strconv.FormatBool(v.Bool())
+         case reflect.String:
+             return strconv.Quote(v.String())
+         case reflect.Chan, reflect.Func, reflect.Ptr, reflect.Slice, reflect.Map:
+             return v.Type().String() + &quot; 0x&quot; +
+                 strconv.FormatUint(uint64(v.Pointer()), 16)
+         default: // reflect.Array, reflect.Struct, reflect.Interface
+             return v.Type().String() + &quot; value&quot;
+} }
+</code></pre></li>
+
+<li><p>reflect for the Composite Types</p>
+
+<pre><code class="language-go">func display(path string, v reflect.Value) {
+         switch v.Kind() {
+         case reflect.Invalid:
+             fmt.Printf(&quot;%s = invalid\n&quot;, path)
+         case reflect.Slice, reflect.Array:
+             for i := 0; i &lt; v.Len(); i++ {
+                 display(fmt.Sprintf(&quot;%s[%d]&quot;, path, i), v.Index(i))
+             }
+         case reflect.Struct:
+             for i := 0; i &lt; v.NumField(); i++ {
+                 fieldPath := fmt.Sprintf(&quot;%s.%s&quot;, path, v.Type().Field(i).Name)
+                 display(fieldPath, v.Field(i))
+             }
+         case reflect.Map:
+             for _, key := range v.MapKeys() {
+                 display(fmt.Sprintf(&quot;%s[%s]&quot;, path,
+                     formatAtom(key)), v.MapIndex(key))
+             }
+         case reflect.Ptr:
+             if v.IsNil() {
+                 fmt.Printf(&quot;%s = nil\n&quot;, path)
+             } else {
+                 display(fmt.Sprintf(&quot;(*%s)&quot;, path), v.Elem())
+             }
+         case reflect.Interface:
+             if v.IsNil() {
+                 fmt.Printf(&quot;%s = nil\n&quot;, path)
+             } else {
+                 fmt.Printf(&quot;%s.type = %s\n&quot;, path, v.Elem().Type())
+                 display(path+&quot;.value&quot;, v.Elem())
+             }
+         default: // basic types, channels, funcs
+             fmt.Printf(&quot;%s = %s\n&quot;, path, formatAtom(v))
+         }
+}
+</code></pre></li>
+
+<li><p>Set value</p>
+
+<pre><code class="language-go">x := 1
+rx := reflect.ValueOf(&amp;x).Elem()
+rx.SetInt(2) // OK, x = 2
+rx.Set(reflect.ValueOf(3)) // OK, x = 3
+rx.SetString(&quot;hello&quot;) // panic: string is not assignable to int
+rx.Set(reflect.ValueOf(&quot;hello&quot;)) // panic: string is not assignable to int
+var y interface{}
+ry := reflect.ValueOf(&amp;y).Elem()
+ry.SetInt(2) // panic: SetInt called on interface Value
+ry.Set(reflect.ValueOf(3)) // OK, y = int(3)
+ry.SetString(&quot;hello&quot;) // panic: SetString called on interface Value
+ry.Set(reflect.ValueOf(&quot;hello&quot;)) // OK, y = &quot;hello&quot;
+</code></pre></li>
+
+<li><p>We can use reflect to access the unexport fields of a struct, but you cannot update it, because the reflect will records whether it&rsquo;s exported or not.</p>
+
+<pre><code class="language-go">stdout := reflect.ValueOf(os.Stdout).Elem() // *os.Stdout, an os.File var
+fmt.Println(stdout.Type())                  // &quot;os.File&quot;
+fd := stdout.FieldByName(&quot;fd&quot;)
+fmt.Println(fd.Int()) // &quot;1&quot;
+fd.SetInt(2)          // panic: unexported field
+fmt.Println(fd.CanAddr(), fd.CanSet()) // &quot;true false&quot;
+</code></pre></li>
+
+<li><p>access the struct tags</p>
+
+<pre><code class="language-go">// Build map of fields keyed by effective name.
+    fields := make(map[string]reflect.Value)
+    v := reflect.ValueOf(ptr).Elem() // the struct variable
+    for i := 0; i &lt; v.NumField(); i++ {
+        fieldInfo := v.Type().Field(i) // a reflect.StructField
+        tag := fieldInfo.Tag           // a reflect.StructTag
+        name := tag.Get(&quot;http&quot;)
+        if name == &quot;&quot; {
+            name = strings.ToLower(fieldInfo.Name)
+        }
+        fields[name] = v.Field(i)
+    }
+</code></pre></li>
+
+<li><p>access the methods. Using <code>reflect.Value.Call</code> is possible to call the method</p>
+
+<pre><code class="language-go">// Print prints the method set of the value x.
+ func Print(x interface{}) {
+     v := reflect.ValueOf(x)
+     t := v.Type()
+     fmt.Printf(&quot;type %s\n&quot;, t)
+     for i := 0; i &lt; v.NumMethod(); i++ {
+         methType := v.Method(i).Type()
+         fmt.Printf(&quot;func (%s) %s%s\n&quot;, t, t.Method(i).Name,
+             strings.TrimPrefix(methType.String(), &quot;func&quot;))
+    }
+}
+</code></pre></li>
+
+<li><p><strong><em>Reflect is fragile and will cause terrible performance issue is it&rsquo;s in the critical code path.</em></strong></p></li>
+</ul>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">keysaim</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2016-04-23</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/go/">go</a>
+          
+          <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/2016-05-16-full-stack-demo/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">用docker搭建全栈式应用（一）基础篇</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/sample/">
+            <span class="next-text nav-default">Sample test</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+    
+
+  
+
+  
+
+  <div id="comments-gitment"></div>
+  <link rel="stylesheet" href="/lib/gitment/gitment-0.0.3.min.css">
+    <script src="/lib/gitment/gitment-0.0.3.min.js"></script>
+  <script type="text/javascript">
+  const gitment = new Gitment({
+    id: '2016-04-23 00:00:00 \x2b0000 UTC',
+    title: 'The golang programming language',
+    link: decodeURI(location.href),
+    desc: 'Notes Section 2, Program Structure nested block in if-else if-else block if x, y := 100, 200; x \x26gt; 1000 { } else if x := \x26quot;hello\x26quot;; y \x26gt; 0 { \/\/this x shadow the \x27x\x27 in if fmt.Println(x, y) }  scope shaw issue var cwd string func init() { cwd, err := os.Getwd() \/\/compile error: the \x27cwd\x27 declared but not used if err != nil { log.Fatalf(\x26quot;os.Getwd failed: %v\x26quot;, err) } }  \x26lsquo;cwd\x26rsquo;, \x26lsquo;err\x26rsquo; are not declared in their block, so the compiler will declare them and will shadow the global \x26lsquo;cwd\x26rsquo; variable.',
+    owner: 'keysaim',
+    repo: 'comments',
+    oauth: {
+      client_id: '8d920ad685683a529e83',
+      client_secret: 'ffabf134048e374883ee67d3786a9a6b7d8d3cdc'
+    }
+  })
+  gitment.render('comments-gitment')
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+  </article>
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:keysaim@gmail.com" rel="me" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/keysaim" rel="me" class="iconfont icon-github" title="github"></a>
+  <a href="https://keysaim.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2017 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">窗外蟋蟀(keysaim)</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+<script type="text/javascript" src="/dist/jane.min.js?v=2.7.0"></script>
+
+
+
+
+
+</body>
+</html>

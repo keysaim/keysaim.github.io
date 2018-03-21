@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Linux系统介绍（三）shell基础 - 窗外蟋蟀博客</title>
+  <link rel="alternate" hreflang="zh-cn" href="https://keysaim.github.io" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="keysaim" />
+  <meta name="description" content="概述 首先，咱们来了解一下，什么是Shell。操作系统内核给我们提供了各种接口，同时也提供了各种用户层的库，理论上我们基于这些可以编写程序实现各种我们想要的功能，不过问题是，咱们不可能做什么事情都要重新编写程序，这样使用起来也太困难了。因此，操作系统（包括Linux）通常都会引入一个Shell这样的特殊程序，这个程序会接受输入的命令然后执行，并可能将执行结果呈现出来。总结来说，Shell是一个从输入设备或者文件读取命令，并且解释、执行的用户态程序。
+在Linux系统中，通常使用的Shell程序包括有： * Sh (Bourne Shell) * Bash (Bourne Again Shell) * Csh (C Shell) * Ksh (Korn Shell)
+一般来说，Bash应该是使用最多的Shell程序了，本文也主要基于Bash来展开。
+Shell展开（Shell Expansion） Shell程序是一个命令解释器，因此在终端输入命令之后，Shell将扫描命令并做适当的修改，这个过程称为Shell展开。Shell展开是Shell解释执行之前极为重要的一步，了解它将有利于你对Shell命令或者脚本的理解，本章节将逐步带大家来了解这个过程。
+命令参数解析 这里的空格包括了制表符（Tab）。当Shell程序扫描输入的命令时，会以*连续*的空格为界，将命令切分成一组参数，因此你输入多个空格为界跟输入一个空格的效果是一样的。通常来讲，第一个参数就是要执行的命令，而后面的参数则是改命令的参数。一下几个命令其实是等效的：
+# echo Hello World Hello World # echo Hello World Hello World # echo Hello World Hello World  引号 当然，有时候你需要在一个参数中包括空格，这样的话你就需要将这个参数以引号引起来，引号包括了单引号&#39;跟双引号&amp;quot;，两者都可以。shell会将引号中的字符串视为一个参数，不论里面有没有空格。当然，特别指出的是，不要用反引号`，反引号将在后面详细讲述。
+如命令echo &#39;Hello World!&#39;在shell解析之后会有两个参数，分别为echo跟Hello World!。而如果不用引号echo Hello World!，则将解析为三个参数。
+ 特别提一下，对于echo命令，如果需要输出需要转义的字符，如回车等，则需要执行echo -e &amp;quot;Hello World!\n&amp;quot;，如果不加-e，则\n会被直接显示出来。
+&amp;gt; # echo &amp;quot;hello\n&amp;quot; &amp;gt; hello\n &amp;gt; # echo -e &amp;quot;hello\n&amp;quot; &amp;gt; hello &amp;gt; &amp;gt; ``` ## 命令 对于`shell`来说，命令有内部命令（Builtin Commands）跟外部命令（External Commands）之分，所谓内部命令指的是包含在`shell`解析器中的命令。内部命令一般有[4种类型](http://www." />
+
+  <meta name="keywords" content="Hugo, blog, keysaim, 窗外蟋蟀" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.37.1" />
+
+
+<link rel="canonical" href="https://keysaim.github.io/post/2017-10-10-linux-study-shell-basic/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" href="/favicon.ico" />
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+<link href="/dist/jane.min.css?v=2.7.0" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="Linux系统介绍（三）shell基础" />
+<meta property="og:description" content="概述 首先，咱们来了解一下，什么是Shell。操作系统内核给我们提供了各种接口，同时也提供了各种用户层的库，理论上我们基于这些可以编写程序实现各种我们想要的功能，不过问题是，咱们不可能做什么事情都要重新编写程序，这样使用起来也太困难了。因此，操作系统（包括Linux）通常都会引入一个Shell这样的特殊程序，这个程序会接受输入的命令然后执行，并可能将执行结果呈现出来。总结来说，Shell是一个从输入设备或者文件读取命令，并且解释、执行的用户态程序。
+在Linux系统中，通常使用的Shell程序包括有： * Sh (Bourne Shell) * Bash (Bourne Again Shell) * Csh (C Shell) * Ksh (Korn Shell)
+一般来说，Bash应该是使用最多的Shell程序了，本文也主要基于Bash来展开。
+Shell展开（Shell Expansion） Shell程序是一个命令解释器，因此在终端输入命令之后，Shell将扫描命令并做适当的修改，这个过程称为Shell展开。Shell展开是Shell解释执行之前极为重要的一步，了解它将有利于你对Shell命令或者脚本的理解，本章节将逐步带大家来了解这个过程。
+命令参数解析 这里的空格包括了制表符（Tab）。当Shell程序扫描输入的命令时，会以*连续*的空格为界，将命令切分成一组参数，因此你输入多个空格为界跟输入一个空格的效果是一样的。通常来讲，第一个参数就是要执行的命令，而后面的参数则是改命令的参数。一下几个命令其实是等效的：
+# echo Hello World Hello World # echo Hello World Hello World # echo Hello World Hello World  引号 当然，有时候你需要在一个参数中包括空格，这样的话你就需要将这个参数以引号引起来，引号包括了单引号&#39;跟双引号&quot;，两者都可以。shell会将引号中的字符串视为一个参数，不论里面有没有空格。当然，特别指出的是，不要用反引号`，反引号将在后面详细讲述。
+如命令echo &#39;Hello World!&#39;在shell解析之后会有两个参数，分别为echo跟Hello World!。而如果不用引号echo Hello World!，则将解析为三个参数。
+ 特别提一下，对于echo命令，如果需要输出需要转义的字符，如回车等，则需要执行echo -e &quot;Hello World!\n&quot;，如果不加-e，则\n会被直接显示出来。
+&gt; # echo &quot;hello\n&quot; &gt; hello\n &gt; # echo -e &quot;hello\n&quot; &gt; hello &gt; &gt; ``` ## 命令 对于`shell`来说，命令有内部命令（Builtin Commands）跟外部命令（External Commands）之分，所谓内部命令指的是包含在`shell`解析器中的命令。内部命令一般有[4种类型](http://www." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://keysaim.github.io/post/2017-10-10-linux-study-shell-basic/" />
+
+
+
+<meta property="article:published_time" content="2017-10-10T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2017-10-10T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Linux系统介绍（三）shell基础">
+<meta itemprop="description" content="概述 首先，咱们来了解一下，什么是Shell。操作系统内核给我们提供了各种接口，同时也提供了各种用户层的库，理论上我们基于这些可以编写程序实现各种我们想要的功能，不过问题是，咱们不可能做什么事情都要重新编写程序，这样使用起来也太困难了。因此，操作系统（包括Linux）通常都会引入一个Shell这样的特殊程序，这个程序会接受输入的命令然后执行，并可能将执行结果呈现出来。总结来说，Shell是一个从输入设备或者文件读取命令，并且解释、执行的用户态程序。
+在Linux系统中，通常使用的Shell程序包括有： * Sh (Bourne Shell) * Bash (Bourne Again Shell) * Csh (C Shell) * Ksh (Korn Shell)
+一般来说，Bash应该是使用最多的Shell程序了，本文也主要基于Bash来展开。
+Shell展开（Shell Expansion） Shell程序是一个命令解释器，因此在终端输入命令之后，Shell将扫描命令并做适当的修改，这个过程称为Shell展开。Shell展开是Shell解释执行之前极为重要的一步，了解它将有利于你对Shell命令或者脚本的理解，本章节将逐步带大家来了解这个过程。
+命令参数解析 这里的空格包括了制表符（Tab）。当Shell程序扫描输入的命令时，会以*连续*的空格为界，将命令切分成一组参数，因此你输入多个空格为界跟输入一个空格的效果是一样的。通常来讲，第一个参数就是要执行的命令，而后面的参数则是改命令的参数。一下几个命令其实是等效的：
+# echo Hello World Hello World # echo Hello World Hello World # echo Hello World Hello World  引号 当然，有时候你需要在一个参数中包括空格，这样的话你就需要将这个参数以引号引起来，引号包括了单引号&#39;跟双引号&quot;，两者都可以。shell会将引号中的字符串视为一个参数，不论里面有没有空格。当然，特别指出的是，不要用反引号`，反引号将在后面详细讲述。
+如命令echo &#39;Hello World!&#39;在shell解析之后会有两个参数，分别为echo跟Hello World!。而如果不用引号echo Hello World!，则将解析为三个参数。
+ 特别提一下，对于echo命令，如果需要输出需要转义的字符，如回车等，则需要执行echo -e &quot;Hello World!\n&quot;，如果不加-e，则\n会被直接显示出来。
+&gt; # echo &quot;hello\n&quot; &gt; hello\n &gt; # echo -e &quot;hello\n&quot; &gt; hello &gt; &gt; ``` ## 命令 对于`shell`来说，命令有内部命令（Builtin Commands）跟外部命令（External Commands）之分，所谓内部命令指的是包含在`shell`解析器中的命令。内部命令一般有[4种类型](http://www.">
+
+
+<meta itemprop="datePublished" content="2017-10-10T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2017-10-10T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1266">
+
+
+
+<meta itemprop="keywords" content="Linux,study,学习," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Linux系统介绍（三）shell基础"/>
+<meta name="twitter:description" content="概述 首先，咱们来了解一下，什么是Shell。操作系统内核给我们提供了各种接口，同时也提供了各种用户层的库，理论上我们基于这些可以编写程序实现各种我们想要的功能，不过问题是，咱们不可能做什么事情都要重新编写程序，这样使用起来也太困难了。因此，操作系统（包括Linux）通常都会引入一个Shell这样的特殊程序，这个程序会接受输入的命令然后执行，并可能将执行结果呈现出来。总结来说，Shell是一个从输入设备或者文件读取命令，并且解释、执行的用户态程序。
+在Linux系统中，通常使用的Shell程序包括有： * Sh (Bourne Shell) * Bash (Bourne Again Shell) * Csh (C Shell) * Ksh (Korn Shell)
+一般来说，Bash应该是使用最多的Shell程序了，本文也主要基于Bash来展开。
+Shell展开（Shell Expansion） Shell程序是一个命令解释器，因此在终端输入命令之后，Shell将扫描命令并做适当的修改，这个过程称为Shell展开。Shell展开是Shell解释执行之前极为重要的一步，了解它将有利于你对Shell命令或者脚本的理解，本章节将逐步带大家来了解这个过程。
+命令参数解析 这里的空格包括了制表符（Tab）。当Shell程序扫描输入的命令时，会以*连续*的空格为界，将命令切分成一组参数，因此你输入多个空格为界跟输入一个空格的效果是一样的。通常来讲，第一个参数就是要执行的命令，而后面的参数则是改命令的参数。一下几个命令其实是等效的：
+# echo Hello World Hello World # echo Hello World Hello World # echo Hello World Hello World  引号 当然，有时候你需要在一个参数中包括空格，这样的话你就需要将这个参数以引号引起来，引号包括了单引号&#39;跟双引号&quot;，两者都可以。shell会将引号中的字符串视为一个参数，不论里面有没有空格。当然，特别指出的是，不要用反引号`，反引号将在后面详细讲述。
+如命令echo &#39;Hello World!&#39;在shell解析之后会有两个参数，分别为echo跟Hello World!。而如果不用引号echo Hello World!，则将解析为三个参数。
+ 特别提一下，对于echo命令，如果需要输出需要转义的字符，如回车等，则需要执行echo -e &quot;Hello World!\n&quot;，如果不加-e，则\n会被直接显示出来。
+&gt; # echo &quot;hello\n&quot; &gt; hello\n &gt; # echo -e &quot;hello\n&quot; &gt; hello &gt; &gt; ``` ## 命令 对于`shell`来说，命令有内部命令（Builtin Commands）跟外部命令（External Commands）之分，所谓内部命令指的是包含在`shell`解析器中的命令。内部命令一般有[4种类型](http://www."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">keysaim</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">keysaim</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">Linux系统介绍（三）shell基础</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2017-10-10 </span>
+        
+        <span class="more-meta"> 约 1266 字 </span>
+        <span class="more-meta"> 预计阅读 6 分钟 </span>
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#概述">概述</a></li>
+<li><a href="#shell展开-shell-expansion">Shell展开（Shell Expansion）</a>
+<ul>
+<li><a href="#命令参数解析">命令参数解析</a></li>
+<li><a href="#引号">引号</a></li>
+</ul></li>
+<li><a href="#type-cd">type cd</a></li>
+<li><a href="#type-awk">type awk</a></li>
+<li><a href="#type-a-echo">type -a echo</a></li>
+<li><a href="#type-a-cd">type -a cd</a></li>
+<li><a href="#which-awk">which awk</a></li>
+<li><a href="#which">which .</a></li>
+<li><a href="#which-echo">which echo</a></li>
+<li><a href="#type-echo">type echo</a></li>
+<li><a href="#alias-print-echo">alias print=echo</a></li>
+<li><a href="#print-hello">print &ldquo;hello&rdquo;</a></li>
+<li><a href="#type-print">type print</a></li>
+<li><a href="#type-ls">type ls</a></li>
+<li><a href="#type-ls-1">type ls</a></li>
+<li><a href="#ls">\ls</a></li>
+<li><a href="#alias-ls">alias ls</a></li>
+<li><a href="#which-ls">which ls</a></li>
+<li><a href="#which-ls-1">which ls</a></li>
+<li><a href="#unalias-ls">unalias ls</a></li>
+<li><a href="#which-ls-2">which ls</a></li>
+<li><a href="#set-x">set -x</a></li>
+<li><a href="#echo-hello-world">echo hello         world</a></li>
+<li><a href="#shell控制操作符-control-operators">shell控制操作符 (Control Operators）</a>
+<ul>
+<li><a href="#操作符"><code>$?</code>操作符</a></li>
+<li><a href="#分号">分号<code>;</code></a></li>
+<li><a href="#符号"><code>&amp;</code>符号</a></li>
+<li><a href="#操作符-1"><code>&amp;&amp;</code>操作符</a></li>
+<li><a href="#操作符-2"><code>||</code>操作符</a></li>
+<li><a href="#与-混合"><code>&amp;&amp;</code>与<code>||</code>混合</a></li>
+<li><a href="#符号-1"><code>#</code>符号</a></li>
+<li><a href="#转义符号"><code>\</code>转义符号</a></li>
+</ul></li>
+<li><a href="#shell变量">shell变量</a>
+<ul>
+<li><a href="#基本概念">基本概念</a>
+<ul>
+<li><a href="#定义跟引用">定义跟引用</a></li>
+<li><a href="#查找变量">查找变量</a></li>
+<li><a href="#删除变量">删除变量</a></li>
+<li><a href="#export-声明"><code>export</code>声明</a></li>
+<li><a href="#env-命令"><code>env</code>命令</a></li>
+<li><a href="#变量解释">变量解释</a></li>
+<li><a href="#非绑定-unbound-变量">非绑定（unbound）变量</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#echo-unbound-var">echo $unbound_var</a></li>
+<li><a href="#echo-unbound-var-1">echo $unbound_var</a></li>
+<li><a href="#set-u">set +u</a></li>
+<li><a href="#echo-unbound-var-2">echo $unbound_var</a></li>
+<li><a href="#red-033-01-31m">RED=&rsquo;[\033[01;31m]&lsquo;</a></li>
+<li><a href="#white-033-01-00m">WHITE=&rsquo;[\033[01;00m]&lsquo;</a></li>
+<li><a href="#green-033-01-32m">GREEN=&rsquo;[\033[01;32m]&lsquo;</a></li>
+<li><a href="#blue-033-01-34m">BLUE=&rsquo;[\033[01;34m]&lsquo;</a></li>
+<li><a href="#ps1-green-u-white-blue-h-white-w">PS1=&ldquo;$GREEN\u$WHITE@$BLUE\h$WHITE\w\$ &ldquo;</a></li>
+<li><a href="#echo-path">echo $PATH</a></li>
+<li><a href="#path-path-opt-local-bin">PATH=$PATH:/opt/local/bin</a></li>
+<li><a href="#echo-path-1">echo $PATH</a></li>
+<li><a href="#var1-hello">var1=hello</a></li>
+<li><a href="#echo-var1-world-echo-var1">echo $(var1=world; echo $var1)</a></li>
+<li><a href="#echo-var1">echo $var1</a></li>
+<li><a href="#var1-hello-1">var1=hello</a></li>
+<li><a href="#var2-echo-var1-world">var2=&ldquo;$(echo $var1 world)&rdquo;</a></li>
+<li><a href="#echo-var2">echo $var2</a></li>
+<li><a href="#a-shell">A=shell</a></li>
+<li><a href="#echo-c-b-a-b-sub-echo-c-b-a-echo-c-sub-echo-c-b-a">echo $C$B$A $(B=sub;echo $C$B$A; echo $(C=sub;echo $C$B$A))</a></li>
+<li><a href="#var1-hello-2">var1=hello</a></li>
+<li><a href="#echo-var1-world-echo-var1-1">echo <code>var1=world; echo $var1</code></a></li>
+<li><a href="#echo-var1-1">echo $var1</a></li>
+<li><a href="#history-10">history 10</a></li>
+<li><a href="#echo-test1">echo &ldquo;test1&rdquo;</a></li>
+<li><a href="#ec-s-1-2">!ec:s/1/2/</a></li>
+<li><a href="#ctt-etc-passwd-cut-d-f1">ctt /etc/passwd | cut -d: -f1</a></li>
+<li><a href="#cat">cat !*</a></li>
+<li><a href="#文件匹配-file-globbing">文件匹配(File Globbing)</a>
+<ul>
+<li><a href="#星号"><code>*</code>星号</a></li>
+<li><a href="#问号"><code>?</code>问号</a></li>
+<li><a href="#方括号"><code>[]</code>方括号</a></li>
+</ul></li>
+<li><a href="#lc-all-c">LC_ALL=C</a></li>
+<li><a href="#ls-a-z">ls [a-z]*</a></li>
+<li><a href="#ls-a-z-1">ls [A-Z]*</a>
+<ul>
+<li><a href="#阻止文件匹配-file-globbing">阻止文件匹配(File Globbing)</a></li>
+</ul></li>
+<li><a href="#shell快捷键">shell快捷键</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<h1 id="概述">概述</h1>
+
+<p>首先，咱们来了解一下，什么是<code>Shell</code>。操作系统内核给我们提供了各种接口，同时也提供了各种用户层的库，理论上我们基于这些可以编写程序实现各种我们想要的功能，不过问题是，咱们不可能做什么事情都要重新编写程序，这样使用起来也太困难了。因此，操作系统（包括Linux）通常都会引入一个<code>Shell</code>这样的特殊程序，这个程序会接受输入的命令然后执行，并可能将执行结果呈现出来。总结来说，<code>Shell</code>是一个从输入设备或者文件读取命令，并且解释、执行的用户态程序。</p>
+
+<p>在Linux系统中，通常使用的<code>Shell</code>程序包括有：
+* Sh (Bourne Shell)
+* Bash (Bourne Again Shell)
+* Csh (C Shell)
+* Ksh (Korn Shell)</p>
+
+<p>一般来说，<code>Bash</code>应该是使用最多的<code>Shell</code>程序了，本文也主要基于<code>Bash</code>来展开。</p>
+
+<h1 id="shell展开-shell-expansion">Shell展开（Shell Expansion）</h1>
+
+<p><code>Shell</code>程序是一个命令解释器，因此在终端输入命令之后，<code>Shell</code>将扫描命令并做适当的修改，这个过程称为Shell展开。Shell展开是Shell解释执行之前极为重要的一步，了解它将有利于你对Shell命令或者脚本的理解，本章节将逐步带大家来了解这个过程。</p>
+
+<h2 id="命令参数解析">命令参数解析</h2>
+
+<p>这里的空格包括了制表符（Tab）。当Shell程序扫描输入的命令时，会以*连续*的空格为界，将命令切分成一组参数，因此你输入多个空格为界跟输入一个空格的效果是一样的。通常来讲，第一个参数就是要执行的命令，而后面的参数则是改命令的参数。一下几个命令其实是等效的：</p>
+
+<pre><code># echo Hello World
+Hello World
+# echo   Hello World
+Hello World
+#    echo Hello World
+Hello World
+</code></pre>
+
+<h2 id="引号">引号</h2>
+
+<p>当然，有时候你需要在一个参数中包括空格，这样的话你就需要将这个参数以引号引起来，引号包括了单引号<code>'</code>跟双引号<code>&quot;</code>，两者都可以。<code>shell</code>会将引号中的字符串视为一个参数，不论里面有没有空格。当然，特别指出的是，不要用反引号<code>`</code>，反引号将在后面详细讲述。</p>
+
+<p>如命令<code>echo 'Hello World!'</code>在<code>shell</code>解析之后会有两个参数，分别为<code>echo</code>跟<code>Hello World!</code>。而如果不用引号<code>echo Hello World!</code>，则将解析为三个参数。</p>
+
+<blockquote>
+<p>特别提一下，对于<code>echo</code>命令，如果需要输出需要转义的字符，如回车等，则需要执行<code>echo -e &quot;Hello World!\n&quot;</code>，如果不加<code>-e</code>，则<code>\n</code>会被直接显示出来。</p>
+
+<pre><code>&gt;    # echo &quot;hello\n&quot;
+&gt;    hello\n
+&gt;    # echo -e &quot;hello\n&quot;
+&gt;    hello
+&gt;
+&gt;    ```
+
+## 命令
+
+对于`shell`来说，命令有内部命令（Builtin Commands）跟外部命令（External Commands）之分，所谓内部命令指的是包含在`shell`解析器中的命令。内部命令一般有[4种类型](http://www.gnu.org/software/bash/manual/bashref.html#Shell-Builtin-Commands)：
+
+* `sh`内部命令
+
+    这些内部命令来源于`Bourne Shell`，通常包括了以下命令：
+    `: . break cd continue eval exec exit export getopts hash pwd readonly return shift test/[ times trap umask unset`。
+
+* `bash`内部命令
+
+    这些内部命令来源于`Bourne Again Shell`，通常包括了以下命令：
+    `alias bind builtin caller command declare echo enable help let local logout mapfile printf read readarray source type typeset ulimit unalias`。
+
+* 修改`shell`行为的内部命令
+
+    这些内部命令用来修改`shell`的默认行为。包括了`set shopt`命令。
+
+* 特殊内部命令
+
+    由于历史原因，POSIX标准将一些内部命令划分为特殊内部命令，特殊的之处在于这些命令的查找时间以及命令运行后的状态等方面，只有当Bash以[POSIX模式](http://www.gnu.org/software/bash/manual/bashref.html#Bash-POSIX-Mode)运行时，这些命令才是特殊命令，否则它们跟其它内部命令没啥区别。特殊内部命令包括了`break : . continue eval exec exit export readonly return set shift trap unset`。
+
+**内部命令可能会被提前至于内存中，因此运行起来会比外部命令要快。**对于外部命令，可以认为除了内部命令之后就可以认为是外部命令了，通常来讲，`/bin`跟`/sbin`下的都是外部命令，当然，应用有关的通常也是外部命令。
+
+我们可以通过`type`命令来查看一个命令是否是内部命令：
+
+</code></pre>
+
+<h1 id="type-cd">type cd</h1>
+
+<p>cd is a shell builtin</p>
+
+<h1 id="type-awk">type awk</h1>
+
+<p>awk is /usr/bin/awk</p>
+
+<pre><code>
+另外，对于很多内部命令，它们可能对应的会有外部命令版本，可以通过`type`命令来查看：
+
+</code></pre>
+
+<h1 id="type-a-echo">type -a echo</h1>
+
+<p>echo is a shell builtin
+echo is /usr/bin/echo</p>
+
+<h1 id="type-a-cd">type -a cd</h1>
+
+<p>cd is a shell builtin
+cd is /usr/bin/cd</p>
+
+<pre><code>
+反过来，我们一般可以通过命令`which`来查询一个命令是否是外部命令：
+
+</code></pre>
+
+<h1 id="which-awk">which awk</h1>
+
+<p>/usr/bin/awk</p>
+
+<h1 id="which">which .</h1>
+
+<p>/usr/bin/which: no . in (/opt/rh/rh-python34/root/usr/bin:/usr/java/default/bin/:/usr/local/git/bin:/opt/ActiveTcl-8.5/bin:/root/perl5/bin:/root/env/maven/apache-maven-3.3.3/bin:/root/soft/wrk/wrk-4.0.1:/root/usr/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin)</p>
+
+<pre><code>
+总结一下，通过`which`查询出来的是其外部命令版本，通过`type`默认查询出来的是内部命令：
+
+</code></pre>
+
+<h1 id="which-echo">which echo</h1>
+
+<p>/usr/bin/echo</p>
+
+<h1 id="type-echo">type echo</h1>
+
+<p>echo is a shell builtin</p>
+
+<pre><code>
+对于内部命令的详细说明，可以查看[GNU的文档](http://www.gnu.org/software/bash/manual/bashref.html#Shell-Builtin-Commands)。
+
+## 别名
+
+可以用`alias`命令给一个命令取一个别名：
+
+</code></pre>
+
+<h1 id="alias-print-echo">alias print=echo</h1>
+
+<h1 id="print-hello">print &ldquo;hello&rdquo;</h1>
+
+<p>hello</p>
+
+<h1 id="type-print">type print</h1>
+
+<p>print is aliased to `echo&rsquo;</p>
+
+<pre><code>
+别名一个常用的用法是用来缩写已知的命令：
+
+</code></pre>
+
+<h1 id="type-ls">type ls</h1>
+
+<p>ls is aliased to `ls &ndash;color=auto&rsquo;</p>
+
+<pre><code>
+可见`ls`命令实际上是命令`ls --color=auto`的别名，这样就相当于改变了`ls`命令的默认行为了。在这种情况下，如果仍然想用原先的命令，可以在别名前加反斜杠`` \ ``：
+
+</code></pre>
+
+<h1 id="type-ls-1">type ls</h1>
+
+<p>ls is aliased to `ls &ndash;color=auto&rsquo;</p>
+
+<h1 id="ls">\ls</h1>
+
+<p>Test1  test2  test.cpp  test.log  time.log</p>
+
+<pre><code>
+
+前面咱们通过`type`命令来查看命令的别名，实际上更加推荐采用`alias`或者`which`来查看：
+
+</code></pre>
+
+<h1 id="alias-ls">alias ls</h1>
+
+<p>alias ls=&lsquo;ls &ndash;color=auto&rsquo;</p>
+
+<h1 id="which-ls">which ls</h1>
+
+<p>alias ls=&lsquo;ls &ndash;color=auto&rsquo;
+    /usr/bin/ls</p>
+
+<pre><code>
+如果要取消别名，则可以采用`unalias`命令:
+
+</code></pre>
+
+<h1 id="which-ls-1">which ls</h1>
+
+<p>alias ls=&lsquo;ls &ndash;color=auto&rsquo;
+    /usr/bin/ls</p>
+
+<h1 id="unalias-ls">unalias ls</h1>
+
+<h1 id="which-ls-2">which ls</h1>
+
+<p>/usr/bin/ls</p>
+
+<pre><code>
+
+## 显示shell展开的结果
+
+由于`shell`展开的存在，你输入的命令被展开之后可能会发生变化，如果需要知道`shell`展开之后的命令，可以使用内部命令`set`来修改`shell`的默认参数来显示：
+
+</code></pre>
+
+<h1 id="set-x">set -x</h1>
+
+<p>++ printf &lsquo;\033]0;%s@%s:%s\007&rsquo; root traffic-base1 &lsquo;~&rsquo;</p>
+
+<h1 id="echo-hello-world">echo hello         world</h1>
+
+<ul>
+<li>echo hello world
+hello world
+++ printf &lsquo;\033]0;%s@%s:%s\007&rsquo; root traffic-base1 &lsquo;~&rsquo;
+```</li>
+</ul>
+
+<p>其中，以<code>+</code>开头的就是展开之后的命令，可见展开之后，<code>shell</code>将多余的空格去掉了。如果不要再显示了，可以输入命令<code>set +x</code>。</p>
+
+<h1 id="shell控制操作符-control-operators">shell控制操作符 (Control Operators）</h1>
+
+<h2 id="操作符"><code>$?</code>操作符</h2>
+
+<p>每个命令执行完后都会有个退出码（Exit Code），其值为0时表示命令成功，否则命令失败。这个退出码可以通过<code>$?</code>来访问，执行完命令后立马访问<code>$?</code>可以获取该命令的退出码，并以此来判断命令是否成功。每个命令的执行都会产生新的退出码，所以请务必在命令执行完，立刻访问<code>$?</code>来获取退出码。</p>
+
+<p>初看起来，<code>$?</code>似乎是一个<code>shell</code>变量，但实际上并非如此，因为你无法对<code>$?</code>赋值。<code>$?</code>准确来说是<code>shell</code>的一个内部参数。</p>
+
+<h2 id="分号">分号<code>;</code></h2>
+
+<p><code>shell</code>命令输入时，你可以将多个命令输入在一行，只要在不同命令之间以分号<code>;</code>隔开，当然分号不能是在引号中。
+&gt; 必须注意的是，如果将多个命令以<code>;</code>连接在一起，执行的结果通过<code>$?</code>查询出来将只是最后一个命令的结果</p>
+
+<h2 id="符号"><code>&amp;</code>符号</h2>
+
+<p>通常情况下，<code>shell</code>会在前台执行命令，并等待命令结束才返回。如果需要将命令放到后台去执行，可以使用<code>&amp;</code>符号放在命令最后面，这样的话命令会被放在后台执行，<code>shell</code>会立刻返回而不用等待命令结束。
+&gt; 注意的是，即便放在后台执行，但是如果不处理好命令的输入，则命令的输出可能会继续在当前的终端输出，后面会讲述如何处理命令的输出。</p>
+
+<h2 id="操作符-1"><code>&amp;&amp;</code>操作符</h2>
+
+<p>此操作符表示逻辑与，你可以将两个命令用此操作符连接起来，如<code>cmd1 &amp;&amp; cmd2</code>，只有当<code>cmd1</code>执行成功之后，<code>cmd2</code>才会被执行。这里的成功指的是<code>cmd1</code>的退出码是0。</p>
+
+<pre><code># hello &amp;&amp; echo world
+-bash: hello: command not found
+# echo hello &amp;&amp; echo world
+hello
+world
+</code></pre>
+
+<p>当然，<code>&amp;&amp;</code>也可以将多个命令连接起来，其执行类似，只有当前面的命令成功，后面的才会执行。因此，将多个命令写在一行用<code>&amp;&amp;</code>可以实现，只不过<code>&amp;&amp;</code>必须按照逻辑与的关系执行，而<code>;</code>号的话会执行所有的命令。</p>
+
+<h2 id="操作符-2"><code>||</code>操作符</h2>
+
+<p>很显然，与<code>&amp;&amp;</code>相对，<code>||</code>操作符表示逻辑或的关系，同样可以连接两个命令，如<code>cmd1 || cmd2</code>，只有当<code>cmd1</code>失败了，才会执行<code>cmd2</code>，这里的失败指的是<code>cmd1</code>的退出码非0。</p>
+
+<h2 id="与-混合"><code>&amp;&amp;</code>与<code>||</code>混合</h2>
+
+<p>这两个操作符是可以混合使用的，其遵循的原则保持一致，且是从左向右依次判断，结合这两种操作符，可以实现类似于<code>if then else</code>的逻辑结构。如<code>cmd1 &amp;&amp; cmd2 || cmd3</code>意思就是如果<code>cmd1</code>成功，则执行<code>cmd2</code>，否则执行<code>cmd3</code>。但务必注意的是，此处并非真正意思上的<code>if then else</code>逻辑，因为如果<code>cmd2</code>也执行失败，<code>cmd3</code>其实也会被执行。如下例：</p>
+
+<pre><code># echo hello &amp;&amp; echo ok || echo world
+hello
+ok
+# echo hello &amp;&amp; rm dfsdf || echo world
+hello
+rm: cannot remove ‘dfsdf’: No such file or directory
+world
+</code></pre>
+
+<p><code>&amp;&amp;</code>相当于将两条命令逻辑上连成了一条命令，这样就变成了<code>cmd1-2 || cmd3</code>，其中<code>cmd1-2</code>就是<code>cmd1 &amp;&amp; cmd2</code>，因此，<code>cmd3</code>只要在<code>cmd1-2</code>失败的情况下都会被执行，而<code>cmd1-2</code>失败的情况有两种，一种是<code>cmd1</code>失败，一种是<code>cmd1</code>成功但是<code>cmd2</code>失败。同样的，<code>||</code>也会将两条命令连成一条命令，如<code>cmd1-2 || cmd3 &amp;&amp; cmd4</code>就相当于<code>cmd1-2_3 &amp;&amp; cmd4</code>，<code>cmd4</code>是否会执行，决定于<code>cmd1-2_3</code>是否失败，以具体例子说明：</p>
+
+<pre><code># echo hello &amp;&amp; echo ok || echo world &amp;&amp; rm dsdfsf || echo end
+hello
+ok
+rm: cannot remove ‘dsdfsf’: No such file or directory
+end
+</code></pre>
+
+<p>这行命令相当于<code>cmd1 &amp;&amp; cmd2 || cmd3 &amp;&amp; cmd4 || cmd5</code>，可以看出<code>cmd1</code>，<code>cmd2</code>，<code>cmd4</code>还是有<code>cmd5</code>被执行了，而<code>cmd3</code>没有执行。咱们来解析一下，为何是如此的执行结果。首先，<code>shell</code>从左往右扫描执行：</p>
+
+<ul>
+<li>发现<code>cmd1 &amp;&amp; cmd2</code>，由<code>&amp;&amp;</code>连成一个命令<code>cmd1-2</code>，因为两个命令都是成功的，所以都被执行了，这样可以认为<code>cmd1-2</code>成功</li>
+<li>执行成功之后，接下来是<code>||</code>操作符，这里并不会因为前面的命令是成功的，而不再执行后面所有的命令，而是<code>||</code>操作符相当于将<code>cmd1-2</code>与<code>cmd3</code>连接成了<code>cmd1-2_3</code>，因为<code>cmd1-2</code>成功了，所以<code>cmd3</code>不再执行，但是<code>cmd1-2_3</code>相当于执行成功了</li>
+<li>继续执行，发现是<code>&amp;&amp;</code>操作符，同样将<code>cmd1-2_3</code>与<code>cmd4</code>连接起来，记为<code>cmd1-2_3-4</code>，因为<code>cmd1-2_3</code>执行成功了，所以<code>cmd4</code>也被执行，但是<code>cmd4</code>执行失败了，所以<code>cmd1-2_3-4</code>相当于执行失败</li>
+<li>继续执行，发现是<code>||</code>操作符，同样将<code>cmd1-2_3-4</code>与<code>cmd5</code>连成<code>cmd1-2_3-4_5</code>，因为<code>cmd1-2_3-4</code>执行失败，所以<code>cmd5</code>被执行</li>
+</ul>
+
+<p>可见，<code>shell</code>永远都是从左往右扫描执行，<code>&amp;&amp;</code>跟<code>||</code>会将前后两个命令连接起来，根据两种操作符的规则就可以知道多个连起来的命令是如何执行的了。</p>
+
+<h2 id="符号-1"><code>#</code>符号</h2>
+
+<p>跟其它很多语言一样，<code>#</code>在<code>shell</code>里面用来注释。</p>
+
+<h2 id="转义符号"><code>\</code>转义符号</h2>
+
+<p><code>\</code>符号可以用来转义一些特殊符号，如<code>$</code>，<code>#</code>等。</p>
+
+<blockquote>
+<p>特别指出的是，如果转义符号放在行末单独使用，则用来连接下一行。</p>
+</blockquote>
+
+<h1 id="shell变量">shell变量</h1>
+
+<h2 id="基本概念">基本概念</h2>
+
+<h3 id="定义跟引用">定义跟引用</h3>
+
+<p><code>shell</code>中也可以使用变量，变量不需要像其它语言一样需要预先申明。<code>shell</code>中赋值给一个不存在的变量就相当于定义了变量，如<code>name=&quot;Mr. Hao&quot;</code>，就定义了<code>name</code>变量，后续如果再对<code>name</code>赋值，就相当于改变改变量的值。与很多语言不同的是，<code>shell</code>中变量引用以<code>$</code>符号开头，后面跟变量的名字。如前面的变量，引用如下<code>echo &quot;$name&quot;</code>。<strong>需要注意的是，在<code>shell</code>中，变量名是大小写敏感的。</strong></p>
+
+<p>在<code>shell</code>展开中会自动展开变量的引用，即便该变量处在双引号中。但是，如果变量引用在单引号中，<code>shell</code>不会对其进行解析。</p>
+
+<pre><code># name=&quot;Mr. Hao&quot;
+# echo &quot;$name&quot;
+Mr. Hao
+# set -x
+# echo '$name'
++ echo 'Mr. Hao'
+$name
+</code></pre>
+
+<h3 id="查找变量">查找变量</h3>
+
+<p>可以使用<code>set</code>命令来查找所定义的变量：</p>
+
+<pre><code># set | grep -E '^name='
+name='Mr. Hao'
+</code></pre>
+
+<h3 id="删除变量">删除变量</h3>
+
+<p>与很多语言不同的是，在<code>shell</code>中定义的变量是可以删除的，使用<code>unset</code>命令删除定义的变量。</p>
+
+<pre><code># set | grep -E '^name='
+name='Mr. Hao'
+# unset name
+# set | grep -E '^name='
+</code></pre>
+
+<h3 id="export-声明"><code>export</code>声明</h3>
+
+<p>通常情况下，<code>shell</code>在执行命令的时候会为该命令创建子进程。如果希望将当前的变量作用到子进程，则需要将变量<code>export</code>声明，这种变量称之为环境变量，如：</p>
+
+<pre><code># var1=&quot;hello&quot;
+# export var2=&quot;world&quot;
+# bash
+# echo &quot;var1=$var1, var2=$var2&quot;
+var1=, var2=world
+</code></pre>
+
+<p>其中，<code>bash</code>命令开启了一个新的<code>shell</code>，可见只有<code>export</code>声明的变量在新的<code>shell</code>中才是可见的。环境变量可以通过<code>env</code>命令列举出来，在后面一节会详细讲述。此外，如果需要将非<code>export</code>变量重新声明为<code>export</code>变量，则只需要用<code>export</code>重新声明一下即可：</p>
+
+<pre><code># var1=hello
+# env | grep var1
+# export var1
+# env | grep var1
+var1=hello
+</code></pre>
+
+<h3 id="env-命令"><code>env</code>命令</h3>
+
+<p>如果需要查看当前<code>shell</code>中有哪些<code>export</code>声明的变量，可以使用<code>env</code>命令，该命令会列出当前所有<code>export</code>声明的变量。请注意与<code>set</code>命令的区别，<code>set</code>命令会列出所有的变量，包括哪些不是<code>export</code>声明的变量。通常，我们把<code>env</code>命令输出的变量称之为<code>环境变量</code>。</p>
+
+<p>此外，<code>env</code>也常用来为子<code>shell</code>预先定义一些临时变量，如：</p>
+
+<pre><code># var1=&quot;hello&quot;
+# env var1=&quot;tmp&quot; bash -c 'echo &quot;$var1&quot;'
+tmp
+# echo $var1
+hello
+</code></pre>
+
+<p>其中，用<code>env</code>命令定义了临时变量<code>var1</code>，然后<code>bash</code>命令开启了一个子<code>shell</code>，并在子<code>shell</code>中执行了<code>echo &quot;$var1&quot;</code>命令。可见，输出了定义的临时变量，在命令结束后，又回到之前的<code>shell</code>，输出的也是之前<code>shell</code>中定义的值。当然，在使用<code>env</code>定义临时变量的时候，为了方便，通常我们可以省略<code>env</code>命令，如：</p>
+
+<pre><code># var1=&quot;hello&quot;
+# var1=&quot;tmp&quot; bash -c 'echo &quot;$var1&quot;'
+tmp
+# echo $var1
+hello
+</code></pre>
+
+<p>另外，<code>env</code>命令还有一种常用的用法，就是用来开启一个干净的子<code>shell</code>，即在子<code>shell</code>中不继承所有的变量，即便这些变量在之前的<code>shell</code>中采用<code>export</code>声明，此时<code>env</code>命令需要加入<code>-i</code>的参数，如：</p>
+
+<pre><code># export var1=&quot;hello world&quot;
+# bash -c 'echo &quot;var1=$var1&quot;'
+var1=hello world
+# env -i bash -c 'echo &quot;var1=$var1&quot;'
+var1=
+</code></pre>
+
+<p>可见，使用<code>env -i</code>之后，即便<code>var1</code>被<code>export</code>声明，但是在子<code>shell</code>中也没有被继承。</p>
+
+<h3 id="变量解释">变量解释</h3>
+
+<p>在前面章节，我们知道<code>shell</code>采用<code>$</code>符号引用变量，在<code>$</code>符号后紧跟变量的名字。而<code>shell</code>在提取变量名字的时候一般以非字母数字（non-alphanumeric）为边界，这有时候就会产生问题，如：</p>
+
+<pre><code># prefix=Super
+# echo Hello $prefixman and $prefixgirl
+Hello  and
+</code></pre>
+
+<p>可见，<code>shell</code>并不能提取我们定义的变量<code>prefix</code>，因为其后并没有非字母数字的字符为界。这种情况下，我们可以使用<code>{}</code>将变量名保护起来。</p>
+
+<pre><code># prefix=Super
+# echo Hello ${prefix}man and ${prefix}girl
+Hello Superman and Supergirl
+</code></pre>
+
+<h3 id="非绑定-unbound-变量">非绑定（unbound）变量</h3>
+
+<p>所谓非绑定（unbound）变量其实指的是没有预先定义的变量，或者说不存在的变量。默认情况下，<code>shell</code>在解释这种变量的时候会以空字符串替代：</p>
+
+<p>```</p>
+
+<h1 id="echo-unbound-var">echo $unbound_var</h1>
+</blockquote>
+
+<pre><code>
+如果需要`shell`在这种情况下报错，可以配置`shell`选项`set -o nounset`，或者简写为`set -u`：
+
+</code></pre>
+
+<h1 id="echo-unbound-var-1">echo $unbound_var</h1>
+
+<p>bash: unbound_var: unbound variable</p>
+
+<h1 id="set-u">set +u</h1>
+
+<h1 id="echo-unbound-var-2">echo $unbound_var</h1>
+
+<pre><code>
+当然，由例子中可以看到，要取消该配置，可以相应的设置`set +o nounset`，或者简写为`set +u`。
+
+## 特殊变量
+
+在`shell`中预定义了很多特殊的变量，这一节咱们来说一下常见的几个变量。
+
+### `$PS1`变量
+
+在`shell`终端输入命令时，咱们总是可以看到在输入行首总是会有提示符，如：
+
+</code></pre>
+
+<p>mrhao:~$</p>
+
+<pre><code>
+其中，`mrhao:~$ `就是提示符，这个字串实际上是由`shell`变量`$PS1`决定的。如果咱们改变一下该变量的值，提示符也会相应的改变：
+
+</code></pre>
+
+<p>mrhao:~$ PS1=&ldquo;hello &gt; &ldquo;
+hello &gt; echo &ldquo;PS1 value is &lsquo;$PS1&rsquo;&rdquo;
+PS1 value is &lsquo;hello &gt; &lsquo;
+hello &gt;</p>
+
+<pre><code>
+为了方便在提示符中显示系统的某些实时信息，`$PS1`变量定义了一些特殊的字符：
+
+|------+--------------------|
+| 字符 | 说明               |
+|------+--------------------|
+| \w   | 表示工作目录       |
+| \u   | 表示用户名         |
+| \h   | 表示系统的hostname |
+|------+--------------------|
+
+当然，这里只列举了几个，详细的可以查看Linux手册。另外，`$PS1`中还可以对对其中不同部分采用不同颜色显示，如：
+
+</code></pre>
+
+<h1 id="red-033-01-31m">RED=&rsquo;[\033[01;31m]&lsquo;</h1>
+
+<h1 id="white-033-01-00m">WHITE=&rsquo;[\033[01;00m]&lsquo;</h1>
+
+<h1 id="green-033-01-32m">GREEN=&rsquo;[\033[01;32m]&lsquo;</h1>
+
+<h1 id="blue-033-01-34m">BLUE=&rsquo;[\033[01;34m]&lsquo;</h1>
+
+<h1 id="ps1-green-u-white-blue-h-white-w">PS1=&ldquo;$GREEN\u$WHITE@$BLUE\h$WHITE\w\$ &ldquo;</h1>
+
+<p>mrhao@mrhao-host~$ echo &ldquo;$PS1&rdquo;
+[\033[01;32m]\u[\033[01;00m]@[\033[01;34m]\h[\033[01;00m]\w$</p>
+
+<pre><code>
+### `$PATH`变量
+
+当我们在Linux的terminal里面输入命令的时候，`shell`需要在一系列的目录中查找输入的命令，如果没有查找到会直接报`command not found`的错误。而这些查找的目录就定义在`$PATH`变量中。
+
+</code></pre>
+
+<h1 id="echo-path">echo $PATH</h1>
+
+<p>/opt/rh/rh-python34/root/usr/bin:/usr/java/default/bin/:/usr/local/git/bin:/opt/ActiveTcl-8.5/bin:/root/perl5/bin:/root/env/maven/apache-maven-3.3.3/bin:/root/soft/wrk/wrk-4.0.1:/root/usr/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin</p>
+
+<pre><code>
+其中，每个目录以`:`隔开，如果需要增加目录，可以：
+
+</code></pre>
+
+<h1 id="path-path-opt-local-bin">PATH=$PATH:/opt/local/bin</h1>
+
+<h1 id="echo-path-1">echo $PATH</h1>
+
+<p>/opt/rh/rh-python34/root/usr/bin:/usr/java/default/bin/:/usr/local/git/bin:/opt/ActiveTcl-8.5/bin:/root/perl5/bin:/root/env/maven/apache-maven-3.3.3/bin:/root/soft/wrk/wrk-4.0.1:/root/usr/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin:/opt/local/bin</p>
+
+<pre><code>
+&gt; 加入新的路径的时候请务必带上之前的路径，`$PATH:&lt;new path&gt;`否则，很多默认的系统路径将被覆盖，导致很多命令失效。
+
+特别注意的是，`$PATH`变量中目录的顺序是很重要的，如果`shell`在前面的目录中找到了命令，则不会查找后面的目录。如果你想把某个重名的命令优先执行，就需要把它对应的目录放在`$PATH`的前面。
+
+### 网络代理变量
+
+在Linux系统中，很多时候我们需要访问外部网络，比如使用`curl`命令下载文件等等。而有的时候，访问访问外部网络咱们需要设置代理，在Linux系统中，使用网络代理非常简单，只要配置几个变量即可：
+
+|-------------+-------------------------------------------------------------------------|
+| 变量        | 说明                                                                    |
+|-------------+-------------------------------------------------------------------------|
+| http_proxy  | 设置访问`http`请求所需要的代理，如`http_proxy=http://10.10.10.100:80`   |
+| https_proxy | 设置访问`https`请求所需要的代理，如`https_proxy=http://10.10.10.100:80` |
+| ftp_proxy   | 设置访问`ftp`请求所需要的代理，如`ftp_proxy=http://10.10.10.100:80`     |
+| no_proxy    | 设置哪些域名或者IP不需要走代理，如`no_proxy=localhost,127.0.0.1`        |
+|-------------+-------------------------------------------------------------------------|
+
+### `$PWD`变量
+
+`PWD`变量是一个由`shell`自动设置的变量，其值表示当前目录的绝对路径，与命令`pwd`输出相同。
+
+# `shell`嵌入与`shell`选项
+
+## `shell`嵌入（shell embedding）
+
+`shell`可以嵌入在同一个命令行中，也就是`shell`在扫描解释命令行的时候，可能会从当前的`shell`进程中`fork`出一个新的`shell`进程，并将有关命令放在新进程中运行。如下例：
+
+</code></pre>
+
+<h1 id="var1-hello">var1=hello</h1>
+
+<h1 id="echo-var1-world-echo-var1">echo $(var1=world; echo $var1)</h1>
+
+<p>world</p>
+
+<h1 id="echo-var1">echo $var1</h1>
+
+<p>hello</p>
+
+<pre><code>
+如其中`$()`便开启了一个新的`shell`进程，或者成为子`shell`，并在此`shell`中运行命令`var1=world; echo $var1`，此时输出的是子`shell`中定义的`var1`。当命令结束后，子`shell`进程退出，并将输出的结果`world`返回给之前的`shell`（或者父`shell`）的`echo`命令，父`shell`最后输出`world`。而且，在子`shell`中定义相同的`var1`变量并不会改变父`shell`中的变量。
+
+***特别注意的是，因为子`shell`是`fork`出来的进程，根据Linux进程`fork`的特点，子进程将共享父进程的数据空间，而只在写的时候拷贝新的数据空间，因此，创建出来的子`shell`是会继承所有父`shell`的变量，不论该变量是否被`export`声明***
+
+</code></pre>
+
+<h1 id="var1-hello-1">var1=hello</h1>
+
+<h1 id="var2-echo-var1-world">var2=&ldquo;$(echo $var1 world)&rdquo;</h1>
+
+<h1 id="echo-var2">echo $var2</h1>
+
+<p>hello world</p>
+
+<pre><code>
+可见，虽然`var1`变量没有`export`声明，但是在子`shell`中还是可见的。这点与使用`bash -c`开启的`shell`是不同的。
+
+用`$()`可以将子`shell`嵌入到命令行中，当然，`$()`是可以嵌套使用的，这样可以用来在子`shell`中开启它的子`shell`。
+
+</code></pre>
+
+<h1 id="a-shell">A=shell</h1>
+
+<h1 id="echo-c-b-a-b-sub-echo-c-b-a-echo-c-sub-echo-c-b-a">echo $C$B$A $(B=sub;echo $C$B$A; echo $(C=sub;echo $C$B$A))</h1>
+
+<p>shell subshell subsubshell</p>
+
+<pre><code>
+### 反引号（backticks）
+
+在上面我们可以通过`$()`将子`shell`嵌入命令行中，为了方便，我们同样可以用反引号`` ` ``将子`shell`嵌入。
+
+</code></pre>
+
+<h1 id="var1-hello-2">var1=hello</h1>
+
+<h1 id="echo-var1-world-echo-var1-1">echo <code>var1=world; echo $var1</code></h1>
+
+<p>world</p>
+
+<h1 id="echo-var1-1">echo $var1</h1>
+
+<p>hello</p>
+
+<pre><code>
+但是，使用反引号不能够嵌套子`shell`，因此如果需要嵌套子`shell`时，只能使用`$()`。
+
+&gt; 反引号跟单引号是本质的不同的，单引号与双引号一样，用来将连续的字串作为整体引起来，只不过单引号中将不执行变量的引用解析，而反引号则是嵌入子`shell`。
+
+
+## `shell`选项
+
+其实在前面咱们已经使用了不少`shell`的选项，如`set -u`在变量不存在是报错，`set -x`将`shell`展开的结果显示出来等。此外，可以才用`echo $-`将当期设置的`shell`选项打印出来。
+
+# `shell`历史记录
+
+在`shell`中执行命令的时候，`shell`会将最近的命令使用历史记录下来，这样你可以很方便的查看最近做了什么操作。
+
+## 查看历史记录
+
+命令`history`可以用来查看`shell`的历史记录，里面记录了你最近输入的所有命令。当然，很多时候你更加关心最近的几个命令，你可以使用`history 10`来显示最近的10个命令。另外，`shell`通常还会将最近的历史记录写在`~/.bash_history`文件中，因此查看该文件同样可以查看历史记录。
+
+## 执行历史的命令
+
+`shell`提供了很多高级用法使得你可以很方便的执行以前执行过的命令。
+
+首先，咱们先显示一下过去的10个命令，可以看到每个命令前面都有其对应的序号。
+
+</code></pre>
+
+<h1 id="history-10">history 10</h1>
+
+<p>1000  history
+ 1001  history 10
+ 1002  echo &ldquo;hello world&rdquo;
+ 1003  ls -l
+ 1004  ps -ef | grep named
+ 1005  env | grep http
+ 1006  grep hello /var/log/messages
+ 1007  tmux ls
+ 1008  find . -name &ldquo;hello&rdquo;
+ 1009  history 10</p>
+
+<pre><code>
+下面列举比较常用的`shell`重复执行历史记录中命令的方法：
+
+|-----------+-------------------------------------------------------------------------------------------------------|
+| 命令      | 说明                                                                                                  |
+|-----------+-------------------------------------------------------------------------------------------------------|
+| !!        | 在`shell`中输入两个感叹号会执行上一个命令                                                             |
+| !keyword  | 输入一个感叹号后跟关键字，会搜索历史记录中最先以该关键字开始的命令。如`!find`会执行序号为1008的命令。 |
+| !?keyword | 执行历史记录中第一个包括keyword关键字的命令                                                           |
+| !n        | 其中n代表历史记录中的序号，表示执行序号为n的命令。                                                    |
+| !-n       | 执行倒数第n个命令，如`!-1`其实就相当于`!!`                                                            |
+| cmd!*     | 执行命令`cmd`，其中`!*`会以上一条命令的所有参数替代                                                   |
+|-----------+-------------------------------------------------------------------------------------------------------|
+
+另外，对于`!keyword`的用法，还有一个高级功能，你可以将符合该条件的命令进行改造后执行，如：
+
+</code></pre>
+
+<h1 id="echo-test1">echo &ldquo;test1&rdquo;</h1>
+
+<p>test1</p>
+
+<h1 id="ec-s-1-2">!ec:s/1/2/</h1>
+
+<p>echo &ldquo;test2&rdquo;
+test2</p>
+
+<pre><code>
+其中，`:s/1/2/`将命令`echo &quot;test1&quot;`替换成`echo &quot;test2&quot;`然后执行了。对于`cmd!*`，示例如下：
+
+</code></pre>
+
+<h1 id="ctt-etc-passwd-cut-d-f1">ctt /etc/passwd | cut -d: -f1</h1>
+
+<p>-bash: ctt: command not found</p>
+
+<h1 id="cat">cat !*</h1>
+
+<p>cat /etc/passwd | cut -d: -f1
+root
+bin
+daemon
+adm
+&hellip;</p>
+
+<pre><code>
+## 搜索历史记录
+
+在`shell`终端中按Ctrl-r会打开`shell`的搜索模式，在改模式下输入关键字会显示最近包含改关键字的命令，再按一下Ctrl-r会继续显示前面一条符合条件的命令，找到你需要的命令后回车就可以执行改命令了。
+
+## 修改历史记录的有关配置
+
+有多个配置可以用来改变历史记录的有关信息，通常都是通过有关环境变量来配置：
+
+|---------------+--------------------------------------------------------------------------------------------|
+| 环境变量      | 说明                                                                                       |
+|---------------+--------------------------------------------------------------------------------------------|
+| $HISTSIZE     | 这个变量用来配置`shell`应该保持多少行的历史记录，在很多发行版本中，默认值一般为500或者1000 |
+| $HISTFILE     | 这个变量用来配置历史记录文件存放的位置，通常来讲，默认路径为`~/.bash_history`              |
+| $HISTFILESIZE | 这个变量用来配置历史记录文件可以存放多少行的历史记录                                       |
+|---------------+--------------------------------------------------------------------------------------------|
+
+## 阻止记录某些命令
+
+在有些时候，我们并不想把某些命令记录在历史记录中，比如有的命令里面包括了敏感信息如密码等。在新版本的`shell`中，通常我们可以在输入的命令前面加入空格，这样`shell`就不会记录这样的命令，当然，如果你的发行版本默认并不支持，你可以配置环境变量来打开这个功能：
+
+```sh
+export HISTIGNORE=&quot;[ \t]*&quot;
+</code></pre>
+
+<p>例如：</p>
+
+<pre><code># history 5
+ 1023  ls -l
+ 1024  echo &quot;&quot;
+ 1025  history 5
+ 1026  ls
+ 1027  history 5
+#  echo &quot;password=123456&quot;
+password=123456
+# history 5
+ 1025  history 5
+ 1026  ls
+ 1027  history 5
+ 1028   echo &quot;password=123456&quot;
+ 1029  history 5
+# export HISTIGNORE=&quot;[ \t]*&quot;
+# history 5
+ 1027  history 5
+ 1028   echo &quot;password=123456&quot;
+ 1029  history 5
+ 1030  export HISTIGNORE=&quot;[ \t]*&quot;
+ 1031  history 5
+#  echo &quot;password=123456&quot;
+password=123456
+# history 5
+ 1027  history 5
+ 1028   echo &quot;password=123456&quot;
+ 1029  history 5
+ 1030  export HISTIGNORE=&quot;[ \t]*&quot;
+ 1031  history 5
+</code></pre>
+
+<p>可见，在设置<code>$HISTIGNORE</code>变量之后，在前面加了空格的命令将不再记录。这在保护敏感信息的时候非常有用。</p>
+
+<h1 id="文件匹配-file-globbing">文件匹配(File Globbing)</h1>
+
+<p>文件匹配(File Globbing)又成为动态文件名生成，用它可以非常方便的在<code>shell</code>中输入文件名。</p>
+
+<h2 id="星号"><code>*</code>星号</h2>
+
+<p><code>*</code>星号在<code>shell</code>中用来匹配任意数量的字符，比如文件名<code>File*.mp4</code>，将匹配以<code>File</code>开头，<code>.mp4</code>结尾的任何文件名。<code>shell</code>在扫描解释命令的时候会自动去查找符合该匹配的所有文件或目录。当然，你也可以只用<code>*</code>来匹配所有的文件及目录，但请注意，只使用<code>*</code>跟不带<code>*</code>还是有所区别的，</p>
+
+<pre><code># ls
+definition.yaml  example  __init__.py  tags.yaml  test.py  test_sample.html  test_sample.py
+# ls *
+definition.yaml  __init__.py  tags.yaml  test.py  test_sample.html  test_sample.py
+
+example:
+testcase
+</code></pre>
+
+<p>可见，带上<code>*</code>后不仅把当前目录的所有文件及目录显示出来，而且还把目录下的内容显示出来了。</p>
+
+<h2 id="问号"><code>?</code>问号</h2>
+
+<p>问号用来匹配一个字符，如<code>File?.mp4</code>可以匹配<code>File1.mp4</code>。</p>
+
+<h2 id="方括号"><code>[]</code>方括号</h2>
+
+<p><code>[]</code>方括号也用来匹配一个字符，但是在括号里面可以指定一个字符集用来限定匹配的字符必须在该字符集内，字符集里面的字符顺序没有关系。</p>
+
+<pre><code># ls
+file1  file2  file3  File4  File55  FileA  fileab  Fileab  FileAB  fileabc
+# ls File[5A]
+FileA
+# ls File[A5]
+FileA
+# ls File[A5][5b]
+File55
+</code></pre>
+
+<p>如果需要匹配不在某个字符集里面的字符，可以在<code>[]</code>第一个字符加入<code>!</code>：</p>
+
+<pre><code># ls file[!5]*
+file1  file2  file3  fileab  fileabc
+</code></pre>
+
+<p>特别的，为了方便，<code>[]</code>中可以使用<code>-</code>来定义一些连续的字符集（Range匹配），常用的这类字符集包括：</p>
+
+<p>|&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|
+| 字符集 | 说明               |
+|&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|
+| 0-9    | 表示数字字符集     |
+| a-z    | 表示小写字母字符集 |
+| A-Z    | 表示大写字母字符集 |
+|&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|</p>
+
+<p>当然，你也不必要把所有范围都包括在内，如<code>[a-d]</code>可以用来限定从<code>a</code>到<code>d</code>的小写字母集。另外，用<code>-</code>连起来的字符集还可以跟其它字符集一起使用，如<code>[a-d_]</code>表示<code>a</code>到<code>d</code>的小写字母加上<code>_</code>所组成的字符集。</p>
+
+<ul>
+<li><p>Range匹配的大小写问题</p>
+
+<p>对于<code>[]</code>的Range匹配，还有一点很重要。在很多发行版本中，默认情况下，<code>[]</code>的Range匹配是忽略大小写的</p>
+
+<pre><code># ls
+Test1  test2
+# ls [a-z]*
+Test1  test2
+# ls [A-Z]*
+Test1  test2
+# ls [t]*
+test2
+# ls [T]*
+Test1
+</code></pre>
+
+<blockquote>
+<p>注意，是<code>[]</code>的Range匹配会忽略大小写，而如果不是Range匹配还是大小写敏感的：</p>
+
+<pre><code>&gt; # ls
+&gt; Test1  test2
+&gt; # ls [T]*
+&gt; Test1
+&gt; # ls [t]*
+&gt; test2
+&gt; ```
+
+如果需要大小写敏感，可以设置环境变量`LC_ALL`：
+
+</code></pre>
+
+<h1 id="lc-all-c">LC_ALL=C</h1>
+
+<h1 id="ls-a-z">ls [a-z]*</h1>
+
+<p>test2</p>
+
+<h1 id="ls-a-z-1">ls [A-Z]*</h1>
+
+<p>Test1
+```</p>
+</blockquote>
+
+<p>当然，请务必注意，<code>LC_ALL</code>的会改变当前的语言环境，还请慎重使用，建议只在临时的子<code>shell</code>中使用。</p></li>
+</ul>
+
+<h2 id="阻止文件匹配-file-globbing">阻止文件匹配(File Globbing)</h2>
+
+<p>有时候我们就是需要输出<code>*</code>等匹配符号，这个时候就需要阻止<code>shell</code>做相应的匹配。可以使用转义符号<code>\</code>来做到这点，或者将匹配符号放在引号中：</p>
+
+<pre><code># echo *
+Test1 test2
+# echo \*
+*
+# echo '*'
+*
+# echo &quot;*&quot;
+*
+</code></pre>
+
+<h1 id="shell快捷键">shell快捷键</h1>
+
+<p><code>shell</code>中支持非常多的快捷键，可以非常方便我们输入命令：</p>
+
+<p>|&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|
+| 快捷键 | 说明                                                                      |
+|&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|
+| Ctrl-d | 表示<code>EOF</code>的意思，在shell终端中输入该快捷键会退出该终端                    |
+| Ctrl-z | 该快捷键用来暂停一个在shell终端中正在执行的进程，暂停后可以用<code>fg</code>命令恢复 |
+| Ctrl-a | 输入命令时跳到行首                                                        |
+| Ctrl-e | 跳到行尾                                                                  |
+| Ctrl-k | 删除从光标到行尾的部分                                                    |
+| Ctrl-y | 粘贴刚刚删除的部分                                                        |
+| Ctrl-w | 删除从光标至其左边第一个空格处                                            |
+|&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|</p>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">keysaim</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2017-10-10</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/linux/">Linux</a>
+          
+          <a href="/tags/study/">study</a>
+          
+          <a href="/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/2017-10-11-rushgps-migrate/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">GPS管理系统服务器迁移指南</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/2017-10-09-linux-study-command-line/">
+            <span class="next-text nav-default">Linux系统介绍（一）命令行</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+    
+
+  
+
+  
+
+  <div id="comments-gitment"></div>
+  <link rel="stylesheet" href="/lib/gitment/gitment-0.0.3.min.css">
+    <script src="/lib/gitment/gitment-0.0.3.min.js"></script>
+  <script type="text/javascript">
+  const gitment = new Gitment({
+    id: '2017-10-10 00:00:00 \x2b0000 UTC',
+    title: 'Linux系统介绍（三）shell基础',
+    link: decodeURI(location.href),
+    desc: '概述 首先，咱们来了解一下，什么是Shell。操作系统内核给我们提供了各种接口，同时也提供了各种用户层的库，理论上我们基于这些可以编写程序实现各种我们想要的功能，不过问题是，咱们不可能做什么事情都要重新编写程序，这样使用起来也太困难了。因此，操作系统（包括Linux）通常都会引入一个Shell这样的特殊程序，这个程序会接受输入的命令然后执行，并可能将执行结果呈现出来。总结来说，Shell是一个从输入设备或者文件读取命令，并且解释、执行的用户态程序。\n在Linux系统中，通常使用的Shell程序包括有： * Sh (Bourne Shell) * Bash (Bourne Again Shell) * Csh (C Shell) * Ksh (Korn Shell)\n一般来说，Bash应该是使用最多的Shell程序了，本文也主要基于Bash来展开。\nShell展开（Shell Expansion） Shell程序是一个命令解释器，因此在终端输入命令之后，Shell将扫描命令并做适当的修改，这个过程称为Shell展开。Shell展开是Shell解释执行之前极为重要的一步，了解它将有利于你对Shell命令或者脚本的理解，本章节将逐步带大家来了解这个过程。\n命令参数解析 这里的空格包括了制表符（Tab）。当Shell程序扫描输入的命令时，会以*连续*的空格为界，将命令切分成一组参数，因此你输入多个空格为界跟输入一个空格的效果是一样的。通常来讲，第一个参数就是要执行的命令，而后面的参数则是改命令的参数。一下几个命令其实是等效的：\n# echo Hello World Hello World # echo Hello World Hello World # echo Hello World Hello World  引号 当然，有时候你需要在一个参数中包括空格，这样的话你就需要将这个参数以引号引起来，引号包括了单引号\x27跟双引号\x26quot;，两者都可以。shell会将引号中的字符串视为一个参数，不论里面有没有空格。当然，特别指出的是，不要用反引号`，反引号将在后面详细讲述。\n如命令echo \x27Hello World!\x27在shell解析之后会有两个参数，分别为echo跟Hello World!。而如果不用引号echo Hello World!，则将解析为三个参数。\n 特别提一下，对于echo命令，如果需要输出需要转义的字符，如回车等，则需要执行echo -e \x26quot;Hello World!\\n\x26quot;，如果不加-e，则\\n会被直接显示出来。\n\x26gt; # echo \x26quot;hello\\n\x26quot; \x26gt; hello\\n \x26gt; # echo -e \x26quot;hello\\n\x26quot; \x26gt; hello \x26gt; \x26gt; ``` ## 命令 对于`shell`来说，命令有内部命令（Builtin Commands）跟外部命令（External Commands）之分，所谓内部命令指的是包含在`shell`解析器中的命令。内部命令一般有[4种类型](http:\/\/www.',
+    owner: 'keysaim',
+    repo: 'comments',
+    oauth: {
+      client_id: '8d920ad685683a529e83',
+      client_secret: 'ffabf134048e374883ee67d3786a9a6b7d8d3cdc'
+    }
+  })
+  gitment.render('comments-gitment')
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+  </article>
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:keysaim@gmail.com" rel="me" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/keysaim" rel="me" class="iconfont icon-github" title="github"></a>
+  <a href="https://keysaim.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2017 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">窗外蟋蟀(keysaim)</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+<script type="text/javascript" src="/dist/jane.min.js?v=2.7.0"></script>
+
+
+
+
+
+</body>
+</html>
