@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>如何使用特定的SSH Key提交GIT - 窗外蟋蟀博客</title>
-  <link rel="alternate" hreflang="zh-cn" href="https://keysaim.github.io" />
+  <link rel="alternate" hreflang="en" href="https://keysaim.github.io" />
 
 <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -19,13 +19,7 @@
 
 
 <meta name="author" content="keysaim" />
-  <meta name="description" content="问题提出 最近在自己的MAC上面提交Github代码的时候发现居然失败了：
-$ git push origin master Permission denied (publickey). fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists.  这不是坑爹吗，Github都提交过无数次了，咋就失败了呢？莫非Github上的ssh key被删掉了么。于是打开github ssh，尝试再次把ssh key加上，却提示key已经存在了。于是赶紧回到本地repo查看下用户是不是对的:
-$ git config -l ... user.email=keysaim@gmail.com user.name=keysaim  再查看下本地的ssh key：
-$ cat ~/.ssh/id_rsa.pub ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCu4Jy/&#43;uFGiC89luBejzCEyPbY0SRoppyzrB4g1v3zv1OleylMzdf&#43;eTTRcYgMbYoY6ZQs4M2NHX20iO6vf6j2uPvUsB&#43;&#43;pP0G6Q7&#43;VlrUlC19B07IVx7Mo2xmHCe4bMshFSugqOl&#43;hV6zVjGpYJcLI9XtWQ6F/br4tkYD/J8KWns&#43;SNha8gJVBckV1ncGlR&#43;Q7ji4OM4&#43;eIhKEEK4Wo7Cf7KaT71fIVFl7XRx5kmdtEN3F&#43;wT4LjNb2okl8Pu4mmxCMwJvXzj0Jr9PkVzhSAhDkWG3mMt3kC5PhhRhCP7uwkGFsOEm5uGS907wTxY9cJNIl8FikOfmvDa5XrfMbMx nbaoping@xxx.com  发现邮件居然是nbaoping@xxx.com（此处已打码），显然跟本地repo的keysaim@gmail.com不同，git提交的时候没有特殊配置，会使用默认的ssh key，也就是~/.ssh/id_rsa.pub，而提交的用户信息跟此key并不能对应上，故此github拒绝了此次提交。既然如此，那把本地repo的用户信息改成key所对应的信息不就好了吗？是的，但是此信息都已经打码了就充分说明本博主是十分不愿暴露它的，咱必须得想其它辙。
-好了，现在的问题就是，如何使用特定的ssh key提交Git？本文就来讲述一种通用的解决办法。
-指定git提交使用的ssh key  查看repo对应的hostname
-$ git remote -v origin git@github.com:keysaim/keysaim.github.io.git (fetch) origin git@github.com:keysaim/keysaim.github.io.git (push)  其中github." />
+  <meta name="description" content="问题提出 最近在自己的MAC上面提交Github代码的时候发现居然失败了： $ git push origin master Permission denied (publickey). fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists. 这不是坑爹吗" />
 
   <meta name="keywords" content="Hugo, blog, keysaim, 窗外蟋蟀" />
 
@@ -56,13 +50,7 @@ $ git remote -v origin git@github.com:keysaim/keysaim.github.io.git (fetch) orig
 
 
 <meta property="og:title" content="如何使用特定的SSH Key提交GIT" />
-<meta property="og:description" content="问题提出 最近在自己的MAC上面提交Github代码的时候发现居然失败了：
-$ git push origin master Permission denied (publickey). fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists.  这不是坑爹吗，Github都提交过无数次了，咋就失败了呢？莫非Github上的ssh key被删掉了么。于是打开github ssh，尝试再次把ssh key加上，却提示key已经存在了。于是赶紧回到本地repo查看下用户是不是对的:
-$ git config -l ... user.email=keysaim@gmail.com user.name=keysaim  再查看下本地的ssh key：
-$ cat ~/.ssh/id_rsa.pub ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCu4Jy/&#43;uFGiC89luBejzCEyPbY0SRoppyzrB4g1v3zv1OleylMzdf&#43;eTTRcYgMbYoY6ZQs4M2NHX20iO6vf6j2uPvUsB&#43;&#43;pP0G6Q7&#43;VlrUlC19B07IVx7Mo2xmHCe4bMshFSugqOl&#43;hV6zVjGpYJcLI9XtWQ6F/br4tkYD/J8KWns&#43;SNha8gJVBckV1ncGlR&#43;Q7ji4OM4&#43;eIhKEEK4Wo7Cf7KaT71fIVFl7XRx5kmdtEN3F&#43;wT4LjNb2okl8Pu4mmxCMwJvXzj0Jr9PkVzhSAhDkWG3mMt3kC5PhhRhCP7uwkGFsOEm5uGS907wTxY9cJNIl8FikOfmvDa5XrfMbMx nbaoping@xxx.com  发现邮件居然是nbaoping@xxx.com（此处已打码），显然跟本地repo的keysaim@gmail.com不同，git提交的时候没有特殊配置，会使用默认的ssh key，也就是~/.ssh/id_rsa.pub，而提交的用户信息跟此key并不能对应上，故此github拒绝了此次提交。既然如此，那把本地repo的用户信息改成key所对应的信息不就好了吗？是的，但是此信息都已经打码了就充分说明本博主是十分不愿暴露它的，咱必须得想其它辙。
-好了，现在的问题就是，如何使用特定的ssh key提交Git？本文就来讲述一种通用的解决办法。
-指定git提交使用的ssh key  查看repo对应的hostname
-$ git remote -v origin git@github.com:keysaim/keysaim.github.io.git (fetch) origin git@github.com:keysaim/keysaim.github.io.git (push)  其中github." />
+<meta property="og:description" content="问题提出 最近在自己的MAC上面提交Github代码的时候发现居然失败了： $ git push origin master Permission denied (publickey). fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists. 这不是坑爹吗" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://keysaim.github.io/post/2017-08-15-how-to-git-with-specific-ssh-key/" />
 
@@ -83,31 +71,19 @@ $ git remote -v origin git@github.com:keysaim/keysaim.github.io.git (fetch) orig
 
 
 <meta itemprop="name" content="如何使用特定的SSH Key提交GIT">
-<meta itemprop="description" content="问题提出 最近在自己的MAC上面提交Github代码的时候发现居然失败了：
-$ git push origin master Permission denied (publickey). fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists.  这不是坑爹吗，Github都提交过无数次了，咋就失败了呢？莫非Github上的ssh key被删掉了么。于是打开github ssh，尝试再次把ssh key加上，却提示key已经存在了。于是赶紧回到本地repo查看下用户是不是对的:
-$ git config -l ... user.email=keysaim@gmail.com user.name=keysaim  再查看下本地的ssh key：
-$ cat ~/.ssh/id_rsa.pub ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCu4Jy/&#43;uFGiC89luBejzCEyPbY0SRoppyzrB4g1v3zv1OleylMzdf&#43;eTTRcYgMbYoY6ZQs4M2NHX20iO6vf6j2uPvUsB&#43;&#43;pP0G6Q7&#43;VlrUlC19B07IVx7Mo2xmHCe4bMshFSugqOl&#43;hV6zVjGpYJcLI9XtWQ6F/br4tkYD/J8KWns&#43;SNha8gJVBckV1ncGlR&#43;Q7ji4OM4&#43;eIhKEEK4Wo7Cf7KaT71fIVFl7XRx5kmdtEN3F&#43;wT4LjNb2okl8Pu4mmxCMwJvXzj0Jr9PkVzhSAhDkWG3mMt3kC5PhhRhCP7uwkGFsOEm5uGS907wTxY9cJNIl8FikOfmvDa5XrfMbMx nbaoping@xxx.com  发现邮件居然是nbaoping@xxx.com（此处已打码），显然跟本地repo的keysaim@gmail.com不同，git提交的时候没有特殊配置，会使用默认的ssh key，也就是~/.ssh/id_rsa.pub，而提交的用户信息跟此key并不能对应上，故此github拒绝了此次提交。既然如此，那把本地repo的用户信息改成key所对应的信息不就好了吗？是的，但是此信息都已经打码了就充分说明本博主是十分不愿暴露它的，咱必须得想其它辙。
-好了，现在的问题就是，如何使用特定的ssh key提交Git？本文就来讲述一种通用的解决办法。
-指定git提交使用的ssh key  查看repo对应的hostname
-$ git remote -v origin git@github.com:keysaim/keysaim.github.io.git (fetch) origin git@github.com:keysaim/keysaim.github.io.git (push)  其中github.">
+<meta itemprop="description" content="问题提出 最近在自己的MAC上面提交Github代码的时候发现居然失败了： $ git push origin master Permission denied (publickey). fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists. 这不是坑爹吗">
 
 
 <meta itemprop="datePublished" content="2017-08-15T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2017-08-15T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="304">
+<meta itemprop="wordCount" content="1953">
 
 
 
 <meta itemprop="keywords" content="github,git,教程," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="如何使用特定的SSH Key提交GIT"/>
-<meta name="twitter:description" content="问题提出 最近在自己的MAC上面提交Github代码的时候发现居然失败了：
-$ git push origin master Permission denied (publickey). fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists.  这不是坑爹吗，Github都提交过无数次了，咋就失败了呢？莫非Github上的ssh key被删掉了么。于是打开github ssh，尝试再次把ssh key加上，却提示key已经存在了。于是赶紧回到本地repo查看下用户是不是对的:
-$ git config -l ... user.email=keysaim@gmail.com user.name=keysaim  再查看下本地的ssh key：
-$ cat ~/.ssh/id_rsa.pub ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCu4Jy/&#43;uFGiC89luBejzCEyPbY0SRoppyzrB4g1v3zv1OleylMzdf&#43;eTTRcYgMbYoY6ZQs4M2NHX20iO6vf6j2uPvUsB&#43;&#43;pP0G6Q7&#43;VlrUlC19B07IVx7Mo2xmHCe4bMshFSugqOl&#43;hV6zVjGpYJcLI9XtWQ6F/br4tkYD/J8KWns&#43;SNha8gJVBckV1ncGlR&#43;Q7ji4OM4&#43;eIhKEEK4Wo7Cf7KaT71fIVFl7XRx5kmdtEN3F&#43;wT4LjNb2okl8Pu4mmxCMwJvXzj0Jr9PkVzhSAhDkWG3mMt3kC5PhhRhCP7uwkGFsOEm5uGS907wTxY9cJNIl8FikOfmvDa5XrfMbMx nbaoping@xxx.com  发现邮件居然是nbaoping@xxx.com（此处已打码），显然跟本地repo的keysaim@gmail.com不同，git提交的时候没有特殊配置，会使用默认的ssh key，也就是~/.ssh/id_rsa.pub，而提交的用户信息跟此key并不能对应上，故此github拒绝了此次提交。既然如此，那把本地repo的用户信息改成key所对应的信息不就好了吗？是的，但是此信息都已经打码了就充分说明本博主是十分不愿暴露它的，咱必须得想其它辙。
-好了，现在的问题就是，如何使用特定的ssh key提交Git？本文就来讲述一种通用的解决办法。
-指定git提交使用的ssh key  查看repo对应的hostname
-$ git remote -v origin git@github.com:keysaim/keysaim.github.io.git (fetch) origin git@github.com:keysaim/keysaim.github.io.git (push)  其中github."/>
+<meta name="twitter:description" content="问题提出 最近在自己的MAC上面提交Github代码的时候发现居然失败了： $ git push origin master Permission denied (publickey). fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists. 这不是坑爹吗"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -183,15 +159,15 @@ $ git remote -v origin git@github.com:keysaim/keysaim.github.io.git (fetch) orig
       <div class="post-meta">
         <span class="post-time"> 2017-08-15 </span>
         
-        <span class="more-meta"> 约 304 字 </span>
-        <span class="more-meta"> 预计阅读 2 分钟 </span>
+        <span class="more-meta"> 1953 words </span>
+        <span class="more-meta"> 4 min read </span>
       </div>
     </header>
 
     
     
 <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">文章目录</h2>
+  <h2 class="post-toc-title">Table of Contents</h2>
   
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
@@ -374,21 +350,6 @@ To github.com:keysaim/keysaim.github.io.git
 
     
     
-<div class="post-copyright">
-  <p class="copyright-item">
-    <span class="item-title">文章作者</span>
-    <span class="item-content">keysaim</span>
-  </p>
-  <p class="copyright-item">
-    <span class="item-title">上次更新</span>
-    <span class="item-content">2017-08-15</span>
-  </p>
-  
-  <p class="copyright-item">
-    <span class="item-title">许可协议</span>
-    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
-  </p>
-</div>
 
     
     
@@ -410,12 +371,12 @@ To github.com:keysaim/keysaim.github.io.git
           <a class="prev" href="/post/2017-08-16-how-to-add-comments/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">如何给自己的博客网站加入评论系统</span>
-            <span class="prev-text nav-mobile">上一篇</span>
+            <span class="prev-text nav-mobile">Prev</span>
           </a>
         
           <a class="next" href="/post/2017-08-15-how-to-setup-your-github-io-blog/">
             <span class="next-text nav-default">如何快速搭建自己的github.io博客</span>
-            <span class="prev-text nav-mobile">下一篇</span>
+            <span class="prev-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -434,7 +395,7 @@ To github.com:keysaim/keysaim.github.io.git
     id: '2017-08-15 00:00:00 \x2b0000 UTC',
     title: '如何使用特定的SSH Key提交GIT',
     link: decodeURI(location.href),
-    desc: '问题提出 最近在自己的MAC上面提交Github代码的时候发现居然失败了：\n$ git push origin master Permission denied (publickey). fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists.  这不是坑爹吗，Github都提交过无数次了，咋就失败了呢？莫非Github上的ssh key被删掉了么。于是打开github ssh，尝试再次把ssh key加上，却提示key已经存在了。于是赶紧回到本地repo查看下用户是不是对的:\n$ git config -l ... user.email=keysaim@gmail.com user.name=keysaim  再查看下本地的ssh key：\n$ cat ~\/.ssh\/id_rsa.pub ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCu4Jy\/\x2buFGiC89luBejzCEyPbY0SRoppyzrB4g1v3zv1OleylMzdf\x2beTTRcYgMbYoY6ZQs4M2NHX20iO6vf6j2uPvUsB\x2b\x2bpP0G6Q7\x2bVlrUlC19B07IVx7Mo2xmHCe4bMshFSugqOl\x2bhV6zVjGpYJcLI9XtWQ6F\/br4tkYD\/J8KWns\x2bSNha8gJVBckV1ncGlR\x2bQ7ji4OM4\x2beIhKEEK4Wo7Cf7KaT71fIVFl7XRx5kmdtEN3F\x2bwT4LjNb2okl8Pu4mmxCMwJvXzj0Jr9PkVzhSAhDkWG3mMt3kC5PhhRhCP7uwkGFsOEm5uGS907wTxY9cJNIl8FikOfmvDa5XrfMbMx nbaoping@xxx.com  发现邮件居然是nbaoping@xxx.com（此处已打码），显然跟本地repo的keysaim@gmail.com不同，git提交的时候没有特殊配置，会使用默认的ssh key，也就是~\/.ssh\/id_rsa.pub，而提交的用户信息跟此key并不能对应上，故此github拒绝了此次提交。既然如此，那把本地repo的用户信息改成key所对应的信息不就好了吗？是的，但是此信息都已经打码了就充分说明本博主是十分不愿暴露它的，咱必须得想其它辙。\n好了，现在的问题就是，如何使用特定的ssh key提交Git？本文就来讲述一种通用的解决办法。\n指定git提交使用的ssh key  查看repo对应的hostname\n$ git remote -v origin git@github.com:keysaim\/keysaim.github.io.git (fetch) origin git@github.com:keysaim\/keysaim.github.io.git (push)  其中github.',
+    desc: '问题提出 最近在自己的MAC上面提交Github代码的时候发现居然失败了： $ git push origin master Permission denied (publickey). fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists. 这不是坑爹吗',
     owner: 'keysaim',
     repo: 'comments',
     oauth: {

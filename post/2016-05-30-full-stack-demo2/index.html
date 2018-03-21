@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>用docker搭建全栈式应用 (二）构建篇 - 窗外蟋蟀博客</title>
-  <link rel="alternate" hreflang="zh-cn" href="https://keysaim.github.io" />
+  <link rel="alternate" hreflang="en" href="https://keysaim.github.io" />
 
 <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -19,19 +19,7 @@
 
 
 <meta name="author" content="keysaim" />
-  <meta name="description" content="用docker搭建全栈式应用 (二）—— 构建篇 简介 在上一篇中, 我们已经较为详细的描述如何基于docker，搭建一套全栈式应用。web端采用Django，并使用HaProxy作为负载均衡。数据库采用redis，并使用master-slave的部署方式。前文基于从官方的docker registry的images，讲述了一步步如何启动配置各项服务。但是在实际部署中，不可能全部手动的完成这些事情，本文将讲述基于Dockerfile，来自动生成所需的Docker image，并将讲述基于构建的image如何启动服务。
-在前篇博文中，如何在docker中一步步部署服务。基本上主要包括了几个大的步骤：将配置拷贝到相应目录，同时做好修改；基于image启动docker container，同时挂载配置的目录；在container中启动服务。这样的部署方式有几个问题： * 全部手动操作，每次多事重复劳动 * 需要手动进入container中启动服务，部署非常耗时 * 配置需要在外面修改，极大地违背了docker隔离性的设计理念
-那么，如何解决这些问题呢？这里将引入本文将要讲述的Docker的自动化构建机制。所谓自动化构建，其实主要指的是基于Dockerfile的构建方式。利用Dockerfile，我们可以非常方便的构建一个独立完整的应用，同时集成一系列部署时候的操作，使得自动化的部署得以实现。Dockerfile是一个文本文件，里面记录了一系列的命令和操作，给出了一个docker image组成的完整定义。关于Dockerfile的详细介绍，请务必参考官方的文档，千万不要用X度，官方的文档其实讲述的非常清楚，而且基本上就一页就讲完了。
-ok, 下面咱们就开始讲述Docker的自动化构建部分。讲述之前，这里还是引入一下前文中的应用架构图，方便讲述及阅读。
- Redis-master构建 在上一篇中，redis-master的构建主要包括如下步骤：
- 获取redis image
-# docker pull redis  启动redis master container
-# docker run -it --name redis-master -v `pwd`/master:/data redis /bin/bash  配置redis master
-主要是修改配置文件master/redis.conf
- 在container中启动redis service
-  全部手动的操作比较繁琐，使用Dockerfile将可以实现自动化构建。这里先将构建redis-master的Dockerfile先列出，然后在详细介绍。
-FROM redis COPY ./redis.conf /data/ CMD redis-server /data/redis.conf  此Dockerfile主要采用了三个命令。 * FROM redis
-对应于手动操作中的`docker pull redis`，表示构建此image是基于官方docker registry中的redis image。Docker看到这个指令之后会首先从本地的cache中查找是否已经存在，如果存在就直接使用本地cache，如果不存在将自动的从docker registry下载。   COPY ." />
+  <meta name="description" content="用docker搭建全栈式应用 (二）—— 构建篇 简介 在上一篇中, 我们已经较为详细的描述如何基于docker，搭建一套全栈式应用。web端采用Dj" />
 
   <meta name="keywords" content="Hugo, blog, keysaim, 窗外蟋蟀" />
 
@@ -62,19 +50,7 @@ FROM redis COPY ./redis.conf /data/ CMD redis-server /data/redis.conf  此Docker
 
 
 <meta property="og:title" content="用docker搭建全栈式应用 (二）构建篇" />
-<meta property="og:description" content="用docker搭建全栈式应用 (二）—— 构建篇 简介 在上一篇中, 我们已经较为详细的描述如何基于docker，搭建一套全栈式应用。web端采用Django，并使用HaProxy作为负载均衡。数据库采用redis，并使用master-slave的部署方式。前文基于从官方的docker registry的images，讲述了一步步如何启动配置各项服务。但是在实际部署中，不可能全部手动的完成这些事情，本文将讲述基于Dockerfile，来自动生成所需的Docker image，并将讲述基于构建的image如何启动服务。
-在前篇博文中，如何在docker中一步步部署服务。基本上主要包括了几个大的步骤：将配置拷贝到相应目录，同时做好修改；基于image启动docker container，同时挂载配置的目录；在container中启动服务。这样的部署方式有几个问题： * 全部手动操作，每次多事重复劳动 * 需要手动进入container中启动服务，部署非常耗时 * 配置需要在外面修改，极大地违背了docker隔离性的设计理念
-那么，如何解决这些问题呢？这里将引入本文将要讲述的Docker的自动化构建机制。所谓自动化构建，其实主要指的是基于Dockerfile的构建方式。利用Dockerfile，我们可以非常方便的构建一个独立完整的应用，同时集成一系列部署时候的操作，使得自动化的部署得以实现。Dockerfile是一个文本文件，里面记录了一系列的命令和操作，给出了一个docker image组成的完整定义。关于Dockerfile的详细介绍，请务必参考官方的文档，千万不要用X度，官方的文档其实讲述的非常清楚，而且基本上就一页就讲完了。
-ok, 下面咱们就开始讲述Docker的自动化构建部分。讲述之前，这里还是引入一下前文中的应用架构图，方便讲述及阅读。
- Redis-master构建 在上一篇中，redis-master的构建主要包括如下步骤：
- 获取redis image
-# docker pull redis  启动redis master container
-# docker run -it --name redis-master -v `pwd`/master:/data redis /bin/bash  配置redis master
-主要是修改配置文件master/redis.conf
- 在container中启动redis service
-  全部手动的操作比较繁琐，使用Dockerfile将可以实现自动化构建。这里先将构建redis-master的Dockerfile先列出，然后在详细介绍。
-FROM redis COPY ./redis.conf /data/ CMD redis-server /data/redis.conf  此Dockerfile主要采用了三个命令。 * FROM redis
-对应于手动操作中的`docker pull redis`，表示构建此image是基于官方docker registry中的redis image。Docker看到这个指令之后会首先从本地的cache中查找是否已经存在，如果存在就直接使用本地cache，如果不存在将自动的从docker registry下载。   COPY ." />
+<meta property="og:description" content="用docker搭建全栈式应用 (二）—— 构建篇 简介 在上一篇中, 我们已经较为详细的描述如何基于docker，搭建一套全栈式应用。web端采用Dj" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://keysaim.github.io/post/2016-05-30-full-stack-demo2/" />
 
@@ -95,43 +71,19 @@ FROM redis COPY ./redis.conf /data/ CMD redis-server /data/redis.conf  此Docker
 
 
 <meta itemprop="name" content="用docker搭建全栈式应用 (二）构建篇">
-<meta itemprop="description" content="用docker搭建全栈式应用 (二）—— 构建篇 简介 在上一篇中, 我们已经较为详细的描述如何基于docker，搭建一套全栈式应用。web端采用Django，并使用HaProxy作为负载均衡。数据库采用redis，并使用master-slave的部署方式。前文基于从官方的docker registry的images，讲述了一步步如何启动配置各项服务。但是在实际部署中，不可能全部手动的完成这些事情，本文将讲述基于Dockerfile，来自动生成所需的Docker image，并将讲述基于构建的image如何启动服务。
-在前篇博文中，如何在docker中一步步部署服务。基本上主要包括了几个大的步骤：将配置拷贝到相应目录，同时做好修改；基于image启动docker container，同时挂载配置的目录；在container中启动服务。这样的部署方式有几个问题： * 全部手动操作，每次多事重复劳动 * 需要手动进入container中启动服务，部署非常耗时 * 配置需要在外面修改，极大地违背了docker隔离性的设计理念
-那么，如何解决这些问题呢？这里将引入本文将要讲述的Docker的自动化构建机制。所谓自动化构建，其实主要指的是基于Dockerfile的构建方式。利用Dockerfile，我们可以非常方便的构建一个独立完整的应用，同时集成一系列部署时候的操作，使得自动化的部署得以实现。Dockerfile是一个文本文件，里面记录了一系列的命令和操作，给出了一个docker image组成的完整定义。关于Dockerfile的详细介绍，请务必参考官方的文档，千万不要用X度，官方的文档其实讲述的非常清楚，而且基本上就一页就讲完了。
-ok, 下面咱们就开始讲述Docker的自动化构建部分。讲述之前，这里还是引入一下前文中的应用架构图，方便讲述及阅读。
- Redis-master构建 在上一篇中，redis-master的构建主要包括如下步骤：
- 获取redis image
-# docker pull redis  启动redis master container
-# docker run -it --name redis-master -v `pwd`/master:/data redis /bin/bash  配置redis master
-主要是修改配置文件master/redis.conf
- 在container中启动redis service
-  全部手动的操作比较繁琐，使用Dockerfile将可以实现自动化构建。这里先将构建redis-master的Dockerfile先列出，然后在详细介绍。
-FROM redis COPY ./redis.conf /data/ CMD redis-server /data/redis.conf  此Dockerfile主要采用了三个命令。 * FROM redis
-对应于手动操作中的`docker pull redis`，表示构建此image是基于官方docker registry中的redis image。Docker看到这个指令之后会首先从本地的cache中查找是否已经存在，如果存在就直接使用本地cache，如果不存在将自动的从docker registry下载。   COPY .">
+<meta itemprop="description" content="用docker搭建全栈式应用 (二）—— 构建篇 简介 在上一篇中, 我们已经较为详细的描述如何基于docker，搭建一套全栈式应用。web端采用Dj">
 
 
 <meta itemprop="datePublished" content="2016-05-30T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2016-05-30T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="1239">
+<meta itemprop="wordCount" content="7269">
 
 
 
 <meta itemprop="keywords" content="docker,教程," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="用docker搭建全栈式应用 (二）构建篇"/>
-<meta name="twitter:description" content="用docker搭建全栈式应用 (二）—— 构建篇 简介 在上一篇中, 我们已经较为详细的描述如何基于docker，搭建一套全栈式应用。web端采用Django，并使用HaProxy作为负载均衡。数据库采用redis，并使用master-slave的部署方式。前文基于从官方的docker registry的images，讲述了一步步如何启动配置各项服务。但是在实际部署中，不可能全部手动的完成这些事情，本文将讲述基于Dockerfile，来自动生成所需的Docker image，并将讲述基于构建的image如何启动服务。
-在前篇博文中，如何在docker中一步步部署服务。基本上主要包括了几个大的步骤：将配置拷贝到相应目录，同时做好修改；基于image启动docker container，同时挂载配置的目录；在container中启动服务。这样的部署方式有几个问题： * 全部手动操作，每次多事重复劳动 * 需要手动进入container中启动服务，部署非常耗时 * 配置需要在外面修改，极大地违背了docker隔离性的设计理念
-那么，如何解决这些问题呢？这里将引入本文将要讲述的Docker的自动化构建机制。所谓自动化构建，其实主要指的是基于Dockerfile的构建方式。利用Dockerfile，我们可以非常方便的构建一个独立完整的应用，同时集成一系列部署时候的操作，使得自动化的部署得以实现。Dockerfile是一个文本文件，里面记录了一系列的命令和操作，给出了一个docker image组成的完整定义。关于Dockerfile的详细介绍，请务必参考官方的文档，千万不要用X度，官方的文档其实讲述的非常清楚，而且基本上就一页就讲完了。
-ok, 下面咱们就开始讲述Docker的自动化构建部分。讲述之前，这里还是引入一下前文中的应用架构图，方便讲述及阅读。
- Redis-master构建 在上一篇中，redis-master的构建主要包括如下步骤：
- 获取redis image
-# docker pull redis  启动redis master container
-# docker run -it --name redis-master -v `pwd`/master:/data redis /bin/bash  配置redis master
-主要是修改配置文件master/redis.conf
- 在container中启动redis service
-  全部手动的操作比较繁琐，使用Dockerfile将可以实现自动化构建。这里先将构建redis-master的Dockerfile先列出，然后在详细介绍。
-FROM redis COPY ./redis.conf /data/ CMD redis-server /data/redis.conf  此Dockerfile主要采用了三个命令。 * FROM redis
-对应于手动操作中的`docker pull redis`，表示构建此image是基于官方docker registry中的redis image。Docker看到这个指令之后会首先从本地的cache中查找是否已经存在，如果存在就直接使用本地cache，如果不存在将自动的从docker registry下载。   COPY ."/>
+<meta name="twitter:description" content="用docker搭建全栈式应用 (二）—— 构建篇 简介 在上一篇中, 我们已经较为详细的描述如何基于docker，搭建一套全栈式应用。web端采用Dj"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -207,15 +159,15 @@ FROM redis COPY ./redis.conf /data/ CMD redis-server /data/redis.conf  此Docker
       <div class="post-meta">
         <span class="post-time"> 2016-05-30 </span>
         
-        <span class="more-meta"> 约 1239 字 </span>
-        <span class="more-meta"> 预计阅读 6 分钟 </span>
+        <span class="more-meta"> 7269 words </span>
+        <span class="more-meta"> 15 min read </span>
       </div>
     </header>
 
     
     
 <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">文章目录</h2>
+  <h2 class="post-toc-title">Table of Contents</h2>
   
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
@@ -796,21 +748,6 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 
     
     
-<div class="post-copyright">
-  <p class="copyright-item">
-    <span class="item-title">文章作者</span>
-    <span class="item-content">keysaim</span>
-  </p>
-  <p class="copyright-item">
-    <span class="item-title">上次更新</span>
-    <span class="item-content">2016-05-30</span>
-  </p>
-  
-  <p class="copyright-item">
-    <span class="item-title">许可协议</span>
-    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
-  </p>
-</div>
 
     
     
@@ -830,12 +767,12 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
           <a class="prev" href="/post/2016-06-23-full-stack-demo3/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">用docker搭建全栈式应用（三）管理篇</span>
-            <span class="prev-text nav-mobile">上一篇</span>
+            <span class="prev-text nav-mobile">Prev</span>
           </a>
         
           <a class="next" href="/post/2016-05-16-full-stack-demo/">
             <span class="next-text nav-default">用docker搭建全栈式应用（一）基础篇</span>
-            <span class="prev-text nav-mobile">下一篇</span>
+            <span class="prev-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -854,7 +791,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
     id: '2016-05-30 00:00:00 \x2b0000 UTC',
     title: '用docker搭建全栈式应用 (二）构建篇',
     link: decodeURI(location.href),
-    desc: '用docker搭建全栈式应用 (二）—— 构建篇 简介 在上一篇中, 我们已经较为详细的描述如何基于docker，搭建一套全栈式应用。web端采用Django，并使用HaProxy作为负载均衡。数据库采用redis，并使用master-slave的部署方式。前文基于从官方的docker registry的images，讲述了一步步如何启动配置各项服务。但是在实际部署中，不可能全部手动的完成这些事情，本文将讲述基于Dockerfile，来自动生成所需的Docker image，并将讲述基于构建的image如何启动服务。\n在前篇博文中，如何在docker中一步步部署服务。基本上主要包括了几个大的步骤：将配置拷贝到相应目录，同时做好修改；基于image启动docker container，同时挂载配置的目录；在container中启动服务。这样的部署方式有几个问题： * 全部手动操作，每次多事重复劳动 * 需要手动进入container中启动服务，部署非常耗时 * 配置需要在外面修改，极大地违背了docker隔离性的设计理念\n那么，如何解决这些问题呢？这里将引入本文将要讲述的Docker的自动化构建机制。所谓自动化构建，其实主要指的是基于Dockerfile的构建方式。利用Dockerfile，我们可以非常方便的构建一个独立完整的应用，同时集成一系列部署时候的操作，使得自动化的部署得以实现。Dockerfile是一个文本文件，里面记录了一系列的命令和操作，给出了一个docker image组成的完整定义。关于Dockerfile的详细介绍，请务必参考官方的文档，千万不要用X度，官方的文档其实讲述的非常清楚，而且基本上就一页就讲完了。\nok, 下面咱们就开始讲述Docker的自动化构建部分。讲述之前，这里还是引入一下前文中的应用架构图，方便讲述及阅读。\n Redis-master构建 在上一篇中，redis-master的构建主要包括如下步骤：\n 获取redis image\n# docker pull redis  启动redis master container\n# docker run -it --name redis-master -v `pwd`\/master:\/data redis \/bin\/bash  配置redis master\n主要是修改配置文件master\/redis.conf\n 在container中启动redis service\n  全部手动的操作比较繁琐，使用Dockerfile将可以实现自动化构建。这里先将构建redis-master的Dockerfile先列出，然后在详细介绍。\nFROM redis COPY .\/redis.conf \/data\/ CMD redis-server \/data\/redis.conf  此Dockerfile主要采用了三个命令。 * FROM redis\n对应于手动操作中的`docker pull redis`，表示构建此image是基于官方docker registry中的redis image。Docker看到这个指令之后会首先从本地的cache中查找是否已经存在，如果存在就直接使用本地cache，如果不存在将自动的从docker registry下载。   COPY .',
+    desc: '用docker搭建全栈式应用 (二）—— 构建篇 简介 在上一篇中, 我们已经较为详细的描述如何基于docker，搭建一套全栈式应用。web端采用Dj',
     owner: 'keysaim',
     repo: 'comments',
     oauth: {

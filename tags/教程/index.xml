@@ -5,7 +5,7 @@
     <link>https://keysaim.github.io/tags/%E6%95%99%E7%A8%8B/</link>
     <description>Recent content in 教程 on 窗外蟋蟀博客</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
+    <language>en</language>
     <lastBuildDate>Thu, 21 Dec 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://keysaim.github.io/tags/%E6%95%99%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
@@ -17,9 +17,7 @@
       <pubDate>Thu, 21 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>https://keysaim.github.io/post/2017-12-21-openfaas-practise/</guid>
-      <description>简述 技术的世界真的是一日千里，当有的人还满足与经典的C/S架构时，SOA（面向服务）架构已经遍地都是了；当很多人正打算将系统微服务改造的时候，别人都已经开始玩起无服务器（Serverless）架构了。随着2014年AWS发布Lambda，无服务器架构已经是越来越热了。那么，无服务器（Serverless）到底是个什么东东呢？这里推荐阅读以下这篇文章从IaaS到FaaS—— Serverless架构的前世今生，对于Serverless，目前业内并没有一个明确的定义，引用这篇文章中所采用的定义如下：“无服务器架构是基于互联网的系统，其中应用开发不使用常规的服务进程。相反，它们仅依赖于第三方服务（例如AWS Lambda服务），客户端逻辑和服务托管远程过程调用的组合。”这么说，估计很多人还是一头雾水，所以还请仔细阅读以下上面推荐的那篇文章。形象的来说，以后开发一个需要网络交互的移动APP，如果这个APP比较简单，基于Serverless架构，你甚至根本不需要进行服务端的开发，这放在以前是根本是无法想象的。当然，这可能是比较理想的情况，很多情况下，你可能还是需要参与服务端的开发，但跟以往决然不同的是，你并不需要开发一个完整的服务端，而只需要设计好几个函数，然后将这些函数上传到服务器提供商，如AWS的Lambda，服务器引擎便帮你提供完整的服务端功能，甚至包括了当流量激增时，需要动态的扩展服务器的数量等工作。虽然仍需要部分服务端的开发工作，但是毫无疑问，Serverless的架构将极大的减少服务端的开发量，同时也将极大的减少运维的工作量。
-对于Serverless，目前使用最多的是Faas（Function as a Service）范式。本文将基于开源项目Openfaas来讲述如何搭建一套Serverless系统。
-TODO</description>
+      <description>简述 技术的世界真的是一日千里，当有的人还满足与经典的C/S架构时，SOA（面向服务）架构已经遍地都是了；当很多人正打算将系统微服务改造的时候</description>
     </item>
     
     <item>
@@ -28,12 +26,7 @@ TODO</description>
       <pubDate>Mon, 04 Sep 2017 00:00:00 +0000</pubDate>
       
       <guid>https://keysaim.github.io/post/2017-09-04-how-to-setup-git-server/</guid>
-      <description>概述 本文将介绍如何在本地搭建Git服务器。我们知道Git其实是个分布式的版本管理系统，与中心化的版本管理系统如SVN有根本的不同，每个使用者都可以在本地存储一份独立的备份，每个Git的使用者并不会因为没有中心服务器而不能工作（如果是SVN之类的，如果服务器挂了是不能够提交改动的）。然而，在进行团队开发的时候，有时候还是非常需要有一个统一的地方管理唯一的一份完整的代码，这样可以非常方便的进行团队协作开发。这里讲述一种极为简单的搭建本地Git服务器的方法。
-如何搭建 准备一台Linux服务器 这里不考虑windows系统，所以请务必准备一台Linux系统，分发版本没有关系，这里假定使用的是Centos 7。
-配置Git服务器  添加用户
-$ sudo adduser git $ sudo passwd git Changing password for user git. New password: Retype new password: passwd: all authentication tokens updated successfully.  配置好ssh
-$ sudo su git $ cd $ mkdir .ssh &amp;amp;&amp;amp; chmod 700 .ssh $ touch .ssh/authorized_keys &amp;amp;&amp;amp; chmod 600 .ssh/authorized_keys   初始化项目 假定我们有一个叫test的项目需要管理，那么首先我们需要在Git服务器上面创建并初始化该项目。
-$ sudo su git $ cd $ mkdir test $ cd test $ git init --bare Initialized empty Git repository in /home/git/test  注意，其中git init --bare就是用来初始化Git项目的，--bare参数表示只存储Git的管理文件而不展现test项目本身的文件。查看下初始化之后的目录：</description>
+      <description>概述 本文将介绍如何在本地搭建Git服务器。我们知道Git其实是个分布式的版本管理系统，与中心化的版本管理系统如SVN有根本的不同，每个使用者</description>
     </item>
     
     <item>
@@ -42,16 +35,7 @@ $ sudo su git $ cd $ mkdir test $ cd test $ git init --bare Initialized empty Gi
       <pubDate>Wed, 16 Aug 2017 00:00:00 +0000</pubDate>
       
       <guid>https://keysaim.github.io/post/2017-08-16-how-to-add-comments/</guid>
-      <description>前言 在这一篇博文中，咱们介绍了如何快速的搭建个人的博客网站，但是这个博客网站是基于Github Pages的纯静态网站，自身是不带任何的可交互的元素的，自然也就没有评论系统。但是，对于一个好的博客网站，如果没有评论系统，那基本上就属于自娱自乐了，也违背了博客分享的精神。因此，本文将着重介绍如何快速的给自己的博客网站加入评论系统。
-评论系统介绍 所谓评论系统，相信对于关注博客的你来说肯定不陌生。通常来讲有两大类，一类是网站自己提供评论系统，这个在很多较大的博客平台比较常见；一类是基于第三方的评论系统，这个在个人博客网站较为常见。对于个人博客，由于很多都是简单的托管在其他平台上面，比如博主网站托管于Github，因此很多都基本上是静态的网站，自身是没法提供评论系统。也正因为如此，也就催生了非常多的第三方的评论系统。这些系统国外比较有名的是Disqus，国内更加五花八门了。国外的由于天朝特殊的网络环境，并不十分稳定，所以对于国内的博客网站来说，通常都会选择国内的第三方评论系统。至于国内的评论系统有哪些选择呢，建议参考这篇博文。总的来说，由于评论系统这个东东，目前还没有明显的盈利的地方，倒闭关门是很有可能的，因此尽量选择大公司为后台的吧。
-最近在研究评论系统的时候，偶然发现有人居然直接使用Github的Issue系统来做评价系统，顿时眼前一亮啊。鉴于咱们的博客便是基于Github的，如果可行，那简直绝配了。于是博主就开始疯狂的搜索有关现状，Github都多少年了，博主深信应该已经有人造过轮子了。这类轮子肯定是属于前端方面的，于是在npm网站上面搜索，果然发现不少。比较下来，发现一款国人开发的gitment最为完整。这也就本文要介绍的评论系统了，本博客网站在可见的未来将采用该评论系统，这里对作者的分享表示感谢。
-gitment使用 gitment的使用在官网有较为详细的介绍，步骤写的还是比较清楚的。这里只是对于讲述可能踩到的坑：
- 请务必不要使用你的&amp;lt;username&amp;gt;.github.io这个repo作为gitment的repo
-可能这个repo作为Github特殊的repo，使用它作为gitment的repo时，总是不能够认证成功。建议再创建一个专门用来存放评论的repo。
- 生成oauth授权的时候，请务必确保Authorization callback URL是你的博客网站，如博主的是https://keysaim.github.io。否则会授权失败。
- 每次提交博文的时候，请务必记得初始化改博文的评论，否则读者无法进行评论
-所谓初始化其实就是在你的博文下面用自己的Github账号登陆之后，会出现一个Initialize Comments字样的按钮，点击该按钮完成初始化。改初始化其实就是在你的Github repo里面针对这篇博文生成一个新的Issue。
-  结语 gitment之类的评论系统是基于Github的Issue系统，每篇博文都对应于你的Github repo里面的一个Issue，博文里面的评论其实都是在改Issue里面的评论，因此，你是有绝对权限对所有评论进行管理的。另外，由于gitment项目开始不久，并且貌似作者比较忙，因此功能性，质量方面还是存在不足，当你使用过程中如果遇到任何问题，可以直接去gitment repo里面查看一下是不是别人也碰到类似问题。可能的情况下，你也可以提交自己的解决方案。</description>
+      <description>前言 在这一篇博文中，咱们介绍了如何快速的搭建个人的博客网站，但是这个博客网站是基于Github Pages的纯静态网站，自身是不带任何的可交互</description>
     </item>
     
     <item>
@@ -60,13 +44,7 @@ gitment使用 gitment的使用在官网有较为详细的介绍，步骤写的�
       <pubDate>Tue, 15 Aug 2017 00:00:00 +0000</pubDate>
       
       <guid>https://keysaim.github.io/post/2017-08-15-how-to-git-with-specific-ssh-key/</guid>
-      <description>问题提出 最近在自己的MAC上面提交Github代码的时候发现居然失败了：
-$ git push origin master Permission denied (publickey). fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists.  这不是坑爹吗，Github都提交过无数次了，咋就失败了呢？莫非Github上的ssh key被删掉了么。于是打开github ssh，尝试再次把ssh key加上，却提示key已经存在了。于是赶紧回到本地repo查看下用户是不是对的:
-$ git config -l ... user.email=keysaim@gmail.com user.name=keysaim  再查看下本地的ssh key：
-$ cat ~/.ssh/id_rsa.pub ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCu4Jy/+uFGiC89luBejzCEyPbY0SRoppyzrB4g1v3zv1OleylMzdf+eTTRcYgMbYoY6ZQs4M2NHX20iO6vf6j2uPvUsB++pP0G6Q7+VlrUlC19B07IVx7Mo2xmHCe4bMshFSugqOl+hV6zVjGpYJcLI9XtWQ6F/br4tkYD/J8KWns+SNha8gJVBckV1ncGlR+Q7ji4OM4+eIhKEEK4Wo7Cf7KaT71fIVFl7XRx5kmdtEN3F+wT4LjNb2okl8Pu4mmxCMwJvXzj0Jr9PkVzhSAhDkWG3mMt3kC5PhhRhCP7uwkGFsOEm5uGS907wTxY9cJNIl8FikOfmvDa5XrfMbMx nbaoping@xxx.com  发现邮件居然是nbaoping@xxx.com（此处已打码），显然跟本地repo的keysaim@gmail.com不同，git提交的时候没有特殊配置，会使用默认的ssh key，也就是~/.ssh/id_rsa.pub，而提交的用户信息跟此key并不能对应上，故此github拒绝了此次提交。既然如此，那把本地repo的用户信息改成key所对应的信息不就好了吗？是的，但是此信息都已经打码了就充分说明本博主是十分不愿暴露它的，咱必须得想其它辙。
-好了，现在的问题就是，如何使用特定的ssh key提交Git？本文就来讲述一种通用的解决办法。
-指定git提交使用的ssh key  查看repo对应的hostname
-$ git remote -v origin git@github.com:keysaim/keysaim.github.io.git (fetch) origin git@github.com:keysaim/keysaim.github.io.git (push)  其中github.</description>
+      <description>问题提出 最近在自己的MAC上面提交Github代码的时候发现居然失败了： $ git push origin master Permission denied (publickey). fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists. 这不是坑爹吗</description>
     </item>
     
     <item>
@@ -75,22 +53,7 @@ $ git remote -v origin git@github.com:keysaim/keysaim.github.io.git (fetch) orig
       <pubDate>Tue, 15 Aug 2017 00:00:00 +0000</pubDate>
       
       <guid>https://keysaim.github.io/post/2017-08-15-how-to-setup-your-github-io-blog/</guid>
-      <description>闲聊一下 在这知识剧烈膨胀的时代，如何记录、整理、分享自己的所学所感无疑显得十分重要，而博客便是最好的方式之一。现在已经有了各式各样的博客平台，有基于第三方的平台的（如博客园等），也有自己搭建的（如基于Ghost等，当然，也有很多干脆自己动手DIY了）。总之，博客的世界已然丰富多彩，留给咱们更多的不是有没有，而是哪个好。这里咱不讨论博客哪家强的问题，只推荐一款博主觉得不错的选择：github.io。
-要问全球最大的基佬交友网站是哪个，我相信不少答案必须是咱们的github。而github.io便是其出品，品质必须是有保证的，最重要的一点是基于github的repo管理，这意味着咱们对其是有觉得的控制，这个跟放在第三方的平台比，可控性要好太多。下面咱们将详细讲述如何基于github.io打造属于自己的博客网站。
-要完成自己的github.io博客网站，总共分三步：
- 开通自己的github.io repo 选择一款Jekyll的主题 编写发布博客  开通自己的github.io repo github.io是完全基于github创建的，其本质上是在你的github账户下创建一个特殊的repo。你可以参照如下步骤完成：
- 创建repo
-当然，一切的前提是你得首先有个github的账户，这里还请自行解决。登陆你的账户后，你可以创建一个新的repo。请务必注意该repo的名字，必须保持格式&amp;lt;username&amp;gt;.github.io，其中&amp;lt;username&amp;gt;替换成你的github账户名，这里假定创建的repo为tobiasalin.github.io
- 把你创建的repo clone到本地
-本文假定你已经有一定的git使用基础了，如果没有也没关系，Google一下，git的基本使用极为简单。
-$ git clone https://github.com/tobiasalin/tobiasalin.github.io  编写简单的博客首页
-$ cd tobiasalin.github.io $ echo &amp;quot;Hello World!&amp;quot; &amp;gt; index.html $ git add index.html $ git commit -m &amp;quot;Init commit&amp;quot; $ git push origin master  打开博客网站https://&amp;lt;username&amp;gt;.github.io
-不出意外，你就可以看到你的Hello World!博客首页了。如果不小心出了意外，通常情况下，你只需等一会再刷新就会好，要是还没好，通常说明你的运气实在太背，请自行了断。
-  选择一款Jekyll的主题 github.io默认采用Jekyll作为建站工具。Jekyll是一款当前火热的开源的静态网站建站工具，拥有非常庞大的使用群里和社区，其Github截止本文，已经有超过3W+的star，拥有丰富的插件，丰富的主题，并且有无数的人已经帮你早出了无数的轮子可供参考。Jekyll自身的强大功能已经足够你打造自己心仪的静态网站（这里注意的是静态网站，Jekyll没有任何的后台数据库），然而前提是你自己还是得有一定的前端功底，而为了不至于长的太难看，你还得有一定的设计能力。这一下子把大部分人给难住了，咱们只是为了单纯的写写博客啊，至于有这么多要求吗？看到这里，很多人可能觉得此法不怎么方便啊，然则，正如刚刚反复强调的，Jekyll已经有一个非常庞大的社区，这就意味着，你完全可以借鉴别人已经造好的轮子，放在Jekyll这里，咱们应该成为主体（Theme）比较合适。本文推荐国内用户可以考虑一款国人开发的主题。本博客即是采用了这个主题。
- Fork出自己的repo
-为了便于管理，建议先把Huxpro fork到自己的账户下
- clone主题
-$ git clone git@github.com:keysaim/huxpro.github.io.git  当然，你也可以直接clone它的样板repo</description>
+      <description>闲聊一下 在这知识剧烈膨胀的时代，如何记录、整理、分享自己的所学所感无疑显得十分重要，而博客便是最好的方式之一。现在已经有了各式各样的博客平台</description>
     </item>
     
     <item>
@@ -99,12 +62,7 @@ $ git clone git@github.com:keysaim/huxpro.github.io.git  当然，你也可以�
       <pubDate>Thu, 23 Jun 2016 00:00:00 +0000</pubDate>
       
       <guid>https://keysaim.github.io/post/2016-06-23-full-stack-demo3/</guid>
-      <description>用docker搭建全栈式应用 (三）—— 管理篇 简介 在上一篇我们讲述了如何基于Dockerfile实现docker image的自动构建，并基于此重新实现了咱们本系列中的全栈式应用。然而，虽然构建过程实现了自动化，但是在实际部署的时候我们还是需要手动的理清所有服务的依赖关系，并依次启动所有服务，更严重的是，每次重启的时候，我们都需要重复这些操作，这个是不能接受的。
-那么有啥办法改善么？记得业内似乎总有这么个说法，大凡超过重复操作必须得用脚本实现自动化，此谓IT男的基本素养。既然如此，咱们也得用脚本自动化咱们的操作了。非常直接的一种方案就是咱自己写个shell的脚本，如下： * 启动脚本
-```shell docker run -d --name redis-master redis-master docker run -d --name redis-slave1 --link redis-master:master redis-slave1 docker run -d --name redis-slave2 --link redis-master:master redis-slave2 docker run -d --name app2 --link redis-master:redis app 0.0.0.0:8002 docker run -d --name haproxy --link app1:app1 --link app2:app2 -p 6301:6301 ha-app ``` 看起来还可以吗，简单的几条语句。但是，咱可不要忘了一点，每个语句咱还木有检查执行的结果。还有这个只是启动的脚本，还有停止的脚本，清除的脚本等等。更要命的是，如果下次我部署其它类型的应用，尼玛还得把这一些列的脚本复制并修改一通，这个有点弱爆了的感觉啊。  一般来讲，IT界总是存在这一的规律，当一个烦恼只是你一个人的时候，OK你可以随便整了；当你觉得可能会是很多人的烦恼的时候，这时必须得已经有人提供了解决方案了。所以，在当下技术更新如此剧烈的年代，切记不要随便就自己吭哧吭哧的闷声瞎搞了，第一要务就是google之。一般情况下，总是与大神提供了解决方案，如果真心没有，那么恭喜你，赶紧自己整一个并开放出来，那么你就是那个大神了。
-同样，在咱们本文碰到的问题中，早就有对应的解决方案了，那就是基于Docker compose工具的服务管理。本文将详述如何基于Docker compose管理服务。当然，例子还是那个例子咯。
-Docker Compose工具简介 关于Docker Compose，官方其实有非常详尽的介绍。这里就简单的总结一下。
-那么，Docker Compose是什么呢？ * Docker的一个工具 * 定义，运行并管理多个容器应用 * 基于Compose文件 * 通常应用于开发、测试、CI环境</description>
+      <description>用docker搭建全栈式应用 (三）—— 管理篇 简介 在上一篇我们讲述了如何基于Dockerfile实现docker image的自动构建，并基于此</description>
     </item>
     
     <item>
@@ -113,19 +71,7 @@ Docker Compose工具简介 关于Docker Compose，官方其实有非常详尽的
       <pubDate>Mon, 30 May 2016 00:00:00 +0000</pubDate>
       
       <guid>https://keysaim.github.io/post/2016-05-30-full-stack-demo2/</guid>
-      <description>用docker搭建全栈式应用 (二）—— 构建篇 简介 在上一篇中, 我们已经较为详细的描述如何基于docker，搭建一套全栈式应用。web端采用Django，并使用HaProxy作为负载均衡。数据库采用redis，并使用master-slave的部署方式。前文基于从官方的docker registry的images，讲述了一步步如何启动配置各项服务。但是在实际部署中，不可能全部手动的完成这些事情，本文将讲述基于Dockerfile，来自动生成所需的Docker image，并将讲述基于构建的image如何启动服务。
-在前篇博文中，如何在docker中一步步部署服务。基本上主要包括了几个大的步骤：将配置拷贝到相应目录，同时做好修改；基于image启动docker container，同时挂载配置的目录；在container中启动服务。这样的部署方式有几个问题： * 全部手动操作，每次多事重复劳动 * 需要手动进入container中启动服务，部署非常耗时 * 配置需要在外面修改，极大地违背了docker隔离性的设计理念
-那么，如何解决这些问题呢？这里将引入本文将要讲述的Docker的自动化构建机制。所谓自动化构建，其实主要指的是基于Dockerfile的构建方式。利用Dockerfile，我们可以非常方便的构建一个独立完整的应用，同时集成一系列部署时候的操作，使得自动化的部署得以实现。Dockerfile是一个文本文件，里面记录了一系列的命令和操作，给出了一个docker image组成的完整定义。关于Dockerfile的详细介绍，请务必参考官方的文档，千万不要用X度，官方的文档其实讲述的非常清楚，而且基本上就一页就讲完了。
-ok, 下面咱们就开始讲述Docker的自动化构建部分。讲述之前，这里还是引入一下前文中的应用架构图，方便讲述及阅读。
- Redis-master构建 在上一篇中，redis-master的构建主要包括如下步骤：
- 获取redis image
-# docker pull redis  启动redis master container
-# docker run -it --name redis-master -v `pwd`/master:/data redis /bin/bash  配置redis master
-主要是修改配置文件master/redis.conf
- 在container中启动redis service
-  全部手动的操作比较繁琐，使用Dockerfile将可以实现自动化构建。这里先将构建redis-master的Dockerfile先列出，然后在详细介绍。
-FROM redis COPY ./redis.conf /data/ CMD redis-server /data/redis.conf  此Dockerfile主要采用了三个命令。 * FROM redis
-对应于手动操作中的`docker pull redis`，表示构建此image是基于官方docker registry中的redis image。Docker看到这个指令之后会首先从本地的cache中查找是否已经存在，如果存在就直接使用本地cache，如果不存在将自动的从docker registry下载。   COPY .</description>
+      <description>用docker搭建全栈式应用 (二）—— 构建篇 简介 在上一篇中, 我们已经较为详细的描述如何基于docker，搭建一套全栈式应用。web端采用Dj</description>
     </item>
     
     <item>
@@ -134,12 +80,7 @@ FROM redis COPY ./redis.conf /data/ CMD redis-server /data/redis.conf  此Docker
       <pubDate>Mon, 16 May 2016 00:00:00 +0000</pubDate>
       
       <guid>https://keysaim.github.io/post/2016-05-16-full-stack-demo/</guid>
-      <description>用docker搭建全栈式应用 简介 本文将以docker为基础，搭建一套简单的应用案例。该案例的应用架构将采用redis的master-slave模式作为数据存储，以django为框架提供web访问，以haproxy作为负载均衡。其架构图如下.
- 其中App1和App2属于同一个Django的APP.
-准备工作 获取相应的docker images  可以直接从docker官方获取images
-$ docker pull django $ docker pull redis $ docker pull haproxy  获取成功之后，检查一下images是否真的ok
-$ docker images REPOSITORY TAG IMAGE ID CREATED VIRTUAL SIZE haproxy latest 46bc5babcc18 3 days ago 139.1 MB redis latest 84dbf5edc313 4 days ago 184.8 MB django latest 3b0bc67346a2 9 days ago 433.5 MB  检查一下各自的版本(root权限) redis版本
-# docker run -it redis /bin/bash root@a3ca293915cb:/data# redis-server -v Redis server v=3.</description>
+      <description>用docker搭建全栈式应用 简介 本文将以docker为基础，搭建一套简单的应用案例。该案例的应用架构将采用redis的master-slav</description>
     </item>
     
   </channel>

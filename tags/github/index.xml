@@ -5,7 +5,7 @@
     <link>https://keysaim.github.io/tags/github/</link>
     <description>Recent content in Github on 窗外蟋蟀博客</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
+    <language>en</language>
     <lastBuildDate>Tue, 15 Aug 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://keysaim.github.io/tags/github/index.xml" rel="self" type="application/rss+xml" />
@@ -17,13 +17,7 @@
       <pubDate>Tue, 15 Aug 2017 00:00:00 +0000</pubDate>
       
       <guid>https://keysaim.github.io/post/2017-08-15-how-to-git-with-specific-ssh-key/</guid>
-      <description>问题提出 最近在自己的MAC上面提交Github代码的时候发现居然失败了：
-$ git push origin master Permission denied (publickey). fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists.  这不是坑爹吗，Github都提交过无数次了，咋就失败了呢？莫非Github上的ssh key被删掉了么。于是打开github ssh，尝试再次把ssh key加上，却提示key已经存在了。于是赶紧回到本地repo查看下用户是不是对的:
-$ git config -l ... user.email=keysaim@gmail.com user.name=keysaim  再查看下本地的ssh key：
-$ cat ~/.ssh/id_rsa.pub ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCu4Jy/+uFGiC89luBejzCEyPbY0SRoppyzrB4g1v3zv1OleylMzdf+eTTRcYgMbYoY6ZQs4M2NHX20iO6vf6j2uPvUsB++pP0G6Q7+VlrUlC19B07IVx7Mo2xmHCe4bMshFSugqOl+hV6zVjGpYJcLI9XtWQ6F/br4tkYD/J8KWns+SNha8gJVBckV1ncGlR+Q7ji4OM4+eIhKEEK4Wo7Cf7KaT71fIVFl7XRx5kmdtEN3F+wT4LjNb2okl8Pu4mmxCMwJvXzj0Jr9PkVzhSAhDkWG3mMt3kC5PhhRhCP7uwkGFsOEm5uGS907wTxY9cJNIl8FikOfmvDa5XrfMbMx nbaoping@xxx.com  发现邮件居然是nbaoping@xxx.com（此处已打码），显然跟本地repo的keysaim@gmail.com不同，git提交的时候没有特殊配置，会使用默认的ssh key，也就是~/.ssh/id_rsa.pub，而提交的用户信息跟此key并不能对应上，故此github拒绝了此次提交。既然如此，那把本地repo的用户信息改成key所对应的信息不就好了吗？是的，但是此信息都已经打码了就充分说明本博主是十分不愿暴露它的，咱必须得想其它辙。
-好了，现在的问题就是，如何使用特定的ssh key提交Git？本文就来讲述一种通用的解决办法。
-指定git提交使用的ssh key  查看repo对应的hostname
-$ git remote -v origin git@github.com:keysaim/keysaim.github.io.git (fetch) origin git@github.com:keysaim/keysaim.github.io.git (push)  其中github.</description>
+      <description>问题提出 最近在自己的MAC上面提交Github代码的时候发现居然失败了： $ git push origin master Permission denied (publickey). fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists. 这不是坑爹吗</description>
     </item>
     
     <item>
@@ -32,22 +26,7 @@ $ git remote -v origin git@github.com:keysaim/keysaim.github.io.git (fetch) orig
       <pubDate>Tue, 15 Aug 2017 00:00:00 +0000</pubDate>
       
       <guid>https://keysaim.github.io/post/2017-08-15-how-to-setup-your-github-io-blog/</guid>
-      <description>闲聊一下 在这知识剧烈膨胀的时代，如何记录、整理、分享自己的所学所感无疑显得十分重要，而博客便是最好的方式之一。现在已经有了各式各样的博客平台，有基于第三方的平台的（如博客园等），也有自己搭建的（如基于Ghost等，当然，也有很多干脆自己动手DIY了）。总之，博客的世界已然丰富多彩，留给咱们更多的不是有没有，而是哪个好。这里咱不讨论博客哪家强的问题，只推荐一款博主觉得不错的选择：github.io。
-要问全球最大的基佬交友网站是哪个，我相信不少答案必须是咱们的github。而github.io便是其出品，品质必须是有保证的，最重要的一点是基于github的repo管理，这意味着咱们对其是有觉得的控制，这个跟放在第三方的平台比，可控性要好太多。下面咱们将详细讲述如何基于github.io打造属于自己的博客网站。
-要完成自己的github.io博客网站，总共分三步：
- 开通自己的github.io repo 选择一款Jekyll的主题 编写发布博客  开通自己的github.io repo github.io是完全基于github创建的，其本质上是在你的github账户下创建一个特殊的repo。你可以参照如下步骤完成：
- 创建repo
-当然，一切的前提是你得首先有个github的账户，这里还请自行解决。登陆你的账户后，你可以创建一个新的repo。请务必注意该repo的名字，必须保持格式&amp;lt;username&amp;gt;.github.io，其中&amp;lt;username&amp;gt;替换成你的github账户名，这里假定创建的repo为tobiasalin.github.io
- 把你创建的repo clone到本地
-本文假定你已经有一定的git使用基础了，如果没有也没关系，Google一下，git的基本使用极为简单。
-$ git clone https://github.com/tobiasalin/tobiasalin.github.io  编写简单的博客首页
-$ cd tobiasalin.github.io $ echo &amp;quot;Hello World!&amp;quot; &amp;gt; index.html $ git add index.html $ git commit -m &amp;quot;Init commit&amp;quot; $ git push origin master  打开博客网站https://&amp;lt;username&amp;gt;.github.io
-不出意外，你就可以看到你的Hello World!博客首页了。如果不小心出了意外，通常情况下，你只需等一会再刷新就会好，要是还没好，通常说明你的运气实在太背，请自行了断。
-  选择一款Jekyll的主题 github.io默认采用Jekyll作为建站工具。Jekyll是一款当前火热的开源的静态网站建站工具，拥有非常庞大的使用群里和社区，其Github截止本文，已经有超过3W+的star，拥有丰富的插件，丰富的主题，并且有无数的人已经帮你早出了无数的轮子可供参考。Jekyll自身的强大功能已经足够你打造自己心仪的静态网站（这里注意的是静态网站，Jekyll没有任何的后台数据库），然而前提是你自己还是得有一定的前端功底，而为了不至于长的太难看，你还得有一定的设计能力。这一下子把大部分人给难住了，咱们只是为了单纯的写写博客啊，至于有这么多要求吗？看到这里，很多人可能觉得此法不怎么方便啊，然则，正如刚刚反复强调的，Jekyll已经有一个非常庞大的社区，这就意味着，你完全可以借鉴别人已经造好的轮子，放在Jekyll这里，咱们应该成为主体（Theme）比较合适。本文推荐国内用户可以考虑一款国人开发的主题。本博客即是采用了这个主题。
- Fork出自己的repo
-为了便于管理，建议先把Huxpro fork到自己的账户下
- clone主题
-$ git clone git@github.com:keysaim/huxpro.github.io.git  当然，你也可以直接clone它的样板repo</description>
+      <description>闲聊一下 在这知识剧烈膨胀的时代，如何记录、整理、分享自己的所学所感无疑显得十分重要，而博客便是最好的方式之一。现在已经有了各式各样的博客平台</description>
     </item>
     
   </channel>

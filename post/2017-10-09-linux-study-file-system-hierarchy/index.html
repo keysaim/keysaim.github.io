@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>Linux系统介绍（二）文件系统结构 - 窗外蟋蟀博客</title>
-  <link rel="alternate" hreflang="zh-cn" href="https://keysaim.github.io" />
+  <link rel="alternate" hreflang="en" href="https://keysaim.github.io" />
 
 <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -19,10 +19,7 @@
 
 
 <meta name="author" content="keysaim" />
-  <meta name="description" content="概述 多数Linux发行版本都是遵循文件系统结构标准（Filesystem Hierarchy Standard, 简称FHS），可以在这里找到该标准。本文对Linux的文件系统结构进行简单的介绍。
-根目录/ 所有的Linux系统都有根目录，由/表示。Linux系统的所有内容都在该目录下。
-二进制目录 |&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-&#43;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;| | 目录 | 说明 | |&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-&#43;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;| | /bin | 包括了可执行的二进制文件，通常这些二进制文件可以被所有用户访问。FHS规定，该目录至少包括/bin/cat跟/bin/date文件 | | /sbin | 包括了系统的二进制文件，通过需要root权限，用来配置系统 | | /lib | 包括了/bin所依赖的库 | | /lib/modules | Linux将从/lib/modules/$kernel-version/目录下载入内核模块 | | /lib32和/lib64 | 顾名思义，分别存放不同位数的库 | | /opt | 该目录用来存放一些可选的软件，通常情况下，很多第三方的客户软件会选择安装在该目录下 | |&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-&#43;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;|
-配置文件目录 |&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-&#43;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;| | 目录 | 说明 | |&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-&#43;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;| | /boot | 顾名思义，用来存放系统启动的配置文件，如grub引导的配置文件/boot/grub/grub.cfg | | /etc | 几乎大部分配置文件都放在改目录下。历史上etc的全称是etcetera，不过，现在一般认为是Editable Text Configuration的缩写 | | /etc/init.d | 存放daemon启动、停止等的脚本文件。不过在引入systemd之后，启动脚本有所变化 | | /etc/skel | 存放创建新用户之后所需的配置文件的模板，如." />
+  <meta name="description" content="概述 多数Linux发行版本都是遵循文件系统结构标准（Filesystem Hierarchy Standard, 简称FHS），可以在这里找到该标准。本文对Linux的文件系统结" />
 
   <meta name="keywords" content="Hugo, blog, keysaim, 窗外蟋蟀" />
 
@@ -53,10 +50,7 @@
 
 
 <meta property="og:title" content="Linux系统介绍（二）文件系统结构" />
-<meta property="og:description" content="概述 多数Linux发行版本都是遵循文件系统结构标准（Filesystem Hierarchy Standard, 简称FHS），可以在这里找到该标准。本文对Linux的文件系统结构进行简单的介绍。
-根目录/ 所有的Linux系统都有根目录，由/表示。Linux系统的所有内容都在该目录下。
-二进制目录 |&mdash;&mdash;&mdash;&mdash;&mdash;-&#43;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;| | 目录 | 说明 | |&mdash;&mdash;&mdash;&mdash;&mdash;-&#43;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;| | /bin | 包括了可执行的二进制文件，通常这些二进制文件可以被所有用户访问。FHS规定，该目录至少包括/bin/cat跟/bin/date文件 | | /sbin | 包括了系统的二进制文件，通过需要root权限，用来配置系统 | | /lib | 包括了/bin所依赖的库 | | /lib/modules | Linux将从/lib/modules/$kernel-version/目录下载入内核模块 | | /lib32和/lib64 | 顾名思义，分别存放不同位数的库 | | /opt | 该目录用来存放一些可选的软件，通常情况下，很多第三方的客户软件会选择安装在该目录下 | |&mdash;&mdash;&mdash;&mdash;&mdash;-&#43;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|
-配置文件目录 |&mdash;&mdash;&mdash;&mdash;&mdash;-&#43;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;| | 目录 | 说明 | |&mdash;&mdash;&mdash;&mdash;&mdash;-&#43;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;| | /boot | 顾名思义，用来存放系统启动的配置文件，如grub引导的配置文件/boot/grub/grub.cfg | | /etc | 几乎大部分配置文件都放在改目录下。历史上etc的全称是etcetera，不过，现在一般认为是Editable Text Configuration的缩写 | | /etc/init.d | 存放daemon启动、停止等的脚本文件。不过在引入systemd之后，启动脚本有所变化 | | /etc/skel | 存放创建新用户之后所需的配置文件的模板，如." />
+<meta property="og:description" content="概述 多数Linux发行版本都是遵循文件系统结构标准（Filesystem Hierarchy Standard, 简称FHS），可以在这里找到该标准。本文对Linux的文件系统结" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://keysaim.github.io/post/2017-10-09-linux-study-file-system-hierarchy/" />
 
@@ -77,25 +71,19 @@
 
 
 <meta itemprop="name" content="Linux系统介绍（二）文件系统结构">
-<meta itemprop="description" content="概述 多数Linux发行版本都是遵循文件系统结构标准（Filesystem Hierarchy Standard, 简称FHS），可以在这里找到该标准。本文对Linux的文件系统结构进行简单的介绍。
-根目录/ 所有的Linux系统都有根目录，由/表示。Linux系统的所有内容都在该目录下。
-二进制目录 |&mdash;&mdash;&mdash;&mdash;&mdash;-&#43;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;| | 目录 | 说明 | |&mdash;&mdash;&mdash;&mdash;&mdash;-&#43;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;| | /bin | 包括了可执行的二进制文件，通常这些二进制文件可以被所有用户访问。FHS规定，该目录至少包括/bin/cat跟/bin/date文件 | | /sbin | 包括了系统的二进制文件，通过需要root权限，用来配置系统 | | /lib | 包括了/bin所依赖的库 | | /lib/modules | Linux将从/lib/modules/$kernel-version/目录下载入内核模块 | | /lib32和/lib64 | 顾名思义，分别存放不同位数的库 | | /opt | 该目录用来存放一些可选的软件，通常情况下，很多第三方的客户软件会选择安装在该目录下 | |&mdash;&mdash;&mdash;&mdash;&mdash;-&#43;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|
-配置文件目录 |&mdash;&mdash;&mdash;&mdash;&mdash;-&#43;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;| | 目录 | 说明 | |&mdash;&mdash;&mdash;&mdash;&mdash;-&#43;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;| | /boot | 顾名思义，用来存放系统启动的配置文件，如grub引导的配置文件/boot/grub/grub.cfg | | /etc | 几乎大部分配置文件都放在改目录下。历史上etc的全称是etcetera，不过，现在一般认为是Editable Text Configuration的缩写 | | /etc/init.d | 存放daemon启动、停止等的脚本文件。不过在引入systemd之后，启动脚本有所变化 | | /etc/skel | 存放创建新用户之后所需的配置文件的模板，如.">
+<meta itemprop="description" content="概述 多数Linux发行版本都是遵循文件系统结构标准（Filesystem Hierarchy Standard, 简称FHS），可以在这里找到该标准。本文对Linux的文件系统结">
 
 
 <meta itemprop="datePublished" content="2017-10-09T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2017-10-09T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="268">
+<meta itemprop="wordCount" content="2492">
 
 
 
 <meta itemprop="keywords" content="Linux,study,学习," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Linux系统介绍（二）文件系统结构"/>
-<meta name="twitter:description" content="概述 多数Linux发行版本都是遵循文件系统结构标准（Filesystem Hierarchy Standard, 简称FHS），可以在这里找到该标准。本文对Linux的文件系统结构进行简单的介绍。
-根目录/ 所有的Linux系统都有根目录，由/表示。Linux系统的所有内容都在该目录下。
-二进制目录 |&mdash;&mdash;&mdash;&mdash;&mdash;-&#43;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;| | 目录 | 说明 | |&mdash;&mdash;&mdash;&mdash;&mdash;-&#43;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;| | /bin | 包括了可执行的二进制文件，通常这些二进制文件可以被所有用户访问。FHS规定，该目录至少包括/bin/cat跟/bin/date文件 | | /sbin | 包括了系统的二进制文件，通过需要root权限，用来配置系统 | | /lib | 包括了/bin所依赖的库 | | /lib/modules | Linux将从/lib/modules/$kernel-version/目录下载入内核模块 | | /lib32和/lib64 | 顾名思义，分别存放不同位数的库 | | /opt | 该目录用来存放一些可选的软件，通常情况下，很多第三方的客户软件会选择安装在该目录下 | |&mdash;&mdash;&mdash;&mdash;&mdash;-&#43;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|
-配置文件目录 |&mdash;&mdash;&mdash;&mdash;&mdash;-&#43;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;| | 目录 | 说明 | |&mdash;&mdash;&mdash;&mdash;&mdash;-&#43;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;| | /boot | 顾名思义，用来存放系统启动的配置文件，如grub引导的配置文件/boot/grub/grub.cfg | | /etc | 几乎大部分配置文件都放在改目录下。历史上etc的全称是etcetera，不过，现在一般认为是Editable Text Configuration的缩写 | | /etc/init.d | 存放daemon启动、停止等的脚本文件。不过在引入systemd之后，启动脚本有所变化 | | /etc/skel | 存放创建新用户之后所需的配置文件的模板，如."/>
+<meta name="twitter:description" content="概述 多数Linux发行版本都是遵循文件系统结构标准（Filesystem Hierarchy Standard, 简称FHS），可以在这里找到该标准。本文对Linux的文件系统结"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -171,15 +159,15 @@
       <div class="post-meta">
         <span class="post-time"> 2017-10-09 </span>
         
-        <span class="more-meta"> 约 268 字 </span>
-        <span class="more-meta"> 预计阅读 2 分钟 </span>
+        <span class="more-meta"> 2492 words </span>
+        <span class="more-meta"> 5 min read </span>
       </div>
     </header>
 
     
     
 <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">文章目录</h2>
+  <h2 class="post-toc-title">Table of Contents</h2>
   
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
@@ -220,41 +208,127 @@
 
 <h1 id="二进制目录">二进制目录</h1>
 
-<p>|&mdash;&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|
-| 目录           | 说明                                                                                                               |
-|&mdash;&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|
-| /bin           | 包括了可执行的二进制文件，通常这些二进制文件可以被所有用户访问。FHS规定，该目录至少包括<code>/bin/cat</code>跟<code>/bin/date</code>文件 |
-| /sbin          | 包括了系统的二进制文件，通过需要root权限，用来配置系统                                                             |
-| /lib           | 包括了<code>/bin</code>所依赖的库                                                                                             |
-| /lib/modules   | Linux将从<code>/lib/modules/$kernel-version/</code>目录下载入内核模块                                                         |
-| /lib32和/lib64 | 顾名思义，分别存放不同位数的库                                                                                     |
-| /opt           | 该目录用来存放一些可选的软件，通常情况下，很多第三方的客户软件会选择安装在该目录下                                 |
-|&mdash;&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|</p>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>/bin</td>
+<td>包括了可执行的二进制文件，通常这些二进制文件可以被所有用户访问。FHS规定，该目录至少包括<code>/bin/cat</code>跟<code>/bin/date</code>文件</td>
+</tr>
+
+<tr>
+<td>/sbin</td>
+<td>包括了系统的二进制文件，通过需要root权限，用来配置系统</td>
+</tr>
+
+<tr>
+<td>/lib</td>
+<td>包括了<code>/bin</code>所依赖的库</td>
+</tr>
+
+<tr>
+<td>/lib/modules</td>
+<td>Linux将从<code>/lib/modules/$kernel-version/</code>目录下载入内核模块</td>
+</tr>
+
+<tr>
+<td>/lib32和/lib64</td>
+<td>顾名思义，分别存放不同位数的库</td>
+</tr>
+
+<tr>
+<td>/opt</td>
+<td>该目录用来存放一些可选的软件，通常情况下，很多第三方的客户软件会选择安装在该目录下</td>
+</tr>
+</tbody>
+</table>
 
 <h1 id="配置文件目录">配置文件目录</h1>
 
-<p>|&mdash;&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|
-| 目录           | 说明                                                                                                                     |
-|&mdash;&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|
-| /boot          | 顾名思义，用来存放系统启动的配置文件，如grub引导的配置文件<code>/boot/grub/grub.cfg</code>                                          |
-| /etc           | 几乎大部分配置文件都放在改目录下。历史上<code>etc</code>的全称是<code>etcetera</code>，不过，现在一般认为是<code>Editable Text Configuration</code>的缩写 |
-| /etc/init.d    | 存放daemon启动、停止等的脚本文件。不过在引入systemd之后，启动脚本有所变化                                                |
-| /etc/skel      | 存放创建新用户之后所需的配置文件的模板，如<code>.bashrc</code>文件，默认会从该目录拷贝到用户目录                                    |
-| /etc/sysconfig | 一般出现在RedHat系列的Linux系统中，存放系统有关配置，如IP的配置文件等                                                    |
-|&mdash;&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|</p>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>/boot</td>
+<td>顾名思义，用来存放系统启动的配置文件，如grub引导的配置文件<code>/boot/grub/grub.cfg</code></td>
+</tr>
+
+<tr>
+<td>/etc</td>
+<td>几乎大部分配置文件都放在改目录下。历史上<code>etc</code>的全称是<code>etcetera</code>，不过，现在一般认为是<code>Editable Text Configuration</code>的缩写</td>
+</tr>
+
+<tr>
+<td>/etc/init.d</td>
+<td>存放daemon启动、停止等的脚本文件。不过在引入systemd之后，启动脚本有所变化</td>
+</tr>
+
+<tr>
+<td>/etc/skel</td>
+<td>存放创建新用户之后所需的配置文件的模板，如<code>.bashrc</code>文件，默认会从该目录拷贝到用户目录</td>
+</tr>
+
+<tr>
+<td>/etc/sysconfig</td>
+<td>一般出现在RedHat系列的Linux系统中，存放系统有关配置，如IP的配置文件等</td>
+</tr>
+</tbody>
+</table>
 
 <h1 id="数据目录">数据目录</h1>
 
-<p>|&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-|
-| 目录   | 说明                                                                                               |
-|&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-|
-| /home  | 当创建一个新用户的时候，默认情况下，系统会为用户创建一个<code>/home/&lt;username&gt;</code>的目录用来存放个人数据。 |
-| /root  | 该目录被很多Linux系统用来存放root用户的个人数据                                                    |
-| /srv   | 可以被解释为<code>served by your system</code>。FHS允许<code>rsync</code>，<code>ftp</code>，<code>www</code>等数据存放在改目录                |
-| /media | 该目录通常被用来挂载可移除设备，如CD-ROM，U盘等                                                    |
-| /mnt   | 根据FHS，该目录通常被用来作为短期的挂载点                                                          |
-| /tmp   | 该目录用来存放一些短期的文件，<strong><em>不要再该目录下存放重要文件，该目录下的文件有可能会被系统回收</em></strong>   |
-|&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-|</p>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>/home</td>
+<td>当创建一个新用户的时候，默认情况下，系统会为用户创建一个<code>/home/&lt;username&gt;</code>的目录用来存放个人数据。</td>
+</tr>
+
+<tr>
+<td>/root</td>
+<td>该目录被很多Linux系统用来存放root用户的个人数据</td>
+</tr>
+
+<tr>
+<td>/srv</td>
+<td>可以被解释为<code>served by your system</code>。FHS允许<code>rsync</code>，<code>ftp</code>，<code>www</code>等数据存放在改目录</td>
+</tr>
+
+<tr>
+<td>/media</td>
+<td>该目录通常被用来挂载可移除设备，如CD-ROM，U盘等</td>
+</tr>
+
+<tr>
+<td>/mnt</td>
+<td>根据FHS，该目录通常被用来作为短期的挂载点</td>
+</tr>
+
+<tr>
+<td>/tmp</td>
+<td>该目录用来存放一些短期的文件，<strong><em>不要再该目录下存放重要文件，该目录下的文件有可能会被系统回收</em></strong></td>
+</tr>
+</tbody>
+</table>
 
 <h1 id="内存目录">内存目录</h1>
 
@@ -292,67 +366,146 @@
 
 <p>该目录用来记录内核以及内核进程的实时信息，可以通过它轻而易举的实现对内核状态的获取甚至改变。</p>
 
-<p>|&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-|
-| 目录             | 说明                                                                                                              |
-|&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-|
-| /proc/<id>       | 几乎每个进程都会在该目录下有映射的文件<code>/proc/*</code>，其中<code>&lt;id&gt;</code>代表进程的ID。该目录记录的该进程的几乎所有的状态信息。 |
-| /proc/cpuinfo    | 记录了系统的CPU信息，通常通过该文件可以知道系统有多少个CPU（核数）。                                              |
-| /proc/meminfo    | 记录了系统的内存信息，可以通过它知道系统有多少内存                                                                |
-| /proc/sys        | 在<code>/proc</code>目录下的绝大部分文件都是只读的文件，但是在该目录下有些文件是可写的，可以通过它们改变内核状态             |
-| /proc/interrupts | 记录了当前系统的中断信息                                                                                          |
-| /proc/kcore      | 这个文件代表了系统的物理内存，其大小就是物理内存的大小，因此千万不要用<code>cat</code>来试图显示该文件内容                   |
-|&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-|</p>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>/proc/<id></td>
+<td>几乎每个进程都会在该目录下有映射的文件<code>/proc/*</code>，其中<code>&lt;id&gt;</code>代表进程的ID。该目录记录的该进程的几乎所有的状态信息。</td>
+</tr>
+
+<tr>
+<td>/proc/cpuinfo</td>
+<td>记录了系统的CPU信息，通常通过该文件可以知道系统有多少个CPU（核数）。</td>
+</tr>
+
+<tr>
+<td>/proc/meminfo</td>
+<td>记录了系统的内存信息，可以通过它知道系统有多少内存</td>
+</tr>
+
+<tr>
+<td>/proc/sys</td>
+<td>在<code>/proc</code>目录下的绝大部分文件都是只读的文件，但是在该目录下有些文件是可写的，可以通过它们改变内核状态</td>
+</tr>
+
+<tr>
+<td>/proc/interrupts</td>
+<td>记录了当前系统的中断信息</td>
+</tr>
+
+<tr>
+<td>/proc/kcore</td>
+<td>这个文件代表了系统的物理内存，其大小就是物理内存的大小，因此千万不要用<code>cat</code>来试图显示该文件内容</td>
+</tr>
+</tbody>
+</table>
 
 <h1 id="usr目录">/usr目录</h1>
 
 <p><code>/usr</code>目录估计是被误解最多的目录，一般大家都以为它是<code>user</code>的简写，感觉应该存放的是用户相关的东西，但是实际上完全不是这样。它其实是<code>Unix System Resources</code>的简写，表示Unix系统资源。通常情况下，该目录以只读的权限被挂载。</p>
 
-<p>|&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-|
-| 目录         | 说明                                                                                                        |
-|&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-|
-| /usr/bin     | 很多命令都存放在这个目录下面，事实上，在Centos跟Solaris系统中，<code>/bin</code>目录实际上只是一个软连接，连接到此目录 |
-| /usr/include | 存放大量的头文件，可能会被C代码引用                                                                         |
-| /usr/lib     | 存放库文件，同样，在Centos跟Solaris系统中，<code>/lib</code>其实就是软连接到此目录                                     |
-| /usr/lib64   | 存放64位的库文件，在Centos中，<code>/lib64</code>也是软连接到此目录                                                    |
-| /usr/sbin    | 很多daemon程序都是放在此目录下，在Centos中，<code>/sbin</code>也是软连接到此目录                                       |
-| /usr/local   | 此目录通常用来安装一些本地的应用                                                                            |
-| /usr/share   | 此目录通常用来存放各种体系无关的数据。<code>/usr/share/man</code>就是用来存放<code>man</code>命令用到的帮助文档                   |
-| /usr/src     | 此目录通常存放内核的代码文件                                                                                |
-|&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-|</p>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>/usr/bin</td>
+<td>很多命令都存放在这个目录下面，事实上，在Centos跟Solaris系统中，<code>/bin</code>目录实际上只是一个软连接，连接到此目录</td>
+</tr>
+
+<tr>
+<td>/usr/include</td>
+<td>存放大量的头文件，可能会被C代码引用</td>
+</tr>
+
+<tr>
+<td>/usr/lib</td>
+<td>存放库文件，同样，在Centos跟Solaris系统中，<code>/lib</code>其实就是软连接到此目录</td>
+</tr>
+
+<tr>
+<td>/usr/lib64</td>
+<td>存放64位的库文件，在Centos中，<code>/lib64</code>也是软连接到此目录</td>
+</tr>
+
+<tr>
+<td>/usr/sbin</td>
+<td>很多daemon程序都是放在此目录下，在Centos中，<code>/sbin</code>也是软连接到此目录</td>
+</tr>
+
+<tr>
+<td>/usr/local</td>
+<td>此目录通常用来安装一些本地的应用</td>
+</tr>
+
+<tr>
+<td>/usr/share</td>
+<td>此目录通常用来存放各种体系无关的数据。<code>/usr/share/man</code>就是用来存放<code>man</code>命令用到的帮助文档</td>
+</tr>
+
+<tr>
+<td>/usr/src</td>
+<td>此目录通常存放内核的代码文件</td>
+</tr>
+</tbody>
+</table>
 
 <h1 id="var目录">/var目录</h1>
 
 <p><code>/var</code>目录用来存放可变的数据，如日志，数据库文件等。</p>
 
-<p>|&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-|
-| 目录              | 说明                                                                                                        |
-|&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-|
-| /var/log          | 此目录用来存放各种日志文件，包括系统跟应用的日志                                                            |
-| /var/log/messages | 在RedHat系列系统中，此文件用来记录系统刚刚发生的事情。在Debian和Ubuntu系统中，对应的文件是<code>/var/log/syslog</code> |
-| /var/cache        | 此目录存放很多应用的缓存数据，如<code>yum</code>命令可能会缓存部分数据在此目录                                         |
-| /var/spool        | 一般情况下，该目录会存放邮件cron任务等数据                                                                  |
-| /var/lib          | 通常此目录下会存放应用的状态信息，如<code>/var/lib/mysql</code>存放<code>mysql</code>数据库，<code>/var/lib/docker</code>存放<code>docker</code>的数据  |
-|&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-|</p>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>/var/log</td>
+<td>此目录用来存放各种日志文件，包括系统跟应用的日志</td>
+</tr>
+
+<tr>
+<td>/var/log/messages</td>
+<td>在RedHat系列系统中，此文件用来记录系统刚刚发生的事情。在Debian和Ubuntu系统中，对应的文件是<code>/var/log/syslog</code></td>
+</tr>
+
+<tr>
+<td>/var/cache</td>
+<td>此目录存放很多应用的缓存数据，如<code>yum</code>命令可能会缓存部分数据在此目录</td>
+</tr>
+
+<tr>
+<td>/var/spool</td>
+<td>一般情况下，该目录会存放邮件cron任务等数据</td>
+</tr>
+
+<tr>
+<td>/var/lib</td>
+<td>通常此目录下会存放应用的状态信息，如<code>/var/lib/mysql</code>存放<code>mysql</code>数据库，<code>/var/lib/docker</code>存放<code>docker</code>的数据</td>
+</tr>
+</tbody>
+</table>
 
     </div>
 
     
     
-<div class="post-copyright">
-  <p class="copyright-item">
-    <span class="item-title">文章作者</span>
-    <span class="item-content">keysaim</span>
-  </p>
-  <p class="copyright-item">
-    <span class="item-title">上次更新</span>
-    <span class="item-content">2017-10-09</span>
-  </p>
-  
-  <p class="copyright-item">
-    <span class="item-title">许可协议</span>
-    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
-  </p>
-</div>
 
     
     
@@ -374,12 +527,12 @@
           <a class="prev" href="/post/2017-10-09-linux-study-command-line/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">Linux系统介绍（一）命令行</span>
-            <span class="prev-text nav-mobile">上一篇</span>
+            <span class="prev-text nav-mobile">Prev</span>
           </a>
         
           <a class="next" href="/post/2017-10-09-linux-study-overview/">
             <span class="next-text nav-default">Linux系统介绍--综述</span>
-            <span class="prev-text nav-mobile">下一篇</span>
+            <span class="prev-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -398,7 +551,7 @@
     id: '2017-10-09 00:00:00 \x2b0000 UTC',
     title: 'Linux系统介绍（二）文件系统结构',
     link: decodeURI(location.href),
-    desc: '概述 多数Linux发行版本都是遵循文件系统结构标准（Filesystem Hierarchy Standard, 简称FHS），可以在这里找到该标准。本文对Linux的文件系统结构进行简单的介绍。\n根目录\/ 所有的Linux系统都有根目录，由\/表示。Linux系统的所有内容都在该目录下。\n二进制目录 |\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;-\x2b\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26ndash;| | 目录 | 说明 | |\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;-\x2b\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26ndash;| | \/bin | 包括了可执行的二进制文件，通常这些二进制文件可以被所有用户访问。FHS规定，该目录至少包括\/bin\/cat跟\/bin\/date文件 | | \/sbin | 包括了系统的二进制文件，通过需要root权限，用来配置系统 | | \/lib | 包括了\/bin所依赖的库 | | \/lib\/modules | Linux将从\/lib\/modules\/$kernel-version\/目录下载入内核模块 | | \/lib32和\/lib64 | 顾名思义，分别存放不同位数的库 | | \/opt | 该目录用来存放一些可选的软件，通常情况下，很多第三方的客户软件会选择安装在该目录下 | |\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;-\x2b\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26ndash;|\n配置文件目录 |\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;-\x2b\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26ndash;| | 目录 | 说明 | |\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;-\x2b\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26ndash;| | \/boot | 顾名思义，用来存放系统启动的配置文件，如grub引导的配置文件\/boot\/grub\/grub.cfg | | \/etc | 几乎大部分配置文件都放在改目录下。历史上etc的全称是etcetera，不过，现在一般认为是Editable Text Configuration的缩写 | | \/etc\/init.d | 存放daemon启动、停止等的脚本文件。不过在引入systemd之后，启动脚本有所变化 | | \/etc\/skel | 存放创建新用户之后所需的配置文件的模板，如.',
+    desc: '概述 多数Linux发行版本都是遵循文件系统结构标准（Filesystem Hierarchy Standard, 简称FHS），可以在这里找到该标准。本文对Linux的文件系统结',
     owner: 'keysaim',
     repo: 'comments',
     oauth: {

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>用docker搭建全栈式应用（一）基础篇 - 窗外蟋蟀博客</title>
-  <link rel="alternate" hreflang="zh-cn" href="https://keysaim.github.io" />
+  <link rel="alternate" hreflang="en" href="https://keysaim.github.io" />
 
 <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -19,12 +19,7 @@
 
 
 <meta name="author" content="keysaim" />
-  <meta name="description" content="用docker搭建全栈式应用 简介 本文将以docker为基础，搭建一套简单的应用案例。该案例的应用架构将采用redis的master-slave模式作为数据存储，以django为框架提供web访问，以haproxy作为负载均衡。其架构图如下.
- 其中App1和App2属于同一个Django的APP.
-准备工作 获取相应的docker images  可以直接从docker官方获取images
-$ docker pull django $ docker pull redis $ docker pull haproxy  获取成功之后，检查一下images是否真的ok
-$ docker images REPOSITORY TAG IMAGE ID CREATED VIRTUAL SIZE haproxy latest 46bc5babcc18 3 days ago 139.1 MB redis latest 84dbf5edc313 4 days ago 184.8 MB django latest 3b0bc67346a2 9 days ago 433.5 MB  检查一下各自的版本(root权限) redis版本
-# docker run -it redis /bin/bash root@a3ca293915cb:/data# redis-server -v Redis server v=3." />
+  <meta name="description" content="用docker搭建全栈式应用 简介 本文将以docker为基础，搭建一套简单的应用案例。该案例的应用架构将采用redis的master-slav" />
 
   <meta name="keywords" content="Hugo, blog, keysaim, 窗外蟋蟀" />
 
@@ -55,12 +50,7 @@ $ docker images REPOSITORY TAG IMAGE ID CREATED VIRTUAL SIZE haproxy latest 46bc
 
 
 <meta property="og:title" content="用docker搭建全栈式应用（一）基础篇" />
-<meta property="og:description" content="用docker搭建全栈式应用 简介 本文将以docker为基础，搭建一套简单的应用案例。该案例的应用架构将采用redis的master-slave模式作为数据存储，以django为框架提供web访问，以haproxy作为负载均衡。其架构图如下.
- 其中App1和App2属于同一个Django的APP.
-准备工作 获取相应的docker images  可以直接从docker官方获取images
-$ docker pull django $ docker pull redis $ docker pull haproxy  获取成功之后，检查一下images是否真的ok
-$ docker images REPOSITORY TAG IMAGE ID CREATED VIRTUAL SIZE haproxy latest 46bc5babcc18 3 days ago 139.1 MB redis latest 84dbf5edc313 4 days ago 184.8 MB django latest 3b0bc67346a2 9 days ago 433.5 MB  检查一下各自的版本(root权限) redis版本
-# docker run -it redis /bin/bash root@a3ca293915cb:/data# redis-server -v Redis server v=3." />
+<meta property="og:description" content="用docker搭建全栈式应用 简介 本文将以docker为基础，搭建一套简单的应用案例。该案例的应用架构将采用redis的master-slav" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://keysaim.github.io/post/2016-05-16-full-stack-demo/" />
 
@@ -81,29 +71,19 @@ $ docker images REPOSITORY TAG IMAGE ID CREATED VIRTUAL SIZE haproxy latest 46bc
 
 
 <meta itemprop="name" content="用docker搭建全栈式应用（一）基础篇">
-<meta itemprop="description" content="用docker搭建全栈式应用 简介 本文将以docker为基础，搭建一套简单的应用案例。该案例的应用架构将采用redis的master-slave模式作为数据存储，以django为框架提供web访问，以haproxy作为负载均衡。其架构图如下.
- 其中App1和App2属于同一个Django的APP.
-准备工作 获取相应的docker images  可以直接从docker官方获取images
-$ docker pull django $ docker pull redis $ docker pull haproxy  获取成功之后，检查一下images是否真的ok
-$ docker images REPOSITORY TAG IMAGE ID CREATED VIRTUAL SIZE haproxy latest 46bc5babcc18 3 days ago 139.1 MB redis latest 84dbf5edc313 4 days ago 184.8 MB django latest 3b0bc67346a2 9 days ago 433.5 MB  检查一下各自的版本(root权限) redis版本
-# docker run -it redis /bin/bash root@a3ca293915cb:/data# redis-server -v Redis server v=3.">
+<meta itemprop="description" content="用docker搭建全栈式应用 简介 本文将以docker为基础，搭建一套简单的应用案例。该案例的应用架构将采用redis的master-slav">
 
 
 <meta itemprop="datePublished" content="2016-05-16T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2016-05-16T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="923">
+<meta itemprop="wordCount" content="3382">
 
 
 
 <meta itemprop="keywords" content="docker,教程," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="用docker搭建全栈式应用（一）基础篇"/>
-<meta name="twitter:description" content="用docker搭建全栈式应用 简介 本文将以docker为基础，搭建一套简单的应用案例。该案例的应用架构将采用redis的master-slave模式作为数据存储，以django为框架提供web访问，以haproxy作为负载均衡。其架构图如下.
- 其中App1和App2属于同一个Django的APP.
-准备工作 获取相应的docker images  可以直接从docker官方获取images
-$ docker pull django $ docker pull redis $ docker pull haproxy  获取成功之后，检查一下images是否真的ok
-$ docker images REPOSITORY TAG IMAGE ID CREATED VIRTUAL SIZE haproxy latest 46bc5babcc18 3 days ago 139.1 MB redis latest 84dbf5edc313 4 days ago 184.8 MB django latest 3b0bc67346a2 9 days ago 433.5 MB  检查一下各自的版本(root权限) redis版本
-# docker run -it redis /bin/bash root@a3ca293915cb:/data# redis-server -v Redis server v=3."/>
+<meta name="twitter:description" content="用docker搭建全栈式应用 简介 本文将以docker为基础，搭建一套简单的应用案例。该案例的应用架构将采用redis的master-slav"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -179,15 +159,15 @@ $ docker images REPOSITORY TAG IMAGE ID CREATED VIRTUAL SIZE haproxy latest 46bc
       <div class="post-meta">
         <span class="post-time"> 2016-05-16 </span>
         
-        <span class="more-meta"> 约 923 字 </span>
-        <span class="more-meta"> 预计阅读 5 分钟 </span>
+        <span class="more-meta"> 3382 words </span>
+        <span class="more-meta"> 7 min read </span>
       </div>
     </header>
 
     
     
 <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">文章目录</h2>
+  <h2 class="post-toc-title">Table of Contents</h2>
   
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
@@ -828,21 +808,6 @@ root@7e0f805cd85c:/data#
 
     
     
-<div class="post-copyright">
-  <p class="copyright-item">
-    <span class="item-title">文章作者</span>
-    <span class="item-content">keysaim</span>
-  </p>
-  <p class="copyright-item">
-    <span class="item-title">上次更新</span>
-    <span class="item-content">2016-05-16</span>
-  </p>
-  
-  <p class="copyright-item">
-    <span class="item-title">许可协议</span>
-    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
-  </p>
-</div>
 
     
     
@@ -862,12 +827,12 @@ root@7e0f805cd85c:/data#
           <a class="prev" href="/post/2016-05-30-full-stack-demo2/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">用docker搭建全栈式应用 (二）构建篇</span>
-            <span class="prev-text nav-mobile">上一篇</span>
+            <span class="prev-text nav-mobile">Prev</span>
           </a>
         
           <a class="next" href="/post/2016-04-23-the-golang-book/">
             <span class="next-text nav-default">The golang programming language</span>
-            <span class="prev-text nav-mobile">下一篇</span>
+            <span class="prev-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -886,7 +851,7 @@ root@7e0f805cd85c:/data#
     id: '2016-05-16 00:00:00 \x2b0000 UTC',
     title: '用docker搭建全栈式应用（一）基础篇',
     link: decodeURI(location.href),
-    desc: '用docker搭建全栈式应用 简介 本文将以docker为基础，搭建一套简单的应用案例。该案例的应用架构将采用redis的master-slave模式作为数据存储，以django为框架提供web访问，以haproxy作为负载均衡。其架构图如下.\n 其中App1和App2属于同一个Django的APP.\n准备工作 获取相应的docker images  可以直接从docker官方获取images\n$ docker pull django $ docker pull redis $ docker pull haproxy  获取成功之后，检查一下images是否真的ok\n$ docker images REPOSITORY TAG IMAGE ID CREATED VIRTUAL SIZE haproxy latest 46bc5babcc18 3 days ago 139.1 MB redis latest 84dbf5edc313 4 days ago 184.8 MB django latest 3b0bc67346a2 9 days ago 433.5 MB  检查一下各自的版本(root权限) redis版本\n# docker run -it redis \/bin\/bash root@a3ca293915cb:\/data# redis-server -v Redis server v=3.',
+    desc: '用docker搭建全栈式应用 简介 本文将以docker为基础，搭建一套简单的应用案例。该案例的应用架构将采用redis的master-slav',
     owner: 'keysaim',
     repo: 'comments',
     oauth: {

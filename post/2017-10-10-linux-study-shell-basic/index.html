@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>Linux系统介绍（三）shell基础 - 窗外蟋蟀博客</title>
-  <link rel="alternate" hreflang="zh-cn" href="https://keysaim.github.io" />
+  <link rel="alternate" hreflang="en" href="https://keysaim.github.io" />
 
 <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -19,15 +19,7 @@
 
 
 <meta name="author" content="keysaim" />
-  <meta name="description" content="概述 首先，咱们来了解一下，什么是Shell。操作系统内核给我们提供了各种接口，同时也提供了各种用户层的库，理论上我们基于这些可以编写程序实现各种我们想要的功能，不过问题是，咱们不可能做什么事情都要重新编写程序，这样使用起来也太困难了。因此，操作系统（包括Linux）通常都会引入一个Shell这样的特殊程序，这个程序会接受输入的命令然后执行，并可能将执行结果呈现出来。总结来说，Shell是一个从输入设备或者文件读取命令，并且解释、执行的用户态程序。
-在Linux系统中，通常使用的Shell程序包括有： * Sh (Bourne Shell) * Bash (Bourne Again Shell) * Csh (C Shell) * Ksh (Korn Shell)
-一般来说，Bash应该是使用最多的Shell程序了，本文也主要基于Bash来展开。
-Shell展开（Shell Expansion） Shell程序是一个命令解释器，因此在终端输入命令之后，Shell将扫描命令并做适当的修改，这个过程称为Shell展开。Shell展开是Shell解释执行之前极为重要的一步，了解它将有利于你对Shell命令或者脚本的理解，本章节将逐步带大家来了解这个过程。
-命令参数解析 这里的空格包括了制表符（Tab）。当Shell程序扫描输入的命令时，会以*连续*的空格为界，将命令切分成一组参数，因此你输入多个空格为界跟输入一个空格的效果是一样的。通常来讲，第一个参数就是要执行的命令，而后面的参数则是改命令的参数。一下几个命令其实是等效的：
-# echo Hello World Hello World # echo Hello World Hello World # echo Hello World Hello World  引号 当然，有时候你需要在一个参数中包括空格，这样的话你就需要将这个参数以引号引起来，引号包括了单引号&#39;跟双引号&amp;quot;，两者都可以。shell会将引号中的字符串视为一个参数，不论里面有没有空格。当然，特别指出的是，不要用反引号`，反引号将在后面详细讲述。
-如命令echo &#39;Hello World!&#39;在shell解析之后会有两个参数，分别为echo跟Hello World!。而如果不用引号echo Hello World!，则将解析为三个参数。
- 特别提一下，对于echo命令，如果需要输出需要转义的字符，如回车等，则需要执行echo -e &amp;quot;Hello World!\n&amp;quot;，如果不加-e，则\n会被直接显示出来。
-&amp;gt; # echo &amp;quot;hello\n&amp;quot; &amp;gt; hello\n &amp;gt; # echo -e &amp;quot;hello\n&amp;quot; &amp;gt; hello &amp;gt; &amp;gt; ``` ## 命令 对于`shell`来说，命令有内部命令（Builtin Commands）跟外部命令（External Commands）之分，所谓内部命令指的是包含在`shell`解析器中的命令。内部命令一般有[4种类型](http://www." />
+  <meta name="description" content="概述 首先，咱们来了解一下，什么是Shell。操作系统内核给我们提供了各种接口，同时也提供了各种用户层的库，理论上我们基于这些可以编写程序实现" />
 
   <meta name="keywords" content="Hugo, blog, keysaim, 窗外蟋蟀" />
 
@@ -58,15 +50,7 @@ Shell展开（Shell Expansion） Shell程序是一个命令解释器，因此在
 
 
 <meta property="og:title" content="Linux系统介绍（三）shell基础" />
-<meta property="og:description" content="概述 首先，咱们来了解一下，什么是Shell。操作系统内核给我们提供了各种接口，同时也提供了各种用户层的库，理论上我们基于这些可以编写程序实现各种我们想要的功能，不过问题是，咱们不可能做什么事情都要重新编写程序，这样使用起来也太困难了。因此，操作系统（包括Linux）通常都会引入一个Shell这样的特殊程序，这个程序会接受输入的命令然后执行，并可能将执行结果呈现出来。总结来说，Shell是一个从输入设备或者文件读取命令，并且解释、执行的用户态程序。
-在Linux系统中，通常使用的Shell程序包括有： * Sh (Bourne Shell) * Bash (Bourne Again Shell) * Csh (C Shell) * Ksh (Korn Shell)
-一般来说，Bash应该是使用最多的Shell程序了，本文也主要基于Bash来展开。
-Shell展开（Shell Expansion） Shell程序是一个命令解释器，因此在终端输入命令之后，Shell将扫描命令并做适当的修改，这个过程称为Shell展开。Shell展开是Shell解释执行之前极为重要的一步，了解它将有利于你对Shell命令或者脚本的理解，本章节将逐步带大家来了解这个过程。
-命令参数解析 这里的空格包括了制表符（Tab）。当Shell程序扫描输入的命令时，会以*连续*的空格为界，将命令切分成一组参数，因此你输入多个空格为界跟输入一个空格的效果是一样的。通常来讲，第一个参数就是要执行的命令，而后面的参数则是改命令的参数。一下几个命令其实是等效的：
-# echo Hello World Hello World # echo Hello World Hello World # echo Hello World Hello World  引号 当然，有时候你需要在一个参数中包括空格，这样的话你就需要将这个参数以引号引起来，引号包括了单引号&#39;跟双引号&quot;，两者都可以。shell会将引号中的字符串视为一个参数，不论里面有没有空格。当然，特别指出的是，不要用反引号`，反引号将在后面详细讲述。
-如命令echo &#39;Hello World!&#39;在shell解析之后会有两个参数，分别为echo跟Hello World!。而如果不用引号echo Hello World!，则将解析为三个参数。
- 特别提一下，对于echo命令，如果需要输出需要转义的字符，如回车等，则需要执行echo -e &quot;Hello World!\n&quot;，如果不加-e，则\n会被直接显示出来。
-&gt; # echo &quot;hello\n&quot; &gt; hello\n &gt; # echo -e &quot;hello\n&quot; &gt; hello &gt; &gt; ``` ## 命令 对于`shell`来说，命令有内部命令（Builtin Commands）跟外部命令（External Commands）之分，所谓内部命令指的是包含在`shell`解析器中的命令。内部命令一般有[4种类型](http://www." />
+<meta property="og:description" content="概述 首先，咱们来了解一下，什么是Shell。操作系统内核给我们提供了各种接口，同时也提供了各种用户层的库，理论上我们基于这些可以编写程序实现" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://keysaim.github.io/post/2017-10-10-linux-study-shell-basic/" />
 
@@ -87,35 +71,19 @@ Shell展开（Shell Expansion） Shell程序是一个命令解释器，因此在
 
 
 <meta itemprop="name" content="Linux系统介绍（三）shell基础">
-<meta itemprop="description" content="概述 首先，咱们来了解一下，什么是Shell。操作系统内核给我们提供了各种接口，同时也提供了各种用户层的库，理论上我们基于这些可以编写程序实现各种我们想要的功能，不过问题是，咱们不可能做什么事情都要重新编写程序，这样使用起来也太困难了。因此，操作系统（包括Linux）通常都会引入一个Shell这样的特殊程序，这个程序会接受输入的命令然后执行，并可能将执行结果呈现出来。总结来说，Shell是一个从输入设备或者文件读取命令，并且解释、执行的用户态程序。
-在Linux系统中，通常使用的Shell程序包括有： * Sh (Bourne Shell) * Bash (Bourne Again Shell) * Csh (C Shell) * Ksh (Korn Shell)
-一般来说，Bash应该是使用最多的Shell程序了，本文也主要基于Bash来展开。
-Shell展开（Shell Expansion） Shell程序是一个命令解释器，因此在终端输入命令之后，Shell将扫描命令并做适当的修改，这个过程称为Shell展开。Shell展开是Shell解释执行之前极为重要的一步，了解它将有利于你对Shell命令或者脚本的理解，本章节将逐步带大家来了解这个过程。
-命令参数解析 这里的空格包括了制表符（Tab）。当Shell程序扫描输入的命令时，会以*连续*的空格为界，将命令切分成一组参数，因此你输入多个空格为界跟输入一个空格的效果是一样的。通常来讲，第一个参数就是要执行的命令，而后面的参数则是改命令的参数。一下几个命令其实是等效的：
-# echo Hello World Hello World # echo Hello World Hello World # echo Hello World Hello World  引号 当然，有时候你需要在一个参数中包括空格，这样的话你就需要将这个参数以引号引起来，引号包括了单引号&#39;跟双引号&quot;，两者都可以。shell会将引号中的字符串视为一个参数，不论里面有没有空格。当然，特别指出的是，不要用反引号`，反引号将在后面详细讲述。
-如命令echo &#39;Hello World!&#39;在shell解析之后会有两个参数，分别为echo跟Hello World!。而如果不用引号echo Hello World!，则将解析为三个参数。
- 特别提一下，对于echo命令，如果需要输出需要转义的字符，如回车等，则需要执行echo -e &quot;Hello World!\n&quot;，如果不加-e，则\n会被直接显示出来。
-&gt; # echo &quot;hello\n&quot; &gt; hello\n &gt; # echo -e &quot;hello\n&quot; &gt; hello &gt; &gt; ``` ## 命令 对于`shell`来说，命令有内部命令（Builtin Commands）跟外部命令（External Commands）之分，所谓内部命令指的是包含在`shell`解析器中的命令。内部命令一般有[4种类型](http://www.">
+<meta itemprop="description" content="概述 首先，咱们来了解一下，什么是Shell。操作系统内核给我们提供了各种接口，同时也提供了各种用户层的库，理论上我们基于这些可以编写程序实现">
 
 
 <meta itemprop="datePublished" content="2017-10-10T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2017-10-10T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="1266">
+<meta itemprop="wordCount" content="10337">
 
 
 
 <meta itemprop="keywords" content="Linux,study,学习," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Linux系统介绍（三）shell基础"/>
-<meta name="twitter:description" content="概述 首先，咱们来了解一下，什么是Shell。操作系统内核给我们提供了各种接口，同时也提供了各种用户层的库，理论上我们基于这些可以编写程序实现各种我们想要的功能，不过问题是，咱们不可能做什么事情都要重新编写程序，这样使用起来也太困难了。因此，操作系统（包括Linux）通常都会引入一个Shell这样的特殊程序，这个程序会接受输入的命令然后执行，并可能将执行结果呈现出来。总结来说，Shell是一个从输入设备或者文件读取命令，并且解释、执行的用户态程序。
-在Linux系统中，通常使用的Shell程序包括有： * Sh (Bourne Shell) * Bash (Bourne Again Shell) * Csh (C Shell) * Ksh (Korn Shell)
-一般来说，Bash应该是使用最多的Shell程序了，本文也主要基于Bash来展开。
-Shell展开（Shell Expansion） Shell程序是一个命令解释器，因此在终端输入命令之后，Shell将扫描命令并做适当的修改，这个过程称为Shell展开。Shell展开是Shell解释执行之前极为重要的一步，了解它将有利于你对Shell命令或者脚本的理解，本章节将逐步带大家来了解这个过程。
-命令参数解析 这里的空格包括了制表符（Tab）。当Shell程序扫描输入的命令时，会以*连续*的空格为界，将命令切分成一组参数，因此你输入多个空格为界跟输入一个空格的效果是一样的。通常来讲，第一个参数就是要执行的命令，而后面的参数则是改命令的参数。一下几个命令其实是等效的：
-# echo Hello World Hello World # echo Hello World Hello World # echo Hello World Hello World  引号 当然，有时候你需要在一个参数中包括空格，这样的话你就需要将这个参数以引号引起来，引号包括了单引号&#39;跟双引号&quot;，两者都可以。shell会将引号中的字符串视为一个参数，不论里面有没有空格。当然，特别指出的是，不要用反引号`，反引号将在后面详细讲述。
-如命令echo &#39;Hello World!&#39;在shell解析之后会有两个参数，分别为echo跟Hello World!。而如果不用引号echo Hello World!，则将解析为三个参数。
- 特别提一下，对于echo命令，如果需要输出需要转义的字符，如回车等，则需要执行echo -e &quot;Hello World!\n&quot;，如果不加-e，则\n会被直接显示出来。
-&gt; # echo &quot;hello\n&quot; &gt; hello\n &gt; # echo -e &quot;hello\n&quot; &gt; hello &gt; &gt; ``` ## 命令 对于`shell`来说，命令有内部命令（Builtin Commands）跟外部命令（External Commands）之分，所谓内部命令指的是包含在`shell`解析器中的命令。内部命令一般有[4种类型](http://www."/>
+<meta name="twitter:description" content="概述 首先，咱们来了解一下，什么是Shell。操作系统内核给我们提供了各种接口，同时也提供了各种用户层的库，理论上我们基于这些可以编写程序实现"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -191,15 +159,15 @@ Shell展开（Shell Expansion） Shell程序是一个命令解释器，因此在
       <div class="post-meta">
         <span class="post-time"> 2017-10-10 </span>
         
-        <span class="more-meta"> 约 1266 字 </span>
-        <span class="more-meta"> 预计阅读 6 分钟 </span>
+        <span class="more-meta"> 10337 words </span>
+        <span class="more-meta"> 21 min read </span>
       </div>
     </header>
 
     
     
 <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">文章目录</h2>
+  <h2 class="post-toc-title">Table of Contents</h2>
   
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
@@ -757,13 +725,11 @@ hello &gt;</p>
 <pre><code>
 为了方便在提示符中显示系统的某些实时信息，`$PS1`变量定义了一些特殊的字符：
 
-|------+--------------------|
 | 字符 | 说明               |
-|------+--------------------|
+|------|--------------------|
 | \w   | 表示工作目录       |
 | \u   | 表示用户名         |
 | \h   | 表示系统的hostname |
-|------+--------------------|
 
 当然，这里只列举了几个，详细的可以查看Linux手册。另外，`$PS1`中还可以对对其中不同部分采用不同颜色显示，如：
 
@@ -813,14 +779,12 @@ hello &gt;</p>
 
 在Linux系统中，很多时候我们需要访问外部网络，比如使用`curl`命令下载文件等等。而有的时候，访问访问外部网络咱们需要设置代理，在Linux系统中，使用网络代理非常简单，只要配置几个变量即可：
 
-|-------------+-------------------------------------------------------------------------|
 | 变量        | 说明                                                                    |
-|-------------+-------------------------------------------------------------------------|
+|-------------|-------------------------------------------------------------------------|
 | http_proxy  | 设置访问`http`请求所需要的代理，如`http_proxy=http://10.10.10.100:80`   |
 | https_proxy | 设置访问`https`请求所需要的代理，如`https_proxy=http://10.10.10.100:80` |
 | ftp_proxy   | 设置访问`ftp`请求所需要的代理，如`ftp_proxy=http://10.10.10.100:80`     |
 | no_proxy    | 设置哪些域名或者IP不需要走代理，如`no_proxy=localhost,127.0.0.1`        |
-|-------------+-------------------------------------------------------------------------|
 
 ### `$PWD`变量
 
@@ -931,16 +895,14 @@ hello &gt;</p>
 <pre><code>
 下面列举比较常用的`shell`重复执行历史记录中命令的方法：
 
-|-----------+-------------------------------------------------------------------------------------------------------|
 | 命令      | 说明                                                                                                  |
-|-----------+-------------------------------------------------------------------------------------------------------|
+|-----------|-------------------------------------------------------------------------------------------------------|
 | !!        | 在`shell`中输入两个感叹号会执行上一个命令                                                             |
 | !keyword  | 输入一个感叹号后跟关键字，会搜索历史记录中最先以该关键字开始的命令。如`!find`会执行序号为1008的命令。 |
 | !?keyword | 执行历史记录中第一个包括keyword关键字的命令                                                           |
 | !n        | 其中n代表历史记录中的序号，表示执行序号为n的命令。                                                    |
 | !-n       | 执行倒数第n个命令，如`!-1`其实就相当于`!!`                                                            |
 | cmd!*     | 执行命令`cmd`，其中`!*`会以上一条命令的所有参数替代                                                   |
-|-----------+-------------------------------------------------------------------------------------------------------|
 
 另外，对于`!keyword`的用法，还有一个高级功能，你可以将符合该条件的命令进行改造后执行，如：
 
@@ -982,13 +944,11 @@ adm
 
 有多个配置可以用来改变历史记录的有关信息，通常都是通过有关环境变量来配置：
 
-|---------------+--------------------------------------------------------------------------------------------|
 | 环境变量      | 说明                                                                                       |
-|---------------+--------------------------------------------------------------------------------------------|
+|---------------|--------------------------------------------------------------------------------------------|
 | $HISTSIZE     | 这个变量用来配置`shell`应该保持多少行的历史记录，在很多发行版本中，默认值一般为500或者1000 |
 | $HISTFILE     | 这个变量用来配置历史记录文件存放的位置，通常来讲，默认路径为`~/.bash_history`              |
 | $HISTFILESIZE | 这个变量用来配置历史记录文件可以存放多少行的历史记录                                       |
-|---------------+--------------------------------------------------------------------------------------------|
 
 ## 阻止记录某些命令
 
@@ -1078,13 +1038,31 @@ file1  file2  file3  fileab  fileabc
 
 <p>特别的，为了方便，<code>[]</code>中可以使用<code>-</code>来定义一些连续的字符集（Range匹配），常用的这类字符集包括：</p>
 
-<p>|&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|
-| 字符集 | 说明               |
-|&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|
-| 0-9    | 表示数字字符集     |
-| a-z    | 表示小写字母字符集 |
-| A-Z    | 表示大写字母字符集 |
-|&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|</p>
+<table>
+<thead>
+<tr>
+<th>字符集</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>0-9</td>
+<td>表示数字字符集</td>
+</tr>
+
+<tr>
+<td>a-z</td>
+<td>表示小写字母字符集</td>
+</tr>
+
+<tr>
+<td>A-Z</td>
+<td>表示大写字母字符集</td>
+</tr>
+</tbody>
+</table>
 
 <p>当然，你也不必要把所有范围都包括在内，如<code>[a-d]</code>可以用来限定从<code>a</code>到<code>d</code>的小写字母集。另外，用<code>-</code>连起来的字符集还可以跟其它字符集一起使用，如<code>[a-d_]</code>表示<code>a</code>到<code>d</code>的小写字母加上<code>_</code>所组成的字符集。</p>
 
@@ -1153,37 +1131,56 @@ Test1 test2
 
 <p><code>shell</code>中支持非常多的快捷键，可以非常方便我们输入命令：</p>
 
-<p>|&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|
-| 快捷键 | 说明                                                                      |
-|&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|
-| Ctrl-d | 表示<code>EOF</code>的意思，在shell终端中输入该快捷键会退出该终端                    |
-| Ctrl-z | 该快捷键用来暂停一个在shell终端中正在执行的进程，暂停后可以用<code>fg</code>命令恢复 |
-| Ctrl-a | 输入命令时跳到行首                                                        |
-| Ctrl-e | 跳到行尾                                                                  |
-| Ctrl-k | 删除从光标到行尾的部分                                                    |
-| Ctrl-y | 粘贴刚刚删除的部分                                                        |
-| Ctrl-w | 删除从光标至其左边第一个空格处                                            |
-|&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|</p>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Ctrl-d</td>
+<td>表示<code>EOF</code>的意思，在shell终端中输入该快捷键会退出该终端</td>
+</tr>
+
+<tr>
+<td>Ctrl-z</td>
+<td>该快捷键用来暂停一个在shell终端中正在执行的进程，暂停后可以用<code>fg</code>命令恢复</td>
+</tr>
+
+<tr>
+<td>Ctrl-a</td>
+<td>输入命令时跳到行首</td>
+</tr>
+
+<tr>
+<td>Ctrl-e</td>
+<td>跳到行尾</td>
+</tr>
+
+<tr>
+<td>Ctrl-k</td>
+<td>删除从光标到行尾的部分</td>
+</tr>
+
+<tr>
+<td>Ctrl-y</td>
+<td>粘贴刚刚删除的部分</td>
+</tr>
+
+<tr>
+<td>Ctrl-w</td>
+<td>删除从光标至其左边第一个空格处</td>
+</tr>
+</tbody>
+</table>
 
     </div>
 
     
     
-<div class="post-copyright">
-  <p class="copyright-item">
-    <span class="item-title">文章作者</span>
-    <span class="item-content">keysaim</span>
-  </p>
-  <p class="copyright-item">
-    <span class="item-title">上次更新</span>
-    <span class="item-content">2017-10-10</span>
-  </p>
-  
-  <p class="copyright-item">
-    <span class="item-title">许可协议</span>
-    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
-  </p>
-</div>
 
     
     
@@ -1205,12 +1202,12 @@ Test1 test2
           <a class="prev" href="/post/2017-10-11-rushgps-migrate/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">GPS管理系统服务器迁移指南</span>
-            <span class="prev-text nav-mobile">上一篇</span>
+            <span class="prev-text nav-mobile">Prev</span>
           </a>
         
           <a class="next" href="/post/2017-10-09-linux-study-command-line/">
             <span class="next-text nav-default">Linux系统介绍（一）命令行</span>
-            <span class="prev-text nav-mobile">下一篇</span>
+            <span class="prev-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -1229,7 +1226,7 @@ Test1 test2
     id: '2017-10-10 00:00:00 \x2b0000 UTC',
     title: 'Linux系统介绍（三）shell基础',
     link: decodeURI(location.href),
-    desc: '概述 首先，咱们来了解一下，什么是Shell。操作系统内核给我们提供了各种接口，同时也提供了各种用户层的库，理论上我们基于这些可以编写程序实现各种我们想要的功能，不过问题是，咱们不可能做什么事情都要重新编写程序，这样使用起来也太困难了。因此，操作系统（包括Linux）通常都会引入一个Shell这样的特殊程序，这个程序会接受输入的命令然后执行，并可能将执行结果呈现出来。总结来说，Shell是一个从输入设备或者文件读取命令，并且解释、执行的用户态程序。\n在Linux系统中，通常使用的Shell程序包括有： * Sh (Bourne Shell) * Bash (Bourne Again Shell) * Csh (C Shell) * Ksh (Korn Shell)\n一般来说，Bash应该是使用最多的Shell程序了，本文也主要基于Bash来展开。\nShell展开（Shell Expansion） Shell程序是一个命令解释器，因此在终端输入命令之后，Shell将扫描命令并做适当的修改，这个过程称为Shell展开。Shell展开是Shell解释执行之前极为重要的一步，了解它将有利于你对Shell命令或者脚本的理解，本章节将逐步带大家来了解这个过程。\n命令参数解析 这里的空格包括了制表符（Tab）。当Shell程序扫描输入的命令时，会以*连续*的空格为界，将命令切分成一组参数，因此你输入多个空格为界跟输入一个空格的效果是一样的。通常来讲，第一个参数就是要执行的命令，而后面的参数则是改命令的参数。一下几个命令其实是等效的：\n# echo Hello World Hello World # echo Hello World Hello World # echo Hello World Hello World  引号 当然，有时候你需要在一个参数中包括空格，这样的话你就需要将这个参数以引号引起来，引号包括了单引号\x27跟双引号\x26quot;，两者都可以。shell会将引号中的字符串视为一个参数，不论里面有没有空格。当然，特别指出的是，不要用反引号`，反引号将在后面详细讲述。\n如命令echo \x27Hello World!\x27在shell解析之后会有两个参数，分别为echo跟Hello World!。而如果不用引号echo Hello World!，则将解析为三个参数。\n 特别提一下，对于echo命令，如果需要输出需要转义的字符，如回车等，则需要执行echo -e \x26quot;Hello World!\\n\x26quot;，如果不加-e，则\\n会被直接显示出来。\n\x26gt; # echo \x26quot;hello\\n\x26quot; \x26gt; hello\\n \x26gt; # echo -e \x26quot;hello\\n\x26quot; \x26gt; hello \x26gt; \x26gt; ``` ## 命令 对于`shell`来说，命令有内部命令（Builtin Commands）跟外部命令（External Commands）之分，所谓内部命令指的是包含在`shell`解析器中的命令。内部命令一般有[4种类型](http:\/\/www.',
+    desc: '概述 首先，咱们来了解一下，什么是Shell。操作系统内核给我们提供了各种接口，同时也提供了各种用户层的库，理论上我们基于这些可以编写程序实现',
     owner: 'keysaim',
     repo: 'comments',
     oauth: {

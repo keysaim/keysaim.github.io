@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>用docker搭建全栈式应用（三）管理篇 - 窗外蟋蟀博客</title>
-  <link rel="alternate" hreflang="zh-cn" href="https://keysaim.github.io" />
+  <link rel="alternate" hreflang="en" href="https://keysaim.github.io" />
 
 <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -19,12 +19,7 @@
 
 
 <meta name="author" content="keysaim" />
-  <meta name="description" content="用docker搭建全栈式应用 (三）—— 管理篇 简介 在上一篇我们讲述了如何基于Dockerfile实现docker image的自动构建，并基于此重新实现了咱们本系列中的全栈式应用。然而，虽然构建过程实现了自动化，但是在实际部署的时候我们还是需要手动的理清所有服务的依赖关系，并依次启动所有服务，更严重的是，每次重启的时候，我们都需要重复这些操作，这个是不能接受的。
-那么有啥办法改善么？记得业内似乎总有这么个说法，大凡超过重复操作必须得用脚本实现自动化，此谓IT男的基本素养。既然如此，咱们也得用脚本自动化咱们的操作了。非常直接的一种方案就是咱自己写个shell的脚本，如下： * 启动脚本
-```shell docker run -d --name redis-master redis-master docker run -d --name redis-slave1 --link redis-master:master redis-slave1 docker run -d --name redis-slave2 --link redis-master:master redis-slave2 docker run -d --name app2 --link redis-master:redis app 0.0.0.0:8002 docker run -d --name haproxy --link app1:app1 --link app2:app2 -p 6301:6301 ha-app ``` 看起来还可以吗，简单的几条语句。但是，咱可不要忘了一点，每个语句咱还木有检查执行的结果。还有这个只是启动的脚本，还有停止的脚本，清除的脚本等等。更要命的是，如果下次我部署其它类型的应用，尼玛还得把这一些列的脚本复制并修改一通，这个有点弱爆了的感觉啊。  一般来讲，IT界总是存在这一的规律，当一个烦恼只是你一个人的时候，OK你可以随便整了；当你觉得可能会是很多人的烦恼的时候，这时必须得已经有人提供了解决方案了。所以，在当下技术更新如此剧烈的年代，切记不要随便就自己吭哧吭哧的闷声瞎搞了，第一要务就是google之。一般情况下，总是与大神提供了解决方案，如果真心没有，那么恭喜你，赶紧自己整一个并开放出来，那么你就是那个大神了。
-同样，在咱们本文碰到的问题中，早就有对应的解决方案了，那就是基于Docker compose工具的服务管理。本文将详述如何基于Docker compose管理服务。当然，例子还是那个例子咯。
-Docker Compose工具简介 关于Docker Compose，官方其实有非常详尽的介绍。这里就简单的总结一下。
-那么，Docker Compose是什么呢？ * Docker的一个工具 * 定义，运行并管理多个容器应用 * 基于Compose文件 * 通常应用于开发、测试、CI环境" />
+  <meta name="description" content="用docker搭建全栈式应用 (三）—— 管理篇 简介 在上一篇我们讲述了如何基于Dockerfile实现docker image的自动构建，并基于此" />
 
   <meta name="keywords" content="Hugo, blog, keysaim, 窗外蟋蟀" />
 
@@ -55,12 +50,7 @@ Docker Compose工具简介 关于Docker Compose，官方其实有非常详尽的
 
 
 <meta property="og:title" content="用docker搭建全栈式应用（三）管理篇" />
-<meta property="og:description" content="用docker搭建全栈式应用 (三）—— 管理篇 简介 在上一篇我们讲述了如何基于Dockerfile实现docker image的自动构建，并基于此重新实现了咱们本系列中的全栈式应用。然而，虽然构建过程实现了自动化，但是在实际部署的时候我们还是需要手动的理清所有服务的依赖关系，并依次启动所有服务，更严重的是，每次重启的时候，我们都需要重复这些操作，这个是不能接受的。
-那么有啥办法改善么？记得业内似乎总有这么个说法，大凡超过重复操作必须得用脚本实现自动化，此谓IT男的基本素养。既然如此，咱们也得用脚本自动化咱们的操作了。非常直接的一种方案就是咱自己写个shell的脚本，如下： * 启动脚本
-```shell docker run -d --name redis-master redis-master docker run -d --name redis-slave1 --link redis-master:master redis-slave1 docker run -d --name redis-slave2 --link redis-master:master redis-slave2 docker run -d --name app2 --link redis-master:redis app 0.0.0.0:8002 docker run -d --name haproxy --link app1:app1 --link app2:app2 -p 6301:6301 ha-app ``` 看起来还可以吗，简单的几条语句。但是，咱可不要忘了一点，每个语句咱还木有检查执行的结果。还有这个只是启动的脚本，还有停止的脚本，清除的脚本等等。更要命的是，如果下次我部署其它类型的应用，尼玛还得把这一些列的脚本复制并修改一通，这个有点弱爆了的感觉啊。  一般来讲，IT界总是存在这一的规律，当一个烦恼只是你一个人的时候，OK你可以随便整了；当你觉得可能会是很多人的烦恼的时候，这时必须得已经有人提供了解决方案了。所以，在当下技术更新如此剧烈的年代，切记不要随便就自己吭哧吭哧的闷声瞎搞了，第一要务就是google之。一般情况下，总是与大神提供了解决方案，如果真心没有，那么恭喜你，赶紧自己整一个并开放出来，那么你就是那个大神了。
-同样，在咱们本文碰到的问题中，早就有对应的解决方案了，那就是基于Docker compose工具的服务管理。本文将详述如何基于Docker compose管理服务。当然，例子还是那个例子咯。
-Docker Compose工具简介 关于Docker Compose，官方其实有非常详尽的介绍。这里就简单的总结一下。
-那么，Docker Compose是什么呢？ * Docker的一个工具 * 定义，运行并管理多个容器应用 * 基于Compose文件 * 通常应用于开发、测试、CI环境" />
+<meta property="og:description" content="用docker搭建全栈式应用 (三）—— 管理篇 简介 在上一篇我们讲述了如何基于Dockerfile实现docker image的自动构建，并基于此" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://keysaim.github.io/post/2016-06-23-full-stack-demo3/" />
 
@@ -81,29 +71,19 @@ Docker Compose工具简介 关于Docker Compose，官方其实有非常详尽的
 
 
 <meta itemprop="name" content="用docker搭建全栈式应用（三）管理篇">
-<meta itemprop="description" content="用docker搭建全栈式应用 (三）—— 管理篇 简介 在上一篇我们讲述了如何基于Dockerfile实现docker image的自动构建，并基于此重新实现了咱们本系列中的全栈式应用。然而，虽然构建过程实现了自动化，但是在实际部署的时候我们还是需要手动的理清所有服务的依赖关系，并依次启动所有服务，更严重的是，每次重启的时候，我们都需要重复这些操作，这个是不能接受的。
-那么有啥办法改善么？记得业内似乎总有这么个说法，大凡超过重复操作必须得用脚本实现自动化，此谓IT男的基本素养。既然如此，咱们也得用脚本自动化咱们的操作了。非常直接的一种方案就是咱自己写个shell的脚本，如下： * 启动脚本
-```shell docker run -d --name redis-master redis-master docker run -d --name redis-slave1 --link redis-master:master redis-slave1 docker run -d --name redis-slave2 --link redis-master:master redis-slave2 docker run -d --name app2 --link redis-master:redis app 0.0.0.0:8002 docker run -d --name haproxy --link app1:app1 --link app2:app2 -p 6301:6301 ha-app ``` 看起来还可以吗，简单的几条语句。但是，咱可不要忘了一点，每个语句咱还木有检查执行的结果。还有这个只是启动的脚本，还有停止的脚本，清除的脚本等等。更要命的是，如果下次我部署其它类型的应用，尼玛还得把这一些列的脚本复制并修改一通，这个有点弱爆了的感觉啊。  一般来讲，IT界总是存在这一的规律，当一个烦恼只是你一个人的时候，OK你可以随便整了；当你觉得可能会是很多人的烦恼的时候，这时必须得已经有人提供了解决方案了。所以，在当下技术更新如此剧烈的年代，切记不要随便就自己吭哧吭哧的闷声瞎搞了，第一要务就是google之。一般情况下，总是与大神提供了解决方案，如果真心没有，那么恭喜你，赶紧自己整一个并开放出来，那么你就是那个大神了。
-同样，在咱们本文碰到的问题中，早就有对应的解决方案了，那就是基于Docker compose工具的服务管理。本文将详述如何基于Docker compose管理服务。当然，例子还是那个例子咯。
-Docker Compose工具简介 关于Docker Compose，官方其实有非常详尽的介绍。这里就简单的总结一下。
-那么，Docker Compose是什么呢？ * Docker的一个工具 * 定义，运行并管理多个容器应用 * 基于Compose文件 * 通常应用于开发、测试、CI环境">
+<meta itemprop="description" content="用docker搭建全栈式应用 (三）—— 管理篇 简介 在上一篇我们讲述了如何基于Dockerfile实现docker image的自动构建，并基于此">
 
 
 <meta itemprop="datePublished" content="2016-06-23T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2016-06-23T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="1091">
+<meta itemprop="wordCount" content="5073">
 
 
 
 <meta itemprop="keywords" content="docker,教程," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="用docker搭建全栈式应用（三）管理篇"/>
-<meta name="twitter:description" content="用docker搭建全栈式应用 (三）—— 管理篇 简介 在上一篇我们讲述了如何基于Dockerfile实现docker image的自动构建，并基于此重新实现了咱们本系列中的全栈式应用。然而，虽然构建过程实现了自动化，但是在实际部署的时候我们还是需要手动的理清所有服务的依赖关系，并依次启动所有服务，更严重的是，每次重启的时候，我们都需要重复这些操作，这个是不能接受的。
-那么有啥办法改善么？记得业内似乎总有这么个说法，大凡超过重复操作必须得用脚本实现自动化，此谓IT男的基本素养。既然如此，咱们也得用脚本自动化咱们的操作了。非常直接的一种方案就是咱自己写个shell的脚本，如下： * 启动脚本
-```shell docker run -d --name redis-master redis-master docker run -d --name redis-slave1 --link redis-master:master redis-slave1 docker run -d --name redis-slave2 --link redis-master:master redis-slave2 docker run -d --name app2 --link redis-master:redis app 0.0.0.0:8002 docker run -d --name haproxy --link app1:app1 --link app2:app2 -p 6301:6301 ha-app ``` 看起来还可以吗，简单的几条语句。但是，咱可不要忘了一点，每个语句咱还木有检查执行的结果。还有这个只是启动的脚本，还有停止的脚本，清除的脚本等等。更要命的是，如果下次我部署其它类型的应用，尼玛还得把这一些列的脚本复制并修改一通，这个有点弱爆了的感觉啊。  一般来讲，IT界总是存在这一的规律，当一个烦恼只是你一个人的时候，OK你可以随便整了；当你觉得可能会是很多人的烦恼的时候，这时必须得已经有人提供了解决方案了。所以，在当下技术更新如此剧烈的年代，切记不要随便就自己吭哧吭哧的闷声瞎搞了，第一要务就是google之。一般情况下，总是与大神提供了解决方案，如果真心没有，那么恭喜你，赶紧自己整一个并开放出来，那么你就是那个大神了。
-同样，在咱们本文碰到的问题中，早就有对应的解决方案了，那就是基于Docker compose工具的服务管理。本文将详述如何基于Docker compose管理服务。当然，例子还是那个例子咯。
-Docker Compose工具简介 关于Docker Compose，官方其实有非常详尽的介绍。这里就简单的总结一下。
-那么，Docker Compose是什么呢？ * Docker的一个工具 * 定义，运行并管理多个容器应用 * 基于Compose文件 * 通常应用于开发、测试、CI环境"/>
+<meta name="twitter:description" content="用docker搭建全栈式应用 (三）—— 管理篇 简介 在上一篇我们讲述了如何基于Dockerfile实现docker image的自动构建，并基于此"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -179,15 +159,15 @@ Docker Compose工具简介 关于Docker Compose，官方其实有非常详尽的
       <div class="post-meta">
         <span class="post-time"> 2016-06-23 </span>
         
-        <span class="more-meta"> 约 1091 字 </span>
-        <span class="more-meta"> 预计阅读 6 分钟 </span>
+        <span class="more-meta"> 5073 words </span>
+        <span class="more-meta"> 11 min read </span>
       </div>
     </header>
 
     
     
 <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">文章目录</h2>
+  <h2 class="post-toc-title">Table of Contents</h2>
   
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
@@ -609,21 +589,6 @@ Commands:
 
     
     
-<div class="post-copyright">
-  <p class="copyright-item">
-    <span class="item-title">文章作者</span>
-    <span class="item-content">keysaim</span>
-  </p>
-  <p class="copyright-item">
-    <span class="item-title">上次更新</span>
-    <span class="item-content">2016-06-23</span>
-  </p>
-  
-  <p class="copyright-item">
-    <span class="item-title">许可协议</span>
-    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
-  </p>
-</div>
 
     
     
@@ -643,12 +608,12 @@ Commands:
           <a class="prev" href="/post/2017-08-15-how-to-setup-your-github-io-blog/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">如何快速搭建自己的github.io博客</span>
-            <span class="prev-text nav-mobile">上一篇</span>
+            <span class="prev-text nav-mobile">Prev</span>
           </a>
         
           <a class="next" href="/post/2016-05-30-full-stack-demo2/">
             <span class="next-text nav-default">用docker搭建全栈式应用 (二）构建篇</span>
-            <span class="prev-text nav-mobile">下一篇</span>
+            <span class="prev-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -667,7 +632,7 @@ Commands:
     id: '2016-06-23 00:00:00 \x2b0000 UTC',
     title: '用docker搭建全栈式应用（三）管理篇',
     link: decodeURI(location.href),
-    desc: '用docker搭建全栈式应用 (三）—— 管理篇 简介 在上一篇我们讲述了如何基于Dockerfile实现docker image的自动构建，并基于此重新实现了咱们本系列中的全栈式应用。然而，虽然构建过程实现了自动化，但是在实际部署的时候我们还是需要手动的理清所有服务的依赖关系，并依次启动所有服务，更严重的是，每次重启的时候，我们都需要重复这些操作，这个是不能接受的。\n那么有啥办法改善么？记得业内似乎总有这么个说法，大凡超过重复操作必须得用脚本实现自动化，此谓IT男的基本素养。既然如此，咱们也得用脚本自动化咱们的操作了。非常直接的一种方案就是咱自己写个shell的脚本，如下： * 启动脚本\n```shell docker run -d --name redis-master redis-master docker run -d --name redis-slave1 --link redis-master:master redis-slave1 docker run -d --name redis-slave2 --link redis-master:master redis-slave2 docker run -d --name app2 --link redis-master:redis app 0.0.0.0:8002 docker run -d --name haproxy --link app1:app1 --link app2:app2 -p 6301:6301 ha-app ``` 看起来还可以吗，简单的几条语句。但是，咱可不要忘了一点，每个语句咱还木有检查执行的结果。还有这个只是启动的脚本，还有停止的脚本，清除的脚本等等。更要命的是，如果下次我部署其它类型的应用，尼玛还得把这一些列的脚本复制并修改一通，这个有点弱爆了的感觉啊。  一般来讲，IT界总是存在这一的规律，当一个烦恼只是你一个人的时候，OK你可以随便整了；当你觉得可能会是很多人的烦恼的时候，这时必须得已经有人提供了解决方案了。所以，在当下技术更新如此剧烈的年代，切记不要随便就自己吭哧吭哧的闷声瞎搞了，第一要务就是google之。一般情况下，总是与大神提供了解决方案，如果真心没有，那么恭喜你，赶紧自己整一个并开放出来，那么你就是那个大神了。\n同样，在咱们本文碰到的问题中，早就有对应的解决方案了，那就是基于Docker compose工具的服务管理。本文将详述如何基于Docker compose管理服务。当然，例子还是那个例子咯。\nDocker Compose工具简介 关于Docker Compose，官方其实有非常详尽的介绍。这里就简单的总结一下。\n那么，Docker Compose是什么呢？ * Docker的一个工具 * 定义，运行并管理多个容器应用 * 基于Compose文件 * 通常应用于开发、测试、CI环境',
+    desc: '用docker搭建全栈式应用 (三）—— 管理篇 简介 在上一篇我们讲述了如何基于Dockerfile实现docker image的自动构建，并基于此',
     owner: 'keysaim',
     repo: 'comments',
     oauth: {

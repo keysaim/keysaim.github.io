@@ -5,7 +5,7 @@
     <link>https://keysaim.github.io/</link>
     <description>Recent content on 窗外蟋蟀博客</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
+    <language>en</language>
     <lastBuildDate>Wed, 21 Mar 2018 13:44:52 +0800</lastBuildDate>
     
         <atom:link href="https://keysaim.github.io/index.xml" rel="self" type="application/rss+xml" />
@@ -72,7 +72,7 @@
 
 &lt;p&gt;&lt;code&gt;tee&lt;/code&gt;命令一般从管道接收数据，这点与&lt;code&gt;cat&lt;/code&gt;类似，将stdin导到stdout。不同的是，&lt;code&gt;tee&lt;/code&gt;同时还可以指定一个文件作为输出。这点非常有用，有时候我们想一般看到命令的输出，同时又希望将输出保存到文件中，这时候用&lt;code&gt;tee&lt;/code&gt;最为合适。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# date | tee time.log
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# date | tee time.log
 Mon Nov 20 14:05:02 EST 2017
 # cat time.log
 Mon Nov 20 14:05:02 EST 2017
@@ -85,7 +85,7 @@ Mon Nov 20 14:05:02 EST 2017
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;默认显示&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# date
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# date
 Sun Nov 19 20:08:21 EST 2017
 # date -u
 Mon Nov 20 01:08:28 UTC 2017
@@ -97,7 +97,7 @@ Mon Nov 20 01:08:28 UTC 2017
 
 &lt;p&gt;除了默认输出，我们也可以指定显示的格式：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# date +&#39;%A %d-%m-%Y UTC %:z&#39;
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# date +&#39;%A %d-%m-%Y UTC %:z&#39;
 Sunday 19-11-2017 UTC -05:00
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -107,7 +107,7 @@ Sunday 19-11-2017 UTC -05:00
 
 &lt;p&gt;通常，在计算当前时间的秒数的时候，我们通常会以&lt;a href=&#34;https://en.wikipedia.org/wiki/Unix_time&#34;&gt;Unix Epoch Time&lt;/a&gt;为基准，用&lt;code&gt;date&lt;/code&gt;命令可以非常方便的显示当前时间的秒数：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# date +%s
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# date +%s
 1511141040
 # date +%s --date=&#39;2017/11/19 09:56:00&#39;
 1511103360
@@ -115,7 +115,7 @@ Sunday 19-11-2017 UTC -05:00
 
 &lt;p&gt;其中，也可以通过参数&lt;code&gt;--date&lt;/code&gt;指定时间来计算。反过来，如果我们知道了时间的秒数，需要显示其相对于Unix Epoch Time的时间，可以这么做：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# date; date +%s
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# date; date +%s
 Mon Nov 20 10:33:07 EST 2017
 1511191987
 # date --date=@1511191987
@@ -126,7 +126,7 @@ Mon Nov 20 10:33:07 EST 2017
 
 &lt;p&gt;有时候需要知道多少天前是什么时间，这时候需要用到时间偏移计算了：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# date --date=&#39;100 seconds ago&#39;
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# date --date=&#39;100 seconds ago&#39;
 Sun Nov 19 20:35:44 EST 2017
 # date --date=&#39;100 hours ago&#39;
 Wed Nov 15 16:37:28 EST 2017
@@ -136,7 +136,7 @@ Fri Aug 11 21:37:34 EDT 2017
 
 &lt;p&gt;&lt;code&gt;date&lt;/code&gt;命令可以识别多种时间偏移写法，除了示例中的，还有&lt;code&gt;minutes months years&lt;/code&gt;等，当然，也可以这样写:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# date --date=&#39;+ 1000 seconds&#39;
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# date --date=&#39;+ 1000 seconds&#39;
 Sun Nov 19 20:56:28 EST 2017
 # date --date=&#39;- 1000 seconds&#39;
 Sun Nov 19 20:23:41 EST 2017
@@ -150,7 +150,7 @@ Sat Nov 18 09:00:01 EST 2017
 
 &lt;p&gt;当然，你也可以通过&lt;code&gt;date&lt;/code&gt;命令来设置时间：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# date
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# date
 Sun Nov 19 20:44:11 EST 2017
 # date --set=&#39;Sun Nov 19 20:44:30 EST 2017&#39;
 Sun Nov 19 20:44:30 EST 2017
@@ -160,7 +160,7 @@ Sun Nov 19 20:44:31 EST 2017
 
 &lt;p&gt;其中&lt;code&gt;--set&lt;/code&gt;也可以简写为&lt;code&gt;-s&lt;/code&gt;，时间格式非常灵活：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# date -s &#39;2017/11/20 10:19:50&#39;
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# date -s &#39;2017/11/20 10:19:50&#39;
 Mon Nov 20 10:19:50 EST 2017
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -169,7 +169,7 @@ Mon Nov 20 10:19:50 EST 2017
 
 &lt;p&gt;我们用&lt;code&gt;date&lt;/code&gt;可以显示时间，同时咱们还可以通过&lt;code&gt;cal&lt;/code&gt;命令来显示日历：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# cal
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# cal
     November 2017
 Su Mo Tu We Th Fr Sa
           1  2  3  4
@@ -181,7 +181,7 @@ Su Mo Tu We Th Fr Sa
 
 &lt;p&gt;当然，你也可以指定要显示的日期，比如1949年10月的日历：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# cal 10 1949
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# cal 10 1949
     October 1949
 Su Mo Tu We Th Fr Sa
                    1
@@ -196,7 +196,7 @@ Su Mo Tu We Th Fr Sa
 
 &lt;p&gt;有时候我们需要知道一个命令运行了多少时间，这时候我们可以用&lt;code&gt;time&lt;/code&gt;命令来计时：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# time sleep 1
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# time sleep 1
 
 real	0m1.018s
 user	0m0.001s
@@ -209,7 +209,7 @@ sys  	0m0.002s
 
 &lt;p&gt;&lt;code&gt;wc&lt;/code&gt;命令是&lt;code&gt;Word Count&lt;/code&gt;的简称，顾名思义就是用来统计单词的。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# cat test.log
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# cat test.log
 Nov 17 00:27:20 traffic-base1 named[1212]: managed-keys-zone: Unable to fetch DNSKEY set .: timed out
 # cat test.log | wc -w
 14
@@ -217,19 +217,45 @@ Nov 17 00:27:20 traffic-base1 named[1212]: managed-keys-zone: Unable to fetch DN
 
 &lt;p&gt;参数&lt;code&gt;-w&lt;/code&gt;表示统计单词数，这里的单词实际上指的是被空格分开的字符串。下面列举出&lt;code&gt;wc&lt;/code&gt;命令的有关参数：&lt;/p&gt;
 
-&lt;p&gt;|&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;|
-| 参数 | 说明                   |
-|&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;|
-| -w   | 统计多少单词           |
-| -l   | 统计多少行             |
-| -c   | 统计有多少个字节       |
-| -m   | 统计有多少个字符       |
-| -L   | 统计长度最长的行的长度 |
-|&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;|&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;参数&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;-w&lt;/td&gt;
+&lt;td&gt;统计多少单词&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;-l&lt;/td&gt;
+&lt;td&gt;统计多少行&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;-c&lt;/td&gt;
+&lt;td&gt;统计有多少个字节&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;-m&lt;/td&gt;
+&lt;td&gt;统计有多少个字符&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;-L&lt;/td&gt;
+&lt;td&gt;统计长度最长的行的长度&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;p&gt;注意，这里的字节跟字符的差别，在英文中基本上是一样的，但是在多字节语言中，其意义就不一样了：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# echo &#39;你好&#39; | wc -c
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# echo &#39;你好&#39; | wc -c
 7
 # echo &#39;你好&#39; | wc -m
 3
@@ -244,7 +270,7 @@ Nov 17 00:27:20 traffic-base1 named[1212]: managed-keys-zone: Unable to fetch DN
 
 &lt;p&gt;这是基本且常见的用法：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# find . -name &amp;quot;test*&amp;quot;
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# find . -name &amp;quot;test*&amp;quot;
 ./test.log
 ./test2
 &lt;/code&gt;&lt;/pre&gt;
@@ -255,7 +281,7 @@ Nov 17 00:27:20 traffic-base1 named[1212]: managed-keys-zone: Unable to fetch DN
 
 &lt;p&gt;&lt;code&gt;-name&lt;/code&gt;参数会根据名字查找，如果需要对路径进行匹配查找，则可以用&lt;code&gt;-path&lt;/code&gt;参数：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# find . -path &amp;quot;./tmp/*&amp;quot;
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# find . -path &amp;quot;./tmp/*&amp;quot;
 ./tmp/Test1
 ./tmp/test2
 ./tmp/test.log
@@ -267,7 +293,7 @@ Nov 17 00:27:20 traffic-base1 named[1212]: managed-keys-zone: Unable to fetch DN
 
 &lt;p&gt;可以根据类型查找文件：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# find . -type f
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# find . -type f
 ./Test1
 ./test.log
 ./test2
@@ -275,7 +301,7 @@ Nov 17 00:27:20 traffic-base1 named[1212]: managed-keys-zone: Unable to fetch DN
 
 &lt;p&gt;当然，也可以同时根据类型跟文件名一起查找：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# find . -type f -name &amp;quot;test*&amp;quot;
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# find . -type f -name &amp;quot;test*&amp;quot;
 ./test.log
 ./test2
 &lt;/code&gt;&lt;/pre&gt;
@@ -291,7 +317,7 @@ Nov 17 00:27:20 traffic-base1 named[1212]: managed-keys-zone: Unable to fetch DN
 
 &lt;p&gt;表示在当前目录下查找比&lt;code&gt;base_file&lt;/code&gt;文件更新的文件或者目录。此外，&lt;code&gt;find&lt;/code&gt;还可以根据文件的&lt;a href=&#34;https://www.unixtutorial.org/2008/04/atime-ctime-mtime-in-unix-filesystems/&#34;&gt;atime, ctime, mtime&lt;/a&gt;来查找文件，如下，根据修改时间来查找：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# date
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# date
 Fri Nov 17 20:34:52 EST 2017
 # ll
 total 20
@@ -308,13 +334,31 @@ dr-xr-x---. 48 root root 8192 Nov 17 02:46 ../
 
 &lt;p&gt;其中&lt;code&gt;-mtime&lt;/code&gt;表示根据修改时间查找，&lt;code&gt;-1&lt;/code&gt;表示最近一天。&lt;code&gt;find&lt;/code&gt;支持的时间查找总结如下：&lt;/p&gt;
 
-&lt;p&gt;|&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-|
-| 参数   | 说明                                         |
-|&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-|
-| -mtime | 根据修改时间，也就是&lt;code&gt;ls -l&lt;/code&gt;显示的时间        |
-| -atime | 根据访问时间，也就是&lt;code&gt;ls -lu&lt;/code&gt;显示的时间       |
-| -ctime | 根据状态改变的时间，也就是&lt;code&gt;ls -lc&lt;/code&gt;显示的时间 |
-|&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-|&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;参数&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;-mtime&lt;/td&gt;
+&lt;td&gt;根据修改时间，也就是&lt;code&gt;ls -l&lt;/code&gt;显示的时间&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;-atime&lt;/td&gt;
+&lt;td&gt;根据访问时间，也就是&lt;code&gt;ls -lu&lt;/code&gt;显示的时间&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;-ctime&lt;/td&gt;
+&lt;td&gt;根据状态改变的时间，也就是&lt;code&gt;ls -lc&lt;/code&gt;显示的时间&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;p&gt;时间值的表示说明：基准&lt;code&gt;+0&lt;/code&gt;表示一天前，&lt;code&gt;-1.5&lt;/code&gt;表示最近1.5天，&lt;code&gt;+1.5&lt;/code&gt;表示2.5天前&lt;/p&gt;&lt;/li&gt;
 
@@ -327,13 +371,35 @@ dr-xr-x---. 48 root root 8192 Nov 17 02:46 ../
 
 &lt;p&gt;其中&lt;code&gt;-o&lt;/code&gt;是&lt;code&gt;-or&lt;/code&gt;的缩写，用来表示逻辑或的关系，而&lt;code&gt;-name &amp;quot;*.cpp&amp;quot;&lt;/code&gt;与&lt;code&gt;-name &amp;quot;*.h&amp;quot;&lt;/code&gt;为表达式，构成了&lt;code&gt;EXP1 or EXP2&lt;/code&gt;的关系，只要文件或者目录满足其中一个表达式就会输出。&lt;code&gt;find&lt;/code&gt;支持的逻辑关系如下：&lt;/p&gt;
 
-&lt;p&gt;|&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;|
-| 逻辑 | 参数 | 说明                                                               |
-|&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;|
-| 与   | -a   | &lt;code&gt;-and&lt;/code&gt;的缩写，逻辑与的关系，如&lt;code&gt;find . -type f -a -name &amp;quot;*.log&amp;quot;&lt;/code&gt;    |
-| 或   | -o   | &lt;code&gt;-or&lt;/code&gt;的缩写，逻辑或的关系, 如&lt;code&gt;find . -name &amp;quot;*.cpp&amp;quot; -o -name &amp;quot;*.h&amp;quot;&lt;/code&gt; |
-| 非   | !    | &lt;code&gt;-not&lt;/code&gt;的缩写，逻辑非的关系, 如&lt;code&gt;find . ! -name &amp;quot;*.cpp&amp;quot;&lt;/code&gt;             |
-|&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;|&lt;/p&gt;&lt;/li&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;逻辑&lt;/th&gt;
+&lt;th&gt;参数&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;与&lt;/td&gt;
+&lt;td&gt;-a&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;-and&lt;/code&gt;的缩写，逻辑与的关系，如&lt;code&gt;find . -type f -a -name &amp;quot;*.log&amp;quot;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;或&lt;/td&gt;
+&lt;td&gt;-o&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;-or&lt;/code&gt;的缩写，逻辑或的关系, 如&lt;code&gt;find . -name &amp;quot;*.cpp&amp;quot; -o -name &amp;quot;*.h&amp;quot;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;非&lt;/td&gt;
+&lt;td&gt;!&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;-not&lt;/code&gt;的缩写，逻辑非的关系, 如&lt;code&gt;find . ! -name &amp;quot;*.cpp&amp;quot;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;此外，&lt;code&gt;find&lt;/code&gt;命令还有一个非常重要且常见的用法，就是在找到文件后执行某个命令，改用法如下：&lt;/p&gt;
@@ -352,7 +418,7 @@ dr-xr-x---. 48 root root 8192 Nov 17 02:46 ../
 
 &lt;p&gt;顾名思义，这个命令就是用来排序的。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# head -n 5 /etc/passwd | sort
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# head -n 5 /etc/passwd | sort
 adm❌3:4:adm:/var/adm:/sbin/nologin
 bin❌1:1:bin:/bin:/sbin/nologin
 daemon❌2:2:daemon:/sbin:/sbin/nologin
@@ -362,7 +428,7 @@ root❌0:0:root:/root:/bin/bash
 
 &lt;p&gt;默认情况下，&lt;code&gt;sort&lt;/code&gt;命令以字典顺序对每行进行排序，如果不带参数，会将整行作为一个字符串进行比较。当然，你也可以指定以第几列进行排序：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# head -n 5 /etc/passwd | tr : &amp;quot; &amp;quot; | sort -k 3
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# head -n 5 /etc/passwd | tr : &amp;quot; &amp;quot; | sort -k 3
 root x 0 0 root /root /bin/bash
 bin x 1 1 bin /bin /sbin/nologin
 daemon x 2 2 daemon /sbin /sbin/nologin
@@ -372,18 +438,48 @@ lp x 4 7 lp /var/spool/lpd /sbin/nologin
 
 &lt;p&gt;这里先将&lt;code&gt;:&lt;/code&gt;换成空格（关于&lt;code&gt;tr&lt;/code&gt;命令，请参照本文关于&lt;code&gt;tr&lt;/code&gt;命令的章节），然后以&lt;code&gt;-k&lt;/code&gt;为参数，指定以第三列进行排序。下面列举其常用的一些参数：&lt;/p&gt;
 
-&lt;p&gt;|&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;|
-| 参数 | 说明                                                                                                       |
-|&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;|
-| -k   | 以第几列排序，列以空格为分隔                                                                               |
-| -r   | 默认&lt;code&gt;sort&lt;/code&gt;以升序输出，&lt;code&gt;-r&lt;/code&gt;参数则可以以降序输出                                                             |
-| -n   | 在指定第几列的时候，可以强制&lt;code&gt;sort&lt;/code&gt;把列的值以数字值进行排序，如下面的例子                                   |
-| -t   | 默认情况下认为列是以空格为分隔，&lt;code&gt;-t&lt;/code&gt;参数则可以指定分隔符，这样，上面的例子其实可以直接写成&lt;code&gt;sort -t : -k 3&lt;/code&gt; |
-| -f   | 忽略大小写                                                                                                 |
-| -u   | 如果排序后出现重复的行，加上这个参数将只显示一行                                                           |
-|&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;|&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;参数&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
 
-&lt;pre&gt;&lt;code&gt;# cat test2
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;-k&lt;/td&gt;
+&lt;td&gt;以第几列排序，列以空格为分隔&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;-r&lt;/td&gt;
+&lt;td&gt;默认&lt;code&gt;sort&lt;/code&gt;以升序输出，&lt;code&gt;-r&lt;/code&gt;参数则可以以降序输出&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;-n&lt;/td&gt;
+&lt;td&gt;在指定第几列的时候，可以强制&lt;code&gt;sort&lt;/code&gt;把列的值以数字值进行排序，如下面的例子&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;-t&lt;/td&gt;
+&lt;td&gt;默认情况下认为列是以空格为分隔，&lt;code&gt;-t&lt;/code&gt;参数则可以指定分隔符，这样，上面的例子其实可以直接写成&lt;code&gt;sort -t : -k 3&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;-f&lt;/td&gt;
+&lt;td&gt;忽略大小写&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;-u&lt;/td&gt;
+&lt;td&gt;如果排序后出现重复的行，加上这个参数将只显示一行&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# cat test2
 10
 3
 5
@@ -408,7 +504,7 @@ lp x 4 7 lp /var/spool/lpd /sbin/nologin
 
 &lt;p&gt;&lt;code&gt;uniq&lt;/code&gt;是&lt;code&gt;unique&lt;/code&gt;的简写，用来消除&lt;code&gt;sort&lt;/code&gt;排序后重复的行，即相当于&lt;code&gt;sort&lt;/code&gt;命令中的&lt;code&gt;-u&lt;/code&gt;参数。但是，&lt;code&gt;uniq&lt;/code&gt;不仅可以消除重复行，它还可以显示分别重复了多少行：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# cat test2 | sort -n | uniq -c
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# cat test2 | sort -n | uniq -c
       2 3
       1 5
       1 10
@@ -416,21 +512,47 @@ lp x 4 7 lp /var/spool/lpd /sbin/nologin
 
 &lt;p&gt;还有些常用的参数如下：&lt;/p&gt;
 
-&lt;p&gt;|&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;|
-| 参数 | 说明                                                       |
-|&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;|
-| -i   | 忽略大小写                                                 |
-| -d   | 只打印有重复的行，每组一个，如果要打印组内所有的，则用&lt;code&gt;-D&lt;/code&gt; |
-| -u   | 只打印没有重复的行                                         |
-| -f   | 比较的时候，忽略前面的N列                                  |
-| -s   | 比较的时候，忽略前面的N个字符                              |
-|&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;|&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;参数&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;-i&lt;/td&gt;
+&lt;td&gt;忽略大小写&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;-d&lt;/td&gt;
+&lt;td&gt;只打印有重复的行，每组一个，如果要打印组内所有的，则用&lt;code&gt;-D&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;-u&lt;/td&gt;
+&lt;td&gt;只打印没有重复的行&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;-f&lt;/td&gt;
+&lt;td&gt;比较的时候，忽略前面的N列&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;-s&lt;/td&gt;
+&lt;td&gt;比较的时候，忽略前面的N个字符&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;h1 id=&#34;od命令&#34;&gt;od命令&lt;/h1&gt;
 
 &lt;p&gt;&lt;code&gt;od&lt;/code&gt;可以用来显示二进制文件：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# cat test2
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# cat test2
 abcdefg
 1234567
 # od -t x1 test2
@@ -440,7 +562,7 @@ abcdefg
 
 &lt;p&gt;当然，也可以直接显示字符：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# od -c test2
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# od -c test2
 0000000   a   b   c   d   e   f   g  \n   1   2   3   4   5   6   7  \n
 0000020
 &lt;/code&gt;&lt;/pre&gt;
@@ -473,7 +595,7 @@ abcdefg
 
 &lt;p&gt;下面来详细介绍&lt;code&gt;tar&lt;/code&gt;命令的用法，&lt;code&gt;tar&lt;/code&gt;的用法如下：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# tar --help
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# tar --help
 Usage: tar [OPTION...] [FILE]...
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -482,7 +604,7 @@ Usage: tar [OPTION...] [FILE]...
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;压缩文件或目录&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# tar czvf tmp.tgz tmp/
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# tar czvf tmp.tgz tmp/
 tmp/
 tmp/Test1
 tmp/test.log
@@ -491,25 +613,69 @@ tmp/test2
 
 &lt;p&gt;其中，&lt;code&gt;czvf&lt;/code&gt;表示参数选项；&lt;code&gt;tmp.tgz&lt;/code&gt;表示压缩后的文件名，通常&lt;code&gt;tgz&lt;/code&gt;是&lt;code&gt;tar.gz&lt;/code&gt;的简写；&lt;code&gt;tmp/&lt;/code&gt;表示被压缩的目录。参数的解释如下：&lt;/p&gt;
 
-&lt;p&gt;|&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-|
-| 参数 | 说明                                                        |
-|&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-|
-| c    | &lt;code&gt;Create&lt;/code&gt;的简写，表示生产压缩文件                            |
-| z    | 表示采用&lt;code&gt;gzip&lt;/code&gt;的压缩格式，文件后缀通常为&lt;code&gt;.tar.gz&lt;/code&gt;或者&lt;code&gt;.tgz&lt;/code&gt; |
-| v    | 表示显示压缩的过程，会列出所有被压缩的文件                  |
-| f    | 指定压缩文件                                                |
-|&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-|&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;参数&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;c&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;Create&lt;/code&gt;的简写，表示生产压缩文件&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;z&lt;/td&gt;
+&lt;td&gt;表示采用&lt;code&gt;gzip&lt;/code&gt;的压缩格式，文件后缀通常为&lt;code&gt;.tar.gz&lt;/code&gt;或者&lt;code&gt;.tgz&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;v&lt;/td&gt;
+&lt;td&gt;表示显示压缩的过程，会列出所有被压缩的文件&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;f&lt;/td&gt;
+&lt;td&gt;指定压缩文件&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;p&gt;需要注意的是，&lt;code&gt;tar&lt;/code&gt;支持不同的压缩格式，除了&lt;code&gt;gzip&lt;/code&gt;之外，还有：&lt;/p&gt;
 
-&lt;p&gt;|&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;|
-| 参数     | 说明                                        |
-|&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;|
-| j        | 采用&lt;code&gt;bzip2&lt;/code&gt;的压缩格式，文件后缀通常为&lt;code&gt;.bz2&lt;/code&gt; |
-| &lt;code&gt;--lzip&lt;/code&gt; | 采用&lt;code&gt;lzip&lt;/code&gt;的压缩格式，文件后缀通常为&lt;code&gt;.lz&lt;/code&gt;   |
-| &lt;code&gt;--xz&lt;/code&gt;   | 采用&lt;code&gt;xz&lt;/code&gt;的压缩格式，文件后缀通常为&lt;code&gt;.xz&lt;/code&gt;     |
-| &lt;code&gt;--lzma&lt;/code&gt; | 采用&lt;code&gt;lzma&lt;/code&gt;的压缩格式，文件后缀通常为&lt;code&gt;.lzma&lt;/code&gt; |
-|&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;|&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;参数&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;j&lt;/td&gt;
+&lt;td&gt;采用&lt;code&gt;bzip2&lt;/code&gt;的压缩格式，文件后缀通常为&lt;code&gt;.bz2&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;--lzip&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;采用&lt;code&gt;lzip&lt;/code&gt;的压缩格式，文件后缀通常为&lt;code&gt;.lz&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;--xz&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;采用&lt;code&gt;xz&lt;/code&gt;的压缩格式，文件后缀通常为&lt;code&gt;.xz&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;--lzma&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;采用&lt;code&gt;lzma&lt;/code&gt;的压缩格式，文件后缀通常为&lt;code&gt;.lzma&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;p&gt;更多格式可以参考&lt;a href=&#34;http://www.gnu.org/software/tar/manual/html_node/gzip.html&#34;&gt;这里&lt;/a&gt;。当然，最为常用的两种格式为&lt;code&gt;gzip&lt;/code&gt;跟&lt;code&gt;bzip2&lt;/code&gt;，用法示例如下：&lt;/p&gt;
 
@@ -537,7 +703,7 @@ tar xjvf -C /tmp/ tmp.tgz
 
 &lt;p&gt;有时候我们需要先看看压缩包里面有哪些文件，但又并不想解压文件，可以采用&lt;code&gt;-t&lt;/code&gt;参数：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# tar czf tmp.tgz tmp/
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# tar czf tmp.tgz tmp/
 # tar tvf tmp.tgz
 drwxr-xr-x root/root         0 2017-11-17 02:46 tmp/
 -rw-r--r-- root/root         0 2017-11-16 00:17 tmp/Test1
@@ -551,7 +717,7 @@ drwxr-xr-x root/root         0 2017-11-17 02:46 tmp/
 
 &lt;p&gt;在列出压缩包里面的内容后，如果只想提取里面的某些文件，可以这么做：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# tar xzvf tmp.tgz tmp/test.log tmp/test2
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# tar xzvf tmp.tgz tmp/test.log tmp/test2
 tmp/test.log
 tmp/test2
 &lt;/code&gt;&lt;/pre&gt;
@@ -560,7 +726,7 @@ tmp/test2
 
 &lt;p&gt;另外，如果想提取一组匹配某种条件的文件，可以使用&lt;code&gt;--wildcards&lt;/code&gt;参数：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# tar xzvf tmp.tgz --wildcards &amp;quot;*.log&amp;quot;
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# tar xzvf tmp.tgz --wildcards &amp;quot;*.log&amp;quot;
 tmp/test.log
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -569,7 +735,7 @@ tmp/test.log
 
 &lt;p&gt;&lt;code&gt;split&lt;/code&gt;命令用来将一个文件分成多个文件，比如将一个特别大的文件分成平均大小为40M的多个文件等。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# split -b 40M go1.6.linux-amd64.tar.gz go1.6.linux-amd64.tar.gz.part
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# split -b 40M go1.6.linux-amd64.tar.gz go1.6.linux-amd64.tar.gz.part
 # ll go1.6.linux-amd64.tar.gz.part*
 -rw-r--r--. 1 root root 41943040 Nov 20 15:03 go1.6.linux-amd64.tar.gz.partaa
 -rw-r--r--. 1 root root 41943040 Nov 20 15:03 go1.6.linux-amd64.tar.gz.partab
@@ -587,7 +753,7 @@ tmp/test.log
 
 &lt;p&gt;过滤数据来说，用的最多的估计就是&lt;code&gt;grep&lt;/code&gt;命令了，&lt;code&gt;grep&lt;/code&gt;命令可以从文件或者管道中搜索数据并打印出来，当然，其也可以直接在目录中搜索所有的文件，并把其中符合条件的行打印出来。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# cat test.log | grep hello
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# cat test.log | grep hello
 hello
 # grep hello test.log
 hello
@@ -603,23 +769,57 @@ hello
 
 &lt;p&gt;查看&lt;code&gt;grep&lt;/code&gt;的帮助可以看到：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# grep --help
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# grep --help
 Usage: grep [OPTION]... PATTERN [FILE]...
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;其中&lt;code&gt;OPTION&lt;/code&gt;指的是命令参数，&lt;code&gt;PATTERN&lt;/code&gt;指的是匹配的字符串，比如关键字搜索。&lt;code&gt;FILE&lt;/code&gt;指的是文件，当然，没有文件的时候也可以通过管道接收数据并搜索过滤。&lt;code&gt;grep&lt;/code&gt;提供了非常多的命令参数用来控制查找的方式跟效果，下面列举其常用的一些参数：&lt;/p&gt;
 
-&lt;p&gt;|&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;|
-| 参数 | 说明                                                                                                       |
-|&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;|
-| -i   | 默认情况下，&lt;code&gt;grep&lt;/code&gt;命令的搜索是大小写敏感的，如果需要忽略大小写可以用这个参数                               |
-| -v   | 该参数表示不包含的意思                                                                                     |
-| -A2  | 其中&lt;code&gt;A&lt;/code&gt;是&lt;code&gt;after&lt;/code&gt;的意思，表示同时显示搜索出来行后面两行。有时候我们需要知道匹配行后面是什么，可以用这个参数 |
-| -B2  | 与&lt;code&gt;A&lt;/code&gt;相反，其是&lt;code&gt;before&lt;/code&gt;的意思，表示同时显示匹配行前两行                                                    |
-| -C2  | 有时候我们想既显示前面两行也显示后面两行，这时候就用这个参数                                               |
-| -r   | 搜索目录的时候需要带上这个参数                                                                             |
-| -n   | 有些时候，我们需要知道匹配到的行是第几行，可以加上这个参数把行号打印出来                                   |
-|&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;|&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;参数&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;-i&lt;/td&gt;
+&lt;td&gt;默认情况下，&lt;code&gt;grep&lt;/code&gt;命令的搜索是大小写敏感的，如果需要忽略大小写可以用这个参数&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;-v&lt;/td&gt;
+&lt;td&gt;该参数表示不包含的意思&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;-A2&lt;/td&gt;
+&lt;td&gt;其中&lt;code&gt;A&lt;/code&gt;是&lt;code&gt;after&lt;/code&gt;的意思，表示同时显示搜索出来行后面两行。有时候我们需要知道匹配行后面是什么，可以用这个参数&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;-B2&lt;/td&gt;
+&lt;td&gt;与&lt;code&gt;A&lt;/code&gt;相反，其是&lt;code&gt;before&lt;/code&gt;的意思，表示同时显示匹配行前两行&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;-C2&lt;/td&gt;
+&lt;td&gt;有时候我们想既显示前面两行也显示后面两行，这时候就用这个参数&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;-r&lt;/td&gt;
+&lt;td&gt;搜索目录的时候需要带上这个参数&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;-n&lt;/td&gt;
+&lt;td&gt;有些时候，我们需要知道匹配到的行是第几行，可以加上这个参数把行号打印出来&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;p&gt;对于&lt;code&gt;PATTERN&lt;/code&gt;，&lt;code&gt;grep&lt;/code&gt;命令也支持不同的用法：
 * 关键字匹配&lt;/p&gt;
@@ -638,7 +838,7 @@ Usage: grep [OPTION]... PATTERN [FILE]...
 
 &lt;p&gt;有时候我们需要匹配某个PATTERN1或者PATTERN2的行，这时候可以这么写&lt;code&gt;PATTERN&lt;/code&gt;：&lt;code&gt;PATTERN1\|PATTERN2&lt;/code&gt;。通过&lt;code&gt;\|&lt;/code&gt;将多个&lt;code&gt;PATTERN&lt;/code&gt;连在一起表示或的意思，只要匹配其中任一个的行都会被打印出来。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# grep &#39;12306\|test&#39; . -r
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# grep &#39;12306\|test&#39; . -r
 ./test2:http://abcdefg.test.com
 ./test2:12306.com
 &lt;/code&gt;&lt;/pre&gt;
@@ -682,7 +882,7 @@ Usage: grep [OPTION]... PATTERN [FILE]...
 
 &lt;p&gt;一个常见的用法就是把文件中的某几列打印出来：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# cat test.log
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# cat test.log
 Nov 17 00:27:20 traffic-base1 named[1212]: managed-keys-zone: Unable to fetch DNSKEY set .: timed out
 # cat test.log | awk &#39;{print $1, $2, $3}&#39;
 Nov 17 00:27:20
@@ -694,7 +894,7 @@ Nov 17 00:27:20
 
 &lt;p&gt;有时候，一行内的数据并不是通过空格分隔开的，而是通过其它分隔符，那如何显示想要的列呢？通过&lt;code&gt;cut&lt;/code&gt;命令，咱们同样可以轻松实现：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# head -n 5 /etc/passwd
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# head -n 5 /etc/passwd
 root❌0:0:root:/root:/bin/bash
 bin❌1:1:bin:/bin:/sbin/nologin
 daemon❌2:2:daemon:/sbin:/sbin/nologin
@@ -710,7 +910,7 @@ lp
 
 &lt;p&gt;&lt;code&gt;/etc/passwd&lt;/code&gt;中的每一行基本上都是通过&lt;code&gt;:&lt;/code&gt;进行分隔，其中第一列表示用户名，如果咱们只想把用户名输出的话，可以通过&lt;code&gt;cut -d: -f1&lt;/code&gt;来实现，其中&lt;code&gt;-d:&lt;/code&gt;表示以&lt;code&gt;:&lt;/code&gt;号为分隔符，&lt;code&gt;-f1&lt;/code&gt;表示显示第一列。可见，对于&lt;code&gt;cut&lt;/code&gt;命令来说，咱们可以指定分隔符，那么前面通过&lt;code&gt;awk&lt;/code&gt;实现的例子也可以通过&lt;code&gt;cut&lt;/code&gt;来做：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# cat test.log
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# cat test.log
 Nov 17 00:27:20 traffic-base1 named[1212]: managed-keys-zone: Unable to fetch DNSKEY set .: timed out
 # cat test.log | cut -d&amp;quot; &amp;quot; -f1-3
 Nov 17 00:27:20
@@ -720,7 +920,7 @@ Nov 17 00:27:20
 
 &lt;p&gt;此外，&lt;code&gt;cut&lt;/code&gt;命令还可以指定输出哪些位的字符：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# cat test.log
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# cat test.log
 Nov 17 00:27:20 traffic-base1 named[1212]: managed-keys-zone: Unable to fetch DNSKEY set .: timed out
 # cat test.log | cut -c1-16
 Nov 17 00:27:20
@@ -732,13 +932,13 @@ Nov 17 00:27:20
 
 &lt;p&gt;&lt;code&gt;tr&lt;/code&gt;其实是&lt;code&gt;translate&lt;/code&gt;的缩写，这个命令用来将某些字符翻译成另外的字符。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# tr --help
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# tr --help
 Usage: tr [OPTION]... SET1 [SET2]
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;这个命令就是把字符集&lt;code&gt;SET1&lt;/code&gt;中的字符对应的转成字符集&lt;code&gt;SET2&lt;/code&gt;中的字符。如将小写转成大写：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# cat test.log
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# cat test.log
 Nov 17 00:27:20 traffic-base1 named[1212]: managed-keys-zone: Unable to fetch DNSKEY set .: timed out
 # cat test.log | tr a-z A-Z
 NOV 17 00:27:20 TRAFFIC-BASE1 NAMED[1212]: MANAGED-KEYS-ZONE: UNABLE TO FETCH DNSKEY SET .: TIMED OUT
@@ -746,7 +946,7 @@ NOV 17 00:27:20 TRAFFIC-BASE1 NAMED[1212]: MANAGED-KEYS-ZONE: UNABLE TO FETCH DN
 
 &lt;p&gt;这里用&lt;code&gt;-&lt;/code&gt;来方便的表示一定范围的字符集，当然，你完全可以一个个列出来你要的字符集。通常情况下，&lt;code&gt;SET1&lt;/code&gt;跟&lt;code&gt;SET2&lt;/code&gt;的长度保持一致，因为这个转换实际上是一对一的转换，当然，&lt;code&gt;SET2&lt;/code&gt;的长度是可以大于&lt;code&gt;SET1&lt;/code&gt;的，多余的字符不会被使用。但是，当&lt;code&gt;SET2&lt;/code&gt;长度小于&lt;code&gt;SET1&lt;/code&gt;时，&lt;code&gt;tr&lt;/code&gt;命令会将&lt;code&gt;SET2&lt;/code&gt;中最后一个字符填充不足的位数：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# echo &#39;abcdefg&#39; | tr ab wyz
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# echo &#39;abcdefg&#39; | tr ab wyz
 wycdefg
 # echo &#39;abcdefg&#39; | tr abcdefg wyz
 wyzzzzz
@@ -754,7 +954,7 @@ wyzzzzz
 
 &lt;p&gt;对于&lt;code&gt;tr&lt;/code&gt;还有一个常见的用途，就是用来去除字符串中的换行符：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# head -n 5 /etc/passwd
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# head -n 5 /etc/passwd
 root❌0:0:root:/root:/bin/bash
 bin❌1:1:bin:/bin:/sbin/nologin
 daemon❌2:2:daemon:/sbin:/sbin/nologin
@@ -768,7 +968,7 @@ root❌0:0:root:/root:/bin/bash bin❌1:1:bin:/bin:/sbin/nologin daemon❌2:2:da
 
 &lt;p&gt;最后，&lt;code&gt;tr&lt;/code&gt;还有一个常见的用法，可以加上&lt;code&gt;-d&lt;/code&gt;参数来删除字符集中的字符。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# echo abcdeWXYZ | tr -d a-z
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# echo abcdeWXYZ | tr -d a-z
 WXYZ
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -780,25 +980,25 @@ WXYZ
 
 &lt;p&gt;查看&lt;code&gt;sed&lt;/code&gt;的帮助：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# sed --help
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# sed --help
 Usage: sed [OPTION]... {script-only-if-no-other-script} [input-file]...
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;它既可以直接在文件中替换字符串，也可以加收管道的数据。如基本用法：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# echo abcdefgabcd | sed &#39;s/abc/ABC/&#39;
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# echo abcdefgabcd | sed &#39;s/abc/ABC/&#39;
 ABCdefgabcd
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;其中&lt;code&gt;&#39;s/abc/ABC/&#39;&lt;/code&gt;指定了替换的规则，默认情况下只替换一次，如果需要全部替换，则需要在规则后面加入&lt;code&gt;g&lt;/code&gt;：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# echo abcdefgabcd | sed &#39;s/abc/ABC/g&#39;
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# echo abcdefgabcd | sed &#39;s/abc/ABC/g&#39;
 ABCdefgABCd
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;规则中默认使用了&lt;code&gt;/&lt;/code&gt;为分隔。当然，你也可以使用其他分隔符，这在要替换的字串中带有&lt;code&gt;/&lt;/code&gt;的时候特别有用：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# echo &amp;quot;http://abc.test.com&amp;quot; | sed &#39;s/http:\/\//https:\/\//&#39;
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# echo &amp;quot;http://abc.test.com&amp;quot; | sed &#39;s/http:\/\//https:\/\//&#39;
 https://abc.test.com
 # echo &amp;quot;http://abc.test.com&amp;quot; | sed &#39;s|http://|https://|&#39;
 https://abc.test.com
@@ -808,7 +1008,7 @@ https://abc.test.com
 
 &lt;p&gt;此外，&lt;code&gt;sed&lt;/code&gt;不仅可以用来替换字串，还可以用来删除匹配的行：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# cat test2
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# cat test2
 http://abcdefg.test.com
 12306.com
 # cat test2 | sed &#39;/12306/d&#39;
@@ -822,13 +1022,13 @@ http://abcdefg.test.com
 
 &lt;p&gt;&lt;code&gt;sed&lt;/code&gt;规则匹配到的字符串还可以在规则定义中被引用，如下例：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# echo &amp;quot;hello world&amp;quot; | sed &#39;s/hello/&amp;amp;&amp;amp;/&#39;
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# echo &amp;quot;hello world&amp;quot; | sed &#39;s/hello/&amp;amp;&amp;amp;/&#39;
 hellohello world
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;其中，&lt;code&gt;&amp;amp;&lt;/code&gt;可以用来引用被匹配到的字串，在本例中，匹配到的字串是&lt;code&gt;hello&lt;/code&gt;，这样通过&lt;code&gt;&amp;amp;&lt;/code&gt;就可以引用被匹配到的字串了。此外，我们还可以通过&lt;code&gt;()&lt;/code&gt;来指定匹配的字串，并用&lt;code&gt;\1&lt;/code&gt;（数字表示第一个&lt;code&gt;()&lt;/code&gt;）来引用（实际上是正则表达式中的Grouping）：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# echo Sunday | sed &#39;s/\(Sun\)/\1ny/&#39;
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# echo Sunday | sed &#39;s/\(Sun\)/\1ny/&#39;
 Sunnyday
 # echo Sunday | sed &#39;s/\(Sun\)/\1ny \1/&#39;
 Sunny Sunday
@@ -838,7 +1038,7 @@ Sunny Sunday
 
 &lt;p&gt;由上述可以看出，&lt;code&gt;sed&lt;/code&gt;的规则使用了正则表达式规则，但是其书写跟一般的正则书写不一样，你必须将有关的字符转义，否则&lt;code&gt;sed&lt;/code&gt;仍然会将其当做普通字符进行匹配：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# echo &amp;quot;this is aaaa cat&amp;quot; | sed &#39;s/a{4}/a/&#39;
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;# echo &amp;quot;this is aaaa cat&amp;quot; | sed &#39;s/a{4}/a/&#39;
 this is aaaa cat
 # echo &amp;quot;this is aaaa cat&amp;quot; | sed &#39;s/a\{4\}/a/&#39;
 this is a cat
@@ -850,7 +1050,7 @@ this is a cat
 
 &lt;p&gt;有时候我们需要在项目目录下替换某个字串，比如把手误写错的&lt;code&gt;#include&amp;lt;stdllib.h&amp;gt;&lt;/code&gt;全部替换成&lt;code&gt;#include&amp;lt;stdlib.h&amp;gt;&lt;/code&gt;，希望被替换的文件包括&lt;code&gt;*.cpp&lt;/code&gt;，&lt;code&gt;*.h&lt;/code&gt;的文件。其中的一种做法如下：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ head -n 1 test.cpp
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ head -n 1 test.cpp
 #include &amp;lt;stdllib.h&amp;gt;
 $ sed -i &#39;s/#include &amp;lt;stdllib.h&amp;gt;/#include &amp;lt;stdlib.h&amp;gt;/&#39; `find . -name &amp;quot;*.cpp&amp;quot; -o -name &amp;quot;*.h&amp;quot;`
 $ head -n 1 test.cpp
@@ -1116,12 +1316,35 @@ ls: cannot access tttt*: No such file or directory
 
 &lt;p&gt;本指南主要讲述如何将GPS管理系统服务器迁移到另一台新的服务器，假定要迁移的服务器为server1，新服务器为server2，假定的服务器参数如下：&lt;/p&gt;
 
-&lt;p&gt;|&amp;mdash;&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;|
-| 服务器  | 操作系统 | IP           | 外网地址     | 外网开放端口 |
-|&amp;mdash;&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;|
-| server1 | Centos 7 | 10.10.10.100 | 55.55.55.100 | 9999, 9998   |
-| server2 | Centos 7 | 10.10.10.101 | 55.55.55.101 | 9999, 9998   |
-|&amp;mdash;&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;|&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;服务器&lt;/th&gt;
+&lt;th&gt;操作系统&lt;/th&gt;
+&lt;th&gt;IP&lt;/th&gt;
+&lt;th&gt;外网地址&lt;/th&gt;
+&lt;th&gt;外网开放端口&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;server1&lt;/td&gt;
+&lt;td&gt;Centos 7&lt;/td&gt;
+&lt;td&gt;10.10.10.100&lt;/td&gt;
+&lt;td&gt;55.55.55.100&lt;/td&gt;
+&lt;td&gt;9999, 9998&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;server2&lt;/td&gt;
+&lt;td&gt;Centos 7&lt;/td&gt;
+&lt;td&gt;10.10.10.101&lt;/td&gt;
+&lt;td&gt;55.55.55.101&lt;/td&gt;
+&lt;td&gt;9999, 9998&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;一下所有操作都以root权限进行，请务必注意&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 
@@ -1176,15 +1399,41 @@ tar czf opt.tgz opt
 
 &lt;p&gt;总结，所有备份文件如下：&lt;/p&gt;
 
-&lt;p&gt;|&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;|
-| 备份文件              | 说明            |
-|&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;|
-| /mysql-community.repo | repo文件        |
-| /rushgps.sql          | 数据库备份文件  |
-| /root.tgz             | 部署文件        |
-| /opt.tgz              | 资源文件        |
-| /supervisord.conf     | supervisord文件 |
-|&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;|&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;备份文件&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;/mysql-community.repo&lt;/td&gt;
+&lt;td&gt;repo文件&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/rushgps.sql&lt;/td&gt;
+&lt;td&gt;数据库备份文件&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/root.tgz&lt;/td&gt;
+&lt;td&gt;部署文件&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/opt.tgz&lt;/td&gt;
+&lt;td&gt;资源文件&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/supervisord.conf&lt;/td&gt;
+&lt;td&gt;supervisord文件&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;h1 id=&#34;安装server2操作系统&#34;&gt;安装server2操作系统&lt;/h1&gt;
 
@@ -1791,13 +2040,11 @@ hello &amp;gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;
 为了方便在提示符中显示系统的某些实时信息，`$PS1`变量定义了一些特殊的字符：
 
-|------+--------------------|
 | 字符 | 说明               |
-|------+--------------------|
+|------|--------------------|
 | \w   | 表示工作目录       |
 | \u   | 表示用户名         |
 | \h   | 表示系统的hostname |
-|------+--------------------|
 
 当然，这里只列举了几个，详细的可以查看Linux手册。另外，`$PS1`中还可以对对其中不同部分采用不同颜色显示，如：
 
@@ -1847,14 +2094,12 @@ hello &amp;gt;&lt;/p&gt;
 
 在Linux系统中，很多时候我们需要访问外部网络，比如使用`curl`命令下载文件等等。而有的时候，访问访问外部网络咱们需要设置代理，在Linux系统中，使用网络代理非常简单，只要配置几个变量即可：
 
-|-------------+-------------------------------------------------------------------------|
 | 变量        | 说明                                                                    |
-|-------------+-------------------------------------------------------------------------|
+|-------------|-------------------------------------------------------------------------|
 | http_proxy  | 设置访问`http`请求所需要的代理，如`http_proxy=http://10.10.10.100:80`   |
 | https_proxy | 设置访问`https`请求所需要的代理，如`https_proxy=http://10.10.10.100:80` |
 | ftp_proxy   | 设置访问`ftp`请求所需要的代理，如`ftp_proxy=http://10.10.10.100:80`     |
 | no_proxy    | 设置哪些域名或者IP不需要走代理，如`no_proxy=localhost,127.0.0.1`        |
-|-------------+-------------------------------------------------------------------------|
 
 ### `$PWD`变量
 
@@ -1965,16 +2210,14 @@ hello &amp;gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;
 下面列举比较常用的`shell`重复执行历史记录中命令的方法：
 
-|-----------+-------------------------------------------------------------------------------------------------------|
 | 命令      | 说明                                                                                                  |
-|-----------+-------------------------------------------------------------------------------------------------------|
+|-----------|-------------------------------------------------------------------------------------------------------|
 | !!        | 在`shell`中输入两个感叹号会执行上一个命令                                                             |
 | !keyword  | 输入一个感叹号后跟关键字，会搜索历史记录中最先以该关键字开始的命令。如`!find`会执行序号为1008的命令。 |
 | !?keyword | 执行历史记录中第一个包括keyword关键字的命令                                                           |
 | !n        | 其中n代表历史记录中的序号，表示执行序号为n的命令。                                                    |
 | !-n       | 执行倒数第n个命令，如`!-1`其实就相当于`!!`                                                            |
 | cmd!*     | 执行命令`cmd`，其中`!*`会以上一条命令的所有参数替代                                                   |
-|-----------+-------------------------------------------------------------------------------------------------------|
 
 另外，对于`!keyword`的用法，还有一个高级功能，你可以将符合该条件的命令进行改造后执行，如：
 
@@ -2016,13 +2259,11 @@ adm
 
 有多个配置可以用来改变历史记录的有关信息，通常都是通过有关环境变量来配置：
 
-|---------------+--------------------------------------------------------------------------------------------|
 | 环境变量      | 说明                                                                                       |
-|---------------+--------------------------------------------------------------------------------------------|
+|---------------|--------------------------------------------------------------------------------------------|
 | $HISTSIZE     | 这个变量用来配置`shell`应该保持多少行的历史记录，在很多发行版本中，默认值一般为500或者1000 |
 | $HISTFILE     | 这个变量用来配置历史记录文件存放的位置，通常来讲，默认路径为`~/.bash_history`              |
 | $HISTFILESIZE | 这个变量用来配置历史记录文件可以存放多少行的历史记录                                       |
-|---------------+--------------------------------------------------------------------------------------------|
 
 ## 阻止记录某些命令
 
@@ -2112,13 +2353,31 @@ file1  file2  file3  fileab  fileabc
 
 &lt;p&gt;特别的，为了方便，&lt;code&gt;[]&lt;/code&gt;中可以使用&lt;code&gt;-&lt;/code&gt;来定义一些连续的字符集（Range匹配），常用的这类字符集包括：&lt;/p&gt;
 
-&lt;p&gt;|&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;|
-| 字符集 | 说明               |
-|&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;|
-| 0-9    | 表示数字字符集     |
-| a-z    | 表示小写字母字符集 |
-| A-Z    | 表示大写字母字符集 |
-|&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;|&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;字符集&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0-9&lt;/td&gt;
+&lt;td&gt;表示数字字符集&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;a-z&lt;/td&gt;
+&lt;td&gt;表示小写字母字符集&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;A-Z&lt;/td&gt;
+&lt;td&gt;表示大写字母字符集&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;p&gt;当然，你也不必要把所有范围都包括在内，如&lt;code&gt;[a-d]&lt;/code&gt;可以用来限定从&lt;code&gt;a&lt;/code&gt;到&lt;code&gt;d&lt;/code&gt;的小写字母集。另外，用&lt;code&gt;-&lt;/code&gt;连起来的字符集还可以跟其它字符集一起使用，如&lt;code&gt;[a-d_]&lt;/code&gt;表示&lt;code&gt;a&lt;/code&gt;到&lt;code&gt;d&lt;/code&gt;的小写字母加上&lt;code&gt;_&lt;/code&gt;所组成的字符集。&lt;/p&gt;
 
@@ -2187,17 +2446,51 @@ Test1 test2
 
 &lt;p&gt;&lt;code&gt;shell&lt;/code&gt;中支持非常多的快捷键，可以非常方便我们输入命令：&lt;/p&gt;
 
-&lt;p&gt;|&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;|
-| 快捷键 | 说明                                                                      |
-|&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;|
-| Ctrl-d | 表示&lt;code&gt;EOF&lt;/code&gt;的意思，在shell终端中输入该快捷键会退出该终端                    |
-| Ctrl-z | 该快捷键用来暂停一个在shell终端中正在执行的进程，暂停后可以用&lt;code&gt;fg&lt;/code&gt;命令恢复 |
-| Ctrl-a | 输入命令时跳到行首                                                        |
-| Ctrl-e | 跳到行尾                                                                  |
-| Ctrl-k | 删除从光标到行尾的部分                                                    |
-| Ctrl-y | 粘贴刚刚删除的部分                                                        |
-| Ctrl-w | 删除从光标至其左边第一个空格处                                            |
-|&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;|&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;快捷键&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Ctrl-d&lt;/td&gt;
+&lt;td&gt;表示&lt;code&gt;EOF&lt;/code&gt;的意思，在shell终端中输入该快捷键会退出该终端&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Ctrl-z&lt;/td&gt;
+&lt;td&gt;该快捷键用来暂停一个在shell终端中正在执行的进程，暂停后可以用&lt;code&gt;fg&lt;/code&gt;命令恢复&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Ctrl-a&lt;/td&gt;
+&lt;td&gt;输入命令时跳到行首&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Ctrl-e&lt;/td&gt;
+&lt;td&gt;跳到行尾&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Ctrl-k&lt;/td&gt;
+&lt;td&gt;删除从光标到行尾的部分&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Ctrl-y&lt;/td&gt;
+&lt;td&gt;粘贴刚刚删除的部分&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Ctrl-w&lt;/td&gt;
+&lt;td&gt;删除从光标至其左边第一个空格处&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 </description>
       
     </item>
@@ -2269,19 +2562,61 @@ rsyslogd (8)         - reliable and extended syslogd
 
 &lt;h2 id=&#34;目录操作类&#34;&gt;目录操作类&lt;/h2&gt;
 
-&lt;p&gt;|&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;|
-| 命令     | 解释                                     |
-|&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;|
-| pwd      | 查看当前目录路径                         |
-| cd $path | 切换到其它路径                           |
-| cd ~     | 返回home目录                             |
-| cd ..    | 返回上一级                               |
-| cd -     | 返回上一次的目录                         |
-| ls $path | 查看目录下的内容                         |
-| ls -a    | 显示目录下所有文件，包括隐藏文件         |
-| ls -lh   | 列表的形式显示，&lt;code&gt;-h&lt;/code&gt;以可读的方式显示大小 |
-| mkdir    | 创建目录，要递归创建采用&lt;code&gt;mkdir -p&lt;/code&gt;       |
-|&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;|&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;命令&lt;/th&gt;
+&lt;th&gt;解释&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;pwd&lt;/td&gt;
+&lt;td&gt;查看当前目录路径&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;cd $path&lt;/td&gt;
+&lt;td&gt;切换到其它路径&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;cd ~&lt;/td&gt;
+&lt;td&gt;返回home目录&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;cd ..&lt;/td&gt;
+&lt;td&gt;返回上一级&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;cd -&lt;/td&gt;
+&lt;td&gt;返回上一次的目录&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;ls $path&lt;/td&gt;
+&lt;td&gt;查看目录下的内容&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;ls -a&lt;/td&gt;
+&lt;td&gt;显示目录下所有文件，包括隐藏文件&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;ls -lh&lt;/td&gt;
+&lt;td&gt;列表的形式显示，&lt;code&gt;-h&lt;/code&gt;以可读的方式显示大小&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;mkdir&lt;/td&gt;
+&lt;td&gt;创建目录，要递归创建采用&lt;code&gt;mkdir -p&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;h2 id=&#34;文件操作类&#34;&gt;文件操作类&lt;/h2&gt;
 
@@ -2339,16 +2674,46 @@ total 4
 
 &lt;h3 id=&#34;删除-复制-移动&#34;&gt;删除、复制、移动&lt;/h3&gt;
 
-&lt;p&gt;|&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;|
-| 命令   | 解释                                                                                 |
-|&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;|
-| rm     | 永久删除一个文件，对于此命令，没有所谓的垃圾箱，请慎重                               |
-| rm -i  | 询问是否真的要删除                                                                   |
-| rm -rf | 通常&lt;code&gt;rm&lt;/code&gt;只是删除文件，如果需要删除目录的时候，必须带上&lt;code&gt;-r&lt;/code&gt;参数，&lt;code&gt;-f&lt;/code&gt;参数表示强制删除 |
-| cp     | 拷贝文件                                                                             |
-| cp -rf | 拷贝目录下所有的文件，并强制覆盖                                                     |
-| mv     | 移动文件到另一个目录，或者在当前目录下对某个文件改名字                               |
-|&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;|&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;命令&lt;/th&gt;
+&lt;th&gt;解释&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;rm&lt;/td&gt;
+&lt;td&gt;永久删除一个文件，对于此命令，没有所谓的垃圾箱，请慎重&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;rm -i&lt;/td&gt;
+&lt;td&gt;询问是否真的要删除&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;rm -rf&lt;/td&gt;
+&lt;td&gt;通常&lt;code&gt;rm&lt;/code&gt;只是删除文件，如果需要删除目录的时候，必须带上&lt;code&gt;-r&lt;/code&gt;参数，&lt;code&gt;-f&lt;/code&gt;参数表示强制删除&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;cp&lt;/td&gt;
+&lt;td&gt;拷贝文件&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;cp -rf&lt;/td&gt;
+&lt;td&gt;拷贝目录下所有的文件，并强制覆盖&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;mv&lt;/td&gt;
+&lt;td&gt;移动文件到另一个目录，或者在当前目录下对某个文件改名字&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;h2 id=&#34;文件内容操作类&#34;&gt;文件内容操作类&lt;/h2&gt;
 
@@ -2450,41 +2815,127 @@ _init
 
 &lt;h1 id=&#34;二进制目录&#34;&gt;二进制目录&lt;/h1&gt;
 
-&lt;p&gt;|&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;|
-| 目录           | 说明                                                                                                               |
-|&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;|
-| /bin           | 包括了可执行的二进制文件，通常这些二进制文件可以被所有用户访问。FHS规定，该目录至少包括&lt;code&gt;/bin/cat&lt;/code&gt;跟&lt;code&gt;/bin/date&lt;/code&gt;文件 |
-| /sbin          | 包括了系统的二进制文件，通过需要root权限，用来配置系统                                                             |
-| /lib           | 包括了&lt;code&gt;/bin&lt;/code&gt;所依赖的库                                                                                             |
-| /lib/modules   | Linux将从&lt;code&gt;/lib/modules/$kernel-version/&lt;/code&gt;目录下载入内核模块                                                         |
-| /lib32和/lib64 | 顾名思义，分别存放不同位数的库                                                                                     |
-| /opt           | 该目录用来存放一些可选的软件，通常情况下，很多第三方的客户软件会选择安装在该目录下                                 |
-|&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;|&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;目录&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;/bin&lt;/td&gt;
+&lt;td&gt;包括了可执行的二进制文件，通常这些二进制文件可以被所有用户访问。FHS规定，该目录至少包括&lt;code&gt;/bin/cat&lt;/code&gt;跟&lt;code&gt;/bin/date&lt;/code&gt;文件&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/sbin&lt;/td&gt;
+&lt;td&gt;包括了系统的二进制文件，通过需要root权限，用来配置系统&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/lib&lt;/td&gt;
+&lt;td&gt;包括了&lt;code&gt;/bin&lt;/code&gt;所依赖的库&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/lib/modules&lt;/td&gt;
+&lt;td&gt;Linux将从&lt;code&gt;/lib/modules/$kernel-version/&lt;/code&gt;目录下载入内核模块&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/lib32和/lib64&lt;/td&gt;
+&lt;td&gt;顾名思义，分别存放不同位数的库&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/opt&lt;/td&gt;
+&lt;td&gt;该目录用来存放一些可选的软件，通常情况下，很多第三方的客户软件会选择安装在该目录下&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;h1 id=&#34;配置文件目录&#34;&gt;配置文件目录&lt;/h1&gt;
 
-&lt;p&gt;|&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;|
-| 目录           | 说明                                                                                                                     |
-|&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;|
-| /boot          | 顾名思义，用来存放系统启动的配置文件，如grub引导的配置文件&lt;code&gt;/boot/grub/grub.cfg&lt;/code&gt;                                          |
-| /etc           | 几乎大部分配置文件都放在改目录下。历史上&lt;code&gt;etc&lt;/code&gt;的全称是&lt;code&gt;etcetera&lt;/code&gt;，不过，现在一般认为是&lt;code&gt;Editable Text Configuration&lt;/code&gt;的缩写 |
-| /etc/init.d    | 存放daemon启动、停止等的脚本文件。不过在引入systemd之后，启动脚本有所变化                                                |
-| /etc/skel      | 存放创建新用户之后所需的配置文件的模板，如&lt;code&gt;.bashrc&lt;/code&gt;文件，默认会从该目录拷贝到用户目录                                    |
-| /etc/sysconfig | 一般出现在RedHat系列的Linux系统中，存放系统有关配置，如IP的配置文件等                                                    |
-|&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;|&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;目录&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;/boot&lt;/td&gt;
+&lt;td&gt;顾名思义，用来存放系统启动的配置文件，如grub引导的配置文件&lt;code&gt;/boot/grub/grub.cfg&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/etc&lt;/td&gt;
+&lt;td&gt;几乎大部分配置文件都放在改目录下。历史上&lt;code&gt;etc&lt;/code&gt;的全称是&lt;code&gt;etcetera&lt;/code&gt;，不过，现在一般认为是&lt;code&gt;Editable Text Configuration&lt;/code&gt;的缩写&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/etc/init.d&lt;/td&gt;
+&lt;td&gt;存放daemon启动、停止等的脚本文件。不过在引入systemd之后，启动脚本有所变化&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/etc/skel&lt;/td&gt;
+&lt;td&gt;存放创建新用户之后所需的配置文件的模板，如&lt;code&gt;.bashrc&lt;/code&gt;文件，默认会从该目录拷贝到用户目录&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/etc/sysconfig&lt;/td&gt;
+&lt;td&gt;一般出现在RedHat系列的Linux系统中，存放系统有关配置，如IP的配置文件等&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;h1 id=&#34;数据目录&#34;&gt;数据目录&lt;/h1&gt;
 
-&lt;p&gt;|&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-|
-| 目录   | 说明                                                                                               |
-|&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-|
-| /home  | 当创建一个新用户的时候，默认情况下，系统会为用户创建一个&lt;code&gt;/home/&amp;lt;username&amp;gt;&lt;/code&gt;的目录用来存放个人数据。 |
-| /root  | 该目录被很多Linux系统用来存放root用户的个人数据                                                    |
-| /srv   | 可以被解释为&lt;code&gt;served by your system&lt;/code&gt;。FHS允许&lt;code&gt;rsync&lt;/code&gt;，&lt;code&gt;ftp&lt;/code&gt;，&lt;code&gt;www&lt;/code&gt;等数据存放在改目录                |
-| /media | 该目录通常被用来挂载可移除设备，如CD-ROM，U盘等                                                    |
-| /mnt   | 根据FHS，该目录通常被用来作为短期的挂载点                                                          |
-| /tmp   | 该目录用来存放一些短期的文件，&lt;strong&gt;&lt;em&gt;不要再该目录下存放重要文件，该目录下的文件有可能会被系统回收&lt;/em&gt;&lt;/strong&gt;   |
-|&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-|&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;目录&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;/home&lt;/td&gt;
+&lt;td&gt;当创建一个新用户的时候，默认情况下，系统会为用户创建一个&lt;code&gt;/home/&amp;lt;username&amp;gt;&lt;/code&gt;的目录用来存放个人数据。&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/root&lt;/td&gt;
+&lt;td&gt;该目录被很多Linux系统用来存放root用户的个人数据&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/srv&lt;/td&gt;
+&lt;td&gt;可以被解释为&lt;code&gt;served by your system&lt;/code&gt;。FHS允许&lt;code&gt;rsync&lt;/code&gt;，&lt;code&gt;ftp&lt;/code&gt;，&lt;code&gt;www&lt;/code&gt;等数据存放在改目录&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/media&lt;/td&gt;
+&lt;td&gt;该目录通常被用来挂载可移除设备，如CD-ROM，U盘等&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/mnt&lt;/td&gt;
+&lt;td&gt;根据FHS，该目录通常被用来作为短期的挂载点&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/tmp&lt;/td&gt;
+&lt;td&gt;该目录用来存放一些短期的文件，&lt;strong&gt;&lt;em&gt;不要再该目录下存放重要文件，该目录下的文件有可能会被系统回收&lt;/em&gt;&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;h1 id=&#34;内存目录&#34;&gt;内存目录&lt;/h1&gt;
 
@@ -2522,47 +2973,141 @@ _init
 
 &lt;p&gt;该目录用来记录内核以及内核进程的实时信息，可以通过它轻而易举的实现对内核状态的获取甚至改变。&lt;/p&gt;
 
-&lt;p&gt;|&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-|
-| 目录             | 说明                                                                                                              |
-|&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-|
-| /proc/&lt;id&gt;       | 几乎每个进程都会在该目录下有映射的文件&lt;code&gt;/proc/*&lt;/code&gt;，其中&lt;code&gt;&amp;lt;id&amp;gt;&lt;/code&gt;代表进程的ID。该目录记录的该进程的几乎所有的状态信息。 |
-| /proc/cpuinfo    | 记录了系统的CPU信息，通常通过该文件可以知道系统有多少个CPU（核数）。                                              |
-| /proc/meminfo    | 记录了系统的内存信息，可以通过它知道系统有多少内存                                                                |
-| /proc/sys        | 在&lt;code&gt;/proc&lt;/code&gt;目录下的绝大部分文件都是只读的文件，但是在该目录下有些文件是可写的，可以通过它们改变内核状态             |
-| /proc/interrupts | 记录了当前系统的中断信息                                                                                          |
-| /proc/kcore      | 这个文件代表了系统的物理内存，其大小就是物理内存的大小，因此千万不要用&lt;code&gt;cat&lt;/code&gt;来试图显示该文件内容                   |
-|&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-|&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;目录&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;/proc/&lt;id&gt;&lt;/td&gt;
+&lt;td&gt;几乎每个进程都会在该目录下有映射的文件&lt;code&gt;/proc/*&lt;/code&gt;，其中&lt;code&gt;&amp;lt;id&amp;gt;&lt;/code&gt;代表进程的ID。该目录记录的该进程的几乎所有的状态信息。&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/proc/cpuinfo&lt;/td&gt;
+&lt;td&gt;记录了系统的CPU信息，通常通过该文件可以知道系统有多少个CPU（核数）。&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/proc/meminfo&lt;/td&gt;
+&lt;td&gt;记录了系统的内存信息，可以通过它知道系统有多少内存&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/proc/sys&lt;/td&gt;
+&lt;td&gt;在&lt;code&gt;/proc&lt;/code&gt;目录下的绝大部分文件都是只读的文件，但是在该目录下有些文件是可写的，可以通过它们改变内核状态&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/proc/interrupts&lt;/td&gt;
+&lt;td&gt;记录了当前系统的中断信息&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/proc/kcore&lt;/td&gt;
+&lt;td&gt;这个文件代表了系统的物理内存，其大小就是物理内存的大小，因此千万不要用&lt;code&gt;cat&lt;/code&gt;来试图显示该文件内容&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;h1 id=&#34;usr目录&#34;&gt;/usr目录&lt;/h1&gt;
 
 &lt;p&gt;&lt;code&gt;/usr&lt;/code&gt;目录估计是被误解最多的目录，一般大家都以为它是&lt;code&gt;user&lt;/code&gt;的简写，感觉应该存放的是用户相关的东西，但是实际上完全不是这样。它其实是&lt;code&gt;Unix System Resources&lt;/code&gt;的简写，表示Unix系统资源。通常情况下，该目录以只读的权限被挂载。&lt;/p&gt;
 
-&lt;p&gt;|&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-|
-| 目录         | 说明                                                                                                        |
-|&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-|
-| /usr/bin     | 很多命令都存放在这个目录下面，事实上，在Centos跟Solaris系统中，&lt;code&gt;/bin&lt;/code&gt;目录实际上只是一个软连接，连接到此目录 |
-| /usr/include | 存放大量的头文件，可能会被C代码引用                                                                         |
-| /usr/lib     | 存放库文件，同样，在Centos跟Solaris系统中，&lt;code&gt;/lib&lt;/code&gt;其实就是软连接到此目录                                     |
-| /usr/lib64   | 存放64位的库文件，在Centos中，&lt;code&gt;/lib64&lt;/code&gt;也是软连接到此目录                                                    |
-| /usr/sbin    | 很多daemon程序都是放在此目录下，在Centos中，&lt;code&gt;/sbin&lt;/code&gt;也是软连接到此目录                                       |
-| /usr/local   | 此目录通常用来安装一些本地的应用                                                                            |
-| /usr/share   | 此目录通常用来存放各种体系无关的数据。&lt;code&gt;/usr/share/man&lt;/code&gt;就是用来存放&lt;code&gt;man&lt;/code&gt;命令用到的帮助文档                   |
-| /usr/src     | 此目录通常存放内核的代码文件                                                                                |
-|&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-|&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;目录&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;/usr/bin&lt;/td&gt;
+&lt;td&gt;很多命令都存放在这个目录下面，事实上，在Centos跟Solaris系统中，&lt;code&gt;/bin&lt;/code&gt;目录实际上只是一个软连接，连接到此目录&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/usr/include&lt;/td&gt;
+&lt;td&gt;存放大量的头文件，可能会被C代码引用&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/usr/lib&lt;/td&gt;
+&lt;td&gt;存放库文件，同样，在Centos跟Solaris系统中，&lt;code&gt;/lib&lt;/code&gt;其实就是软连接到此目录&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/usr/lib64&lt;/td&gt;
+&lt;td&gt;存放64位的库文件，在Centos中，&lt;code&gt;/lib64&lt;/code&gt;也是软连接到此目录&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/usr/sbin&lt;/td&gt;
+&lt;td&gt;很多daemon程序都是放在此目录下，在Centos中，&lt;code&gt;/sbin&lt;/code&gt;也是软连接到此目录&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/usr/local&lt;/td&gt;
+&lt;td&gt;此目录通常用来安装一些本地的应用&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/usr/share&lt;/td&gt;
+&lt;td&gt;此目录通常用来存放各种体系无关的数据。&lt;code&gt;/usr/share/man&lt;/code&gt;就是用来存放&lt;code&gt;man&lt;/code&gt;命令用到的帮助文档&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/usr/src&lt;/td&gt;
+&lt;td&gt;此目录通常存放内核的代码文件&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;h1 id=&#34;var目录&#34;&gt;/var目录&lt;/h1&gt;
 
 &lt;p&gt;&lt;code&gt;/var&lt;/code&gt;目录用来存放可变的数据，如日志，数据库文件等。&lt;/p&gt;
 
-&lt;p&gt;|&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-|
-| 目录              | 说明                                                                                                        |
-|&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-|
-| /var/log          | 此目录用来存放各种日志文件，包括系统跟应用的日志                                                            |
-| /var/log/messages | 在RedHat系列系统中，此文件用来记录系统刚刚发生的事情。在Debian和Ubuntu系统中，对应的文件是&lt;code&gt;/var/log/syslog&lt;/code&gt; |
-| /var/cache        | 此目录存放很多应用的缓存数据，如&lt;code&gt;yum&lt;/code&gt;命令可能会缓存部分数据在此目录                                         |
-| /var/spool        | 一般情况下，该目录会存放邮件cron任务等数据                                                                  |
-| /var/lib          | 通常此目录下会存放应用的状态信息，如&lt;code&gt;/var/lib/mysql&lt;/code&gt;存放&lt;code&gt;mysql&lt;/code&gt;数据库，&lt;code&gt;/var/lib/docker&lt;/code&gt;存放&lt;code&gt;docker&lt;/code&gt;的数据  |
-|&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-|&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;目录&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;/var/log&lt;/td&gt;
+&lt;td&gt;此目录用来存放各种日志文件，包括系统跟应用的日志&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/var/log/messages&lt;/td&gt;
+&lt;td&gt;在RedHat系列系统中，此文件用来记录系统刚刚发生的事情。在Debian和Ubuntu系统中，对应的文件是&lt;code&gt;/var/log/syslog&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/var/cache&lt;/td&gt;
+&lt;td&gt;此目录存放很多应用的缓存数据，如&lt;code&gt;yum&lt;/code&gt;命令可能会缓存部分数据在此目录&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/var/spool&lt;/td&gt;
+&lt;td&gt;一般情况下，该目录会存放邮件cron任务等数据&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/var/lib&lt;/td&gt;
+&lt;td&gt;通常此目录下会存放应用的状态信息，如&lt;code&gt;/var/lib/mysql&lt;/code&gt;存放&lt;code&gt;mysql&lt;/code&gt;数据库，&lt;code&gt;/var/lib/docker&lt;/code&gt;存放&lt;code&gt;docker&lt;/code&gt;的数据&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 </description>
       
     </item>

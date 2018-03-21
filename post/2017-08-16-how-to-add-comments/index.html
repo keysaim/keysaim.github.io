@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>如何给自己的博客网站加入评论系统 - 窗外蟋蟀博客</title>
-  <link rel="alternate" hreflang="zh-cn" href="https://keysaim.github.io" />
+  <link rel="alternate" hreflang="en" href="https://keysaim.github.io" />
 
 <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -19,16 +19,7 @@
 
 
 <meta name="author" content="keysaim" />
-  <meta name="description" content="前言 在这一篇博文中，咱们介绍了如何快速的搭建个人的博客网站，但是这个博客网站是基于Github Pages的纯静态网站，自身是不带任何的可交互的元素的，自然也就没有评论系统。但是，对于一个好的博客网站，如果没有评论系统，那基本上就属于自娱自乐了，也违背了博客分享的精神。因此，本文将着重介绍如何快速的给自己的博客网站加入评论系统。
-评论系统介绍 所谓评论系统，相信对于关注博客的你来说肯定不陌生。通常来讲有两大类，一类是网站自己提供评论系统，这个在很多较大的博客平台比较常见；一类是基于第三方的评论系统，这个在个人博客网站较为常见。对于个人博客，由于很多都是简单的托管在其他平台上面，比如博主网站托管于Github，因此很多都基本上是静态的网站，自身是没法提供评论系统。也正因为如此，也就催生了非常多的第三方的评论系统。这些系统国外比较有名的是Disqus，国内更加五花八门了。国外的由于天朝特殊的网络环境，并不十分稳定，所以对于国内的博客网站来说，通常都会选择国内的第三方评论系统。至于国内的评论系统有哪些选择呢，建议参考这篇博文。总的来说，由于评论系统这个东东，目前还没有明显的盈利的地方，倒闭关门是很有可能的，因此尽量选择大公司为后台的吧。
-最近在研究评论系统的时候，偶然发现有人居然直接使用Github的Issue系统来做评价系统，顿时眼前一亮啊。鉴于咱们的博客便是基于Github的，如果可行，那简直绝配了。于是博主就开始疯狂的搜索有关现状，Github都多少年了，博主深信应该已经有人造过轮子了。这类轮子肯定是属于前端方面的，于是在npm网站上面搜索，果然发现不少。比较下来，发现一款国人开发的gitment最为完整。这也就本文要介绍的评论系统了，本博客网站在可见的未来将采用该评论系统，这里对作者的分享表示感谢。
-gitment使用 gitment的使用在官网有较为详细的介绍，步骤写的还是比较清楚的。这里只是对于讲述可能踩到的坑：
- 请务必不要使用你的&amp;lt;username&amp;gt;.github.io这个repo作为gitment的repo
-可能这个repo作为Github特殊的repo，使用它作为gitment的repo时，总是不能够认证成功。建议再创建一个专门用来存放评论的repo。
- 生成oauth授权的时候，请务必确保Authorization callback URL是你的博客网站，如博主的是https://keysaim.github.io。否则会授权失败。
- 每次提交博文的时候，请务必记得初始化改博文的评论，否则读者无法进行评论
-所谓初始化其实就是在你的博文下面用自己的Github账号登陆之后，会出现一个Initialize Comments字样的按钮，点击该按钮完成初始化。改初始化其实就是在你的Github repo里面针对这篇博文生成一个新的Issue。
-  结语 gitment之类的评论系统是基于Github的Issue系统，每篇博文都对应于你的Github repo里面的一个Issue，博文里面的评论其实都是在改Issue里面的评论，因此，你是有绝对权限对所有评论进行管理的。另外，由于gitment项目开始不久，并且貌似作者比较忙，因此功能性，质量方面还是存在不足，当你使用过程中如果遇到任何问题，可以直接去gitment repo里面查看一下是不是别人也碰到类似问题。可能的情况下，你也可以提交自己的解决方案。" />
+  <meta name="description" content="前言 在这一篇博文中，咱们介绍了如何快速的搭建个人的博客网站，但是这个博客网站是基于Github Pages的纯静态网站，自身是不带任何的可交互" />
 
   <meta name="keywords" content="Hugo, blog, keysaim, 窗外蟋蟀" />
 
@@ -59,16 +50,7 @@ gitment使用 gitment的使用在官网有较为详细的介绍，步骤写的�
 
 
 <meta property="og:title" content="如何给自己的博客网站加入评论系统" />
-<meta property="og:description" content="前言 在这一篇博文中，咱们介绍了如何快速的搭建个人的博客网站，但是这个博客网站是基于Github Pages的纯静态网站，自身是不带任何的可交互的元素的，自然也就没有评论系统。但是，对于一个好的博客网站，如果没有评论系统，那基本上就属于自娱自乐了，也违背了博客分享的精神。因此，本文将着重介绍如何快速的给自己的博客网站加入评论系统。
-评论系统介绍 所谓评论系统，相信对于关注博客的你来说肯定不陌生。通常来讲有两大类，一类是网站自己提供评论系统，这个在很多较大的博客平台比较常见；一类是基于第三方的评论系统，这个在个人博客网站较为常见。对于个人博客，由于很多都是简单的托管在其他平台上面，比如博主网站托管于Github，因此很多都基本上是静态的网站，自身是没法提供评论系统。也正因为如此，也就催生了非常多的第三方的评论系统。这些系统国外比较有名的是Disqus，国内更加五花八门了。国外的由于天朝特殊的网络环境，并不十分稳定，所以对于国内的博客网站来说，通常都会选择国内的第三方评论系统。至于国内的评论系统有哪些选择呢，建议参考这篇博文。总的来说，由于评论系统这个东东，目前还没有明显的盈利的地方，倒闭关门是很有可能的，因此尽量选择大公司为后台的吧。
-最近在研究评论系统的时候，偶然发现有人居然直接使用Github的Issue系统来做评价系统，顿时眼前一亮啊。鉴于咱们的博客便是基于Github的，如果可行，那简直绝配了。于是博主就开始疯狂的搜索有关现状，Github都多少年了，博主深信应该已经有人造过轮子了。这类轮子肯定是属于前端方面的，于是在npm网站上面搜索，果然发现不少。比较下来，发现一款国人开发的gitment最为完整。这也就本文要介绍的评论系统了，本博客网站在可见的未来将采用该评论系统，这里对作者的分享表示感谢。
-gitment使用 gitment的使用在官网有较为详细的介绍，步骤写的还是比较清楚的。这里只是对于讲述可能踩到的坑：
- 请务必不要使用你的&lt;username&gt;.github.io这个repo作为gitment的repo
-可能这个repo作为Github特殊的repo，使用它作为gitment的repo时，总是不能够认证成功。建议再创建一个专门用来存放评论的repo。
- 生成oauth授权的时候，请务必确保Authorization callback URL是你的博客网站，如博主的是https://keysaim.github.io。否则会授权失败。
- 每次提交博文的时候，请务必记得初始化改博文的评论，否则读者无法进行评论
-所谓初始化其实就是在你的博文下面用自己的Github账号登陆之后，会出现一个Initialize Comments字样的按钮，点击该按钮完成初始化。改初始化其实就是在你的Github repo里面针对这篇博文生成一个新的Issue。
-  结语 gitment之类的评论系统是基于Github的Issue系统，每篇博文都对应于你的Github repo里面的一个Issue，博文里面的评论其实都是在改Issue里面的评论，因此，你是有绝对权限对所有评论进行管理的。另外，由于gitment项目开始不久，并且貌似作者比较忙，因此功能性，质量方面还是存在不足，当你使用过程中如果遇到任何问题，可以直接去gitment repo里面查看一下是不是别人也碰到类似问题。可能的情况下，你也可以提交自己的解决方案。" />
+<meta property="og:description" content="前言 在这一篇博文中，咱们介绍了如何快速的搭建个人的博客网站，但是这个博客网站是基于Github Pages的纯静态网站，自身是不带任何的可交互" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://keysaim.github.io/post/2017-08-16-how-to-add-comments/" />
 
@@ -89,37 +71,19 @@ gitment使用 gitment的使用在官网有较为详细的介绍，步骤写的�
 
 
 <meta itemprop="name" content="如何给自己的博客网站加入评论系统">
-<meta itemprop="description" content="前言 在这一篇博文中，咱们介绍了如何快速的搭建个人的博客网站，但是这个博客网站是基于Github Pages的纯静态网站，自身是不带任何的可交互的元素的，自然也就没有评论系统。但是，对于一个好的博客网站，如果没有评论系统，那基本上就属于自娱自乐了，也违背了博客分享的精神。因此，本文将着重介绍如何快速的给自己的博客网站加入评论系统。
-评论系统介绍 所谓评论系统，相信对于关注博客的你来说肯定不陌生。通常来讲有两大类，一类是网站自己提供评论系统，这个在很多较大的博客平台比较常见；一类是基于第三方的评论系统，这个在个人博客网站较为常见。对于个人博客，由于很多都是简单的托管在其他平台上面，比如博主网站托管于Github，因此很多都基本上是静态的网站，自身是没法提供评论系统。也正因为如此，也就催生了非常多的第三方的评论系统。这些系统国外比较有名的是Disqus，国内更加五花八门了。国外的由于天朝特殊的网络环境，并不十分稳定，所以对于国内的博客网站来说，通常都会选择国内的第三方评论系统。至于国内的评论系统有哪些选择呢，建议参考这篇博文。总的来说，由于评论系统这个东东，目前还没有明显的盈利的地方，倒闭关门是很有可能的，因此尽量选择大公司为后台的吧。
-最近在研究评论系统的时候，偶然发现有人居然直接使用Github的Issue系统来做评价系统，顿时眼前一亮啊。鉴于咱们的博客便是基于Github的，如果可行，那简直绝配了。于是博主就开始疯狂的搜索有关现状，Github都多少年了，博主深信应该已经有人造过轮子了。这类轮子肯定是属于前端方面的，于是在npm网站上面搜索，果然发现不少。比较下来，发现一款国人开发的gitment最为完整。这也就本文要介绍的评论系统了，本博客网站在可见的未来将采用该评论系统，这里对作者的分享表示感谢。
-gitment使用 gitment的使用在官网有较为详细的介绍，步骤写的还是比较清楚的。这里只是对于讲述可能踩到的坑：
- 请务必不要使用你的&lt;username&gt;.github.io这个repo作为gitment的repo
-可能这个repo作为Github特殊的repo，使用它作为gitment的repo时，总是不能够认证成功。建议再创建一个专门用来存放评论的repo。
- 生成oauth授权的时候，请务必确保Authorization callback URL是你的博客网站，如博主的是https://keysaim.github.io。否则会授权失败。
- 每次提交博文的时候，请务必记得初始化改博文的评论，否则读者无法进行评论
-所谓初始化其实就是在你的博文下面用自己的Github账号登陆之后，会出现一个Initialize Comments字样的按钮，点击该按钮完成初始化。改初始化其实就是在你的Github repo里面针对这篇博文生成一个新的Issue。
-  结语 gitment之类的评论系统是基于Github的Issue系统，每篇博文都对应于你的Github repo里面的一个Issue，博文里面的评论其实都是在改Issue里面的评论，因此，你是有绝对权限对所有评论进行管理的。另外，由于gitment项目开始不久，并且貌似作者比较忙，因此功能性，质量方面还是存在不足，当你使用过程中如果遇到任何问题，可以直接去gitment repo里面查看一下是不是别人也碰到类似问题。可能的情况下，你也可以提交自己的解决方案。">
+<meta itemprop="description" content="前言 在这一篇博文中，咱们介绍了如何快速的搭建个人的博客网站，但是这个博客网站是基于Github Pages的纯静态网站，自身是不带任何的可交互">
 
 
 <meta itemprop="datePublished" content="2017-08-16T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2017-08-16T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="21">
+<meta itemprop="wordCount" content="1311">
 
 
 
 <meta itemprop="keywords" content="blog,教程," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="如何给自己的博客网站加入评论系统"/>
-<meta name="twitter:description" content="前言 在这一篇博文中，咱们介绍了如何快速的搭建个人的博客网站，但是这个博客网站是基于Github Pages的纯静态网站，自身是不带任何的可交互的元素的，自然也就没有评论系统。但是，对于一个好的博客网站，如果没有评论系统，那基本上就属于自娱自乐了，也违背了博客分享的精神。因此，本文将着重介绍如何快速的给自己的博客网站加入评论系统。
-评论系统介绍 所谓评论系统，相信对于关注博客的你来说肯定不陌生。通常来讲有两大类，一类是网站自己提供评论系统，这个在很多较大的博客平台比较常见；一类是基于第三方的评论系统，这个在个人博客网站较为常见。对于个人博客，由于很多都是简单的托管在其他平台上面，比如博主网站托管于Github，因此很多都基本上是静态的网站，自身是没法提供评论系统。也正因为如此，也就催生了非常多的第三方的评论系统。这些系统国外比较有名的是Disqus，国内更加五花八门了。国外的由于天朝特殊的网络环境，并不十分稳定，所以对于国内的博客网站来说，通常都会选择国内的第三方评论系统。至于国内的评论系统有哪些选择呢，建议参考这篇博文。总的来说，由于评论系统这个东东，目前还没有明显的盈利的地方，倒闭关门是很有可能的，因此尽量选择大公司为后台的吧。
-最近在研究评论系统的时候，偶然发现有人居然直接使用Github的Issue系统来做评价系统，顿时眼前一亮啊。鉴于咱们的博客便是基于Github的，如果可行，那简直绝配了。于是博主就开始疯狂的搜索有关现状，Github都多少年了，博主深信应该已经有人造过轮子了。这类轮子肯定是属于前端方面的，于是在npm网站上面搜索，果然发现不少。比较下来，发现一款国人开发的gitment最为完整。这也就本文要介绍的评论系统了，本博客网站在可见的未来将采用该评论系统，这里对作者的分享表示感谢。
-gitment使用 gitment的使用在官网有较为详细的介绍，步骤写的还是比较清楚的。这里只是对于讲述可能踩到的坑：
- 请务必不要使用你的&lt;username&gt;.github.io这个repo作为gitment的repo
-可能这个repo作为Github特殊的repo，使用它作为gitment的repo时，总是不能够认证成功。建议再创建一个专门用来存放评论的repo。
- 生成oauth授权的时候，请务必确保Authorization callback URL是你的博客网站，如博主的是https://keysaim.github.io。否则会授权失败。
- 每次提交博文的时候，请务必记得初始化改博文的评论，否则读者无法进行评论
-所谓初始化其实就是在你的博文下面用自己的Github账号登陆之后，会出现一个Initialize Comments字样的按钮，点击该按钮完成初始化。改初始化其实就是在你的Github repo里面针对这篇博文生成一个新的Issue。
-  结语 gitment之类的评论系统是基于Github的Issue系统，每篇博文都对应于你的Github repo里面的一个Issue，博文里面的评论其实都是在改Issue里面的评论，因此，你是有绝对权限对所有评论进行管理的。另外，由于gitment项目开始不久，并且貌似作者比较忙，因此功能性，质量方面还是存在不足，当你使用过程中如果遇到任何问题，可以直接去gitment repo里面查看一下是不是别人也碰到类似问题。可能的情况下，你也可以提交自己的解决方案。"/>
+<meta name="twitter:description" content="前言 在这一篇博文中，咱们介绍了如何快速的搭建个人的博客网站，但是这个博客网站是基于Github Pages的纯静态网站，自身是不带任何的可交互"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -195,15 +159,15 @@ gitment使用 gitment的使用在官网有较为详细的介绍，步骤写的�
       <div class="post-meta">
         <span class="post-time"> 2017-08-16 </span>
         
-        <span class="more-meta"> 约 21 字 </span>
-        <span class="more-meta"> 预计阅读 1 分钟 </span>
+        <span class="more-meta"> 1311 words </span>
+        <span class="more-meta"> 3 min read </span>
       </div>
     </header>
 
     
     
 <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">文章目录</h2>
+  <h2 class="post-toc-title">Table of Contents</h2>
   
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
@@ -255,21 +219,6 @@ gitment使用 gitment的使用在官网有较为详细的介绍，步骤写的�
 
     
     
-<div class="post-copyright">
-  <p class="copyright-item">
-    <span class="item-title">文章作者</span>
-    <span class="item-content">keysaim</span>
-  </p>
-  <p class="copyright-item">
-    <span class="item-title">上次更新</span>
-    <span class="item-content">2017-08-16</span>
-  </p>
-  
-  <p class="copyright-item">
-    <span class="item-title">许可协议</span>
-    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
-  </p>
-</div>
 
     
     
@@ -289,12 +238,12 @@ gitment使用 gitment的使用在官网有较为详细的介绍，步骤写的�
           <a class="prev" href="/post/2017-08-18-linux-learning-materials/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">Linux学习从入门到精通推荐书籍</span>
-            <span class="prev-text nav-mobile">上一篇</span>
+            <span class="prev-text nav-mobile">Prev</span>
           </a>
         
           <a class="next" href="/post/2017-08-15-how-to-git-with-specific-ssh-key/">
             <span class="next-text nav-default">如何使用特定的SSH Key提交GIT</span>
-            <span class="prev-text nav-mobile">下一篇</span>
+            <span class="prev-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -313,7 +262,7 @@ gitment使用 gitment的使用在官网有较为详细的介绍，步骤写的�
     id: '2017-08-16 00:00:00 \x2b0000 UTC',
     title: '如何给自己的博客网站加入评论系统',
     link: decodeURI(location.href),
-    desc: '前言 在这一篇博文中，咱们介绍了如何快速的搭建个人的博客网站，但是这个博客网站是基于Github Pages的纯静态网站，自身是不带任何的可交互的元素的，自然也就没有评论系统。但是，对于一个好的博客网站，如果没有评论系统，那基本上就属于自娱自乐了，也违背了博客分享的精神。因此，本文将着重介绍如何快速的给自己的博客网站加入评论系统。\n评论系统介绍 所谓评论系统，相信对于关注博客的你来说肯定不陌生。通常来讲有两大类，一类是网站自己提供评论系统，这个在很多较大的博客平台比较常见；一类是基于第三方的评论系统，这个在个人博客网站较为常见。对于个人博客，由于很多都是简单的托管在其他平台上面，比如博主网站托管于Github，因此很多都基本上是静态的网站，自身是没法提供评论系统。也正因为如此，也就催生了非常多的第三方的评论系统。这些系统国外比较有名的是Disqus，国内更加五花八门了。国外的由于天朝特殊的网络环境，并不十分稳定，所以对于国内的博客网站来说，通常都会选择国内的第三方评论系统。至于国内的评论系统有哪些选择呢，建议参考这篇博文。总的来说，由于评论系统这个东东，目前还没有明显的盈利的地方，倒闭关门是很有可能的，因此尽量选择大公司为后台的吧。\n最近在研究评论系统的时候，偶然发现有人居然直接使用Github的Issue系统来做评价系统，顿时眼前一亮啊。鉴于咱们的博客便是基于Github的，如果可行，那简直绝配了。于是博主就开始疯狂的搜索有关现状，Github都多少年了，博主深信应该已经有人造过轮子了。这类轮子肯定是属于前端方面的，于是在npm网站上面搜索，果然发现不少。比较下来，发现一款国人开发的gitment最为完整。这也就本文要介绍的评论系统了，本博客网站在可见的未来将采用该评论系统，这里对作者的分享表示感谢。\ngitment使用 gitment的使用在官网有较为详细的介绍，步骤写的还是比较清楚的。这里只是对于讲述可能踩到的坑：\n 请务必不要使用你的\x26lt;username\x26gt;.github.io这个repo作为gitment的repo\n可能这个repo作为Github特殊的repo，使用它作为gitment的repo时，总是不能够认证成功。建议再创建一个专门用来存放评论的repo。\n 生成oauth授权的时候，请务必确保Authorization callback URL是你的博客网站，如博主的是https:\/\/keysaim.github.io。否则会授权失败。\n 每次提交博文的时候，请务必记得初始化改博文的评论，否则读者无法进行评论\n所谓初始化其实就是在你的博文下面用自己的Github账号登陆之后，会出现一个Initialize Comments字样的按钮，点击该按钮完成初始化。改初始化其实就是在你的Github repo里面针对这篇博文生成一个新的Issue。\n  结语 gitment之类的评论系统是基于Github的Issue系统，每篇博文都对应于你的Github repo里面的一个Issue，博文里面的评论其实都是在改Issue里面的评论，因此，你是有绝对权限对所有评论进行管理的。另外，由于gitment项目开始不久，并且貌似作者比较忙，因此功能性，质量方面还是存在不足，当你使用过程中如果遇到任何问题，可以直接去gitment repo里面查看一下是不是别人也碰到类似问题。可能的情况下，你也可以提交自己的解决方案。',
+    desc: '前言 在这一篇博文中，咱们介绍了如何快速的搭建个人的博客网站，但是这个博客网站是基于Github Pages的纯静态网站，自身是不带任何的可交互',
     owner: 'keysaim',
     repo: 'comments',
     oauth: {

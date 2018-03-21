@@ -5,7 +5,7 @@
     <link>https://keysaim.github.io/tags/git/</link>
     <description>Recent content in Git on 窗外蟋蟀博客</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
+    <language>en</language>
     <lastBuildDate>Mon, 04 Sep 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://keysaim.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
@@ -17,12 +17,7 @@
       <pubDate>Mon, 04 Sep 2017 00:00:00 +0000</pubDate>
       
       <guid>https://keysaim.github.io/post/2017-09-04-how-to-setup-git-server/</guid>
-      <description>概述 本文将介绍如何在本地搭建Git服务器。我们知道Git其实是个分布式的版本管理系统，与中心化的版本管理系统如SVN有根本的不同，每个使用者都可以在本地存储一份独立的备份，每个Git的使用者并不会因为没有中心服务器而不能工作（如果是SVN之类的，如果服务器挂了是不能够提交改动的）。然而，在进行团队开发的时候，有时候还是非常需要有一个统一的地方管理唯一的一份完整的代码，这样可以非常方便的进行团队协作开发。这里讲述一种极为简单的搭建本地Git服务器的方法。
-如何搭建 准备一台Linux服务器 这里不考虑windows系统，所以请务必准备一台Linux系统，分发版本没有关系，这里假定使用的是Centos 7。
-配置Git服务器  添加用户
-$ sudo adduser git $ sudo passwd git Changing password for user git. New password: Retype new password: passwd: all authentication tokens updated successfully.  配置好ssh
-$ sudo su git $ cd $ mkdir .ssh &amp;amp;&amp;amp; chmod 700 .ssh $ touch .ssh/authorized_keys &amp;amp;&amp;amp; chmod 600 .ssh/authorized_keys   初始化项目 假定我们有一个叫test的项目需要管理，那么首先我们需要在Git服务器上面创建并初始化该项目。
-$ sudo su git $ cd $ mkdir test $ cd test $ git init --bare Initialized empty Git repository in /home/git/test  注意，其中git init --bare就是用来初始化Git项目的，--bare参数表示只存储Git的管理文件而不展现test项目本身的文件。查看下初始化之后的目录：</description>
+      <description>概述 本文将介绍如何在本地搭建Git服务器。我们知道Git其实是个分布式的版本管理系统，与中心化的版本管理系统如SVN有根本的不同，每个使用者</description>
     </item>
     
     <item>
@@ -31,13 +26,7 @@ $ sudo su git $ cd $ mkdir test $ cd test $ git init --bare Initialized empty Gi
       <pubDate>Tue, 15 Aug 2017 00:00:00 +0000</pubDate>
       
       <guid>https://keysaim.github.io/post/2017-08-15-how-to-git-with-specific-ssh-key/</guid>
-      <description>问题提出 最近在自己的MAC上面提交Github代码的时候发现居然失败了：
-$ git push origin master Permission denied (publickey). fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists.  这不是坑爹吗，Github都提交过无数次了，咋就失败了呢？莫非Github上的ssh key被删掉了么。于是打开github ssh，尝试再次把ssh key加上，却提示key已经存在了。于是赶紧回到本地repo查看下用户是不是对的:
-$ git config -l ... user.email=keysaim@gmail.com user.name=keysaim  再查看下本地的ssh key：
-$ cat ~/.ssh/id_rsa.pub ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCu4Jy/+uFGiC89luBejzCEyPbY0SRoppyzrB4g1v3zv1OleylMzdf+eTTRcYgMbYoY6ZQs4M2NHX20iO6vf6j2uPvUsB++pP0G6Q7+VlrUlC19B07IVx7Mo2xmHCe4bMshFSugqOl+hV6zVjGpYJcLI9XtWQ6F/br4tkYD/J8KWns+SNha8gJVBckV1ncGlR+Q7ji4OM4+eIhKEEK4Wo7Cf7KaT71fIVFl7XRx5kmdtEN3F+wT4LjNb2okl8Pu4mmxCMwJvXzj0Jr9PkVzhSAhDkWG3mMt3kC5PhhRhCP7uwkGFsOEm5uGS907wTxY9cJNIl8FikOfmvDa5XrfMbMx nbaoping@xxx.com  发现邮件居然是nbaoping@xxx.com（此处已打码），显然跟本地repo的keysaim@gmail.com不同，git提交的时候没有特殊配置，会使用默认的ssh key，也就是~/.ssh/id_rsa.pub，而提交的用户信息跟此key并不能对应上，故此github拒绝了此次提交。既然如此，那把本地repo的用户信息改成key所对应的信息不就好了吗？是的，但是此信息都已经打码了就充分说明本博主是十分不愿暴露它的，咱必须得想其它辙。
-好了，现在的问题就是，如何使用特定的ssh key提交Git？本文就来讲述一种通用的解决办法。
-指定git提交使用的ssh key  查看repo对应的hostname
-$ git remote -v origin git@github.com:keysaim/keysaim.github.io.git (fetch) origin git@github.com:keysaim/keysaim.github.io.git (push)  其中github.</description>
+      <description>问题提出 最近在自己的MAC上面提交Github代码的时候发现居然失败了： $ git push origin master Permission denied (publickey). fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists. 这不是坑爹吗</description>
     </item>
     
   </channel>

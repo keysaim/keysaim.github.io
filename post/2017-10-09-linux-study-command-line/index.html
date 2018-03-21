@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>Linux系统介绍（一）命令行 - 窗外蟋蟀博客</title>
-  <link rel="alternate" hreflang="zh-cn" href="https://keysaim.github.io" />
+  <link rel="alternate" hreflang="en" href="https://keysaim.github.io" />
 
 <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -19,17 +19,7 @@
 
 
 <meta name="author" content="keysaim" />
-  <meta name="description" content="概述 随着Linux的发展，现在已经有了非常多的桌面版本，比如著名的Ubuntu。用这些桌面版本系统，可以满足基本的操作，然而对于一些高级点的操作，还是离不开Linux的命令行(Command Line)。而Linux的精髓也更多的体现在命令行上，其强大的功能，海量的工具，可以帮你轻而易举的完成各种复杂的系统管理操作。本文将详细讲述Linux命令行。
-基础命令 帮助类 man Linux有着海量的命令，而每个命令又有很多的不同参数，要记住所有的这些命令是比较困难的，因此，在使用Linux命令行的时候，必须时刻记着查看Linux的帮助，而查看帮助就是采用man命令。
- 查看命令帮助
-以ls命令为例，如果要查看帮助的话可以输入man ls，查看基本的帮助信息也可以直接ls --help。其将以分页的形式显示该命令的完整文档，操作该文档的基本命令有：
- 按u上翻页 按d下翻页 按空格下翻页 按回车下移一行 按/进入搜索模式，输入要搜索的关键字，按回车搜索。 按n搜索下一个 按N搜索上一个 按q退出查看  查看配置文件的帮助
-有些系统的配置文件也同样有对应的帮助文档，可以通过man $configfile来查看，比如/etc/system/sysctl.conf配置文件，查看其帮助可以采用命令man sysctl.conf。
- 查看后台进程(daemon)的帮助
-Linux在后台运行着很多的程序（称为daemon），如果需要查看某个daemon的帮助，可以用命令man $daemon来查看。如man ntpd将查看时间同步daemon的帮助文档。
- 搜索需要查看的命令
-Linux命令实在太多，有时候如果不记得准确的命令的名字，可以采用man -k $keyword来搜索，如man -k syslog将列出相关命令：
-# man -k syslog ipmievd (8) - IPMI event daemon for sending events to syslog logger (1) - a shell command interface to the syslog(3) system log module rsyslog.conf (5) - rsyslogd(8) configuration file rsyslogd (8) - reliable and extended syslogd   whatis man命令将展示完整的文档，可以通过whatis来查看命令的简单介绍。" />
+  <meta name="description" content="概述 随着Linux的发展，现在已经有了非常多的桌面版本，比如著名的Ubuntu。用这些桌面版本系统，可以满足基本的操作，然而对于一些高级点的" />
 
   <meta name="keywords" content="Hugo, blog, keysaim, 窗外蟋蟀" />
 
@@ -60,17 +50,7 @@ Linux命令实在太多，有时候如果不记得准确的命令的名字，可
 
 
 <meta property="og:title" content="Linux系统介绍（一）命令行" />
-<meta property="og:description" content="概述 随着Linux的发展，现在已经有了非常多的桌面版本，比如著名的Ubuntu。用这些桌面版本系统，可以满足基本的操作，然而对于一些高级点的操作，还是离不开Linux的命令行(Command Line)。而Linux的精髓也更多的体现在命令行上，其强大的功能，海量的工具，可以帮你轻而易举的完成各种复杂的系统管理操作。本文将详细讲述Linux命令行。
-基础命令 帮助类 man Linux有着海量的命令，而每个命令又有很多的不同参数，要记住所有的这些命令是比较困难的，因此，在使用Linux命令行的时候，必须时刻记着查看Linux的帮助，而查看帮助就是采用man命令。
- 查看命令帮助
-以ls命令为例，如果要查看帮助的话可以输入man ls，查看基本的帮助信息也可以直接ls --help。其将以分页的形式显示该命令的完整文档，操作该文档的基本命令有：
- 按u上翻页 按d下翻页 按空格下翻页 按回车下移一行 按/进入搜索模式，输入要搜索的关键字，按回车搜索。 按n搜索下一个 按N搜索上一个 按q退出查看  查看配置文件的帮助
-有些系统的配置文件也同样有对应的帮助文档，可以通过man $configfile来查看，比如/etc/system/sysctl.conf配置文件，查看其帮助可以采用命令man sysctl.conf。
- 查看后台进程(daemon)的帮助
-Linux在后台运行着很多的程序（称为daemon），如果需要查看某个daemon的帮助，可以用命令man $daemon来查看。如man ntpd将查看时间同步daemon的帮助文档。
- 搜索需要查看的命令
-Linux命令实在太多，有时候如果不记得准确的命令的名字，可以采用man -k $keyword来搜索，如man -k syslog将列出相关命令：
-# man -k syslog ipmievd (8) - IPMI event daemon for sending events to syslog logger (1) - a shell command interface to the syslog(3) system log module rsyslog.conf (5) - rsyslogd(8) configuration file rsyslogd (8) - reliable and extended syslogd   whatis man命令将展示完整的文档，可以通过whatis来查看命令的简单介绍。" />
+<meta property="og:description" content="概述 随着Linux的发展，现在已经有了非常多的桌面版本，比如著名的Ubuntu。用这些桌面版本系统，可以满足基本的操作，然而对于一些高级点的" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://keysaim.github.io/post/2017-10-09-linux-study-command-line/" />
 
@@ -91,39 +71,19 @@ Linux命令实在太多，有时候如果不记得准确的命令的名字，可
 
 
 <meta itemprop="name" content="Linux系统介绍（一）命令行">
-<meta itemprop="description" content="概述 随着Linux的发展，现在已经有了非常多的桌面版本，比如著名的Ubuntu。用这些桌面版本系统，可以满足基本的操作，然而对于一些高级点的操作，还是离不开Linux的命令行(Command Line)。而Linux的精髓也更多的体现在命令行上，其强大的功能，海量的工具，可以帮你轻而易举的完成各种复杂的系统管理操作。本文将详细讲述Linux命令行。
-基础命令 帮助类 man Linux有着海量的命令，而每个命令又有很多的不同参数，要记住所有的这些命令是比较困难的，因此，在使用Linux命令行的时候，必须时刻记着查看Linux的帮助，而查看帮助就是采用man命令。
- 查看命令帮助
-以ls命令为例，如果要查看帮助的话可以输入man ls，查看基本的帮助信息也可以直接ls --help。其将以分页的形式显示该命令的完整文档，操作该文档的基本命令有：
- 按u上翻页 按d下翻页 按空格下翻页 按回车下移一行 按/进入搜索模式，输入要搜索的关键字，按回车搜索。 按n搜索下一个 按N搜索上一个 按q退出查看  查看配置文件的帮助
-有些系统的配置文件也同样有对应的帮助文档，可以通过man $configfile来查看，比如/etc/system/sysctl.conf配置文件，查看其帮助可以采用命令man sysctl.conf。
- 查看后台进程(daemon)的帮助
-Linux在后台运行着很多的程序（称为daemon），如果需要查看某个daemon的帮助，可以用命令man $daemon来查看。如man ntpd将查看时间同步daemon的帮助文档。
- 搜索需要查看的命令
-Linux命令实在太多，有时候如果不记得准确的命令的名字，可以采用man -k $keyword来搜索，如man -k syslog将列出相关命令：
-# man -k syslog ipmievd (8) - IPMI event daemon for sending events to syslog logger (1) - a shell command interface to the syslog(3) system log module rsyslog.conf (5) - rsyslogd(8) configuration file rsyslogd (8) - reliable and extended syslogd   whatis man命令将展示完整的文档，可以通过whatis来查看命令的简单介绍。">
+<meta itemprop="description" content="概述 随着Linux的发展，现在已经有了非常多的桌面版本，比如著名的Ubuntu。用这些桌面版本系统，可以满足基本的操作，然而对于一些高级点的">
 
 
 <meta itemprop="datePublished" content="2017-10-09T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2017-10-09T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="564">
+<meta itemprop="wordCount" content="2115">
 
 
 
 <meta itemprop="keywords" content="Linux,study,学习," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Linux系统介绍（一）命令行"/>
-<meta name="twitter:description" content="概述 随着Linux的发展，现在已经有了非常多的桌面版本，比如著名的Ubuntu。用这些桌面版本系统，可以满足基本的操作，然而对于一些高级点的操作，还是离不开Linux的命令行(Command Line)。而Linux的精髓也更多的体现在命令行上，其强大的功能，海量的工具，可以帮你轻而易举的完成各种复杂的系统管理操作。本文将详细讲述Linux命令行。
-基础命令 帮助类 man Linux有着海量的命令，而每个命令又有很多的不同参数，要记住所有的这些命令是比较困难的，因此，在使用Linux命令行的时候，必须时刻记着查看Linux的帮助，而查看帮助就是采用man命令。
- 查看命令帮助
-以ls命令为例，如果要查看帮助的话可以输入man ls，查看基本的帮助信息也可以直接ls --help。其将以分页的形式显示该命令的完整文档，操作该文档的基本命令有：
- 按u上翻页 按d下翻页 按空格下翻页 按回车下移一行 按/进入搜索模式，输入要搜索的关键字，按回车搜索。 按n搜索下一个 按N搜索上一个 按q退出查看  查看配置文件的帮助
-有些系统的配置文件也同样有对应的帮助文档，可以通过man $configfile来查看，比如/etc/system/sysctl.conf配置文件，查看其帮助可以采用命令man sysctl.conf。
- 查看后台进程(daemon)的帮助
-Linux在后台运行着很多的程序（称为daemon），如果需要查看某个daemon的帮助，可以用命令man $daemon来查看。如man ntpd将查看时间同步daemon的帮助文档。
- 搜索需要查看的命令
-Linux命令实在太多，有时候如果不记得准确的命令的名字，可以采用man -k $keyword来搜索，如man -k syslog将列出相关命令：
-# man -k syslog ipmievd (8) - IPMI event daemon for sending events to syslog logger (1) - a shell command interface to the syslog(3) system log module rsyslog.conf (5) - rsyslogd(8) configuration file rsyslogd (8) - reliable and extended syslogd   whatis man命令将展示完整的文档，可以通过whatis来查看命令的简单介绍。"/>
+<meta name="twitter:description" content="概述 随着Linux的发展，现在已经有了非常多的桌面版本，比如著名的Ubuntu。用这些桌面版本系统，可以满足基本的操作，然而对于一些高级点的"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -199,15 +159,15 @@ Linux命令实在太多，有时候如果不记得准确的命令的名字，可
       <div class="post-meta">
         <span class="post-time"> 2017-10-09 </span>
         
-        <span class="more-meta"> 约 564 字 </span>
-        <span class="more-meta"> 预计阅读 3 分钟 </span>
+        <span class="more-meta"> 2115 words </span>
+        <span class="more-meta"> 5 min read </span>
       </div>
     </header>
 
     
     
 <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">文章目录</h2>
+  <h2 class="post-toc-title">Table of Contents</h2>
   
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
@@ -306,19 +266,61 @@ rsyslogd (8)         - reliable and extended syslogd
 
 <h2 id="目录操作类">目录操作类</h2>
 
-<p>|&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|
-| 命令     | 解释                                     |
-|&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|
-| pwd      | 查看当前目录路径                         |
-| cd $path | 切换到其它路径                           |
-| cd ~     | 返回home目录                             |
-| cd ..    | 返回上一级                               |
-| cd -     | 返回上一次的目录                         |
-| ls $path | 查看目录下的内容                         |
-| ls -a    | 显示目录下所有文件，包括隐藏文件         |
-| ls -lh   | 列表的形式显示，<code>-h</code>以可读的方式显示大小 |
-| mkdir    | 创建目录，要递归创建采用<code>mkdir -p</code>       |
-|&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>解释</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>pwd</td>
+<td>查看当前目录路径</td>
+</tr>
+
+<tr>
+<td>cd $path</td>
+<td>切换到其它路径</td>
+</tr>
+
+<tr>
+<td>cd ~</td>
+<td>返回home目录</td>
+</tr>
+
+<tr>
+<td>cd ..</td>
+<td>返回上一级</td>
+</tr>
+
+<tr>
+<td>cd -</td>
+<td>返回上一次的目录</td>
+</tr>
+
+<tr>
+<td>ls $path</td>
+<td>查看目录下的内容</td>
+</tr>
+
+<tr>
+<td>ls -a</td>
+<td>显示目录下所有文件，包括隐藏文件</td>
+</tr>
+
+<tr>
+<td>ls -lh</td>
+<td>列表的形式显示，<code>-h</code>以可读的方式显示大小</td>
+</tr>
+
+<tr>
+<td>mkdir</td>
+<td>创建目录，要递归创建采用<code>mkdir -p</code></td>
+</tr>
+</tbody>
+</table>
 
 <h2 id="文件操作类">文件操作类</h2>
 
@@ -376,16 +378,46 @@ total 4
 
 <h3 id="删除-复制-移动">删除、复制、移动</h3>
 
-<p>|&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|
-| 命令   | 解释                                                                                 |
-|&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|
-| rm     | 永久删除一个文件，对于此命令，没有所谓的垃圾箱，请慎重                               |
-| rm -i  | 询问是否真的要删除                                                                   |
-| rm -rf | 通常<code>rm</code>只是删除文件，如果需要删除目录的时候，必须带上<code>-r</code>参数，<code>-f</code>参数表示强制删除 |
-| cp     | 拷贝文件                                                                             |
-| cp -rf | 拷贝目录下所有的文件，并强制覆盖                                                     |
-| mv     | 移动文件到另一个目录，或者在当前目录下对某个文件改名字                               |
-|&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>解释</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>rm</td>
+<td>永久删除一个文件，对于此命令，没有所谓的垃圾箱，请慎重</td>
+</tr>
+
+<tr>
+<td>rm -i</td>
+<td>询问是否真的要删除</td>
+</tr>
+
+<tr>
+<td>rm -rf</td>
+<td>通常<code>rm</code>只是删除文件，如果需要删除目录的时候，必须带上<code>-r</code>参数，<code>-f</code>参数表示强制删除</td>
+</tr>
+
+<tr>
+<td>cp</td>
+<td>拷贝文件</td>
+</tr>
+
+<tr>
+<td>cp -rf</td>
+<td>拷贝目录下所有的文件，并强制覆盖</td>
+</tr>
+
+<tr>
+<td>mv</td>
+<td>移动文件到另一个目录，或者在当前目录下对某个文件改名字</td>
+</tr>
+</tbody>
+</table>
 
 <h2 id="文件内容操作类">文件内容操作类</h2>
 
@@ -469,21 +501,6 @@ _init
 
     
     
-<div class="post-copyright">
-  <p class="copyright-item">
-    <span class="item-title">文章作者</span>
-    <span class="item-content">keysaim</span>
-  </p>
-  <p class="copyright-item">
-    <span class="item-title">上次更新</span>
-    <span class="item-content">2017-10-09</span>
-  </p>
-  
-  <p class="copyright-item">
-    <span class="item-title">许可协议</span>
-    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
-  </p>
-</div>
 
     
     
@@ -505,12 +522,12 @@ _init
           <a class="prev" href="/post/2017-10-10-linux-study-shell-basic/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">Linux系统介绍（三）shell基础</span>
-            <span class="prev-text nav-mobile">上一篇</span>
+            <span class="prev-text nav-mobile">Prev</span>
           </a>
         
           <a class="next" href="/post/2017-10-09-linux-study-file-system-hierarchy/">
             <span class="next-text nav-default">Linux系统介绍（二）文件系统结构</span>
-            <span class="prev-text nav-mobile">下一篇</span>
+            <span class="prev-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -529,7 +546,7 @@ _init
     id: '2017-10-09 00:00:00 \x2b0000 UTC',
     title: 'Linux系统介绍（一）命令行',
     link: decodeURI(location.href),
-    desc: '概述 随着Linux的发展，现在已经有了非常多的桌面版本，比如著名的Ubuntu。用这些桌面版本系统，可以满足基本的操作，然而对于一些高级点的操作，还是离不开Linux的命令行(Command Line)。而Linux的精髓也更多的体现在命令行上，其强大的功能，海量的工具，可以帮你轻而易举的完成各种复杂的系统管理操作。本文将详细讲述Linux命令行。\n基础命令 帮助类 man Linux有着海量的命令，而每个命令又有很多的不同参数，要记住所有的这些命令是比较困难的，因此，在使用Linux命令行的时候，必须时刻记着查看Linux的帮助，而查看帮助就是采用man命令。\n 查看命令帮助\n以ls命令为例，如果要查看帮助的话可以输入man ls，查看基本的帮助信息也可以直接ls --help。其将以分页的形式显示该命令的完整文档，操作该文档的基本命令有：\n 按u上翻页 按d下翻页 按空格下翻页 按回车下移一行 按\/进入搜索模式，输入要搜索的关键字，按回车搜索。 按n搜索下一个 按N搜索上一个 按q退出查看  查看配置文件的帮助\n有些系统的配置文件也同样有对应的帮助文档，可以通过man $configfile来查看，比如\/etc\/system\/sysctl.conf配置文件，查看其帮助可以采用命令man sysctl.conf。\n 查看后台进程(daemon)的帮助\nLinux在后台运行着很多的程序（称为daemon），如果需要查看某个daemon的帮助，可以用命令man $daemon来查看。如man ntpd将查看时间同步daemon的帮助文档。\n 搜索需要查看的命令\nLinux命令实在太多，有时候如果不记得准确的命令的名字，可以采用man -k $keyword来搜索，如man -k syslog将列出相关命令：\n# man -k syslog ipmievd (8) - IPMI event daemon for sending events to syslog logger (1) - a shell command interface to the syslog(3) system log module rsyslog.conf (5) - rsyslogd(8) configuration file rsyslogd (8) - reliable and extended syslogd   whatis man命令将展示完整的文档，可以通过whatis来查看命令的简单介绍。',
+    desc: '概述 随着Linux的发展，现在已经有了非常多的桌面版本，比如著名的Ubuntu。用这些桌面版本系统，可以满足基本的操作，然而对于一些高级点的',
     owner: 'keysaim',
     repo: 'comments',
     oauth: {

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>如何快速搭建自己的github.io博客 - 窗外蟋蟀博客</title>
-  <link rel="alternate" hreflang="zh-cn" href="https://keysaim.github.io" />
+  <link rel="alternate" hreflang="en" href="https://keysaim.github.io" />
 
 <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -19,22 +19,7 @@
 
 
 <meta name="author" content="keysaim" />
-  <meta name="description" content="闲聊一下 在这知识剧烈膨胀的时代，如何记录、整理、分享自己的所学所感无疑显得十分重要，而博客便是最好的方式之一。现在已经有了各式各样的博客平台，有基于第三方的平台的（如博客园等），也有自己搭建的（如基于Ghost等，当然，也有很多干脆自己动手DIY了）。总之，博客的世界已然丰富多彩，留给咱们更多的不是有没有，而是哪个好。这里咱不讨论博客哪家强的问题，只推荐一款博主觉得不错的选择：github.io。
-要问全球最大的基佬交友网站是哪个，我相信不少答案必须是咱们的github。而github.io便是其出品，品质必须是有保证的，最重要的一点是基于github的repo管理，这意味着咱们对其是有觉得的控制，这个跟放在第三方的平台比，可控性要好太多。下面咱们将详细讲述如何基于github.io打造属于自己的博客网站。
-要完成自己的github.io博客网站，总共分三步：
- 开通自己的github.io repo 选择一款Jekyll的主题 编写发布博客  开通自己的github.io repo github.io是完全基于github创建的，其本质上是在你的github账户下创建一个特殊的repo。你可以参照如下步骤完成：
- 创建repo
-当然，一切的前提是你得首先有个github的账户，这里还请自行解决。登陆你的账户后，你可以创建一个新的repo。请务必注意该repo的名字，必须保持格式&amp;lt;username&amp;gt;.github.io，其中&amp;lt;username&amp;gt;替换成你的github账户名，这里假定创建的repo为tobiasalin.github.io
- 把你创建的repo clone到本地
-本文假定你已经有一定的git使用基础了，如果没有也没关系，Google一下，git的基本使用极为简单。
-$ git clone https://github.com/tobiasalin/tobiasalin.github.io  编写简单的博客首页
-$ cd tobiasalin.github.io $ echo &amp;quot;Hello World!&amp;quot; &amp;gt; index.html $ git add index.html $ git commit -m &amp;quot;Init commit&amp;quot; $ git push origin master  打开博客网站https://&amp;lt;username&amp;gt;.github.io
-不出意外，你就可以看到你的Hello World!博客首页了。如果不小心出了意外，通常情况下，你只需等一会再刷新就会好，要是还没好，通常说明你的运气实在太背，请自行了断。
-  选择一款Jekyll的主题 github.io默认采用Jekyll作为建站工具。Jekyll是一款当前火热的开源的静态网站建站工具，拥有非常庞大的使用群里和社区，其Github截止本文，已经有超过3W&#43;的star，拥有丰富的插件，丰富的主题，并且有无数的人已经帮你早出了无数的轮子可供参考。Jekyll自身的强大功能已经足够你打造自己心仪的静态网站（这里注意的是静态网站，Jekyll没有任何的后台数据库），然而前提是你自己还是得有一定的前端功底，而为了不至于长的太难看，你还得有一定的设计能力。这一下子把大部分人给难住了，咱们只是为了单纯的写写博客啊，至于有这么多要求吗？看到这里，很多人可能觉得此法不怎么方便啊，然则，正如刚刚反复强调的，Jekyll已经有一个非常庞大的社区，这就意味着，你完全可以借鉴别人已经造好的轮子，放在Jekyll这里，咱们应该成为主体（Theme）比较合适。本文推荐国内用户可以考虑一款国人开发的主题。本博客即是采用了这个主题。
- Fork出自己的repo
-为了便于管理，建议先把Huxpro fork到自己的账户下
- clone主题
-$ git clone git@github.com:keysaim/huxpro.github.io.git  当然，你也可以直接clone它的样板repo" />
+  <meta name="description" content="闲聊一下 在这知识剧烈膨胀的时代，如何记录、整理、分享自己的所学所感无疑显得十分重要，而博客便是最好的方式之一。现在已经有了各式各样的博客平台" />
 
   <meta name="keywords" content="Hugo, blog, keysaim, 窗外蟋蟀" />
 
@@ -65,22 +50,7 @@ $ git clone git@github.com:keysaim/huxpro.github.io.git  当然，你也可以�
 
 
 <meta property="og:title" content="如何快速搭建自己的github.io博客" />
-<meta property="og:description" content="闲聊一下 在这知识剧烈膨胀的时代，如何记录、整理、分享自己的所学所感无疑显得十分重要，而博客便是最好的方式之一。现在已经有了各式各样的博客平台，有基于第三方的平台的（如博客园等），也有自己搭建的（如基于Ghost等，当然，也有很多干脆自己动手DIY了）。总之，博客的世界已然丰富多彩，留给咱们更多的不是有没有，而是哪个好。这里咱不讨论博客哪家强的问题，只推荐一款博主觉得不错的选择：github.io。
-要问全球最大的基佬交友网站是哪个，我相信不少答案必须是咱们的github。而github.io便是其出品，品质必须是有保证的，最重要的一点是基于github的repo管理，这意味着咱们对其是有觉得的控制，这个跟放在第三方的平台比，可控性要好太多。下面咱们将详细讲述如何基于github.io打造属于自己的博客网站。
-要完成自己的github.io博客网站，总共分三步：
- 开通自己的github.io repo 选择一款Jekyll的主题 编写发布博客  开通自己的github.io repo github.io是完全基于github创建的，其本质上是在你的github账户下创建一个特殊的repo。你可以参照如下步骤完成：
- 创建repo
-当然，一切的前提是你得首先有个github的账户，这里还请自行解决。登陆你的账户后，你可以创建一个新的repo。请务必注意该repo的名字，必须保持格式&lt;username&gt;.github.io，其中&lt;username&gt;替换成你的github账户名，这里假定创建的repo为tobiasalin.github.io
- 把你创建的repo clone到本地
-本文假定你已经有一定的git使用基础了，如果没有也没关系，Google一下，git的基本使用极为简单。
-$ git clone https://github.com/tobiasalin/tobiasalin.github.io  编写简单的博客首页
-$ cd tobiasalin.github.io $ echo &quot;Hello World!&quot; &gt; index.html $ git add index.html $ git commit -m &quot;Init commit&quot; $ git push origin master  打开博客网站https://&lt;username&gt;.github.io
-不出意外，你就可以看到你的Hello World!博客首页了。如果不小心出了意外，通常情况下，你只需等一会再刷新就会好，要是还没好，通常说明你的运气实在太背，请自行了断。
-  选择一款Jekyll的主题 github.io默认采用Jekyll作为建站工具。Jekyll是一款当前火热的开源的静态网站建站工具，拥有非常庞大的使用群里和社区，其Github截止本文，已经有超过3W&#43;的star，拥有丰富的插件，丰富的主题，并且有无数的人已经帮你早出了无数的轮子可供参考。Jekyll自身的强大功能已经足够你打造自己心仪的静态网站（这里注意的是静态网站，Jekyll没有任何的后台数据库），然而前提是你自己还是得有一定的前端功底，而为了不至于长的太难看，你还得有一定的设计能力。这一下子把大部分人给难住了，咱们只是为了单纯的写写博客啊，至于有这么多要求吗？看到这里，很多人可能觉得此法不怎么方便啊，然则，正如刚刚反复强调的，Jekyll已经有一个非常庞大的社区，这就意味着，你完全可以借鉴别人已经造好的轮子，放在Jekyll这里，咱们应该成为主体（Theme）比较合适。本文推荐国内用户可以考虑一款国人开发的主题。本博客即是采用了这个主题。
- Fork出自己的repo
-为了便于管理，建议先把Huxpro fork到自己的账户下
- clone主题
-$ git clone git@github.com:keysaim/huxpro.github.io.git  当然，你也可以直接clone它的样板repo" />
+<meta property="og:description" content="闲聊一下 在这知识剧烈膨胀的时代，如何记录、整理、分享自己的所学所感无疑显得十分重要，而博客便是最好的方式之一。现在已经有了各式各样的博客平台" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://keysaim.github.io/post/2017-08-15-how-to-setup-your-github-io-blog/" />
 
@@ -101,49 +71,19 @@ $ git clone git@github.com:keysaim/huxpro.github.io.git  当然，你也可以�
 
 
 <meta itemprop="name" content="如何快速搭建自己的github.io博客">
-<meta itemprop="description" content="闲聊一下 在这知识剧烈膨胀的时代，如何记录、整理、分享自己的所学所感无疑显得十分重要，而博客便是最好的方式之一。现在已经有了各式各样的博客平台，有基于第三方的平台的（如博客园等），也有自己搭建的（如基于Ghost等，当然，也有很多干脆自己动手DIY了）。总之，博客的世界已然丰富多彩，留给咱们更多的不是有没有，而是哪个好。这里咱不讨论博客哪家强的问题，只推荐一款博主觉得不错的选择：github.io。
-要问全球最大的基佬交友网站是哪个，我相信不少答案必须是咱们的github。而github.io便是其出品，品质必须是有保证的，最重要的一点是基于github的repo管理，这意味着咱们对其是有觉得的控制，这个跟放在第三方的平台比，可控性要好太多。下面咱们将详细讲述如何基于github.io打造属于自己的博客网站。
-要完成自己的github.io博客网站，总共分三步：
- 开通自己的github.io repo 选择一款Jekyll的主题 编写发布博客  开通自己的github.io repo github.io是完全基于github创建的，其本质上是在你的github账户下创建一个特殊的repo。你可以参照如下步骤完成：
- 创建repo
-当然，一切的前提是你得首先有个github的账户，这里还请自行解决。登陆你的账户后，你可以创建一个新的repo。请务必注意该repo的名字，必须保持格式&lt;username&gt;.github.io，其中&lt;username&gt;替换成你的github账户名，这里假定创建的repo为tobiasalin.github.io
- 把你创建的repo clone到本地
-本文假定你已经有一定的git使用基础了，如果没有也没关系，Google一下，git的基本使用极为简单。
-$ git clone https://github.com/tobiasalin/tobiasalin.github.io  编写简单的博客首页
-$ cd tobiasalin.github.io $ echo &quot;Hello World!&quot; &gt; index.html $ git add index.html $ git commit -m &quot;Init commit&quot; $ git push origin master  打开博客网站https://&lt;username&gt;.github.io
-不出意外，你就可以看到你的Hello World!博客首页了。如果不小心出了意外，通常情况下，你只需等一会再刷新就会好，要是还没好，通常说明你的运气实在太背，请自行了断。
-  选择一款Jekyll的主题 github.io默认采用Jekyll作为建站工具。Jekyll是一款当前火热的开源的静态网站建站工具，拥有非常庞大的使用群里和社区，其Github截止本文，已经有超过3W&#43;的star，拥有丰富的插件，丰富的主题，并且有无数的人已经帮你早出了无数的轮子可供参考。Jekyll自身的强大功能已经足够你打造自己心仪的静态网站（这里注意的是静态网站，Jekyll没有任何的后台数据库），然而前提是你自己还是得有一定的前端功底，而为了不至于长的太难看，你还得有一定的设计能力。这一下子把大部分人给难住了，咱们只是为了单纯的写写博客啊，至于有这么多要求吗？看到这里，很多人可能觉得此法不怎么方便啊，然则，正如刚刚反复强调的，Jekyll已经有一个非常庞大的社区，这就意味着，你完全可以借鉴别人已经造好的轮子，放在Jekyll这里，咱们应该成为主体（Theme）比较合适。本文推荐国内用户可以考虑一款国人开发的主题。本博客即是采用了这个主题。
- Fork出自己的repo
-为了便于管理，建议先把Huxpro fork到自己的账户下
- clone主题
-$ git clone git@github.com:keysaim/huxpro.github.io.git  当然，你也可以直接clone它的样板repo">
+<meta itemprop="description" content="闲聊一下 在这知识剧烈膨胀的时代，如何记录、整理、分享自己的所学所感无疑显得十分重要，而博客便是最好的方式之一。现在已经有了各式各样的博客平台">
 
 
 <meta itemprop="datePublished" content="2017-08-15T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2017-08-15T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="170">
+<meta itemprop="wordCount" content="2581">
 
 
 
 <meta itemprop="keywords" content="github,教程," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="如何快速搭建自己的github.io博客"/>
-<meta name="twitter:description" content="闲聊一下 在这知识剧烈膨胀的时代，如何记录、整理、分享自己的所学所感无疑显得十分重要，而博客便是最好的方式之一。现在已经有了各式各样的博客平台，有基于第三方的平台的（如博客园等），也有自己搭建的（如基于Ghost等，当然，也有很多干脆自己动手DIY了）。总之，博客的世界已然丰富多彩，留给咱们更多的不是有没有，而是哪个好。这里咱不讨论博客哪家强的问题，只推荐一款博主觉得不错的选择：github.io。
-要问全球最大的基佬交友网站是哪个，我相信不少答案必须是咱们的github。而github.io便是其出品，品质必须是有保证的，最重要的一点是基于github的repo管理，这意味着咱们对其是有觉得的控制，这个跟放在第三方的平台比，可控性要好太多。下面咱们将详细讲述如何基于github.io打造属于自己的博客网站。
-要完成自己的github.io博客网站，总共分三步：
- 开通自己的github.io repo 选择一款Jekyll的主题 编写发布博客  开通自己的github.io repo github.io是完全基于github创建的，其本质上是在你的github账户下创建一个特殊的repo。你可以参照如下步骤完成：
- 创建repo
-当然，一切的前提是你得首先有个github的账户，这里还请自行解决。登陆你的账户后，你可以创建一个新的repo。请务必注意该repo的名字，必须保持格式&lt;username&gt;.github.io，其中&lt;username&gt;替换成你的github账户名，这里假定创建的repo为tobiasalin.github.io
- 把你创建的repo clone到本地
-本文假定你已经有一定的git使用基础了，如果没有也没关系，Google一下，git的基本使用极为简单。
-$ git clone https://github.com/tobiasalin/tobiasalin.github.io  编写简单的博客首页
-$ cd tobiasalin.github.io $ echo &quot;Hello World!&quot; &gt; index.html $ git add index.html $ git commit -m &quot;Init commit&quot; $ git push origin master  打开博客网站https://&lt;username&gt;.github.io
-不出意外，你就可以看到你的Hello World!博客首页了。如果不小心出了意外，通常情况下，你只需等一会再刷新就会好，要是还没好，通常说明你的运气实在太背，请自行了断。
-  选择一款Jekyll的主题 github.io默认采用Jekyll作为建站工具。Jekyll是一款当前火热的开源的静态网站建站工具，拥有非常庞大的使用群里和社区，其Github截止本文，已经有超过3W&#43;的star，拥有丰富的插件，丰富的主题，并且有无数的人已经帮你早出了无数的轮子可供参考。Jekyll自身的强大功能已经足够你打造自己心仪的静态网站（这里注意的是静态网站，Jekyll没有任何的后台数据库），然而前提是你自己还是得有一定的前端功底，而为了不至于长的太难看，你还得有一定的设计能力。这一下子把大部分人给难住了，咱们只是为了单纯的写写博客啊，至于有这么多要求吗？看到这里，很多人可能觉得此法不怎么方便啊，然则，正如刚刚反复强调的，Jekyll已经有一个非常庞大的社区，这就意味着，你完全可以借鉴别人已经造好的轮子，放在Jekyll这里，咱们应该成为主体（Theme）比较合适。本文推荐国内用户可以考虑一款国人开发的主题。本博客即是采用了这个主题。
- Fork出自己的repo
-为了便于管理，建议先把Huxpro fork到自己的账户下
- clone主题
-$ git clone git@github.com:keysaim/huxpro.github.io.git  当然，你也可以直接clone它的样板repo"/>
+<meta name="twitter:description" content="闲聊一下 在这知识剧烈膨胀的时代，如何记录、整理、分享自己的所学所感无疑显得十分重要，而博客便是最好的方式之一。现在已经有了各式各样的博客平台"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -219,15 +159,15 @@ $ git clone git@github.com:keysaim/huxpro.github.io.git  当然，你也可以�
       <div class="post-meta">
         <span class="post-time"> 2017-08-15 </span>
         
-        <span class="more-meta"> 约 170 字 </span>
-        <span class="more-meta"> 预计阅读 1 分钟 </span>
+        <span class="more-meta"> 2581 words </span>
+        <span class="more-meta"> 6 min read </span>
       </div>
     </header>
 
     
     
 <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">文章目录</h2>
+  <h2 class="post-toc-title">Table of Contents</h2>
   
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
@@ -411,21 +351,6 @@ $ jekyll serve --watch
 
     
     
-<div class="post-copyright">
-  <p class="copyright-item">
-    <span class="item-title">文章作者</span>
-    <span class="item-content">keysaim</span>
-  </p>
-  <p class="copyright-item">
-    <span class="item-title">上次更新</span>
-    <span class="item-content">2017-08-15</span>
-  </p>
-  
-  <p class="copyright-item">
-    <span class="item-title">许可协议</span>
-    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
-  </p>
-</div>
 
     
     
@@ -445,12 +370,12 @@ $ jekyll serve --watch
           <a class="prev" href="/post/2017-08-15-how-to-git-with-specific-ssh-key/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">如何使用特定的SSH Key提交GIT</span>
-            <span class="prev-text nav-mobile">上一篇</span>
+            <span class="prev-text nav-mobile">Prev</span>
           </a>
         
           <a class="next" href="/post/2016-06-23-full-stack-demo3/">
             <span class="next-text nav-default">用docker搭建全栈式应用（三）管理篇</span>
-            <span class="prev-text nav-mobile">下一篇</span>
+            <span class="prev-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -469,7 +394,7 @@ $ jekyll serve --watch
     id: '2017-08-15 00:00:00 \x2b0000 UTC',
     title: '如何快速搭建自己的github.io博客',
     link: decodeURI(location.href),
-    desc: '闲聊一下 在这知识剧烈膨胀的时代，如何记录、整理、分享自己的所学所感无疑显得十分重要，而博客便是最好的方式之一。现在已经有了各式各样的博客平台，有基于第三方的平台的（如博客园等），也有自己搭建的（如基于Ghost等，当然，也有很多干脆自己动手DIY了）。总之，博客的世界已然丰富多彩，留给咱们更多的不是有没有，而是哪个好。这里咱不讨论博客哪家强的问题，只推荐一款博主觉得不错的选择：github.io。\n要问全球最大的基佬交友网站是哪个，我相信不少答案必须是咱们的github。而github.io便是其出品，品质必须是有保证的，最重要的一点是基于github的repo管理，这意味着咱们对其是有觉得的控制，这个跟放在第三方的平台比，可控性要好太多。下面咱们将详细讲述如何基于github.io打造属于自己的博客网站。\n要完成自己的github.io博客网站，总共分三步：\n 开通自己的github.io repo 选择一款Jekyll的主题 编写发布博客  开通自己的github.io repo github.io是完全基于github创建的，其本质上是在你的github账户下创建一个特殊的repo。你可以参照如下步骤完成：\n 创建repo\n当然，一切的前提是你得首先有个github的账户，这里还请自行解决。登陆你的账户后，你可以创建一个新的repo。请务必注意该repo的名字，必须保持格式\x26lt;username\x26gt;.github.io，其中\x26lt;username\x26gt;替换成你的github账户名，这里假定创建的repo为tobiasalin.github.io\n 把你创建的repo clone到本地\n本文假定你已经有一定的git使用基础了，如果没有也没关系，Google一下，git的基本使用极为简单。\n$ git clone https:\/\/github.com\/tobiasalin\/tobiasalin.github.io  编写简单的博客首页\n$ cd tobiasalin.github.io $ echo \x26quot;Hello World!\x26quot; \x26gt; index.html $ git add index.html $ git commit -m \x26quot;Init commit\x26quot; $ git push origin master  打开博客网站https:\/\/\x26lt;username\x26gt;.github.io\n不出意外，你就可以看到你的Hello World!博客首页了。如果不小心出了意外，通常情况下，你只需等一会再刷新就会好，要是还没好，通常说明你的运气实在太背，请自行了断。\n  选择一款Jekyll的主题 github.io默认采用Jekyll作为建站工具。Jekyll是一款当前火热的开源的静态网站建站工具，拥有非常庞大的使用群里和社区，其Github截止本文，已经有超过3W\x2b的star，拥有丰富的插件，丰富的主题，并且有无数的人已经帮你早出了无数的轮子可供参考。Jekyll自身的强大功能已经足够你打造自己心仪的静态网站（这里注意的是静态网站，Jekyll没有任何的后台数据库），然而前提是你自己还是得有一定的前端功底，而为了不至于长的太难看，你还得有一定的设计能力。这一下子把大部分人给难住了，咱们只是为了单纯的写写博客啊，至于有这么多要求吗？看到这里，很多人可能觉得此法不怎么方便啊，然则，正如刚刚反复强调的，Jekyll已经有一个非常庞大的社区，这就意味着，你完全可以借鉴别人已经造好的轮子，放在Jekyll这里，咱们应该成为主体（Theme）比较合适。本文推荐国内用户可以考虑一款国人开发的主题。本博客即是采用了这个主题。\n Fork出自己的repo\n为了便于管理，建议先把Huxpro fork到自己的账户下\n clone主题\n$ git clone git@github.com:keysaim\/huxpro.github.io.git  当然，你也可以直接clone它的样板repo',
+    desc: '闲聊一下 在这知识剧烈膨胀的时代，如何记录、整理、分享自己的所学所感无疑显得十分重要，而博客便是最好的方式之一。现在已经有了各式各样的博客平台',
     owner: 'keysaim',
     repo: 'comments',
     oauth: {

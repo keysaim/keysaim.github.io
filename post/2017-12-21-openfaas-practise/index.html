@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>无服务（Serverless）Openfaas实战 - 窗外蟋蟀博客</title>
-  <link rel="alternate" hreflang="zh-cn" href="https://keysaim.github.io" />
+  <link rel="alternate" hreflang="en" href="https://keysaim.github.io" />
 
 <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -19,9 +19,7 @@
 
 
 <meta name="author" content="keysaim" />
-  <meta name="description" content="简述 技术的世界真的是一日千里，当有的人还满足与经典的C/S架构时，SOA（面向服务）架构已经遍地都是了；当很多人正打算将系统微服务改造的时候，别人都已经开始玩起无服务器（Serverless）架构了。随着2014年AWS发布Lambda，无服务器架构已经是越来越热了。那么，无服务器（Serverless）到底是个什么东东呢？这里推荐阅读以下这篇文章从IaaS到FaaS—— Serverless架构的前世今生，对于Serverless，目前业内并没有一个明确的定义，引用这篇文章中所采用的定义如下：“无服务器架构是基于互联网的系统，其中应用开发不使用常规的服务进程。相反，它们仅依赖于第三方服务（例如AWS Lambda服务），客户端逻辑和服务托管远程过程调用的组合。”这么说，估计很多人还是一头雾水，所以还请仔细阅读以下上面推荐的那篇文章。形象的来说，以后开发一个需要网络交互的移动APP，如果这个APP比较简单，基于Serverless架构，你甚至根本不需要进行服务端的开发，这放在以前是根本是无法想象的。当然，这可能是比较理想的情况，很多情况下，你可能还是需要参与服务端的开发，但跟以往决然不同的是，你并不需要开发一个完整的服务端，而只需要设计好几个函数，然后将这些函数上传到服务器提供商，如AWS的Lambda，服务器引擎便帮你提供完整的服务端功能，甚至包括了当流量激增时，需要动态的扩展服务器的数量等工作。虽然仍需要部分服务端的开发工作，但是毫无疑问，Serverless的架构将极大的减少服务端的开发量，同时也将极大的减少运维的工作量。
-对于Serverless，目前使用最多的是Faas（Function as a Service）范式。本文将基于开源项目Openfaas来讲述如何搭建一套Serverless系统。
-TODO" />
+  <meta name="description" content="简述 技术的世界真的是一日千里，当有的人还满足与经典的C/S架构时，SOA（面向服务）架构已经遍地都是了；当很多人正打算将系统微服务改造的时候" />
 
   <meta name="keywords" content="Hugo, blog, keysaim, 窗外蟋蟀" />
 
@@ -52,9 +50,7 @@ TODO" />
 
 
 <meta property="og:title" content="无服务（Serverless）Openfaas实战" />
-<meta property="og:description" content="简述 技术的世界真的是一日千里，当有的人还满足与经典的C/S架构时，SOA（面向服务）架构已经遍地都是了；当很多人正打算将系统微服务改造的时候，别人都已经开始玩起无服务器（Serverless）架构了。随着2014年AWS发布Lambda，无服务器架构已经是越来越热了。那么，无服务器（Serverless）到底是个什么东东呢？这里推荐阅读以下这篇文章从IaaS到FaaS—— Serverless架构的前世今生，对于Serverless，目前业内并没有一个明确的定义，引用这篇文章中所采用的定义如下：“无服务器架构是基于互联网的系统，其中应用开发不使用常规的服务进程。相反，它们仅依赖于第三方服务（例如AWS Lambda服务），客户端逻辑和服务托管远程过程调用的组合。”这么说，估计很多人还是一头雾水，所以还请仔细阅读以下上面推荐的那篇文章。形象的来说，以后开发一个需要网络交互的移动APP，如果这个APP比较简单，基于Serverless架构，你甚至根本不需要进行服务端的开发，这放在以前是根本是无法想象的。当然，这可能是比较理想的情况，很多情况下，你可能还是需要参与服务端的开发，但跟以往决然不同的是，你并不需要开发一个完整的服务端，而只需要设计好几个函数，然后将这些函数上传到服务器提供商，如AWS的Lambda，服务器引擎便帮你提供完整的服务端功能，甚至包括了当流量激增时，需要动态的扩展服务器的数量等工作。虽然仍需要部分服务端的开发工作，但是毫无疑问，Serverless的架构将极大的减少服务端的开发量，同时也将极大的减少运维的工作量。
-对于Serverless，目前使用最多的是Faas（Function as a Service）范式。本文将基于开源项目Openfaas来讲述如何搭建一套Serverless系统。
-TODO" />
+<meta property="og:description" content="简述 技术的世界真的是一日千里，当有的人还满足与经典的C/S架构时，SOA（面向服务）架构已经遍地都是了；当很多人正打算将系统微服务改造的时候" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://keysaim.github.io/post/2017-12-21-openfaas-practise/" />
 
@@ -75,23 +71,19 @@ TODO" />
 
 
 <meta itemprop="name" content="无服务（Serverless）Openfaas实战">
-<meta itemprop="description" content="简述 技术的世界真的是一日千里，当有的人还满足与经典的C/S架构时，SOA（面向服务）架构已经遍地都是了；当很多人正打算将系统微服务改造的时候，别人都已经开始玩起无服务器（Serverless）架构了。随着2014年AWS发布Lambda，无服务器架构已经是越来越热了。那么，无服务器（Serverless）到底是个什么东东呢？这里推荐阅读以下这篇文章从IaaS到FaaS—— Serverless架构的前世今生，对于Serverless，目前业内并没有一个明确的定义，引用这篇文章中所采用的定义如下：“无服务器架构是基于互联网的系统，其中应用开发不使用常规的服务进程。相反，它们仅依赖于第三方服务（例如AWS Lambda服务），客户端逻辑和服务托管远程过程调用的组合。”这么说，估计很多人还是一头雾水，所以还请仔细阅读以下上面推荐的那篇文章。形象的来说，以后开发一个需要网络交互的移动APP，如果这个APP比较简单，基于Serverless架构，你甚至根本不需要进行服务端的开发，这放在以前是根本是无法想象的。当然，这可能是比较理想的情况，很多情况下，你可能还是需要参与服务端的开发，但跟以往决然不同的是，你并不需要开发一个完整的服务端，而只需要设计好几个函数，然后将这些函数上传到服务器提供商，如AWS的Lambda，服务器引擎便帮你提供完整的服务端功能，甚至包括了当流量激增时，需要动态的扩展服务器的数量等工作。虽然仍需要部分服务端的开发工作，但是毫无疑问，Serverless的架构将极大的减少服务端的开发量，同时也将极大的减少运维的工作量。
-对于Serverless，目前使用最多的是Faas（Function as a Service）范式。本文将基于开源项目Openfaas来讲述如何搭建一套Serverless系统。
-TODO">
+<meta itemprop="description" content="简述 技术的世界真的是一日千里，当有的人还满足与经典的C/S架构时，SOA（面向服务）架构已经遍地都是了；当很多人正打算将系统微服务改造的时候">
 
 
 <meta itemprop="datePublished" content="2017-12-21T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2017-12-21T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="9">
+<meta itemprop="wordCount" content="643">
 
 
 
 <meta itemprop="keywords" content="serverless,教程," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="无服务（Serverless）Openfaas实战"/>
-<meta name="twitter:description" content="简述 技术的世界真的是一日千里，当有的人还满足与经典的C/S架构时，SOA（面向服务）架构已经遍地都是了；当很多人正打算将系统微服务改造的时候，别人都已经开始玩起无服务器（Serverless）架构了。随着2014年AWS发布Lambda，无服务器架构已经是越来越热了。那么，无服务器（Serverless）到底是个什么东东呢？这里推荐阅读以下这篇文章从IaaS到FaaS—— Serverless架构的前世今生，对于Serverless，目前业内并没有一个明确的定义，引用这篇文章中所采用的定义如下：“无服务器架构是基于互联网的系统，其中应用开发不使用常规的服务进程。相反，它们仅依赖于第三方服务（例如AWS Lambda服务），客户端逻辑和服务托管远程过程调用的组合。”这么说，估计很多人还是一头雾水，所以还请仔细阅读以下上面推荐的那篇文章。形象的来说，以后开发一个需要网络交互的移动APP，如果这个APP比较简单，基于Serverless架构，你甚至根本不需要进行服务端的开发，这放在以前是根本是无法想象的。当然，这可能是比较理想的情况，很多情况下，你可能还是需要参与服务端的开发，但跟以往决然不同的是，你并不需要开发一个完整的服务端，而只需要设计好几个函数，然后将这些函数上传到服务器提供商，如AWS的Lambda，服务器引擎便帮你提供完整的服务端功能，甚至包括了当流量激增时，需要动态的扩展服务器的数量等工作。虽然仍需要部分服务端的开发工作，但是毫无疑问，Serverless的架构将极大的减少服务端的开发量，同时也将极大的减少运维的工作量。
-对于Serverless，目前使用最多的是Faas（Function as a Service）范式。本文将基于开源项目Openfaas来讲述如何搭建一套Serverless系统。
-TODO"/>
+<meta name="twitter:description" content="简述 技术的世界真的是一日千里，当有的人还满足与经典的C/S架构时，SOA（面向服务）架构已经遍地都是了；当很多人正打算将系统微服务改造的时候"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -167,15 +159,15 @@ TODO"/>
       <div class="post-meta">
         <span class="post-time"> 2017-12-21 </span>
         
-        <span class="more-meta"> 约 9 字 </span>
-        <span class="more-meta"> 预计阅读 1 分钟 </span>
+        <span class="more-meta"> 643 words </span>
+        <span class="more-meta"> 2 min read </span>
       </div>
     </header>
 
     
     
 <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">文章目录</h2>
+  <h2 class="post-toc-title">Table of Contents</h2>
   
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
@@ -202,21 +194,6 @@ TODO"/>
 
     
     
-<div class="post-copyright">
-  <p class="copyright-item">
-    <span class="item-title">文章作者</span>
-    <span class="item-content">keysaim</span>
-  </p>
-  <p class="copyright-item">
-    <span class="item-title">上次更新</span>
-    <span class="item-content">2017-12-21</span>
-  </p>
-  
-  <p class="copyright-item">
-    <span class="item-title">许可协议</span>
-    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
-  </p>
-</div>
 
     
     
@@ -236,7 +213,7 @@ TODO"/>
         
           <a class="next" href="/post/2017-11-17-linux-study-common-tools/">
             <span class="next-text nav-default">Linux系统介绍（五）常用命令</span>
-            <span class="prev-text nav-mobile">下一篇</span>
+            <span class="prev-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -255,7 +232,7 @@ TODO"/>
     id: '2017-12-21 00:00:00 \x2b0000 UTC',
     title: '无服务（Serverless）Openfaas实战',
     link: decodeURI(location.href),
-    desc: '简述 技术的世界真的是一日千里，当有的人还满足与经典的C\/S架构时，SOA（面向服务）架构已经遍地都是了；当很多人正打算将系统微服务改造的时候，别人都已经开始玩起无服务器（Serverless）架构了。随着2014年AWS发布Lambda，无服务器架构已经是越来越热了。那么，无服务器（Serverless）到底是个什么东东呢？这里推荐阅读以下这篇文章从IaaS到FaaS—— Serverless架构的前世今生，对于Serverless，目前业内并没有一个明确的定义，引用这篇文章中所采用的定义如下：“无服务器架构是基于互联网的系统，其中应用开发不使用常规的服务进程。相反，它们仅依赖于第三方服务（例如AWS Lambda服务），客户端逻辑和服务托管远程过程调用的组合。”这么说，估计很多人还是一头雾水，所以还请仔细阅读以下上面推荐的那篇文章。形象的来说，以后开发一个需要网络交互的移动APP，如果这个APP比较简单，基于Serverless架构，你甚至根本不需要进行服务端的开发，这放在以前是根本是无法想象的。当然，这可能是比较理想的情况，很多情况下，你可能还是需要参与服务端的开发，但跟以往决然不同的是，你并不需要开发一个完整的服务端，而只需要设计好几个函数，然后将这些函数上传到服务器提供商，如AWS的Lambda，服务器引擎便帮你提供完整的服务端功能，甚至包括了当流量激增时，需要动态的扩展服务器的数量等工作。虽然仍需要部分服务端的开发工作，但是毫无疑问，Serverless的架构将极大的减少服务端的开发量，同时也将极大的减少运维的工作量。\n对于Serverless，目前使用最多的是Faas（Function as a Service）范式。本文将基于开源项目Openfaas来讲述如何搭建一套Serverless系统。\nTODO',
+    desc: '简述 技术的世界真的是一日千里，当有的人还满足与经典的C\/S架构时，SOA（面向服务）架构已经遍地都是了；当很多人正打算将系统微服务改造的时候',
     owner: 'keysaim',
     repo: 'comments',
     oauth: {

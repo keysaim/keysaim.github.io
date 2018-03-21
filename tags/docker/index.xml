@@ -5,7 +5,7 @@
     <link>https://keysaim.github.io/tags/docker/</link>
     <description>Recent content in Docker on 窗外蟋蟀博客</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
+    <language>en</language>
     <lastBuildDate>Thu, 23 Jun 2016 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://keysaim.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml" />
@@ -17,12 +17,7 @@
       <pubDate>Thu, 23 Jun 2016 00:00:00 +0000</pubDate>
       
       <guid>https://keysaim.github.io/post/2016-06-23-full-stack-demo3/</guid>
-      <description>用docker搭建全栈式应用 (三）—— 管理篇 简介 在上一篇我们讲述了如何基于Dockerfile实现docker image的自动构建，并基于此重新实现了咱们本系列中的全栈式应用。然而，虽然构建过程实现了自动化，但是在实际部署的时候我们还是需要手动的理清所有服务的依赖关系，并依次启动所有服务，更严重的是，每次重启的时候，我们都需要重复这些操作，这个是不能接受的。
-那么有啥办法改善么？记得业内似乎总有这么个说法，大凡超过重复操作必须得用脚本实现自动化，此谓IT男的基本素养。既然如此，咱们也得用脚本自动化咱们的操作了。非常直接的一种方案就是咱自己写个shell的脚本，如下： * 启动脚本
-```shell docker run -d --name redis-master redis-master docker run -d --name redis-slave1 --link redis-master:master redis-slave1 docker run -d --name redis-slave2 --link redis-master:master redis-slave2 docker run -d --name app2 --link redis-master:redis app 0.0.0.0:8002 docker run -d --name haproxy --link app1:app1 --link app2:app2 -p 6301:6301 ha-app ``` 看起来还可以吗，简单的几条语句。但是，咱可不要忘了一点，每个语句咱还木有检查执行的结果。还有这个只是启动的脚本，还有停止的脚本，清除的脚本等等。更要命的是，如果下次我部署其它类型的应用，尼玛还得把这一些列的脚本复制并修改一通，这个有点弱爆了的感觉啊。  一般来讲，IT界总是存在这一的规律，当一个烦恼只是你一个人的时候，OK你可以随便整了；当你觉得可能会是很多人的烦恼的时候，这时必须得已经有人提供了解决方案了。所以，在当下技术更新如此剧烈的年代，切记不要随便就自己吭哧吭哧的闷声瞎搞了，第一要务就是google之。一般情况下，总是与大神提供了解决方案，如果真心没有，那么恭喜你，赶紧自己整一个并开放出来，那么你就是那个大神了。
-同样，在咱们本文碰到的问题中，早就有对应的解决方案了，那就是基于Docker compose工具的服务管理。本文将详述如何基于Docker compose管理服务。当然，例子还是那个例子咯。
-Docker Compose工具简介 关于Docker Compose，官方其实有非常详尽的介绍。这里就简单的总结一下。
-那么，Docker Compose是什么呢？ * Docker的一个工具 * 定义，运行并管理多个容器应用 * 基于Compose文件 * 通常应用于开发、测试、CI环境</description>
+      <description>用docker搭建全栈式应用 (三）—— 管理篇 简介 在上一篇我们讲述了如何基于Dockerfile实现docker image的自动构建，并基于此</description>
     </item>
     
     <item>
@@ -31,19 +26,7 @@ Docker Compose工具简介 关于Docker Compose，官方其实有非常详尽的
       <pubDate>Mon, 30 May 2016 00:00:00 +0000</pubDate>
       
       <guid>https://keysaim.github.io/post/2016-05-30-full-stack-demo2/</guid>
-      <description>用docker搭建全栈式应用 (二）—— 构建篇 简介 在上一篇中, 我们已经较为详细的描述如何基于docker，搭建一套全栈式应用。web端采用Django，并使用HaProxy作为负载均衡。数据库采用redis，并使用master-slave的部署方式。前文基于从官方的docker registry的images，讲述了一步步如何启动配置各项服务。但是在实际部署中，不可能全部手动的完成这些事情，本文将讲述基于Dockerfile，来自动生成所需的Docker image，并将讲述基于构建的image如何启动服务。
-在前篇博文中，如何在docker中一步步部署服务。基本上主要包括了几个大的步骤：将配置拷贝到相应目录，同时做好修改；基于image启动docker container，同时挂载配置的目录；在container中启动服务。这样的部署方式有几个问题： * 全部手动操作，每次多事重复劳动 * 需要手动进入container中启动服务，部署非常耗时 * 配置需要在外面修改，极大地违背了docker隔离性的设计理念
-那么，如何解决这些问题呢？这里将引入本文将要讲述的Docker的自动化构建机制。所谓自动化构建，其实主要指的是基于Dockerfile的构建方式。利用Dockerfile，我们可以非常方便的构建一个独立完整的应用，同时集成一系列部署时候的操作，使得自动化的部署得以实现。Dockerfile是一个文本文件，里面记录了一系列的命令和操作，给出了一个docker image组成的完整定义。关于Dockerfile的详细介绍，请务必参考官方的文档，千万不要用X度，官方的文档其实讲述的非常清楚，而且基本上就一页就讲完了。
-ok, 下面咱们就开始讲述Docker的自动化构建部分。讲述之前，这里还是引入一下前文中的应用架构图，方便讲述及阅读。
- Redis-master构建 在上一篇中，redis-master的构建主要包括如下步骤：
- 获取redis image
-# docker pull redis  启动redis master container
-# docker run -it --name redis-master -v `pwd`/master:/data redis /bin/bash  配置redis master
-主要是修改配置文件master/redis.conf
- 在container中启动redis service
-  全部手动的操作比较繁琐，使用Dockerfile将可以实现自动化构建。这里先将构建redis-master的Dockerfile先列出，然后在详细介绍。
-FROM redis COPY ./redis.conf /data/ CMD redis-server /data/redis.conf  此Dockerfile主要采用了三个命令。 * FROM redis
-对应于手动操作中的`docker pull redis`，表示构建此image是基于官方docker registry中的redis image。Docker看到这个指令之后会首先从本地的cache中查找是否已经存在，如果存在就直接使用本地cache，如果不存在将自动的从docker registry下载。   COPY .</description>
+      <description>用docker搭建全栈式应用 (二）—— 构建篇 简介 在上一篇中, 我们已经较为详细的描述如何基于docker，搭建一套全栈式应用。web端采用Dj</description>
     </item>
     
     <item>
@@ -52,12 +35,7 @@ FROM redis COPY ./redis.conf /data/ CMD redis-server /data/redis.conf  此Docker
       <pubDate>Mon, 16 May 2016 00:00:00 +0000</pubDate>
       
       <guid>https://keysaim.github.io/post/2016-05-16-full-stack-demo/</guid>
-      <description>用docker搭建全栈式应用 简介 本文将以docker为基础，搭建一套简单的应用案例。该案例的应用架构将采用redis的master-slave模式作为数据存储，以django为框架提供web访问，以haproxy作为负载均衡。其架构图如下.
- 其中App1和App2属于同一个Django的APP.
-准备工作 获取相应的docker images  可以直接从docker官方获取images
-$ docker pull django $ docker pull redis $ docker pull haproxy  获取成功之后，检查一下images是否真的ok
-$ docker images REPOSITORY TAG IMAGE ID CREATED VIRTUAL SIZE haproxy latest 46bc5babcc18 3 days ago 139.1 MB redis latest 84dbf5edc313 4 days ago 184.8 MB django latest 3b0bc67346a2 9 days ago 433.5 MB  检查一下各自的版本(root权限) redis版本
-# docker run -it redis /bin/bash root@a3ca293915cb:/data# redis-server -v Redis server v=3.</description>
+      <description>用docker搭建全栈式应用 简介 本文将以docker为基础，搭建一套简单的应用案例。该案例的应用架构将采用redis的master-slav</description>
     </item>
     
   </channel>

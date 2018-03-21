@@ -5,7 +5,7 @@
     <link>https://keysaim.github.io/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/</link>
     <description>Recent content in 命令行 on 窗外蟋蟀博客</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
+    <language>en</language>
     <lastBuildDate>Fri, 18 Aug 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://keysaim.github.io/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/index.xml" rel="self" type="application/rss+xml" />
@@ -17,19 +17,7 @@
       <pubDate>Fri, 18 Aug 2017 00:00:00 +0000</pubDate>
       
       <guid>https://keysaim.github.io/post/2017-08-18-linux-learning-materials/</guid>
-      <description>如何学习Linux 在现在的生活，生产，研究等领域，Linux已经无所不在，从我们使用的手机，车载设备，到服务器，桌面电脑等，Linux已经成为这个世界方方面面的基石。尤其对于参与技术有关工作的你学习Linux是必须的，那么，该如何有效的学习呢？Linux从诞生至今，已经是一个非常庞大且复杂的系统，下图是Linux系统代码行数的统计（参考linuxcounter）： 可见截止本文为止，Linux的代码行数逼近2千万行，你就每天看1万行也得要6，7年，况且这还只是Linux内核的代码量，再加上每个Linux发行版本有关的代码，估计得突破天际了。因此，要在短期内全面的学习Linux的方方面面对于一个正常的人来说几乎不太可能。所以，学习Linux的关键便在于对于学习Linux的目的一定要明确，通常来讲可能会涉及到一下方面：
- 了解及入门 成为Linux的系统管理员 学习Linux应用编程 学习Linux内核开发  当然，这只是其中几个大的方面，即便如此，其中每个方面都是一个非常大的议题。比如说学习Linux内核开发，这个就包括了无数小的方面，内核本身就包括了非常多的细分方向，比如有的搞网络，有的搞文件系统，有的搞驱动开发等等。所以，对于Linux，还请千万慎重的评价自己是否真的精通，学无止境，真要精通Linux的主要方面，有可能需要穷尽你的个人生涯。
-当然，对于学习Linux，前人已经铺好了无数的基石，有无数可以参考学习的资料，而且内核也是开源的，必要的时候可以查看其代码，甚至已经有非常多帮你分析内核代码的书籍资料，甚至还有很多中文资料。所以，不论你打算要学习到如何的程度，已经有无数的资料可以参考，也有极为庞大的社区可以依靠。本文将就Linux学习推荐一些经典免费的书籍，主要侧重覆盖从入门到成为系统管理员的有关方面，学习对象为初学Linux，以及需要重新系统学习Linux的读者，将涵盖以下方面：
- 入门基础 Linux命令行及工具 Linux Bash脚本 Linux发行版本 Linux系统管理 Linux基本开发   为啥需要重点学习系统管理方面呢？有的Linux开发人员可能会说，不是有专门的Linux系统管理员吗，有必要花大力气学习系统管理吗？这个博主表示是非常有必要，开发可能侧重于功能的实现，而且往往侧重于细节，然而系统管理则直接面向功能本身，更多的是从整个系统的宏观角度来熟悉Linux。咱们有句话说不识庐山真面目，只缘身在此山中便是这个道理，开发者对于细节或许极为了解，但是未必对整个系统功能有足够的熟悉。而如果对于宏观的系统整体有足够的理解，对于开发本身来说也是有很大的促进作用的。
- 书籍推荐 入门基础书籍 Introduction to Linux 这是一本免费的书，来自于Linux文档项目。虽然免费，但是不影响它的流行程度，该书比较系统的介绍了Linux的一些基本概念，包括文件系统，命令行，网络等。但是鉴于Linux现在也是版本帝，有些内容可能跟不上最新的版本，但是，这完全不影响对于基本概念的理解。
-Linux Fundamentals 从这本书的书名就可以看出，作者Paul Cobbaut就是侧重于介绍Linux最基础的有关知识。涉及到Linux的历史，如何安装以及一些简单但是常用的命令。
-Linux命令行及工具书籍 GNU/Linux Command−Line Tools Summary 这本书同样来自于Linux文档项目。适于初学Linux命令行的读者。
-Bash Reference Manual from GNU 此书来自于GNU，着重介绍Linux命令行。
-The Linux Command Line 如果你把前面的几本基本的命令行的书籍啃完，并迫切希望能够进一步深入了解命令行，那么这本出自William Shotts的书是必须一读的，此书500多页的篇幅，极为详尽的介绍了Linux命令行，也许你自诩比较熟悉命令行，相信此书还是能够带个你新的见识。
-Linux Bash脚本书籍 Bash Beginners Guide 顾名思义，此书就是为初学者准备的，同样来自于Linux文档项目。
-Advanced Bash-Scripting Guide 如果你对Linux Bash脚本有了基本的认识，那么这本书将是你进阶的必备书籍。此书900多页的篇幅涉及Bash脚本的方方面面，不论对于打算进阶或者已经较为熟悉的人来说都是一本重要的参考书籍。
-The AWK Programming Language AWK命令是一个极为强大的Linux命令，同时提供非常强大的脚本支持。也正是因为强大，所以就有专门的书籍来介绍这个命令，如果你要把自己的Linux命令再提升一点的话，建议看下这本书来深入的学习该命令。
-Linux 101 Hacks 不论从这本书的书名，还是这本书的来源The Geek Stuff，此书都暗示着其将以新颖独特的角度为你介绍Linux脚本。</description>
+      <description>如何学习Linux 在现在的生活，生产，研究等领域，Linux已经无所不在，从我们使用的手机，车载设备，到服务器，桌面电脑等，Linux已经成</description>
     </item>
     
   </channel>

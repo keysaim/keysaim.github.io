@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>Linux系统介绍（四）IO重定向与管道 - 窗外蟋蟀博客</title>
-  <link rel="alternate" hreflang="zh-cn" href="https://keysaim.github.io" />
+  <link rel="alternate" hreflang="en" href="https://keysaim.github.io" />
 
 <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -19,15 +19,7 @@
 
 
 <meta name="author" content="keysaim" />
-  <meta name="description" content="IO重定向(IO redirection) Linux的有一个强大之处就是可以通过管道(Pipe)跟IO重定向将一系列命令的输出跟输入连接起来。IO重定向是Linux中非常重要的概念，是理解Linux命令，脚本以及Linux IO的基础。
-标准输入输出 对于shell来说，有三个基础的流，标准输入流(stdin或者stream 0)，标准输出流(stdout或者stream 1)，标准错误流(stderr或者stream2)。
-举个例子，当我们用键盘在shell中执行命令的时候，可以如下图：
-通常，stdout跟stderr都输出到了屏幕上，但对于Linux来说，其实是两种不同的输出。
-输出重定向 可以用&amp;gt;大于号将stdout重定向到另一个IO，比如文件：
-# echo &amp;quot;hello&amp;quot; &amp;gt; test.log # cat test.log hello  上面的命令将stdout重定向到文件test.log中，此时，如果该文件不存在则创建新文件，如果存在则覆盖已有文件。事实上，&amp;gt;重定向是1&amp;gt;的简写，1&amp;gt;可以更清楚的看到实际上是把stdout(stream 1)重定向。
-必须注意的是，默认情况下，该重定向会覆盖已有文件，这个在有时候可能不经意间丢失重要数据。shell提供了选项使得我们可以禁止这种覆盖，set -o noclobber可以打开该选项。
-# cat test.log hello # set -o noclobber # echo &amp;quot;world&amp;quot; &amp;gt; test.log -bash: test.log: cannot overwrite existing file  此外，在打开该选项之后，其实还是可以强制执行覆盖，可以采用&amp;gt;|来强制重定向到已存在的文件：
-# echo &amp;quot;world&amp;quot; &amp;gt; test.log -bash: test.log: cannot overwrite existing file # echo &amp;quot;world&amp;quot; &amp;gt;| test.log # cat test.log world  追加输出 可以采用&amp;gt;&amp;gt;将输出重定向到文件并追加在文件结尾，这样就可以避免覆盖文件了。" />
+  <meta name="description" content="IO重定向(IO redirection) Linux的有一个强大之处就是可以通过管道(Pipe)跟IO重定向将一系列命令的输出跟输入连接起来。IO重定向是Linux" />
 
   <meta name="keywords" content="Hugo, blog, keysaim, 窗外蟋蟀" />
 
@@ -58,15 +50,7 @@
 
 
 <meta property="og:title" content="Linux系统介绍（四）IO重定向与管道" />
-<meta property="og:description" content="IO重定向(IO redirection) Linux的有一个强大之处就是可以通过管道(Pipe)跟IO重定向将一系列命令的输出跟输入连接起来。IO重定向是Linux中非常重要的概念，是理解Linux命令，脚本以及Linux IO的基础。
-标准输入输出 对于shell来说，有三个基础的流，标准输入流(stdin或者stream 0)，标准输出流(stdout或者stream 1)，标准错误流(stderr或者stream2)。
-举个例子，当我们用键盘在shell中执行命令的时候，可以如下图：
-通常，stdout跟stderr都输出到了屏幕上，但对于Linux来说，其实是两种不同的输出。
-输出重定向 可以用&gt;大于号将stdout重定向到另一个IO，比如文件：
-# echo &quot;hello&quot; &gt; test.log # cat test.log hello  上面的命令将stdout重定向到文件test.log中，此时，如果该文件不存在则创建新文件，如果存在则覆盖已有文件。事实上，&gt;重定向是1&gt;的简写，1&gt;可以更清楚的看到实际上是把stdout(stream 1)重定向。
-必须注意的是，默认情况下，该重定向会覆盖已有文件，这个在有时候可能不经意间丢失重要数据。shell提供了选项使得我们可以禁止这种覆盖，set -o noclobber可以打开该选项。
-# cat test.log hello # set -o noclobber # echo &quot;world&quot; &gt; test.log -bash: test.log: cannot overwrite existing file  此外，在打开该选项之后，其实还是可以强制执行覆盖，可以采用&gt;|来强制重定向到已存在的文件：
-# echo &quot;world&quot; &gt; test.log -bash: test.log: cannot overwrite existing file # echo &quot;world&quot; &gt;| test.log # cat test.log world  追加输出 可以采用&gt;&gt;将输出重定向到文件并追加在文件结尾，这样就可以避免覆盖文件了。" />
+<meta property="og:description" content="IO重定向(IO redirection) Linux的有一个强大之处就是可以通过管道(Pipe)跟IO重定向将一系列命令的输出跟输入连接起来。IO重定向是Linux" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://keysaim.github.io/post/2017-11-16-linux-study-io-pipe/" />
 
@@ -87,35 +71,19 @@
 
 
 <meta itemprop="name" content="Linux系统介绍（四）IO重定向与管道">
-<meta itemprop="description" content="IO重定向(IO redirection) Linux的有一个强大之处就是可以通过管道(Pipe)跟IO重定向将一系列命令的输出跟输入连接起来。IO重定向是Linux中非常重要的概念，是理解Linux命令，脚本以及Linux IO的基础。
-标准输入输出 对于shell来说，有三个基础的流，标准输入流(stdin或者stream 0)，标准输出流(stdout或者stream 1)，标准错误流(stderr或者stream2)。
-举个例子，当我们用键盘在shell中执行命令的时候，可以如下图：
-通常，stdout跟stderr都输出到了屏幕上，但对于Linux来说，其实是两种不同的输出。
-输出重定向 可以用&gt;大于号将stdout重定向到另一个IO，比如文件：
-# echo &quot;hello&quot; &gt; test.log # cat test.log hello  上面的命令将stdout重定向到文件test.log中，此时，如果该文件不存在则创建新文件，如果存在则覆盖已有文件。事实上，&gt;重定向是1&gt;的简写，1&gt;可以更清楚的看到实际上是把stdout(stream 1)重定向。
-必须注意的是，默认情况下，该重定向会覆盖已有文件，这个在有时候可能不经意间丢失重要数据。shell提供了选项使得我们可以禁止这种覆盖，set -o noclobber可以打开该选项。
-# cat test.log hello # set -o noclobber # echo &quot;world&quot; &gt; test.log -bash: test.log: cannot overwrite existing file  此外，在打开该选项之后，其实还是可以强制执行覆盖，可以采用&gt;|来强制重定向到已存在的文件：
-# echo &quot;world&quot; &gt; test.log -bash: test.log: cannot overwrite existing file # echo &quot;world&quot; &gt;| test.log # cat test.log world  追加输出 可以采用&gt;&gt;将输出重定向到文件并追加在文件结尾，这样就可以避免覆盖文件了。">
+<meta itemprop="description" content="IO重定向(IO redirection) Linux的有一个强大之处就是可以通过管道(Pipe)跟IO重定向将一系列命令的输出跟输入连接起来。IO重定向是Linux">
 
 
 <meta itemprop="datePublished" content="2017-11-16T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2017-11-16T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="510">
+<meta itemprop="wordCount" content="2642">
 
 
 
 <meta itemprop="keywords" content="Linux,study,学习," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Linux系统介绍（四）IO重定向与管道"/>
-<meta name="twitter:description" content="IO重定向(IO redirection) Linux的有一个强大之处就是可以通过管道(Pipe)跟IO重定向将一系列命令的输出跟输入连接起来。IO重定向是Linux中非常重要的概念，是理解Linux命令，脚本以及Linux IO的基础。
-标准输入输出 对于shell来说，有三个基础的流，标准输入流(stdin或者stream 0)，标准输出流(stdout或者stream 1)，标准错误流(stderr或者stream2)。
-举个例子，当我们用键盘在shell中执行命令的时候，可以如下图：
-通常，stdout跟stderr都输出到了屏幕上，但对于Linux来说，其实是两种不同的输出。
-输出重定向 可以用&gt;大于号将stdout重定向到另一个IO，比如文件：
-# echo &quot;hello&quot; &gt; test.log # cat test.log hello  上面的命令将stdout重定向到文件test.log中，此时，如果该文件不存在则创建新文件，如果存在则覆盖已有文件。事实上，&gt;重定向是1&gt;的简写，1&gt;可以更清楚的看到实际上是把stdout(stream 1)重定向。
-必须注意的是，默认情况下，该重定向会覆盖已有文件，这个在有时候可能不经意间丢失重要数据。shell提供了选项使得我们可以禁止这种覆盖，set -o noclobber可以打开该选项。
-# cat test.log hello # set -o noclobber # echo &quot;world&quot; &gt; test.log -bash: test.log: cannot overwrite existing file  此外，在打开该选项之后，其实还是可以强制执行覆盖，可以采用&gt;|来强制重定向到已存在的文件：
-# echo &quot;world&quot; &gt; test.log -bash: test.log: cannot overwrite existing file # echo &quot;world&quot; &gt;| test.log # cat test.log world  追加输出 可以采用&gt;&gt;将输出重定向到文件并追加在文件结尾，这样就可以避免覆盖文件了。"/>
+<meta name="twitter:description" content="IO重定向(IO redirection) Linux的有一个强大之处就是可以通过管道(Pipe)跟IO重定向将一系列命令的输出跟输入连接起来。IO重定向是Linux"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -191,15 +159,15 @@
       <div class="post-meta">
         <span class="post-time"> 2017-11-16 </span>
         
-        <span class="more-meta"> 约 510 字 </span>
-        <span class="more-meta"> 预计阅读 3 分钟 </span>
+        <span class="more-meta"> 2642 words </span>
+        <span class="more-meta"> 6 min read </span>
       </div>
     </header>
 
     
     
 <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">文章目录</h2>
+  <h2 class="post-toc-title">Table of Contents</h2>
   
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
@@ -453,21 +421,6 @@ ls: cannot access tttt*: No such file or directory
 
     
     
-<div class="post-copyright">
-  <p class="copyright-item">
-    <span class="item-title">文章作者</span>
-    <span class="item-content">keysaim</span>
-  </p>
-  <p class="copyright-item">
-    <span class="item-title">上次更新</span>
-    <span class="item-content">2017-11-16</span>
-  </p>
-  
-  <p class="copyright-item">
-    <span class="item-title">许可协议</span>
-    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
-  </p>
-</div>
 
     
     
@@ -489,12 +442,12 @@ ls: cannot access tttt*: No such file or directory
           <a class="prev" href="/post/2017-11-17-linux-study-common-tools/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">Linux系统介绍（五）常用命令</span>
-            <span class="prev-text nav-mobile">上一篇</span>
+            <span class="prev-text nav-mobile">Prev</span>
           </a>
         
           <a class="next" href="/post/2017-10-11-rushgps-migrate/">
             <span class="next-text nav-default">GPS管理系统服务器迁移指南</span>
-            <span class="prev-text nav-mobile">下一篇</span>
+            <span class="prev-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -513,7 +466,7 @@ ls: cannot access tttt*: No such file or directory
     id: '2017-11-16 00:00:00 \x2b0000 UTC',
     title: 'Linux系统介绍（四）IO重定向与管道',
     link: decodeURI(location.href),
-    desc: 'IO重定向(IO redirection) Linux的有一个强大之处就是可以通过管道(Pipe)跟IO重定向将一系列命令的输出跟输入连接起来。IO重定向是Linux中非常重要的概念，是理解Linux命令，脚本以及Linux IO的基础。\n标准输入输出 对于shell来说，有三个基础的流，标准输入流(stdin或者stream 0)，标准输出流(stdout或者stream 1)，标准错误流(stderr或者stream2)。\n举个例子，当我们用键盘在shell中执行命令的时候，可以如下图：\n通常，stdout跟stderr都输出到了屏幕上，但对于Linux来说，其实是两种不同的输出。\n输出重定向 可以用\x26gt;大于号将stdout重定向到另一个IO，比如文件：\n# echo \x26quot;hello\x26quot; \x26gt; test.log # cat test.log hello  上面的命令将stdout重定向到文件test.log中，此时，如果该文件不存在则创建新文件，如果存在则覆盖已有文件。事实上，\x26gt;重定向是1\x26gt;的简写，1\x26gt;可以更清楚的看到实际上是把stdout(stream 1)重定向。\n必须注意的是，默认情况下，该重定向会覆盖已有文件，这个在有时候可能不经意间丢失重要数据。shell提供了选项使得我们可以禁止这种覆盖，set -o noclobber可以打开该选项。\n# cat test.log hello # set -o noclobber # echo \x26quot;world\x26quot; \x26gt; test.log -bash: test.log: cannot overwrite existing file  此外，在打开该选项之后，其实还是可以强制执行覆盖，可以采用\x26gt;|来强制重定向到已存在的文件：\n# echo \x26quot;world\x26quot; \x26gt; test.log -bash: test.log: cannot overwrite existing file # echo \x26quot;world\x26quot; \x26gt;| test.log # cat test.log world  追加输出 可以采用\x26gt;\x26gt;将输出重定向到文件并追加在文件结尾，这样就可以避免覆盖文件了。',
+    desc: 'IO重定向(IO redirection) Linux的有一个强大之处就是可以通过管道(Pipe)跟IO重定向将一系列命令的输出跟输入连接起来。IO重定向是Linux',
     owner: 'keysaim',
     repo: 'comments',
     oauth: {

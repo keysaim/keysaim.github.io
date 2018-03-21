@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>GPS管理系统服务器迁移指南 - 窗外蟋蟀博客</title>
-  <link rel="alternate" hreflang="zh-cn" href="https://keysaim.github.io" />
+  <link rel="alternate" hreflang="en" href="https://keysaim.github.io" />
 
 <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -19,14 +19,7 @@
 
 
 <meta name="author" content="keysaim" />
-  <meta name="description" content="概述 本指南主要讲述如何将GPS管理系统服务器迁移到另一台新的服务器，假定要迁移的服务器为server1，新服务器为server2，假定的服务器参数如下：
-|&amp;mdash;&amp;mdash;&amp;mdash;&#43;&amp;mdash;&amp;mdash;&amp;mdash;-&#43;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;&#43;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;&#43;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;| | 服务器 | 操作系统 | IP | 外网地址 | 外网开放端口 | |&amp;mdash;&amp;mdash;&amp;mdash;&#43;&amp;mdash;&amp;mdash;&amp;mdash;-&#43;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;&#43;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;&#43;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;| | server1 | Centos 7 | 10.10.10.100 | 55.55.55.100 | 9999, 9998 | | server2 | Centos 7 | 10.10.10.101 | 55.55.55.101 | 9999, 9998 | |&amp;mdash;&amp;mdash;&amp;mdash;&#43;&amp;mdash;&amp;mdash;&amp;mdash;-&#43;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;&#43;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;&#43;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;|
-一下所有操作都以root权限进行，请务必注意
-备份server1上的数据 请以ssh登陆到服务器，并切换到root用户。
-备份repo数据 请执行以下命令：
-cd / cp -f /etc/yum.repos.d/mysql-community.repo /  备份数据库数据 请执行以下命令：
-cd / mysqldump -u root -p rushgps &amp;gt; rushgps.sql  输入数据库密码完成备份，生成的备份文件为rushgps.sql，其中数据库密码请联系维护人员索取，这里假定是default。
-备份管理系统部署文件 请执行以下命令：" />
+  <meta name="description" content="概述 本指南主要讲述如何将GPS管理系统服务器迁移到另一台新的服务器，假定要迁移的服务器为server1，新服务器为server2，假定的服务" />
 
   <meta name="keywords" content="Hugo, blog, keysaim, 窗外蟋蟀" />
 
@@ -57,14 +50,7 @@ cd / mysqldump -u root -p rushgps &amp;gt; rushgps.sql  输入数据库密码完
 
 
 <meta property="og:title" content="GPS管理系统服务器迁移指南" />
-<meta property="og:description" content="概述 本指南主要讲述如何将GPS管理系统服务器迁移到另一台新的服务器，假定要迁移的服务器为server1，新服务器为server2，假定的服务器参数如下：
-|&mdash;&mdash;&mdash;&#43;&mdash;&mdash;&mdash;-&#43;&mdash;&mdash;&mdash;&mdash;&ndash;&#43;&mdash;&mdash;&mdash;&mdash;&ndash;&#43;&mdash;&mdash;&mdash;&mdash;&ndash;| | 服务器 | 操作系统 | IP | 外网地址 | 外网开放端口 | |&mdash;&mdash;&mdash;&#43;&mdash;&mdash;&mdash;-&#43;&mdash;&mdash;&mdash;&mdash;&ndash;&#43;&mdash;&mdash;&mdash;&mdash;&ndash;&#43;&mdash;&mdash;&mdash;&mdash;&ndash;| | server1 | Centos 7 | 10.10.10.100 | 55.55.55.100 | 9999, 9998 | | server2 | Centos 7 | 10.10.10.101 | 55.55.55.101 | 9999, 9998 | |&mdash;&mdash;&mdash;&#43;&mdash;&mdash;&mdash;-&#43;&mdash;&mdash;&mdash;&mdash;&ndash;&#43;&mdash;&mdash;&mdash;&mdash;&ndash;&#43;&mdash;&mdash;&mdash;&mdash;&ndash;|
-一下所有操作都以root权限进行，请务必注意
-备份server1上的数据 请以ssh登陆到服务器，并切换到root用户。
-备份repo数据 请执行以下命令：
-cd / cp -f /etc/yum.repos.d/mysql-community.repo /  备份数据库数据 请执行以下命令：
-cd / mysqldump -u root -p rushgps &gt; rushgps.sql  输入数据库密码完成备份，生成的备份文件为rushgps.sql，其中数据库密码请联系维护人员索取，这里假定是default。
-备份管理系统部署文件 请执行以下命令：" />
+<meta property="og:description" content="概述 本指南主要讲述如何将GPS管理系统服务器迁移到另一台新的服务器，假定要迁移的服务器为server1，新服务器为server2，假定的服务" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://keysaim.github.io/post/2017-10-11-rushgps-migrate/" />
 
@@ -85,33 +71,19 @@ cd / mysqldump -u root -p rushgps &gt; rushgps.sql  输入数据库密码完成�
 
 
 <meta itemprop="name" content="GPS管理系统服务器迁移指南">
-<meta itemprop="description" content="概述 本指南主要讲述如何将GPS管理系统服务器迁移到另一台新的服务器，假定要迁移的服务器为server1，新服务器为server2，假定的服务器参数如下：
-|&mdash;&mdash;&mdash;&#43;&mdash;&mdash;&mdash;-&#43;&mdash;&mdash;&mdash;&mdash;&ndash;&#43;&mdash;&mdash;&mdash;&mdash;&ndash;&#43;&mdash;&mdash;&mdash;&mdash;&ndash;| | 服务器 | 操作系统 | IP | 外网地址 | 外网开放端口 | |&mdash;&mdash;&mdash;&#43;&mdash;&mdash;&mdash;-&#43;&mdash;&mdash;&mdash;&mdash;&ndash;&#43;&mdash;&mdash;&mdash;&mdash;&ndash;&#43;&mdash;&mdash;&mdash;&mdash;&ndash;| | server1 | Centos 7 | 10.10.10.100 | 55.55.55.100 | 9999, 9998 | | server2 | Centos 7 | 10.10.10.101 | 55.55.55.101 | 9999, 9998 | |&mdash;&mdash;&mdash;&#43;&mdash;&mdash;&mdash;-&#43;&mdash;&mdash;&mdash;&mdash;&ndash;&#43;&mdash;&mdash;&mdash;&mdash;&ndash;&#43;&mdash;&mdash;&mdash;&mdash;&ndash;|
-一下所有操作都以root权限进行，请务必注意
-备份server1上的数据 请以ssh登陆到服务器，并切换到root用户。
-备份repo数据 请执行以下命令：
-cd / cp -f /etc/yum.repos.d/mysql-community.repo /  备份数据库数据 请执行以下命令：
-cd / mysqldump -u root -p rushgps &gt; rushgps.sql  输入数据库密码完成备份，生成的备份文件为rushgps.sql，其中数据库密码请联系维护人员索取，这里假定是default。
-备份管理系统部署文件 请执行以下命令：">
+<meta itemprop="description" content="概述 本指南主要讲述如何将GPS管理系统服务器迁移到另一台新的服务器，假定要迁移的服务器为server1，新服务器为server2，假定的服务">
 
 
 <meta itemprop="datePublished" content="2017-10-11T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2017-10-11T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="263">
+<meta itemprop="wordCount" content="1213">
 
 
 
 <meta itemprop="keywords" content="Rushgps," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="GPS管理系统服务器迁移指南"/>
-<meta name="twitter:description" content="概述 本指南主要讲述如何将GPS管理系统服务器迁移到另一台新的服务器，假定要迁移的服务器为server1，新服务器为server2，假定的服务器参数如下：
-|&mdash;&mdash;&mdash;&#43;&mdash;&mdash;&mdash;-&#43;&mdash;&mdash;&mdash;&mdash;&ndash;&#43;&mdash;&mdash;&mdash;&mdash;&ndash;&#43;&mdash;&mdash;&mdash;&mdash;&ndash;| | 服务器 | 操作系统 | IP | 外网地址 | 外网开放端口 | |&mdash;&mdash;&mdash;&#43;&mdash;&mdash;&mdash;-&#43;&mdash;&mdash;&mdash;&mdash;&ndash;&#43;&mdash;&mdash;&mdash;&mdash;&ndash;&#43;&mdash;&mdash;&mdash;&mdash;&ndash;| | server1 | Centos 7 | 10.10.10.100 | 55.55.55.100 | 9999, 9998 | | server2 | Centos 7 | 10.10.10.101 | 55.55.55.101 | 9999, 9998 | |&mdash;&mdash;&mdash;&#43;&mdash;&mdash;&mdash;-&#43;&mdash;&mdash;&mdash;&mdash;&ndash;&#43;&mdash;&mdash;&mdash;&mdash;&ndash;&#43;&mdash;&mdash;&mdash;&mdash;&ndash;|
-一下所有操作都以root权限进行，请务必注意
-备份server1上的数据 请以ssh登陆到服务器，并切换到root用户。
-备份repo数据 请执行以下命令：
-cd / cp -f /etc/yum.repos.d/mysql-community.repo /  备份数据库数据 请执行以下命令：
-cd / mysqldump -u root -p rushgps &gt; rushgps.sql  输入数据库密码完成备份，生成的备份文件为rushgps.sql，其中数据库密码请联系维护人员索取，这里假定是default。
-备份管理系统部署文件 请执行以下命令："/>
+<meta name="twitter:description" content="概述 本指南主要讲述如何将GPS管理系统服务器迁移到另一台新的服务器，假定要迁移的服务器为server1，新服务器为server2，假定的服务"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -187,15 +159,15 @@ cd / mysqldump -u root -p rushgps &gt; rushgps.sql  输入数据库密码完成�
       <div class="post-meta">
         <span class="post-time"> 2017-10-11 </span>
         
-        <span class="more-meta"> 约 263 字 </span>
-        <span class="more-meta"> 预计阅读 2 分钟 </span>
+        <span class="more-meta"> 1213 words </span>
+        <span class="more-meta"> 3 min read </span>
       </div>
     </header>
 
     
     
 <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">文章目录</h2>
+  <h2 class="post-toc-title">Table of Contents</h2>
   
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
@@ -236,12 +208,35 @@ cd / mysqldump -u root -p rushgps &gt; rushgps.sql  输入数据库密码完成�
 
 <p>本指南主要讲述如何将GPS管理系统服务器迁移到另一台新的服务器，假定要迁移的服务器为server1，新服务器为server2，假定的服务器参数如下：</p>
 
-<p>|&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&ndash;|
-| 服务器  | 操作系统 | IP           | 外网地址     | 外网开放端口 |
-|&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&ndash;|
-| server1 | Centos 7 | 10.10.10.100 | 55.55.55.100 | 9999, 9998   |
-| server2 | Centos 7 | 10.10.10.101 | 55.55.55.101 | 9999, 9998   |
-|&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;-+&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&ndash;|</p>
+<table>
+<thead>
+<tr>
+<th>服务器</th>
+<th>操作系统</th>
+<th>IP</th>
+<th>外网地址</th>
+<th>外网开放端口</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>server1</td>
+<td>Centos 7</td>
+<td>10.10.10.100</td>
+<td>55.55.55.100</td>
+<td>9999, 9998</td>
+</tr>
+
+<tr>
+<td>server2</td>
+<td>Centos 7</td>
+<td>10.10.10.101</td>
+<td>55.55.55.101</td>
+<td>9999, 9998</td>
+</tr>
+</tbody>
+</table>
 
 <p><strong><em>一下所有操作都以root权限进行，请务必注意</em></strong></p>
 
@@ -296,15 +291,41 @@ tar czf opt.tgz opt
 
 <p>总结，所有备份文件如下：</p>
 
-<p>|&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|
-| 备份文件              | 说明            |
-|&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|
-| /mysql-community.repo | repo文件        |
-| /rushgps.sql          | 数据库备份文件  |
-| /root.tgz             | 部署文件        |
-| /opt.tgz              | 资源文件        |
-| /supervisord.conf     | supervisord文件 |
-|&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|</p>
+<table>
+<thead>
+<tr>
+<th>备份文件</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>/mysql-community.repo</td>
+<td>repo文件</td>
+</tr>
+
+<tr>
+<td>/rushgps.sql</td>
+<td>数据库备份文件</td>
+</tr>
+
+<tr>
+<td>/root.tgz</td>
+<td>部署文件</td>
+</tr>
+
+<tr>
+<td>/opt.tgz</td>
+<td>资源文件</td>
+</tr>
+
+<tr>
+<td>/supervisord.conf</td>
+<td>supervisord文件</td>
+</tr>
+</tbody>
+</table>
 
 <h1 id="安装server2操作系统">安装server2操作系统</h1>
 
@@ -451,21 +472,6 @@ mysqldump -u root -p rushgps &gt; rushgps.sql
 
     
     
-<div class="post-copyright">
-  <p class="copyright-item">
-    <span class="item-title">文章作者</span>
-    <span class="item-content">keysaim</span>
-  </p>
-  <p class="copyright-item">
-    <span class="item-title">上次更新</span>
-    <span class="item-content">2017-10-11</span>
-  </p>
-  
-  <p class="copyright-item">
-    <span class="item-title">许可协议</span>
-    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
-  </p>
-</div>
 
     
     
@@ -483,12 +489,12 @@ mysqldump -u root -p rushgps &gt; rushgps.sql
           <a class="prev" href="/post/2017-11-16-linux-study-io-pipe/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">Linux系统介绍（四）IO重定向与管道</span>
-            <span class="prev-text nav-mobile">上一篇</span>
+            <span class="prev-text nav-mobile">Prev</span>
           </a>
         
           <a class="next" href="/post/2017-10-10-linux-study-shell-basic/">
             <span class="next-text nav-default">Linux系统介绍（三）shell基础</span>
-            <span class="prev-text nav-mobile">下一篇</span>
+            <span class="prev-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
@@ -507,7 +513,7 @@ mysqldump -u root -p rushgps &gt; rushgps.sql
     id: '2017-10-11 00:00:00 \x2b0000 UTC',
     title: 'GPS管理系统服务器迁移指南',
     link: decodeURI(location.href),
-    desc: '概述 本指南主要讲述如何将GPS管理系统服务器迁移到另一台新的服务器，假定要迁移的服务器为server1，新服务器为server2，假定的服务器参数如下：\n|\x26mdash;\x26mdash;\x26mdash;\x2b\x26mdash;\x26mdash;\x26mdash;-\x2b\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26ndash;\x2b\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26ndash;\x2b\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26ndash;| | 服务器 | 操作系统 | IP | 外网地址 | 外网开放端口 | |\x26mdash;\x26mdash;\x26mdash;\x2b\x26mdash;\x26mdash;\x26mdash;-\x2b\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26ndash;\x2b\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26ndash;\x2b\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26ndash;| | server1 | Centos 7 | 10.10.10.100 | 55.55.55.100 | 9999, 9998 | | server2 | Centos 7 | 10.10.10.101 | 55.55.55.101 | 9999, 9998 | |\x26mdash;\x26mdash;\x26mdash;\x2b\x26mdash;\x26mdash;\x26mdash;-\x2b\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26ndash;\x2b\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26ndash;\x2b\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26ndash;|\n一下所有操作都以root权限进行，请务必注意\n备份server1上的数据 请以ssh登陆到服务器，并切换到root用户。\n备份repo数据 请执行以下命令：\ncd \/ cp -f \/etc\/yum.repos.d\/mysql-community.repo \/  备份数据库数据 请执行以下命令：\ncd \/ mysqldump -u root -p rushgps \x26gt; rushgps.sql  输入数据库密码完成备份，生成的备份文件为rushgps.sql，其中数据库密码请联系维护人员索取，这里假定是default。\n备份管理系统部署文件 请执行以下命令：',
+    desc: '概述 本指南主要讲述如何将GPS管理系统服务器迁移到另一台新的服务器，假定要迁移的服务器为server1，新服务器为server2，假定的服务',
     owner: 'keysaim',
     repo: 'comments',
     oauth: {
