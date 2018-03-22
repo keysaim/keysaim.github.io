@@ -6,26 +6,35 @@
     <description>Recent content in Github on 窗外蟋蟀博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 15 Aug 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 22 Mar 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://keysaim.github.io/tags/github/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>如何在github.io搭建Hugo博客站</title>
+      <link>https://keysaim.github.io/post/blog/deploy-hugo-blog-in-github.io/</link>
+      <pubDate>Thu, 22 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/post/blog/deploy-hugo-blog-in-github.io/</guid>
+      <description>摘要 在前面的博文中介绍了如何在github.io上搭建自己的博客站，基于的是Jekyll，这也是github中比较常用的方式，好处是gith</description>
+    </item>
+    
+    <item>
       <title>如何使用特定的SSH Key提交GIT</title>
-      <link>https://keysaim.github.io/post/2017-08-15-how-to-git-with-specific-ssh-key/</link>
+      <link>https://keysaim.github.io/post/git/2017-08-15-how-to-git-with-specific-ssh-key/</link>
       <pubDate>Tue, 15 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-08-15-how-to-git-with-specific-ssh-key/</guid>
+      <guid>https://keysaim.github.io/post/git/2017-08-15-how-to-git-with-specific-ssh-key/</guid>
       <description>问题提出 最近在自己的MAC上面提交Github代码的时候发现居然失败了： $ git push origin master Permission denied (publickey). fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists. 这不是坑爹吗</description>
     </item>
     
     <item>
       <title>如何快速搭建自己的github.io博客</title>
-      <link>https://keysaim.github.io/post/2017-08-15-how-to-setup-your-github-io-blog/</link>
+      <link>https://keysaim.github.io/post/blog/2017-08-15-how-to-setup-your-github-io-blog/</link>
       <pubDate>Tue, 15 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-08-15-how-to-setup-your-github-io-blog/</guid>
+      <guid>https://keysaim.github.io/post/blog/2017-08-15-how-to-setup-your-github-io-blog/</guid>
       <description>闲聊一下 在这知识剧烈膨胀的时代，如何记录、整理、分享自己的所学所感无疑显得十分重要，而博客便是最好的方式之一。现在已经有了各式各样的博客平台</description>
     </item>
     

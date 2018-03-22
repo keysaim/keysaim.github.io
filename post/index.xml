@@ -6,161 +6,161 @@
     <description>Recent content in Posts on 窗外蟋蟀博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 21 Dec 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 22 Mar 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://keysaim.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>无服务（Serverless）Openfaas实战</title>
-      <link>https://keysaim.github.io/post/2017-12-21-openfaas-practise/</link>
-      <pubDate>Thu, 21 Dec 2017 00:00:00 +0000</pubDate>
+      <title>如何在github.io搭建Hugo博客站</title>
+      <link>https://keysaim.github.io/post/blog/deploy-hugo-blog-in-github.io/</link>
+      <pubDate>Thu, 22 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-12-21-openfaas-practise/</guid>
-      <description>简述 技术的世界真的是一日千里，当有的人还满足与经典的C/S架构时，SOA（面向服务）架构已经遍地都是了；当很多人正打算将系统微服务改造的时候</description>
+      <guid>https://keysaim.github.io/post/blog/deploy-hugo-blog-in-github.io/</guid>
+      <description>摘要 在前面的博文中介绍了如何在github.io上搭建自己的博客站，基于的是Jekyll，这也是github中比较常用的方式，好处是gith</description>
     </item>
     
     <item>
       <title>Linux系统介绍（五）常用命令</title>
-      <link>https://keysaim.github.io/post/2017-11-17-linux-study-common-tools/</link>
+      <link>https://keysaim.github.io/post/linux/2017-11-17-linux-study-common-tools/</link>
       <pubDate>Fri, 17 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-11-17-linux-study-common-tools/</guid>
+      <guid>https://keysaim.github.io/post/linux/2017-11-17-linux-study-common-tools/</guid>
       <description>cat命令 很多时候我们通过cat命令来查看文件内容，它会将文件的所有内容显示出来。当然，cat也可以通过管道接收数据，它主要完成的是将从管道</description>
     </item>
     
     <item>
       <title>Linux系统介绍（四）IO重定向与管道</title>
-      <link>https://keysaim.github.io/post/2017-11-16-linux-study-io-pipe/</link>
+      <link>https://keysaim.github.io/post/linux/2017-11-16-linux-study-io-pipe/</link>
       <pubDate>Thu, 16 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-11-16-linux-study-io-pipe/</guid>
+      <guid>https://keysaim.github.io/post/linux/2017-11-16-linux-study-io-pipe/</guid>
       <description>IO重定向(IO redirection) Linux的有一个强大之处就是可以通过管道(Pipe)跟IO重定向将一系列命令的输出跟输入连接起来。IO重定向是Linux</description>
     </item>
     
     <item>
       <title>GPS管理系统服务器迁移指南</title>
-      <link>https://keysaim.github.io/post/2017-10-11-rushgps-migrate/</link>
+      <link>https://keysaim.github.io/post/others/2017-10-11-rushgps-migrate/</link>
       <pubDate>Wed, 11 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-10-11-rushgps-migrate/</guid>
+      <guid>https://keysaim.github.io/post/others/2017-10-11-rushgps-migrate/</guid>
       <description>概述 本指南主要讲述如何将GPS管理系统服务器迁移到另一台新的服务器，假定要迁移的服务器为server1，新服务器为server2，假定的服务</description>
     </item>
     
     <item>
       <title>Linux系统介绍（三）shell基础</title>
-      <link>https://keysaim.github.io/post/2017-10-10-linux-study-shell-basic/</link>
+      <link>https://keysaim.github.io/post/linux/2017-10-10-linux-study-shell-basic/</link>
       <pubDate>Tue, 10 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-10-10-linux-study-shell-basic/</guid>
+      <guid>https://keysaim.github.io/post/linux/2017-10-10-linux-study-shell-basic/</guid>
       <description>概述 首先，咱们来了解一下，什么是Shell。操作系统内核给我们提供了各种接口，同时也提供了各种用户层的库，理论上我们基于这些可以编写程序实现</description>
     </item>
     
     <item>
       <title>Linux系统介绍（一）命令行</title>
-      <link>https://keysaim.github.io/post/2017-10-09-linux-study-command-line/</link>
+      <link>https://keysaim.github.io/post/linux/2017-10-09-linux-study-command-line/</link>
       <pubDate>Mon, 09 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-10-09-linux-study-command-line/</guid>
+      <guid>https://keysaim.github.io/post/linux/2017-10-09-linux-study-command-line/</guid>
       <description>概述 随着Linux的发展，现在已经有了非常多的桌面版本，比如著名的Ubuntu。用这些桌面版本系统，可以满足基本的操作，然而对于一些高级点的</description>
     </item>
     
     <item>
       <title>Linux系统介绍（二）文件系统结构</title>
-      <link>https://keysaim.github.io/post/2017-10-09-linux-study-file-system-hierarchy/</link>
+      <link>https://keysaim.github.io/post/linux/2017-10-09-linux-study-file-system-hierarchy/</link>
       <pubDate>Mon, 09 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-10-09-linux-study-file-system-hierarchy/</guid>
+      <guid>https://keysaim.github.io/post/linux/2017-10-09-linux-study-file-system-hierarchy/</guid>
       <description>概述 多数Linux发行版本都是遵循文件系统结构标准（Filesystem Hierarchy Standard, 简称FHS），可以在这里找到该标准。本文对Linux的文件系统结</description>
     </item>
     
     <item>
       <title>Linux系统介绍--综述</title>
-      <link>https://keysaim.github.io/post/2017-10-09-linux-study-overview/</link>
+      <link>https://keysaim.github.io/post/linux/2017-10-09-linux-study-overview/</link>
       <pubDate>Sun, 08 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-10-09-linux-study-overview/</guid>
+      <guid>https://keysaim.github.io/post/linux/2017-10-09-linux-study-overview/</guid>
       <description>概述 从大二（2006年）开始接触Linux到现在已经有10几年了，遥记得那时候Ubuntu还是个位数时代，现在都到17了，真的是光阴如梭啊。</description>
     </item>
     
     <item>
       <title>如何搭建本地的Git服务器</title>
-      <link>https://keysaim.github.io/post/2017-09-04-how-to-setup-git-server/</link>
+      <link>https://keysaim.github.io/post/git/2017-09-04-how-to-setup-git-server/</link>
       <pubDate>Mon, 04 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-09-04-how-to-setup-git-server/</guid>
+      <guid>https://keysaim.github.io/post/git/2017-09-04-how-to-setup-git-server/</guid>
       <description>概述 本文将介绍如何在本地搭建Git服务器。我们知道Git其实是个分布式的版本管理系统，与中心化的版本管理系统如SVN有根本的不同，每个使用者</description>
     </item>
     
     <item>
       <title>Linux学习从入门到精通推荐书籍</title>
-      <link>https://keysaim.github.io/post/2017-08-18-linux-learning-materials/</link>
+      <link>https://keysaim.github.io/post/linux/2017-08-18-linux-learning-materials/</link>
       <pubDate>Fri, 18 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-08-18-linux-learning-materials/</guid>
+      <guid>https://keysaim.github.io/post/linux/2017-08-18-linux-learning-materials/</guid>
       <description>如何学习Linux 在现在的生活，生产，研究等领域，Linux已经无所不在，从我们使用的手机，车载设备，到服务器，桌面电脑等，Linux已经成</description>
     </item>
     
     <item>
       <title>如何给自己的博客网站加入评论系统</title>
-      <link>https://keysaim.github.io/post/2017-08-16-how-to-add-comments/</link>
+      <link>https://keysaim.github.io/post/blog/2017-08-16-how-to-add-comments/</link>
       <pubDate>Wed, 16 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-08-16-how-to-add-comments/</guid>
+      <guid>https://keysaim.github.io/post/blog/2017-08-16-how-to-add-comments/</guid>
       <description>前言 在这一篇博文中，咱们介绍了如何快速的搭建个人的博客网站，但是这个博客网站是基于Github Pages的纯静态网站，自身是不带任何的可交互</description>
     </item>
     
     <item>
       <title>如何使用特定的SSH Key提交GIT</title>
-      <link>https://keysaim.github.io/post/2017-08-15-how-to-git-with-specific-ssh-key/</link>
+      <link>https://keysaim.github.io/post/git/2017-08-15-how-to-git-with-specific-ssh-key/</link>
       <pubDate>Tue, 15 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-08-15-how-to-git-with-specific-ssh-key/</guid>
+      <guid>https://keysaim.github.io/post/git/2017-08-15-how-to-git-with-specific-ssh-key/</guid>
       <description>问题提出 最近在自己的MAC上面提交Github代码的时候发现居然失败了： $ git push origin master Permission denied (publickey). fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists. 这不是坑爹吗</description>
     </item>
     
     <item>
       <title>如何快速搭建自己的github.io博客</title>
-      <link>https://keysaim.github.io/post/2017-08-15-how-to-setup-your-github-io-blog/</link>
+      <link>https://keysaim.github.io/post/blog/2017-08-15-how-to-setup-your-github-io-blog/</link>
       <pubDate>Tue, 15 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-08-15-how-to-setup-your-github-io-blog/</guid>
+      <guid>https://keysaim.github.io/post/blog/2017-08-15-how-to-setup-your-github-io-blog/</guid>
       <description>闲聊一下 在这知识剧烈膨胀的时代，如何记录、整理、分享自己的所学所感无疑显得十分重要，而博客便是最好的方式之一。现在已经有了各式各样的博客平台</description>
     </item>
     
     <item>
       <title>用docker搭建全栈式应用（三）管理篇</title>
-      <link>https://keysaim.github.io/post/2016-06-23-full-stack-demo3/</link>
+      <link>https://keysaim.github.io/post/docker/2016-06-23-full-stack-demo3/</link>
       <pubDate>Thu, 23 Jun 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2016-06-23-full-stack-demo3/</guid>
+      <guid>https://keysaim.github.io/post/docker/2016-06-23-full-stack-demo3/</guid>
       <description>用docker搭建全栈式应用 (三）—— 管理篇 简介 在上一篇我们讲述了如何基于Dockerfile实现docker image的自动构建，并基于此</description>
     </item>
     
     <item>
       <title>用docker搭建全栈式应用 (二）构建篇</title>
-      <link>https://keysaim.github.io/post/2016-05-30-full-stack-demo2/</link>
+      <link>https://keysaim.github.io/post/docker/2016-05-30-full-stack-demo2/</link>
       <pubDate>Mon, 30 May 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2016-05-30-full-stack-demo2/</guid>
+      <guid>https://keysaim.github.io/post/docker/2016-05-30-full-stack-demo2/</guid>
       <description>用docker搭建全栈式应用 (二）—— 构建篇 简介 在上一篇中, 我们已经较为详细的描述如何基于docker，搭建一套全栈式应用。web端采用Dj</description>
     </item>
     
     <item>
       <title>用docker搭建全栈式应用（一）基础篇</title>
-      <link>https://keysaim.github.io/post/2016-05-16-full-stack-demo/</link>
+      <link>https://keysaim.github.io/post/docker/2016-05-16-full-stack-demo/</link>
       <pubDate>Mon, 16 May 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2016-05-16-full-stack-demo/</guid>
+      <guid>https://keysaim.github.io/post/docker/2016-05-16-full-stack-demo/</guid>
       <description>用docker搭建全栈式应用 简介 本文将以docker为基础，搭建一套简单的应用案例。该案例的应用架构将采用redis的master-slav</description>
     </item>
     
     <item>
       <title>The golang programming language</title>
-      <link>https://keysaim.github.io/post/2016-04-23-the-golang-book/</link>
+      <link>https://keysaim.github.io/post/note/2016-04-23-the-golang-book/</link>
       <pubDate>Sat, 23 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2016-04-23-the-golang-book/</guid>
+      <guid>https://keysaim.github.io/post/note/2016-04-23-the-golang-book/</guid>
       <description>Notes Section 2, Program Structure nested block in if-else if-else block if x, y := 100, 200; x &amp;gt; 1000 { } else if x := &amp;quot;hello&amp;quot;; y &amp;gt; 0 { //this x shadow the &#39;x&#39; in if fmt.Println(x, y) } scope shaw issue var cwd string func init() { cwd, err := os.Getwd() //compile error: the &#39;cwd&#39; declared but not used if err != nil { log.Fatalf(&amp;quot;os.Getwd failed: %v&amp;quot;,</description>
     </item>
     

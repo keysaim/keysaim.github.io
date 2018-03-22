@@ -13,10 +13,10 @@
     
     <item>
       <title>GPS管理系统服务器迁移指南</title>
-      <link>https://keysaim.github.io/post/2017-10-11-rushgps-migrate/</link>
+      <link>https://keysaim.github.io/post/others/2017-10-11-rushgps-migrate/</link>
       <pubDate>Wed, 11 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-10-11-rushgps-migrate/</guid>
+      <guid>https://keysaim.github.io/post/others/2017-10-11-rushgps-migrate/</guid>
       <description>概述 本指南主要讲述如何将GPS管理系统服务器迁移到另一台新的服务器，假定要迁移的服务器为server1，新服务器为server2，假定的服务</description>
     </item>
     

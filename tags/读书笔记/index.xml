@@ -13,10 +13,10 @@
     
     <item>
       <title>The golang programming language</title>
-      <link>https://keysaim.github.io/post/2016-04-23-the-golang-book/</link>
+      <link>https://keysaim.github.io/post/note/2016-04-23-the-golang-book/</link>
       <pubDate>Sat, 23 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2016-04-23-the-golang-book/</guid>
+      <guid>https://keysaim.github.io/post/note/2016-04-23-the-golang-book/</guid>
       <description>Notes Section 2, Program Structure nested block in if-else if-else block if x, y := 100, 200; x &amp;gt; 1000 { } else if x := &amp;quot;hello&amp;quot;; y &amp;gt; 0 { //this x shadow the &#39;x&#39; in if fmt.Println(x, y) } scope shaw issue var cwd string func init() { cwd, err := os.Getwd() //compile error: the &#39;cwd&#39; declared but not used if err != nil { log.Fatalf(&amp;quot;os.Getwd failed: %v&amp;quot;,</description>
     </item>
     

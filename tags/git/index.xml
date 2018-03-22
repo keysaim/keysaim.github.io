@@ -13,19 +13,19 @@
     
     <item>
       <title>如何搭建本地的Git服务器</title>
-      <link>https://keysaim.github.io/post/2017-09-04-how-to-setup-git-server/</link>
+      <link>https://keysaim.github.io/post/git/2017-09-04-how-to-setup-git-server/</link>
       <pubDate>Mon, 04 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-09-04-how-to-setup-git-server/</guid>
+      <guid>https://keysaim.github.io/post/git/2017-09-04-how-to-setup-git-server/</guid>
       <description>概述 本文将介绍如何在本地搭建Git服务器。我们知道Git其实是个分布式的版本管理系统，与中心化的版本管理系统如SVN有根本的不同，每个使用者</description>
     </item>
     
     <item>
       <title>如何使用特定的SSH Key提交GIT</title>
-      <link>https://keysaim.github.io/post/2017-08-15-how-to-git-with-specific-ssh-key/</link>
+      <link>https://keysaim.github.io/post/git/2017-08-15-how-to-git-with-specific-ssh-key/</link>
       <pubDate>Tue, 15 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-08-15-how-to-git-with-specific-ssh-key/</guid>
+      <guid>https://keysaim.github.io/post/git/2017-08-15-how-to-git-with-specific-ssh-key/</guid>
       <description>问题提出 最近在自己的MAC上面提交Github代码的时候发现居然失败了： $ git push origin master Permission denied (publickey). fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists. 这不是坑爹吗</description>
     </item>
     

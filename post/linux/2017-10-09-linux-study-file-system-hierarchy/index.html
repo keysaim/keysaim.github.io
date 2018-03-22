@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Linux系统介绍（二）文件系统结构 - 窗外蟋蟀博客</title>
+  <link rel="alternate" hreflang="en" href="https://keysaim.github.io" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="keysaim" />
+  <meta name="description" content="概述 多数Linux发行版本都是遵循文件系统结构标准（Filesystem Hierarchy Standard, 简称FHS），可以在这里找到该标准。本文对Linux的文件系统结" />
+
+  <meta name="keywords" content="Hugo, blog, keysaim, 窗外蟋蟀" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.37.1" />
+
+
+<link rel="canonical" href="https://keysaim.github.io/post/linux/2017-10-09-linux-study-file-system-hierarchy/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" href="/favicon.ico" />
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+<link href="/dist/jane.min.css?v=2.7.0" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="Linux系统介绍（二）文件系统结构" />
+<meta property="og:description" content="概述 多数Linux发行版本都是遵循文件系统结构标准（Filesystem Hierarchy Standard, 简称FHS），可以在这里找到该标准。本文对Linux的文件系统结" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://keysaim.github.io/post/linux/2017-10-09-linux-study-file-system-hierarchy/" />
+
+
+
+<meta property="article:published_time" content="2017-10-09T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2017-10-09T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Linux系统介绍（二）文件系统结构">
+<meta itemprop="description" content="概述 多数Linux发行版本都是遵循文件系统结构标准（Filesystem Hierarchy Standard, 简称FHS），可以在这里找到该标准。本文对Linux的文件系统结">
+
+
+<meta itemprop="datePublished" content="2017-10-09T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2017-10-09T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="2492">
+
+
+
+<meta itemprop="keywords" content="Linux,study,学习," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Linux系统介绍（二）文件系统结构"/>
+<meta name="twitter:description" content="概述 多数Linux发行版本都是遵循文件系统结构标准（Filesystem Hierarchy Standard, 简称FHS），可以在这里找到该标准。本文对Linux的文件系统结"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">keysaim</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">keysaim</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">Linux系统介绍（二）文件系统结构</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2017-10-09 </span>
+        
+        <span class="more-meta"> 2492 words </span>
+        <span class="more-meta"> 5 min read </span>
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#概述">概述</a></li>
+<li><a href="#根目录">根目录<code>/</code></a></li>
+<li><a href="#二进制目录">二进制目录</a></li>
+<li><a href="#配置文件目录">配置文件目录</a></li>
+<li><a href="#数据目录">数据目录</a></li>
+<li><a href="#内存目录">内存目录</a>
+<ul>
+<li><a href="#dev目录">/dev目录</a>
+<ul>
+<li><a href="#物理设备文件">物理设备文件</a></li>
+<li><a href="#dev-tty跟-dev-pts">/dev/tty跟/dev/pts</a></li>
+<li><a href="#dev-null">/dev/null</a></li>
+</ul></li>
+<li><a href="#proc目录">/proc目录</a></li>
+</ul></li>
+<li><a href="#usr目录">/usr目录</a></li>
+<li><a href="#var目录">/var目录</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<h1 id="概述">概述</h1>
+
+<p>多数Linux发行版本都是遵循<code>文件系统结构标准（Filesystem Hierarchy Standard, 简称FHS）</code>，可以在<a href="http://www.pathname.com/fhs/">这里</a>找到该标准。本文对Linux的文件系统结构进行简单的介绍。</p>
+
+<h1 id="根目录">根目录<code>/</code></h1>
+
+<p>所有的Linux系统都有根目录，由<code>/</code>表示。Linux系统的所有内容都在该目录下。</p>
+
+<h1 id="二进制目录">二进制目录</h1>
+
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>/bin</td>
+<td>包括了可执行的二进制文件，通常这些二进制文件可以被所有用户访问。FHS规定，该目录至少包括<code>/bin/cat</code>跟<code>/bin/date</code>文件</td>
+</tr>
+
+<tr>
+<td>/sbin</td>
+<td>包括了系统的二进制文件，通过需要root权限，用来配置系统</td>
+</tr>
+
+<tr>
+<td>/lib</td>
+<td>包括了<code>/bin</code>所依赖的库</td>
+</tr>
+
+<tr>
+<td>/lib/modules</td>
+<td>Linux将从<code>/lib/modules/$kernel-version/</code>目录下载入内核模块</td>
+</tr>
+
+<tr>
+<td>/lib32和/lib64</td>
+<td>顾名思义，分别存放不同位数的库</td>
+</tr>
+
+<tr>
+<td>/opt</td>
+<td>该目录用来存放一些可选的软件，通常情况下，很多第三方的客户软件会选择安装在该目录下</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="配置文件目录">配置文件目录</h1>
+
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>/boot</td>
+<td>顾名思义，用来存放系统启动的配置文件，如grub引导的配置文件<code>/boot/grub/grub.cfg</code></td>
+</tr>
+
+<tr>
+<td>/etc</td>
+<td>几乎大部分配置文件都放在改目录下。历史上<code>etc</code>的全称是<code>etcetera</code>，不过，现在一般认为是<code>Editable Text Configuration</code>的缩写</td>
+</tr>
+
+<tr>
+<td>/etc/init.d</td>
+<td>存放daemon启动、停止等的脚本文件。不过在引入systemd之后，启动脚本有所变化</td>
+</tr>
+
+<tr>
+<td>/etc/skel</td>
+<td>存放创建新用户之后所需的配置文件的模板，如<code>.bashrc</code>文件，默认会从该目录拷贝到用户目录</td>
+</tr>
+
+<tr>
+<td>/etc/sysconfig</td>
+<td>一般出现在RedHat系列的Linux系统中，存放系统有关配置，如IP的配置文件等</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="数据目录">数据目录</h1>
+
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>/home</td>
+<td>当创建一个新用户的时候，默认情况下，系统会为用户创建一个<code>/home/&lt;username&gt;</code>的目录用来存放个人数据。</td>
+</tr>
+
+<tr>
+<td>/root</td>
+<td>该目录被很多Linux系统用来存放root用户的个人数据</td>
+</tr>
+
+<tr>
+<td>/srv</td>
+<td>可以被解释为<code>served by your system</code>。FHS允许<code>rsync</code>，<code>ftp</code>，<code>www</code>等数据存放在改目录</td>
+</tr>
+
+<tr>
+<td>/media</td>
+<td>该目录通常被用来挂载可移除设备，如CD-ROM，U盘等</td>
+</tr>
+
+<tr>
+<td>/mnt</td>
+<td>根据FHS，该目录通常被用来作为短期的挂载点</td>
+</tr>
+
+<tr>
+<td>/tmp</td>
+<td>该目录用来存放一些短期的文件，<strong><em>不要再该目录下存放重要文件，该目录下的文件有可能会被系统回收</em></strong></td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="内存目录">内存目录</h1>
+
+<p>Linux系统中，几乎所有的东西都被映射成文件，文件有的是对应着硬盘、设备（CD-ROM等）等，有的则被Linux映射到内存中。这一节介绍映射到内存中的目录。</p>
+
+<h2 id="dev目录">/dev目录</h2>
+
+<p><code>/dev</code>目录映射了各种设备文件，这些文件由系统启动的时候扫描硬件生成。</p>
+
+<h3 id="物理设备文件">物理设备文件</h3>
+
+<p>物理设备包括很多种，如硬盘，CD-ROM等。不同的物理设备映射为<code>/dev</code>目录下不同的文件。如SATA/SCSI设备或USB通常被映射为<code>/dev/sd*</code>，其中<code>*</code>可以为<code>[a-z]</code>中的任意字符；而IDE设备通常被映射为<code>/dev/hd*</code>，其中<code>*</code>为<code>[a-z]</code>中任意字符。</p>
+
+<h3 id="dev-tty跟-dev-pts">/dev/tty跟/dev/pts</h3>
+
+<p>首先需要搞清楚<code>tty</code>设备跟<code>pts</code>设备的区别。这两者都是终端设备，所谓终端设备通常指的是能够接受命令输入，并可能同时能够输出的设备，但是这两者是有本质的不同的：</p>
+
+<ul>
+<li><p>tty设备</p>
+
+<p><code>tty</code>是<code>Teletype</code>的简称，表示原生的终端设备，通常指的是物理终端设备如串口，键鼠接口等，以及系统内核模拟的终端设备。</p></li>
+
+<li><p>pts设备</p>
+
+<p><code>pts</code>是<code>Pseudo Terminal Slave</code>的简称，表示伪终端设备，通常由应用进程模拟出来，如ssh开启的终端等。</p></li>
+</ul>
+
+<p><code>tty</code>设备通常被映射为<code>/dev/tty*</code>，其中<code>*</code>代表数字，如<code>/dev/tty1</code>等。而<code>pts</code>设备被映射为<code>/dev/pts/*</code>，其中<code>*</code>表示数字，如<code>/dev/pts/1</code>。</p>
+
+<h3 id="dev-null">/dev/null</h3>
+
+<p>该文件在Linux中有着特殊的意义，是一个只有输入的文件，且文件有无限的大小，你不能从该文件读出任何东西，任何写入的内容逻辑上相当于消失了。从实现的角度，实际上任何写入的内容都被系统丢弃了。</p>
+
+<h2 id="proc目录">/proc目录</h2>
+
+<p>该目录用来记录内核以及内核进程的实时信息，可以通过它轻而易举的实现对内核状态的获取甚至改变。</p>
+
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>/proc/<id></td>
+<td>几乎每个进程都会在该目录下有映射的文件<code>/proc/*</code>，其中<code>&lt;id&gt;</code>代表进程的ID。该目录记录的该进程的几乎所有的状态信息。</td>
+</tr>
+
+<tr>
+<td>/proc/cpuinfo</td>
+<td>记录了系统的CPU信息，通常通过该文件可以知道系统有多少个CPU（核数）。</td>
+</tr>
+
+<tr>
+<td>/proc/meminfo</td>
+<td>记录了系统的内存信息，可以通过它知道系统有多少内存</td>
+</tr>
+
+<tr>
+<td>/proc/sys</td>
+<td>在<code>/proc</code>目录下的绝大部分文件都是只读的文件，但是在该目录下有些文件是可写的，可以通过它们改变内核状态</td>
+</tr>
+
+<tr>
+<td>/proc/interrupts</td>
+<td>记录了当前系统的中断信息</td>
+</tr>
+
+<tr>
+<td>/proc/kcore</td>
+<td>这个文件代表了系统的物理内存，其大小就是物理内存的大小，因此千万不要用<code>cat</code>来试图显示该文件内容</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="usr目录">/usr目录</h1>
+
+<p><code>/usr</code>目录估计是被误解最多的目录，一般大家都以为它是<code>user</code>的简写，感觉应该存放的是用户相关的东西，但是实际上完全不是这样。它其实是<code>Unix System Resources</code>的简写，表示Unix系统资源。通常情况下，该目录以只读的权限被挂载。</p>
+
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>/usr/bin</td>
+<td>很多命令都存放在这个目录下面，事实上，在Centos跟Solaris系统中，<code>/bin</code>目录实际上只是一个软连接，连接到此目录</td>
+</tr>
+
+<tr>
+<td>/usr/include</td>
+<td>存放大量的头文件，可能会被C代码引用</td>
+</tr>
+
+<tr>
+<td>/usr/lib</td>
+<td>存放库文件，同样，在Centos跟Solaris系统中，<code>/lib</code>其实就是软连接到此目录</td>
+</tr>
+
+<tr>
+<td>/usr/lib64</td>
+<td>存放64位的库文件，在Centos中，<code>/lib64</code>也是软连接到此目录</td>
+</tr>
+
+<tr>
+<td>/usr/sbin</td>
+<td>很多daemon程序都是放在此目录下，在Centos中，<code>/sbin</code>也是软连接到此目录</td>
+</tr>
+
+<tr>
+<td>/usr/local</td>
+<td>此目录通常用来安装一些本地的应用</td>
+</tr>
+
+<tr>
+<td>/usr/share</td>
+<td>此目录通常用来存放各种体系无关的数据。<code>/usr/share/man</code>就是用来存放<code>man</code>命令用到的帮助文档</td>
+</tr>
+
+<tr>
+<td>/usr/src</td>
+<td>此目录通常存放内核的代码文件</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="var目录">/var目录</h1>
+
+<p><code>/var</code>目录用来存放可变的数据，如日志，数据库文件等。</p>
+
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>/var/log</td>
+<td>此目录用来存放各种日志文件，包括系统跟应用的日志</td>
+</tr>
+
+<tr>
+<td>/var/log/messages</td>
+<td>在RedHat系列系统中，此文件用来记录系统刚刚发生的事情。在Debian和Ubuntu系统中，对应的文件是<code>/var/log/syslog</code></td>
+</tr>
+
+<tr>
+<td>/var/cache</td>
+<td>此目录存放很多应用的缓存数据，如<code>yum</code>命令可能会缓存部分数据在此目录</td>
+</tr>
+
+<tr>
+<td>/var/spool</td>
+<td>一般情况下，该目录会存放邮件cron任务等数据</td>
+</tr>
+
+<tr>
+<td>/var/lib</td>
+<td>通常此目录下会存放应用的状态信息，如<code>/var/lib/mysql</code>存放<code>mysql</code>数据库，<code>/var/lib/docker</code>存放<code>docker</code>的数据</td>
+</tr>
+</tbody>
+</table>
+
+    </div>
+
+    
+    
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/linux/">Linux</a>
+          
+          <a href="/tags/study/">study</a>
+          
+          <a href="/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/linux/2017-10-09-linux-study-command-line/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Linux系统介绍（一）命令行</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/linux/2017-10-09-linux-study-overview/">
+            <span class="next-text nav-default">Linux系统介绍--综述</span>
+            <span class="prev-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+    
+
+  
+
+  
+
+  <div id="comments-gitment"></div>
+  <link rel="stylesheet" href="/lib/gitment/gitment-0.0.3.min.css">
+    <script src="/lib/gitment/gitment-0.0.3.min.js"></script>
+  <script type="text/javascript">
+  const gitment = new Gitment({
+    id: '2017-10-09 00:00:00 \x2b0000 UTC',
+    title: 'Linux系统介绍（二）文件系统结构',
+    link: decodeURI(location.href),
+    desc: '概述 多数Linux发行版本都是遵循文件系统结构标准（Filesystem Hierarchy Standard, 简称FHS），可以在这里找到该标准。本文对Linux的文件系统结',
+    owner: 'keysaim',
+    repo: 'comments',
+    oauth: {
+      client_id: '8d920ad685683a529e83',
+      client_secret: 'ffabf134048e374883ee67d3786a9a6b7d8d3cdc'
+    }
+  })
+  gitment.render('comments-gitment')
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+  </article>
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:keysaim@gmail.com" rel="me" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/keysaim" rel="me" class="iconfont icon-github" title="github"></a>
+  <a href="https://keysaim.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2017 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">窗外蟋蟀(keysaim)</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+<script type="text/javascript" src="/dist/jane.min.js?v=2.7.0"></script>
+
+
+
+
+
+</body>
+</html>

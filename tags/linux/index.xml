@@ -13,64 +13,64 @@
     
     <item>
       <title>Linux系统介绍（五）常用命令</title>
-      <link>https://keysaim.github.io/post/2017-11-17-linux-study-common-tools/</link>
+      <link>https://keysaim.github.io/post/linux/2017-11-17-linux-study-common-tools/</link>
       <pubDate>Fri, 17 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-11-17-linux-study-common-tools/</guid>
+      <guid>https://keysaim.github.io/post/linux/2017-11-17-linux-study-common-tools/</guid>
       <description>cat命令 很多时候我们通过cat命令来查看文件内容，它会将文件的所有内容显示出来。当然，cat也可以通过管道接收数据，它主要完成的是将从管道</description>
     </item>
     
     <item>
       <title>Linux系统介绍（四）IO重定向与管道</title>
-      <link>https://keysaim.github.io/post/2017-11-16-linux-study-io-pipe/</link>
+      <link>https://keysaim.github.io/post/linux/2017-11-16-linux-study-io-pipe/</link>
       <pubDate>Thu, 16 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-11-16-linux-study-io-pipe/</guid>
+      <guid>https://keysaim.github.io/post/linux/2017-11-16-linux-study-io-pipe/</guid>
       <description>IO重定向(IO redirection) Linux的有一个强大之处就是可以通过管道(Pipe)跟IO重定向将一系列命令的输出跟输入连接起来。IO重定向是Linux</description>
     </item>
     
     <item>
       <title>Linux系统介绍（三）shell基础</title>
-      <link>https://keysaim.github.io/post/2017-10-10-linux-study-shell-basic/</link>
+      <link>https://keysaim.github.io/post/linux/2017-10-10-linux-study-shell-basic/</link>
       <pubDate>Tue, 10 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-10-10-linux-study-shell-basic/</guid>
+      <guid>https://keysaim.github.io/post/linux/2017-10-10-linux-study-shell-basic/</guid>
       <description>概述 首先，咱们来了解一下，什么是Shell。操作系统内核给我们提供了各种接口，同时也提供了各种用户层的库，理论上我们基于这些可以编写程序实现</description>
     </item>
     
     <item>
       <title>Linux系统介绍（一）命令行</title>
-      <link>https://keysaim.github.io/post/2017-10-09-linux-study-command-line/</link>
+      <link>https://keysaim.github.io/post/linux/2017-10-09-linux-study-command-line/</link>
       <pubDate>Mon, 09 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-10-09-linux-study-command-line/</guid>
+      <guid>https://keysaim.github.io/post/linux/2017-10-09-linux-study-command-line/</guid>
       <description>概述 随着Linux的发展，现在已经有了非常多的桌面版本，比如著名的Ubuntu。用这些桌面版本系统，可以满足基本的操作，然而对于一些高级点的</description>
     </item>
     
     <item>
       <title>Linux系统介绍（二）文件系统结构</title>
-      <link>https://keysaim.github.io/post/2017-10-09-linux-study-file-system-hierarchy/</link>
+      <link>https://keysaim.github.io/post/linux/2017-10-09-linux-study-file-system-hierarchy/</link>
       <pubDate>Mon, 09 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-10-09-linux-study-file-system-hierarchy/</guid>
+      <guid>https://keysaim.github.io/post/linux/2017-10-09-linux-study-file-system-hierarchy/</guid>
       <description>概述 多数Linux发行版本都是遵循文件系统结构标准（Filesystem Hierarchy Standard, 简称FHS），可以在这里找到该标准。本文对Linux的文件系统结</description>
     </item>
     
     <item>
       <title>Linux系统介绍--综述</title>
-      <link>https://keysaim.github.io/post/2017-10-09-linux-study-overview/</link>
+      <link>https://keysaim.github.io/post/linux/2017-10-09-linux-study-overview/</link>
       <pubDate>Sun, 08 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-10-09-linux-study-overview/</guid>
+      <guid>https://keysaim.github.io/post/linux/2017-10-09-linux-study-overview/</guid>
       <description>概述 从大二（2006年）开始接触Linux到现在已经有10几年了，遥记得那时候Ubuntu还是个位数时代，现在都到17了，真的是光阴如梭啊。</description>
     </item>
     
     <item>
       <title>Linux学习从入门到精通推荐书籍</title>
-      <link>https://keysaim.github.io/post/2017-08-18-linux-learning-materials/</link>
+      <link>https://keysaim.github.io/post/linux/2017-08-18-linux-learning-materials/</link>
       <pubDate>Fri, 18 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-08-18-linux-learning-materials/</guid>
+      <guid>https://keysaim.github.io/post/linux/2017-08-18-linux-learning-materials/</guid>
       <description>如何学习Linux 在现在的生活，生产，研究等领域，Linux已经无所不在，从我们使用的手机，车载设备，到服务器，桌面电脑等，Linux已经成</description>
     </item>
     

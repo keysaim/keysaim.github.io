@@ -6,80 +6,80 @@
     <description>Recent content in 教程 on 窗外蟋蟀博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 21 Dec 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 22 Mar 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://keysaim.github.io/tags/%E6%95%99%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>无服务（Serverless）Openfaas实战</title>
-      <link>https://keysaim.github.io/post/2017-12-21-openfaas-practise/</link>
-      <pubDate>Thu, 21 Dec 2017 00:00:00 +0000</pubDate>
+      <title>如何在github.io搭建Hugo博客站</title>
+      <link>https://keysaim.github.io/post/blog/deploy-hugo-blog-in-github.io/</link>
+      <pubDate>Thu, 22 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-12-21-openfaas-practise/</guid>
-      <description>简述 技术的世界真的是一日千里，当有的人还满足与经典的C/S架构时，SOA（面向服务）架构已经遍地都是了；当很多人正打算将系统微服务改造的时候</description>
+      <guid>https://keysaim.github.io/post/blog/deploy-hugo-blog-in-github.io/</guid>
+      <description>摘要 在前面的博文中介绍了如何在github.io上搭建自己的博客站，基于的是Jekyll，这也是github中比较常用的方式，好处是gith</description>
     </item>
     
     <item>
       <title>如何搭建本地的Git服务器</title>
-      <link>https://keysaim.github.io/post/2017-09-04-how-to-setup-git-server/</link>
+      <link>https://keysaim.github.io/post/git/2017-09-04-how-to-setup-git-server/</link>
       <pubDate>Mon, 04 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-09-04-how-to-setup-git-server/</guid>
+      <guid>https://keysaim.github.io/post/git/2017-09-04-how-to-setup-git-server/</guid>
       <description>概述 本文将介绍如何在本地搭建Git服务器。我们知道Git其实是个分布式的版本管理系统，与中心化的版本管理系统如SVN有根本的不同，每个使用者</description>
     </item>
     
     <item>
       <title>如何给自己的博客网站加入评论系统</title>
-      <link>https://keysaim.github.io/post/2017-08-16-how-to-add-comments/</link>
+      <link>https://keysaim.github.io/post/blog/2017-08-16-how-to-add-comments/</link>
       <pubDate>Wed, 16 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-08-16-how-to-add-comments/</guid>
+      <guid>https://keysaim.github.io/post/blog/2017-08-16-how-to-add-comments/</guid>
       <description>前言 在这一篇博文中，咱们介绍了如何快速的搭建个人的博客网站，但是这个博客网站是基于Github Pages的纯静态网站，自身是不带任何的可交互</description>
     </item>
     
     <item>
       <title>如何使用特定的SSH Key提交GIT</title>
-      <link>https://keysaim.github.io/post/2017-08-15-how-to-git-with-specific-ssh-key/</link>
+      <link>https://keysaim.github.io/post/git/2017-08-15-how-to-git-with-specific-ssh-key/</link>
       <pubDate>Tue, 15 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-08-15-how-to-git-with-specific-ssh-key/</guid>
+      <guid>https://keysaim.github.io/post/git/2017-08-15-how-to-git-with-specific-ssh-key/</guid>
       <description>问题提出 最近在自己的MAC上面提交Github代码的时候发现居然失败了： $ git push origin master Permission denied (publickey). fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists. 这不是坑爹吗</description>
     </item>
     
     <item>
       <title>如何快速搭建自己的github.io博客</title>
-      <link>https://keysaim.github.io/post/2017-08-15-how-to-setup-your-github-io-blog/</link>
+      <link>https://keysaim.github.io/post/blog/2017-08-15-how-to-setup-your-github-io-blog/</link>
       <pubDate>Tue, 15 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-08-15-how-to-setup-your-github-io-blog/</guid>
+      <guid>https://keysaim.github.io/post/blog/2017-08-15-how-to-setup-your-github-io-blog/</guid>
       <description>闲聊一下 在这知识剧烈膨胀的时代，如何记录、整理、分享自己的所学所感无疑显得十分重要，而博客便是最好的方式之一。现在已经有了各式各样的博客平台</description>
     </item>
     
     <item>
       <title>用docker搭建全栈式应用（三）管理篇</title>
-      <link>https://keysaim.github.io/post/2016-06-23-full-stack-demo3/</link>
+      <link>https://keysaim.github.io/post/docker/2016-06-23-full-stack-demo3/</link>
       <pubDate>Thu, 23 Jun 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2016-06-23-full-stack-demo3/</guid>
+      <guid>https://keysaim.github.io/post/docker/2016-06-23-full-stack-demo3/</guid>
       <description>用docker搭建全栈式应用 (三）—— 管理篇 简介 在上一篇我们讲述了如何基于Dockerfile实现docker image的自动构建，并基于此</description>
     </item>
     
     <item>
       <title>用docker搭建全栈式应用 (二）构建篇</title>
-      <link>https://keysaim.github.io/post/2016-05-30-full-stack-demo2/</link>
+      <link>https://keysaim.github.io/post/docker/2016-05-30-full-stack-demo2/</link>
       <pubDate>Mon, 30 May 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2016-05-30-full-stack-demo2/</guid>
+      <guid>https://keysaim.github.io/post/docker/2016-05-30-full-stack-demo2/</guid>
       <description>用docker搭建全栈式应用 (二）—— 构建篇 简介 在上一篇中, 我们已经较为详细的描述如何基于docker，搭建一套全栈式应用。web端采用Dj</description>
     </item>
     
     <item>
       <title>用docker搭建全栈式应用（一）基础篇</title>
-      <link>https://keysaim.github.io/post/2016-05-16-full-stack-demo/</link>
+      <link>https://keysaim.github.io/post/docker/2016-05-16-full-stack-demo/</link>
       <pubDate>Mon, 16 May 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2016-05-16-full-stack-demo/</guid>
+      <guid>https://keysaim.github.io/post/docker/2016-05-16-full-stack-demo/</guid>
       <description>用docker搭建全栈式应用 简介 本文将以docker为基础，搭建一套简单的应用案例。该案例的应用架构将采用redis的master-slav</description>
     </item>
     

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Github on 窗外蟋蟀博客</title>
+    <link>https://keysaim.github.io/categories/github/</link>
+    <description>Recent content in Github on 窗外蟋蟀博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 22 Mar 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://keysaim.github.io/categories/github/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>如何在github.io搭建Hugo博客站</title>
+      <link>https://keysaim.github.io/post/blog/deploy-hugo-blog-in-github.io/</link>
+      <pubDate>Thu, 22 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/post/blog/deploy-hugo-blog-in-github.io/</guid>
+      <description>摘要 在前面的博文中介绍了如何在github.io上搭建自己的博客站，基于的是Jekyll，这也是github中比较常用的方式，好处是gith</description>
+    </item>
+    
+  </channel>
+</rss>

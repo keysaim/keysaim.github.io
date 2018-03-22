@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Linux系统介绍（四）IO重定向与管道 - 窗外蟋蟀博客</title>
+  <link rel="alternate" hreflang="en" href="https://keysaim.github.io" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="keysaim" />
+  <meta name="description" content="IO重定向(IO redirection) Linux的有一个强大之处就是可以通过管道(Pipe)跟IO重定向将一系列命令的输出跟输入连接起来。IO重定向是Linux" />
+
+  <meta name="keywords" content="Hugo, blog, keysaim, 窗外蟋蟀" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.37.1" />
+
+
+<link rel="canonical" href="https://keysaim.github.io/post/linux/2017-11-16-linux-study-io-pipe/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" href="/favicon.ico" />
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+<link href="/dist/jane.min.css?v=2.7.0" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="Linux系统介绍（四）IO重定向与管道" />
+<meta property="og:description" content="IO重定向(IO redirection) Linux的有一个强大之处就是可以通过管道(Pipe)跟IO重定向将一系列命令的输出跟输入连接起来。IO重定向是Linux" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://keysaim.github.io/post/linux/2017-11-16-linux-study-io-pipe/" />
+
+
+
+<meta property="article:published_time" content="2017-11-16T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2017-11-16T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Linux系统介绍（四）IO重定向与管道">
+<meta itemprop="description" content="IO重定向(IO redirection) Linux的有一个强大之处就是可以通过管道(Pipe)跟IO重定向将一系列命令的输出跟输入连接起来。IO重定向是Linux">
+
+
+<meta itemprop="datePublished" content="2017-11-16T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2017-11-16T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="2642">
+
+
+
+<meta itemprop="keywords" content="Linux,study,学习," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Linux系统介绍（四）IO重定向与管道"/>
+<meta name="twitter:description" content="IO重定向(IO redirection) Linux的有一个强大之处就是可以通过管道(Pipe)跟IO重定向将一系列命令的输出跟输入连接起来。IO重定向是Linux"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">keysaim</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">keysaim</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">Linux系统介绍（四）IO重定向与管道</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2017-11-16 </span>
+        
+        <span class="more-meta"> 2642 words </span>
+        <span class="more-meta"> 6 min read </span>
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#io重定向-io-redirection">IO重定向(IO redirection)</a>
+<ul>
+<li><a href="#标准输入输出">标准输入输出</a></li>
+<li><a href="#输出重定向">输出重定向</a></li>
+<li><a href="#追加输出">追加输出</a></li>
+<li><a href="#标准错误重定向">标准错误重定向</a></li>
+<li><a href="#同时重定向stdout跟stderr">同时重定向stdout跟stderr</a></li>
+<li><a href="#重定向顺序">重定向顺序</a></li>
+<li><a href="#输入重定向">输入重定向</a></li>
+<li><a href="#输入输出同时重定向">输入输出同时重定向</a></li>
+<li><a href="#快速清除文件内容">快速清除文件内容</a></li>
+</ul></li>
+<li><a href="#管道-pipe">管道(Pipe)</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<h1 id="io重定向-io-redirection">IO重定向(IO redirection)</h1>
+
+<p>Linux的有一个强大之处就是可以通过管道(Pipe)跟IO重定向将一系列命令的输出跟输入连接起来。IO重定向是Linux中非常重要的概念，是理解Linux命令，脚本以及Linux IO的基础。</p>
+
+<h2 id="标准输入输出">标准输入输出</h2>
+
+<p>对于<code>shell</code>来说，有三个基础的流，标准输入流(stdin或者stream 0)，标准输出流(stdout或者stream 1)，标准错误流(stderr或者stream2)。</p>
+
+<p><img src="/img/blog-linux-shell-stdinout.png" alt="标准输入输出" /></p>
+
+<p>举个例子，当我们用键盘在<code>shell</code>中执行命令的时候，可以如下图：</p>
+
+<p><img src="/img/blog-linux-shell-keyboard-stdinout.png" alt="键盘输入输出" /></p>
+
+<p>通常，stdout跟stderr都输出到了屏幕上，但对于Linux来说，其实是两种不同的输出。</p>
+
+<h2 id="输出重定向">输出重定向</h2>
+
+<p>可以用<code>&gt;</code>大于号将stdout重定向到另一个IO，比如文件：</p>
+
+<pre><code># echo &quot;hello&quot; &gt; test.log
+# cat test.log
+hello
+</code></pre>
+
+<p>上面的命令将stdout重定向到文件<code>test.log</code>中，此时，如果该文件不存在则创建新文件，如果存在则覆盖已有文件。事实上，<code>&gt;</code>重定向是<code>1&gt;</code>的简写，<code>1&gt;</code>可以更清楚的看到实际上是把stdout(stream 1)重定向。</p>
+
+<p>必须注意的是，默认情况下，该重定向会覆盖已有文件，这个在有时候可能不经意间丢失重要数据。<code>shell</code>提供了选项使得我们可以禁止这种覆盖，<code>set -o noclobber</code>可以打开该选项。</p>
+
+<pre><code># cat test.log
+hello
+# set -o noclobber
+# echo &quot;world&quot; &gt; test.log
+-bash: test.log: cannot overwrite existing file
+</code></pre>
+
+<p>此外，在打开该选项之后，其实还是可以强制执行覆盖，可以采用<code>&gt;|</code>来强制重定向到已存在的文件：</p>
+
+<pre><code># echo &quot;world&quot; &gt; test.log
+-bash: test.log: cannot overwrite existing file
+# echo &quot;world&quot; &gt;| test.log
+# cat test.log
+world
+</code></pre>
+
+<h2 id="追加输出">追加输出</h2>
+
+<p>可以采用<code>&gt;&gt;</code>将输出重定向到文件并追加在文件结尾，这样就可以避免覆盖文件了。</p>
+
+<pre><code># cat test.log
+world
+# echo hello &gt;&gt; test.log
+# cat test.log
+world
+hello
+</code></pre>
+
+<h2 id="标准错误重定向">标准错误重定向</h2>
+
+<p>如<code>1&gt;</code>一样，我们可以通过<code>2&gt;</code>将stderr重定向到文件，具体行为跟stdout类似。</p>
+
+<h2 id="同时重定向stdout跟stderr">同时重定向stdout跟stderr</h2>
+
+<p>我们可以在同一行命令中同时将stdout跟stderr重定向，如：</p>
+
+<pre><code># ls test* tttt*
+ls: cannot access tttt*: No such file or directory
+test.log  test2
+# ls test* tttt* &gt; stdout.log 2&gt; stderr.log
+# cat stdout.log
+test.log
+test2
+# cat stderr.log
+ls: cannot access tttt*: No such file or directory
+</code></pre>
+
+<p>可以看出，stdout跟stderr被分别重定向到<code>stdout.log</code>跟<code>stderr.log</code>文件中了。</p>
+
+<p>此外，还有一个常见的用法是将stderr重定向到stdout，这样就可以将所有输出都定向在一起了。</p>
+
+<pre><code># ls test* tttt* &gt; stdout.log
+ls: cannot access tttt*: No such file or directory
+# cat stdout.log
+test.log
+test2
+# ls test* tttt* &gt; stdout.log 2&gt;&amp;1
+# cat stdout.log
+ls: cannot access tttt*: No such file or directory
+test.log
+test2
+</code></pre>
+
+<p>可见，通过<code>2&gt;&amp;1</code>将stderr重定向给stdout，而stdout又重定向给文件<code>stdout.log</code>，这样所有的输出都重定向到文件<code>stdout.log</code>中了。另外，还可以通过<code>&amp;&gt;</code>直接将stderr跟stdout合并：</p>
+
+<pre><code># ls -l test* tttt* &amp;&gt; stdout.log
+# cat stdout.log
+ls: cannot access tttt*: No such file or directory
+-rw-r--r--. 1 root root 12 Nov 16 01:02 test.log
+-rw-r--r--. 1 root root  0 Nov 16 00:17 test2
+</code></pre>
+
+<h2 id="重定向顺序">重定向顺序</h2>
+
+<p>将stderr重定向给stdout的时候，请务必注意其顺序，如上面的重定向如果写成这样，结果就完全不同了：</p>
+
+<pre><code># ls test* tttt* 2&gt;&amp;1 &gt; stdout.log
+ls: cannot access tttt*: No such file or directory
+# cat stdout.log
+test.log
+test2
+</code></pre>
+
+<p>可以看出，stderr其实并没有被重定向到文件<code>stdout.log</code>中，可见顺序是非常重要的。那么，如果理解这种不同呢？咱们可以这么样来理解：
+* 将<code>&gt;</code>看作是<code>shell</code>中的赋值操作<code>=</code>
+* 将stdout跟stderr看作是变量，但对其引用采用<code>&amp;</code>，这样<code>&amp;1</code>表示对stdout变量的引用
+* 假定stdout跟stderr变量的初始值是屏幕，将屏幕记为<code>/dev/tty</code>
+* <code>shell</code>从左到有扫描解释命令，并对stdout跟stderr分别赋值
+* 查看stdout跟stderr的最终值即可知道分别被重定向到哪里了</p>
+
+<p>还是以上面的例子来解释，<code>ls test* tttt* 2&gt;&amp;1 &gt; stdout.log</code>
+* 命令开始前，stdout=/dev/tty, stderr=/dev/tty
+* <code>shell</code>从左到右扫描并重新赋值，首先<code>2&gt;&amp;1</code>就相当于<code>stderr=$stdin</code>，此时<code>stderr</code>的值其实还是<code>/dev/tty</code>
+* <code>&gt; stdout.log</code>就相当于<code>stdout=stdout.log</code>，此时stdout值为<code>stdout.log</code>
+* 最后，stdout值为<code>stdout.log</code>，而stderr值仍然为<code>/dev/tty</code>，所以只有stdout输出到文件<code>stdout.log</code>中了</p>
+
+<p>基于这个原则，在讲述完管道之后咱们将展示如何把stdout跟stderr交换一下。</p>
+
+<h2 id="输入重定向">输入重定向</h2>
+
+<ul>
+<li><code>&lt;</code>符号</li>
+</ul>
+
+<p>既然输出有重定向，那么输入是否也可以呢？答案是肯定的，可以采用<code>&lt;</code>将输入重定向，<code>&lt;</code>其实是<code>0&lt;</code>的简写。</p>
+
+<pre><code># cat stdout.log
+ls: cannot access tttt*: No such file or directory
+-rw-r--r--. 1 root root 12 Nov 16 01:02 test.log
+-rw-r--r--. 1 root root  0 Nov 16 00:17 test2
+# cat &lt;stdout.log
+ls: cannot access tttt*: No such file or directory
+-rw-r--r--. 1 root root 12 Nov 16 01:02 test.log
+-rw-r--r--. 1 root root  0 Nov 16 00:17 test2
+</code></pre>
+
+<ul>
+<li><code>&lt;&lt;</code>符号</li>
+</ul>
+
+<p>此外，还可以<code>&lt;&lt;EOF</code>通过手动输入直到输入<code>EOF</code>（或者Ctrl-D）。</p>
+
+<ul>
+<li><code>&lt;&lt;&lt;</code>符号</li>
+</ul>
+
+<p>该符号可以直接将一个字符串重定向给输入</p>
+
+<pre><code># base64 &lt;&lt;&lt; hello
+aGVsbG8K
+</code></pre>
+
+<p><code>base64</code>命令参数只接受文件，通过这种方式就可以把字符串直接传给它。</p>
+
+<h2 id="输入输出同时重定向">输入输出同时重定向</h2>
+
+<p><code>shell</code>是可以支持同时重定向输入跟输出的，以下方式都会被准确解析：</p>
+
+<pre><code># cat &lt;test.log &gt; stdout.log 2&gt; stderr.log
+# &lt;test.log &gt; stdout.log 2&gt; stderr.log cat
+</code></pre>
+
+<h2 id="快速清除文件内容">快速清除文件内容</h2>
+
+<p>可以通过重定向快速的清空文件内容：</p>
+
+<pre><code># cat test.log
+hello world
+# &gt; test.log
+# cat test.log
+#
+</code></pre>
+
+<p>可见，咱们并不需要写<code>echo &quot;&quot; &gt; test.log</code>这样的命令来清空一个文件。当<code>noclobber</code>选项被打开时，可以通过<code>&gt;|</code>来强制清空。</p>
+
+<h1 id="管道-pipe">管道(Pipe)</h1>
+
+<p>在Linux中，我们可以使用管道(Pipe)将前一个命令的stdout作为输入给后面一个命令，管道由<code>|</code>表示。</p>
+
+<pre><code># ls test* tttt*
+ls: cannot access tttt*: No such file or directory
+test.log  test2
+# ls -l test* tttt* | grep log
+ls: cannot access tttt*: No such file or directory
+-rw-r--r--. 1 root root 12 Nov 16 01:02 test.log
+</code></pre>
+
+<p>请务必注意的是，管道只会将stdout传递给下一个命令，stderr并不会传递，为了证明这一点，咱们将后一个命令的stderr重定向到文件：</p>
+
+<pre><code># ls -l test* tttt* | grep log 2&gt; stderr.log
+ls: cannot access tttt*: No such file or directory
+-rw-r--r--. 1 root root 12 Nov 16 01:02 test.log
+# cat stderr.log
+# 
+</code></pre>
+
+<p>这时可以看出，第二个命令的stderr为空，而第一个命令的stderr仍输出到屏幕了。当然，咱们也可以将第一个命令的stderr重定向到stdout上，这样<code>grep</code>命令也可以收到了。</p>
+
+<pre><code># ls -l test* tttt* 2&gt;&amp;1 | grep &quot;No &quot;
+ls: cannot access tttt*: No such file or directory
+</code></pre>
+
+<p>再回到上一节的问题，咱们如何将stdout跟stderr互相交换一下呢？可以这么做：</p>
+
+<pre><code># ls -l test* tttt* 3&gt;&amp;1 1&gt;&amp;2 2&gt;&amp;3 | grep &quot;No &quot; 2&gt; stderr.log
+ls: cannot access tttt*: No such file or directory
+-rw-r--r--. 1 root root 12 Nov 16 01:02 test.log
+-rw-r--r--. 1 root root  0 Nov 16 00:17 test2
+# cat stderr.log
+# 
+</code></pre>
+
+<p>如果你的Linux发行版本对grep输出的颜色设置正确，会发现只有第一行是grep出来的，由此可见<code>3&gt;&amp;1 1&gt;&amp;2 2&gt;&amp;3</code>居然将stdout跟stderr互换了一下，至于怎么解释，可以参照前面的赋值方式自行拆解一下。</p>
+
+    </div>
+
+    
+    
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/linux/">Linux</a>
+          
+          <a href="/tags/study/">study</a>
+          
+          <a href="/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/linux/2017-11-17-linux-study-common-tools/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Linux系统介绍（五）常用命令</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/others/2017-10-11-rushgps-migrate/">
+            <span class="next-text nav-default">GPS管理系统服务器迁移指南</span>
+            <span class="prev-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+    
+
+  
+
+  
+
+  <div id="comments-gitment"></div>
+  <link rel="stylesheet" href="/lib/gitment/gitment-0.0.3.min.css">
+    <script src="/lib/gitment/gitment-0.0.3.min.js"></script>
+  <script type="text/javascript">
+  const gitment = new Gitment({
+    id: '2017-11-16 00:00:00 \x2b0000 UTC',
+    title: 'Linux系统介绍（四）IO重定向与管道',
+    link: decodeURI(location.href),
+    desc: 'IO重定向(IO redirection) Linux的有一个强大之处就是可以通过管道(Pipe)跟IO重定向将一系列命令的输出跟输入连接起来。IO重定向是Linux',
+    owner: 'keysaim',
+    repo: 'comments',
+    oauth: {
+      client_id: '8d920ad685683a529e83',
+      client_secret: 'ffabf134048e374883ee67d3786a9a6b7d8d3cdc'
+    }
+  })
+  gitment.render('comments-gitment')
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+  </article>
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:keysaim@gmail.com" rel="me" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/keysaim" rel="me" class="iconfont icon-github" title="github"></a>
+  <a href="https://keysaim.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2017 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">窗外蟋蟀(keysaim)</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+<script type="text/javascript" src="/dist/jane.min.js?v=2.7.0"></script>
+
+
+
+
+
+</body>
+</html>

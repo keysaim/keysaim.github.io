@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>用docker搭建全栈式应用（一）基础篇 - 窗外蟋蟀博客</title>
+  <link rel="alternate" hreflang="en" href="https://keysaim.github.io" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="keysaim" />
+  <meta name="description" content="用docker搭建全栈式应用 简介 本文将以docker为基础，搭建一套简单的应用案例。该案例的应用架构将采用redis的master-slav" />
+
+  <meta name="keywords" content="Hugo, blog, keysaim, 窗外蟋蟀" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.37.1" />
+
+
+<link rel="canonical" href="https://keysaim.github.io/post/docker/2016-05-16-full-stack-demo/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" href="/favicon.ico" />
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+<link href="/dist/jane.min.css?v=2.7.0" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="用docker搭建全栈式应用（一）基础篇" />
+<meta property="og:description" content="用docker搭建全栈式应用 简介 本文将以docker为基础，搭建一套简单的应用案例。该案例的应用架构将采用redis的master-slav" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://keysaim.github.io/post/docker/2016-05-16-full-stack-demo/" />
+
+
+
+<meta property="article:published_time" content="2016-05-16T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2016-05-16T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="用docker搭建全栈式应用（一）基础篇">
+<meta itemprop="description" content="用docker搭建全栈式应用 简介 本文将以docker为基础，搭建一套简单的应用案例。该案例的应用架构将采用redis的master-slav">
+
+
+<meta itemprop="datePublished" content="2016-05-16T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2016-05-16T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="3382">
+
+
+
+<meta itemprop="keywords" content="docker,教程," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="用docker搭建全栈式应用（一）基础篇"/>
+<meta name="twitter:description" content="用docker搭建全栈式应用 简介 本文将以docker为基础，搭建一套简单的应用案例。该案例的应用架构将采用redis的master-slav"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">keysaim</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">keysaim</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">用docker搭建全栈式应用（一）基础篇</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-05-16 </span>
+        
+        <span class="more-meta"> 3382 words </span>
+        <span class="more-meta"> 7 min read </span>
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#用docker搭建全栈式应用">用docker搭建全栈式应用</a>
+<ul>
+<li><a href="#简介">简介</a></li>
+<li><a href="#准备工作">准备工作</a>
+<ul>
+<li><a href="#获取相应的docker-images">获取相应的docker images</a></li>
+</ul></li>
+<li><a href="#启动containers">启动containers</a>
+<ul>
+<li><a href="#启动redis">启动redis</a></li>
+</ul></li>
+<li><a href="#配置">配置</a>
+<ul>
+<li><a href="#配置redis">配置redis</a></li>
+<li><a href="#配置django-app">配置Django App</a></li>
+</ul></li>
+<li><a href="#启动services">启动services</a>
+<ul>
+<li><a href="#启动redis-service">启动redis service</a></li>
+<li><a href="#启动app-service">启动app service</a></li>
+<li><a href="#启动haproxy-service">启动haproxy service</a></li>
+</ul></li>
+<li><a href="#结语">结语</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<h1 id="用docker搭建全栈式应用">用docker搭建全栈式应用</h1>
+
+<h2 id="简介">简介</h2>
+
+<p>本文将以docker为基础，搭建一套简单的应用案例。该案例的应用架构将采用redis的master-slave模式作为数据存储，以django为框架提供web访问，以haproxy作为负载均衡。其架构图如下.</p>
+
+<div style="text-align:center">
+    <img src="/img/blog-demoarch.png" alt="" width="400"/>
+</div>
+
+<p>其中App1和App2属于同一个Django的APP.</p>
+
+<h2 id="准备工作">准备工作</h2>
+
+<h3 id="获取相应的docker-images">获取相应的docker images</h3>
+
+<ul>
+<li><p>可以直接从docker官方获取images</p>
+
+<pre><code>$ docker pull django
+$ docker pull redis
+$ docker pull haproxy
+</code></pre></li>
+
+<li><p>获取成功之后，检查一下images是否真的ok</p>
+
+<pre><code>$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+haproxy             latest              46bc5babcc18        3 days ago          139.1 MB
+redis               latest              84dbf5edc313        4 days ago          184.8 MB
+django              latest              3b0bc67346a2        9 days ago          433.5 MB
+</code></pre></li>
+
+<li><p>检查一下各自的版本(root权限)
+redis版本</p>
+
+<pre><code># docker run -it redis /bin/bash
+root@a3ca293915cb:/data# redis-server -v
+Redis server v=3.2.0 sha=00000000:0 malloc=jemalloc-4.0.3 bits=64 build=5382f69a4e75566b
+</code></pre>
+
+<p>haproxy版本</p>
+
+<pre><code># docker run -it haproxy /bin/bash
+root@b11f07766c49:/# haproxy -v
+HA-Proxy version 1.6.5 2016/05/10
+Copyright 2000-2016 Willy Tarreau &lt;willy@haproxy.org&gt;
+</code></pre>
+
+<p>django版本</p>
+
+<pre><code># docker run -it django /bin/bash
+root@1daf8d846018:/# django-admin version
+1.9.6
+</code></pre></li>
+</ul>
+
+<p>检查完后，可以用<code>docker rm</code>把不用的containers删掉</p>
+
+<pre><code># docker ps -a
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                     PORTS               NAMES
+1daf8d846018        django              &quot;/bin/bash&quot;              2 minutes ago       Exited (0) 6 seconds ago                       sleepy_hypatia
+b11f07766c49        haproxy             &quot;/docker-entrypoint.s&quot;   3 minutes ago       Exited (0) 2 minutes ago                       elegant_tesla
+a3ca293915cb        redis               &quot;docker-entrypoint.sh&quot;   5 minutes ago       Exited (0) 3 minutes ago                       stupefied_cray
+# docker rm `docker ps -a | grep 'Exited' | awk '{print $1}'`
+1daf8d846018
+b11f07766c49
+a3ca293915cb
+</code></pre>
+
+<p>从上，本文各版本采用如下:</p>
+
+<table>
+<thead>
+<tr>
+<th>service</th>
+<th>version</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>haproxy</td>
+<td>1.6.5</td>
+</tr>
+
+<tr>
+<td>django</td>
+<td>1.9.6</td>
+</tr>
+
+<tr>
+<td>redis</td>
+<td>3.2.0</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="启动containers">启动containers</h2>
+
+<p>本案例中containers的有关启动配置如下：</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">container</th>
+<th align="center">image</th>
+<th align="center">service</th>
+<th align="center">ports</th>
+<th align="center">volumes</th>
+<th align="center">links</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">redis-master</td>
+<td align="center">redis</td>
+<td align="center">redis-server</td>
+<td align="center">-</td>
+<td align="center">master:/data</td>
+<td align="center">-</td>
+</tr>
+
+<tr>
+<td align="center">redis-slave1</td>
+<td align="center">redis</td>
+<td align="center">redis-server</td>
+<td align="center">-</td>
+<td align="center">slave1:/data</td>
+<td align="center">redis-master:master</td>
+</tr>
+
+<tr>
+<td align="center">redis-slave2</td>
+<td align="center">redis</td>
+<td align="center">redis-server</td>
+<td align="center">-</td>
+<td align="center">slave2:/data</td>
+<td align="center">redis-master:master</td>
+</tr>
+
+<tr>
+<td align="center">app1</td>
+<td align="center">django</td>
+<td align="center">django app</td>
+<td align="center">-</td>
+<td align="center">app:/data</td>
+<td align="center">redis-master:redis</td>
+</tr>
+
+<tr>
+<td align="center">app2</td>
+<td align="center">django</td>
+<td align="center">django app</td>
+<td align="center">-</td>
+<td align="center">app:/data</td>
+<td align="center">redis-master:redis</td>
+</tr>
+
+<tr>
+<td align="center">haproxy</td>
+<td align="center">haproxy</td>
+<td align="center">haproxy</td>
+<td align="center">6301:6301</td>
+<td align="center">haproxy:/data</td>
+<td align="center">app1:app1 app2:app2</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="启动redis">启动redis</h3>
+
+<ul>
+<li><p>启动redis-master
+在本地当前目录下创建子目录<code>master</code>，并将<code>master</code>挂载到container里的<code>/data</code>目录。container名字为<code>redis-master</code>。为了方便调试，这里同时启动交互式模式<code>-it</code>，并同时打开<code>bash</code></p>
+
+<pre><code># mkdir master
+# docker run -it --name redis-master -v `pwd`/master:/data redis /bin/bash
+root@3d187b223f56:/data#
+</code></pre>
+
+<p>添加一个测试条目，取key为<code>redis_app</code>，该测试条目将被app1跟app2查询:</p>
+
+<pre><code>root@3d187b223f56:/data# redis-cli
+127.0.0.1:6379&gt; set redis_app &quot;Hello redis app!&quot;
+OK
+127.0.0.1:6379&gt; get redis_app
+&quot;Hello redis app!&quot;
+</code></pre></li>
+
+<li><p>启动redis-slave1
+本文案例中将采用两个redis的slave，这里首先启动第一个。container名字为<code>redis-slave1</code>，同时为了方便的连接到redis master，这里直接用<code>--link</code>将<code>redis-master</code>container连接同时命名为<code>master</code>。其实际效果相当于往<code>/etc/hosts</code>添加一条记录，映射<code>master</code>的域名到<code>redis-master</code>的IP。通过这种方式，就不需要手工的添加master的IP，docker在启动的时候会自动添加。</p>
+
+<pre><code># docker run -it --name redis-slave1 --link redis-master:master -v `pwd`/slave1:/data redis /bin/bash
+root@cef73ae816be:/data# cat /etc/hosts
+172.17.0.3      cef73ae816be
+127.0.0.1       localhost
+::1     localhost ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+172.17.0.2      master 3d187b223f56 redis-master
+</code></pre>
+
+<p>可以看出，<code>--link</code>实际上在<code>/etc/hosts</code>下添加了一条新的映射，分别把<code>redis-master</code>的别名<code>master</code>、container ID以及container name映射到master的IP。</p>
+
+<pre><code>172.17.0.2      master 3d187b223f56 redis-master
+</code></pre>
+
+<p>如果没有错误，那么上面在master中设置的条目应该可以查询到：</p>
+
+<pre><code>root@cef73ae816be:/data# redis-cli
+127.0.0.1:6379&gt; get redis_app
+&quot;Hello redis app!&quot;
+</code></pre></li>
+
+<li><p>启动redis-slave2
+与redis-slave1同样的方式启动redis-slave2</p>
+
+<pre><code># docker run -it --name redis-slave2 --link redis-master:master -v `pwd`/slave2:/data redis /bin/bash
+root@1f22e9e15e8b:/data# cat /etc/hosts
+172.17.0.4      1f22e9e15e8b
+127.0.0.1       localhost
+::1     localhost ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+172.17.0.2      master 3d187b223f56 redis-master
+</code></pre>
+
+<p>如果没有错误，那么上面在master中设置的条目应该可以查询到：</p>
+
+<pre><code>root@cef73ae816be:/data# redis-cli
+127.0.0.1:6379&gt; get redis_app
+&quot;Hello redis app!&quot;
+</code></pre></li>
+
+<li><p>启动app1
+app1需要连接到redis服务，因此需要把<code>redis-master</code>container连起来。同时为其创建<code>app</code>目录，由于app1跟app2共享同一个Django项目，这里就不再单独为他们创建各自的目录。</p>
+
+<pre><code># mkdir app
+# docker run -it --name app1 --link redis-master:redis -v `pwd`/app/:/data django /bin/bash
+root@7e6e49321993:/# 
+</code></pre></li>
+</ul>
+
+<h2 id="配置">配置</h2>
+
+<h3 id="配置redis">配置redis</h3>
+
+<ul>
+<li><p>获取redis初始配置</p>
+
+<p>本文采用的版本为3.2.0, 可通过如下方式获取</p>
+
+<pre><code># wget https://raw.githubusercontent.com/antirez/redis/3.2.0/redis.conf
+</code></pre></li>
+
+<li><p>配置redis-master</p>
+
+<p>拷贝<code>redis.conf</code>到<code>master</code>目录.</p>
+
+<pre><code># cp redis.conf master/
+</code></pre>
+
+<p>编辑改配置文件。默认里面有非常多的配置选项，这里只需要关注几个，并改成如下:</p>
+
+<pre><code>bind 0.0.0.0
+protected-mode yes
+daemonize yes
+logfile /var/log/redis.log
+</code></pre>
+
+<p>由于已经将<code>./master</code>挂载到container的<code>/data</code>目录，因此本地的改动在container里面也是可见的。</p></li>
+
+<li><p>配置redis-slave1</p>
+
+<p>拷贝<code>redis.conf</code>到<code>slave1</code>目录.</p>
+
+<pre><code># cp redis.conf slave1/
+</code></pre>
+
+<p>编辑改配置文件。默认里面有非常多的配置选项，这里只需要关注几个，并改成如下:</p>
+
+<pre><code>bind 0.0.0.0
+protected-mode yes
+daemonize yes
+logfile /var/log/redis.log
+slaveof master 6379
+</code></pre>
+
+<p>最后一项<code>slaveof</code>将slave1设置为master的slave。同样，由于已经将<code>./slave1</code>挂载到container的<code>/data</code>目录，因此本地的改动在container里面也是可见的。</p></li>
+
+<li><p>配置redis-slave2</p>
+
+<p>配置方式与<code>redis-slave1</code>一致，因此，直接拷贝<code>slave1/redis.conf</code>到<code>slave2</code>目录.</p>
+
+<pre><code># cp slave1/redis.conf slave2/
+</code></pre></li>
+</ul>
+
+<h3 id="配置django-app">配置Django App</h3>
+
+<ul>
+<li><p>配置app1</p>
+
+<p>首先需要创建Django项目,这需要登录到<code>app1</code>系统中才能够调用Django命令来创建。</p>
+
+<pre><code># docker attach app1
+root@7e6e49321993:/# cd /data
+root@7e6e49321993:/# django-admin startproject redisapp
+root@4b8240acb25a:/data# ls
+redisapp
+root@4b8240acb25a:/data# cd redisapp/
+root@4b8240acb25a:/data/redisapp# ls
+manage.py  redisapp
+</code></pre>
+
+<p>接下来需要编辑Django代码以支持本案例中一个简单的API：<code>/query/</code>，此API将获取redis中的key为<code>redis_app</code>的值（请注意，该值在上面启动redis的时候已经设置好了），并将结果返回给浏览器。由于container中大量的linux工具都没有，因此需要到主机上去编辑。<code>app1</code>container将<code>app</code>目录挂载进去了，因此在container中的创建的Django项目实际上在<code>app</code>目录下也是可见的。</p>
+
+<ul>
+<li><p>安卓redis client</p>
+
+<p>由于django app需要访问redis数据库，因此需要先安装redis client</p>
+
+<pre><code>root@7e6e49321993:/data/redisapp# pip install redis
+Collecting redis
+  Downloading redis-2.10.5-py2.py3-none-any.whl (60kB)
+      100% |████████████████████████████████| 61kB 123kB/s
+      Installing collected packages: redis
+      Successfully installed redis-2.10.5
+</code></pre></li>
+
+<li><p>编辑<code>views.py</code>文件</p>
+
+<pre><code># vim app/redisapp/redisapp/views.py
+</code></pre>
+
+<p>初始状态，<code>views.py</code>文件并不存在，添加并编辑，内容如下：</p>
+
+<pre><code class="language-python">from django.http import HttpResponse
+import socket
+import redis
+
+
+def query(request):
+    r = redis.StrictRedis(host='redis', port=6379, db=0)
+    value = r.get('redis_app')
+    return HttpResponse('hello world from ' + socket.gethostname() + ', with value: ' + str(value))
+</code></pre></li>
+
+<li><p>编辑<code>urls.py</code>文件</p>
+
+<pre><code># vim app/redisapp/redisapp/views.py
+</code></pre>
+
+<p>编辑内容如下，只要是添加<code>views.py</code>中定义的view函数跟url的对应：</p>
+
+<pre><code class="language-python">from django.conf.urls import url
+from django.contrib import admin
+
+from redisapp.views import *
+
+urlpatterns = [
+    url(r'^admin/', admin.site.urls),
+        url(r'^query/', query),
+        ]
+</code></pre></li>
+
+<li><p>编辑<code>settings.py</code>文件</p>
+
+<pre><code># vim app/redisapp/redisapp/settings.py
+</code></pre>
+
+<p>主要是讲默认生成的<code>redisapp</code>添加到<code>INSTALLED_APPS</code>中，添加完后应该如下：</p>
+
+<pre><code class="language-python">INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'redisapp'
+]
+</code></pre></li>
+
+<li><p>初始化数据库</p>
+
+<p>在启动django程序之前，必须初始化数据库。默认情况下，采用的sqlite数据库。</p>
+
+<pre><code>root@2298dd360bbd:/data/redisapp# python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, contenttypes, sessions, auth
+Running migrations:
+  Rendering model states... DONE
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying sessions.0001_initial... OK
+</code></pre>
+
+<p>至此，app1已经全部配置并初始化完毕。</p></li>
+</ul></li>
+
+<li><p>配置app2</p>
+
+<p>app2与app1共享同一个Django项目，因此不需要为app2做任何特别的配置。</p></li>
+
+<li><p>配置haproxy</p>
+
+<p>haproxy依赖于它的配置文件，在配置文件中必须把app1跟app2都加进去，这样haproxy就可以为他们做load balance了。</p>
+
+<pre><code># vim haproxy/haproxy.cfg
+</code></pre>
+
+<p>编辑内容如下：</p>
+
+<pre><code>global
+  maxconn 50000
+  daemon
+  pidfile /var/run/haproxy.pid
+  log   127.0.0.1       local0
+  nbproc 4
+  #debug
+
+defaults
+  mode http
+  balance roundrobin
+  maxconn 25000
+  option httplog
+  option abortonclose
+  option httpclose
+  option forwardfor
+  option redispatch
+  option redispatch
+
+  retries 3
+
+  timeout client  30s
+  timeout connect 30s
+  timeout server  30s
+
+
+listen redis_proxy
+  bind :6301
+  mode http
+  stats enable
+  stats uri /stats
+  log   127.0.0.1       local0 debug
+  server app1 app1:8001 check inter 2000 rise 2 fall 5
+  server app2 app2:8002 check inter 2000 rise 2 fall 5
+</code></pre>
+
+<p>如果需要调试，可以吧<code>global</code>中的<code>debug</code>打开。特别注意的是关于app1跟app2的配置，必须跟他们启动的端口保持一致。因为在前面已经通过<code>--link</code>将<code>app</code>以及<code>app2</code>连接进来，因此在写<code>address:port</code>时候可以直接使用app1跟app2。</p></li>
+</ul>
+
+<h2 id="启动services">启动services</h2>
+
+<h3 id="启动redis-service">启动redis service</h3>
+
+<ul>
+<li><p>启动redis-master service</p>
+
+<ul>
+<li><p>attach <code>redis-master</code> container</p>
+
+<pre><code># docker start redis-master
+redis-master
+# docker attach redis-master
+root@3d187b223f56:/data#
+</code></pre></li>
+
+<li><p>启动service</p>
+
+<pre><code>root@3d187b223f56:/data# redis-server redis.conf
+root@3d187b223f56:/data# redis-cli
+127.0.0.1:6379&gt; get redis_app
+&quot;Hello redis app!&quot;
+</code></pre></li>
+</ul></li>
+
+<li><p>启动redis-slave1 service</p>
+
+<ul>
+<li><p>attach <code>redis-slave1</code> container</p>
+
+<pre><code># docker start redis-slave1
+redis-slave1
+root@neil-centos1:hademo# docker attach redis-slave1
+root@cef73ae816be:/data# redis-cli
+</code></pre></li>
+
+<li><p>启动service</p>
+
+<pre><code>root@cef73ae816be:/data# redis-server redis.conf
+root@cef73ae816be:/data# redis-cli
+127.0.0.1:6379&gt; get redis_app
+&quot;Hello redis app!&quot;
+</code></pre></li>
+</ul></li>
+
+<li><p>启动redis-slave2 service</p>
+
+<p>与启动redis-slave1 service一样，这里不再赘述。</p></li>
+</ul>
+
+<h3 id="启动app-service">启动app service</h3>
+
+<ul>
+<li><p>启动app1 service</p>
+
+<ul>
+<li><p>attach <code>app1</code> container</p>
+
+<pre><code># docker start app1
+app1
+root@neil-centos1:hademo# docker attach app1
+root@7e6e49321993:/# 
+</code></pre></li>
+
+<li><p>启动service</p>
+
+<pre><code>root@7e6e49321993:/data# cd redisapp/
+root@7e6e49321993:/data# python manage.py runserver 0.0.0.0:8001
+Performing system checks...
+
+System check identified no issues (0 silenced).
+May 16, 2016 - 12:51:39
+Django version 1.9.6, using settings 'redisapp.settings'
+Starting development server at http://0.0.0.0:8001/
+Quit the server with CONTROL-C.
+
+</code></pre></li>
+</ul></li>
+
+<li><p>启动app2 service</p>
+
+<ul>
+<li><p>attach <code>app2</code> container</p>
+
+<pre><code> docker start app2
+ app2
+ # docker attach app2
+ root@13d9f084c18b:/#
+</code></pre></li>
+
+<li><p>启动service</p>
+
+<pre><code>root@13d9f084c18b:/data# cd redisapp/
+root@13d9f084c18b:/data/redisapp# python manage.py runserver 0.0.0.0:8002
+Performing system checks...
+
+System check identified no issues (0 silenced).
+May 16, 2016 - 12:56:08
+Django version 1.9.6, using settings 'redisapp.settings'
+Starting development server at http://0.0.0.0:8002/
+Quit the server with CONTROL-C.
+
+</code></pre></li>
+</ul></li>
+</ul>
+
+<h3 id="启动haproxy-service">启动haproxy service</h3>
+
+<ul>
+<li><p>attach <code>haproxy</code> container</p>
+
+<pre><code># docker start haproxy
+haproxy
+# docker attach haproxy
+root@7e0f805cd85c:/#
+</code></pre></li>
+
+<li><p>启动service</p>
+
+<pre><code>root@7e0f805cd85c:/data# haproxy -f haproxy.cfg
+[WARNING] 136/130034 (6) : Proxy 'redis_proxy': in multi-process mode, stats will be limited to process assigned to the current request.
+root@7e0f805cd85c:/data#
+</code></pre></li>
+</ul>
+
+<p>至此，所有的service已经成功启动。可以通过uri <code>http://&lt;host ip&gt;:6031/query/</code>访问本案例中web service。还可以通过<code>http://&lt;host ip&gt;:6031/stats</code>来查询haproxy的统计信息。</p>
+
+<h2 id="结语">结语</h2>
+
+<p>本文中所涉及的配置以及代码可以在这个github repo找到: <a href="https://github.com/keysaim/demos/tree/master/docker-redis-django">https://github.com/keysaim/demos/tree/master/docker-redis-django</a></p>
+
+    </div>
+
+    
+    
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/docker/">docker</a>
+          
+          <a href="/tags/%E6%95%99%E7%A8%8B/">教程</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/docker/2016-05-30-full-stack-demo2/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">用docker搭建全栈式应用 (二）构建篇</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/note/2016-04-23-the-golang-book/">
+            <span class="next-text nav-default">The golang programming language</span>
+            <span class="prev-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+    
+
+  
+
+  
+
+  <div id="comments-gitment"></div>
+  <link rel="stylesheet" href="/lib/gitment/gitment-0.0.3.min.css">
+    <script src="/lib/gitment/gitment-0.0.3.min.js"></script>
+  <script type="text/javascript">
+  const gitment = new Gitment({
+    id: '2016-05-16 00:00:00 \x2b0000 UTC',
+    title: '用docker搭建全栈式应用（一）基础篇',
+    link: decodeURI(location.href),
+    desc: '用docker搭建全栈式应用 简介 本文将以docker为基础，搭建一套简单的应用案例。该案例的应用架构将采用redis的master-slav',
+    owner: 'keysaim',
+    repo: 'comments',
+    oauth: {
+      client_id: '8d920ad685683a529e83',
+      client_secret: 'ffabf134048e374883ee67d3786a9a6b7d8d3cdc'
+    }
+  })
+  gitment.render('comments-gitment')
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+  </article>
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:keysaim@gmail.com" rel="me" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/keysaim" rel="me" class="iconfont icon-github" title="github"></a>
+  <a href="https://keysaim.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2017 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">窗外蟋蟀(keysaim)</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+<script type="text/javascript" src="/dist/jane.min.js?v=2.7.0"></script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>如何快速搭建自己的github.io博客 - 窗外蟋蟀博客</title>
+  <link rel="alternate" hreflang="en" href="https://keysaim.github.io" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="keysaim" />
+  <meta name="description" content="闲聊一下 在这知识剧烈膨胀的时代，如何记录、整理、分享自己的所学所感无疑显得十分重要，而博客便是最好的方式之一。现在已经有了各式各样的博客平台" />
+
+  <meta name="keywords" content="Hugo, blog, keysaim, 窗外蟋蟀" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.37.1" />
+
+
+<link rel="canonical" href="https://keysaim.github.io/post/blog/2017-08-15-how-to-setup-your-github-io-blog/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" href="/favicon.ico" />
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+<link href="/dist/jane.min.css?v=2.7.0" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="如何快速搭建自己的github.io博客" />
+<meta property="og:description" content="闲聊一下 在这知识剧烈膨胀的时代，如何记录、整理、分享自己的所学所感无疑显得十分重要，而博客便是最好的方式之一。现在已经有了各式各样的博客平台" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://keysaim.github.io/post/blog/2017-08-15-how-to-setup-your-github-io-blog/" />
+
+
+
+<meta property="article:published_time" content="2017-08-15T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2017-08-15T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="如何快速搭建自己的github.io博客">
+<meta itemprop="description" content="闲聊一下 在这知识剧烈膨胀的时代，如何记录、整理、分享自己的所学所感无疑显得十分重要，而博客便是最好的方式之一。现在已经有了各式各样的博客平台">
+
+
+<meta itemprop="datePublished" content="2017-08-15T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2017-08-15T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="2581">
+
+
+
+<meta itemprop="keywords" content="github,教程," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="如何快速搭建自己的github.io博客"/>
+<meta name="twitter:description" content="闲聊一下 在这知识剧烈膨胀的时代，如何记录、整理、分享自己的所学所感无疑显得十分重要，而博客便是最好的方式之一。现在已经有了各式各样的博客平台"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">keysaim</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">keysaim</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">如何快速搭建自己的github.io博客</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2017-08-15 </span>
+        
+        <span class="more-meta"> 2581 words </span>
+        <span class="more-meta"> 6 min read </span>
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#闲聊一下">闲聊一下</a></li>
+<li><a href="#开通自己的-github-io-repo">开通自己的<code>github.io</code> repo</a></li>
+<li><a href="#选择一款-jekyll-的主题">选择一款<code>Jekyll</code>的主题</a></li>
+<li><a href="#编写发布博客">编写发布博客</a>
+<ul>
+<li><a href="#本地查看自己的博客">本地查看自己的博客</a></li>
+</ul></li>
+<li><a href="#结语">结语</a></li>
+<li><a href="#参考">参考</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<h1 id="闲聊一下">闲聊一下</h1>
+
+<p>在这知识剧烈膨胀的时代，如何记录、整理、分享自己的所学所感无疑显得十分重要，而博客便是最好的方式之一。现在已经有了各式各样的博客平台，有基于第三方的平台的（如<a href="https://www.cnblogs.com/">博客园</a>等），也有自己搭建的（如基于<a href="https://ghost.org/">Ghost</a>等，当然，也有很多干脆自己动手DIY了）。总之，博客的世界已然丰富多彩，留给咱们更多的不是有没有，而是哪个好。这里咱不讨论博客哪家强的问题，只推荐一款博主觉得不错的选择：<code>github.io</code>。</p>
+
+<p>要问全球最大的基佬交友网站是哪个，我相信不少答案必须是咱们的<a href="https://github.com">github</a>。而<code>github.io</code>便是其出品，品质必须是有保证的，最重要的一点是基于github的repo管理，这意味着咱们对其是有觉得的控制，这个跟放在第三方的平台比，可控性要好太多。下面咱们将详细讲述如何基于<code>github.io</code>打造属于自己的博客网站。</p>
+
+<p>要完成自己的<code>github.io</code>博客网站，总共分三步：</p>
+
+<ul>
+<li>开通自己的<code>github.io</code> repo</li>
+<li>选择一款Jekyll的主题</li>
+<li>编写发布博客</li>
+</ul>
+
+<h1 id="开通自己的-github-io-repo">开通自己的<code>github.io</code> repo</h1>
+
+<p><code>github.io</code>是完全基于github创建的，其本质上是在你的github账户下创建一个特殊的repo。你可以参照<a href="https://pages.github.com/">如下步骤</a>完成：</p>
+
+<ul>
+<li><p>创建repo</p>
+
+<p>当然，一切的前提是你得首先有个github的账户，这里还请自行解决。登陆你的账户后，你可以<a href="https://github.com/new">创建一个新的repo</a>。<strong><em>请务必注意该repo的名字，必须保持格式<code>&lt;username&gt;.github.io</code>，其中<code>&lt;username&gt;</code>替换成你的github账户名</em></strong>，这里假定创建的repo为<code>tobiasalin.github.io</code></p>
+
+<div style="text-align: center">
+    <img src="https://pages.github.com/images/user-repo@2x.png" alt=""/>
+</div></li>
+
+<li><p>把你创建的repo clone到本地</p>
+
+<p>本文假定你已经有一定的<code>git</code>使用基础了，如果没有也没关系，Google一下，<code>git</code>的基本使用极为简单。</p>
+
+<pre><code>$ git clone https://github.com/tobiasalin/tobiasalin.github.io
+</code></pre></li>
+
+<li><p>编写简单的博客首页</p>
+
+<pre><code>$ cd tobiasalin.github.io
+$ echo &quot;Hello World!&quot; &gt; index.html
+$ git add index.html
+$ git commit -m &quot;Init commit&quot;
+$ git push origin master
+</code></pre></li>
+
+<li><p>打开博客网站<code>https://&lt;username&gt;.github.io</code></p>
+
+<p>不出意外，你就可以看到你的<code>Hello World!</code>博客首页了。如果不小心出了意外，通常情况下，你只需等一会再刷新就会好，要是还没好，通常说明你的运气实在太背，请自行了断。</p></li>
+</ul>
+
+<h1 id="选择一款-jekyll-的主题">选择一款<code>Jekyll</code>的主题</h1>
+
+<p><code>github.io</code>默认采用<code>Jekyll</code>作为建站工具。<a href="https://jekyllrb.com/">Jekyll</a>是一款当前火热的开源的静态网站建站工具，拥有非常庞大的使用群里和社区，其<a href="https://github.com/jekyll/jekyll">Github</a>截止本文，已经有超过3W+的star，拥有丰富的插件，丰富的主题，并且有无数的人已经帮你早出了无数的轮子可供参考。<code>Jekyll</code>自身的强大功能已经足够你打造自己心仪的静态网站（这里注意的是<code>静态网站</code>，<code>Jekyll</code>没有任何的后台数据库），然而前提是你自己还是得有一定的前端功底，而为了不至于长的太难看，你还得有一定的设计能力。这一下子把大部分人给难住了，咱们只是为了单纯的写写博客啊，至于有这么多要求吗？看到这里，很多人可能觉得此法不怎么方便啊，然则，正如刚刚反复强调的，<code>Jekyll</code>已经有一个非常庞大的社区，这就意味着，你完全可以借鉴别人已经造好的轮子，放在<code>Jekyll</code>这里，咱们应该成为主体（Theme）比较合适。本文推荐国内用户可以考虑一款<a href="https://github.com/Huxpro/huxpro.github.io">国人开发的主题</a>。<strong><em>本博客即是采用了这个主题</em></strong>。</p>
+
+<ul>
+<li><p>Fork出自己的repo</p>
+
+<p>为了便于管理，建议先把<a href="https://github.com/Huxpro/huxpro.github.io">Huxpro</a> fork到自己的账户下</p></li>
+
+<li><p>clone主题</p>
+
+<pre><code>$ git clone git@github.com:keysaim/huxpro.github.io.git
+</code></pre>
+
+<p>当然，你也可以直接clone它的样板repo</p>
+
+<pre><code>$ git clone git@github.com:Huxpro/huxblog-boilerplate.git
+</code></pre></li>
+
+<li><p>添加自己的github.io repo</p>
+
+<p>clone了Huxpro的repo之后，还需要将自己的github.io repo添加到Huxpro repo中，以方便后面讲修改同步到自己的repo中：</p>
+
+<pre><code>$ git remote add mine https://github.com/tobiasalin/tobiasalin.github.io
+</code></pre>
+
+<p>其中，<code>mine</code>是你自己repo的别名，当然，你完全可以用其它任何合法的名字。</p></li>
+
+<li><p>修改必要的配置</p>
+
+<p>clone之后的repo其实是Huxpro自己的博客网站，里面有非常多作者自己的博文，可根据自己的需要进行必要的删减。基于<code>Jekyll</code>的博客网站，对于配置，非常重要的一个文件是<code>_config.yml</code>文件，代开这个文件进行必要的修改：</p>
+
+<pre><code class="language-yaml"># Site settings
+title: 窗外蟋蟀
+SEOTitle: 窗外蟋蟀的博客 | Keysaim Blog
+header-img: img/home-bg-hill.jpg
+email: keysaim@gmail.com
+description: &quot;描述&quot;
+keyword: &quot;窗外蟋蟀, keysaim&quot;
+url: &quot;https://keysaim.github.io&quot;
+baseurl: &quot;&quot;
+...
+</code></pre></li>
+</ul>
+
+<h1 id="编写发布博客">编写发布博客</h1>
+
+<p><code>Jekyll</code>对于博文，都是要求放在<code>_posts</code>目录下面，同时对博文的文件名有<a href="https://jekyllrb.com/docs/posts/#creating-post-files">严格的规定</a>，必须保持格式<code>YEAR-MONTH-DAY-title.MARKUP</code>，通常情况下，咱们采用推荐的<code>Markdown</code>撰写博文，基于该格式，本博文的文件名为<code>2017-08-15-how-to-setup-your-github-io-blog.md</code>。</p>
+
+<p>写好博文之后，就可以通过<code>git</code>提交博文了：</p>
+
+<pre><code>$ git add _posts/2017-08-15-how-to-setup-your-github-io-blog.md
+$ git commit -m &quot;Add how to setup your github.io blog&quot;
+$ git push mine master
+</code></pre>
+
+<p>*请务必注意，这里提交的repo是<code>mine</code>，也就是你自己的github.io repo。*等一会（通常几秒到几十秒不等），就可以打开自己的博客网站查看博文了，这里是我的博客网站<code>https://keysaim.github.io</code>。</p>
+
+<h2 id="本地查看自己的博客">本地查看自己的博客</h2>
+
+<p>有时候，在提交到<code>github</code>之前，咱们总想先看看博文的效果如何，既然<code>github</code>采用的也是<code>Jekyll</code>，那么咱们完全可以采用<code>Jekyll</code>在本地构建网站，查看博文效果。</p>
+
+<ul>
+<li><p>按照<code>Ruby</code>（请务必确保版本在<code>1.9.3</code>以上）</p>
+
+<p>可以参照<a href="https://www.ruby-lang.org/en/downloads/">官网教程</a>进行安装，这里，如果你使用的是Mac，可以安装如下：</p>
+
+<pre><code>$ brew install ruby
+</code></pre></li>
+
+<li><p>安装<code>Github pages</code></p>
+
+<p><code>Github pages</code>其实就是<code>github</code>基于<code>Jekyll</code>用来构建<code>github.io</code>的工具，安装好Ruby之后可以执行：</p>
+
+<pre><code>$ gem install github-pages
+</code></pre></li>
+
+<li><p>开启<code>Jekyll</code>本地服务</p>
+
+<pre><code>$ cd keysaim.github.io
+$ jekyll serve --watch
+</code></pre>
+
+<p>默认情况下，该服务会侦听在本地<code>4000</code>的端口上，可以打开浏览器访问<code>http://127.0.0.1:4000</code>，这样就可以在本地查看自己的博文效果了。</p></li>
+</ul>
+
+<h1 id="结语">结语</h1>
+
+<p><code>github.io</code>通过基于<code>Jekyll</code>工具的<a href="https://pages.github.com/">Github pages</a>来自动构建网站，同时本身又是<code>github</code>的repo，为使用者提供完全的内容控制，十分便利灵活。当然，要用好这个工具，还是对你有一定的要求：</p>
+
+<ul>
+<li><p>必须得有基本的<code>git</code>使用基础</p></li>
+
+<li><p>必须对前端有一定的概念</p></li>
+
+<li><p>必须较为熟悉<code>Markdown</code>撰写</p></li>
+</ul>
+
+<p>不过，幸运的是，这三点不论哪一点，其实都是相对较为简单的，<code>git</code>的基本使用，Google一下，我相信1小时学会不是太大问题；对前端的要求，由于前人已经造了足够多的轮子，咱们完全可以先借鉴别人的，等以后慢慢熟悉起来之后再考虑自己DIY；对于<code>Markdown</code>，个人觉得其语法真的是非常的简单，只要静下心来，一个下午足够让你编写基本的文章了。</p>
+
+<p>最后，这里再次感谢<a href="https://github.com/Huxpro/huxpro.github.io">Huxpro</a>提供本站的<code>Jekyll</code>主题。</p>
+
+<h1 id="参考">参考</h1>
+
+<ul>
+<li><a href="https://www.smashingmagazine.com/2014/08/build-blog-jekyll-github-pages/">Build A Blog With Jekyll And GitHub Pages</a></li>
+<li><a href="https://pages.github.com/">Github pages</a></li>
+</ul>
+
+    </div>
+
+    
+    
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/github/">github</a>
+          
+          <a href="/tags/%E6%95%99%E7%A8%8B/">教程</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/git/2017-08-15-how-to-git-with-specific-ssh-key/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">如何使用特定的SSH Key提交GIT</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/docker/2016-06-23-full-stack-demo3/">
+            <span class="next-text nav-default">用docker搭建全栈式应用（三）管理篇</span>
+            <span class="prev-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+    
+
+  
+
+  
+
+  <div id="comments-gitment"></div>
+  <link rel="stylesheet" href="/lib/gitment/gitment-0.0.3.min.css">
+    <script src="/lib/gitment/gitment-0.0.3.min.js"></script>
+  <script type="text/javascript">
+  const gitment = new Gitment({
+    id: '2017-08-15 00:00:00 \x2b0000 UTC',
+    title: '如何快速搭建自己的github.io博客',
+    link: decodeURI(location.href),
+    desc: '闲聊一下 在这知识剧烈膨胀的时代，如何记录、整理、分享自己的所学所感无疑显得十分重要，而博客便是最好的方式之一。现在已经有了各式各样的博客平台',
+    owner: 'keysaim',
+    repo: 'comments',
+    oauth: {
+      client_id: '8d920ad685683a529e83',
+      client_secret: 'ffabf134048e374883ee67d3786a9a6b7d8d3cdc'
+    }
+  })
+  gitment.render('comments-gitment')
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+  </article>
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:keysaim@gmail.com" rel="me" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/keysaim" rel="me" class="iconfont icon-github" title="github"></a>
+  <a href="https://keysaim.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2017 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">窗外蟋蟀(keysaim)</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+<script type="text/javascript" src="/dist/jane.min.js?v=2.7.0"></script>
+
+
+
+
+
+</body>
+</html>

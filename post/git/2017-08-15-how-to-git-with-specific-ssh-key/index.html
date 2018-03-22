@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>如何使用特定的SSH Key提交GIT - 窗外蟋蟀博客</title>
+  <link rel="alternate" hreflang="en" href="https://keysaim.github.io" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="keysaim" />
+  <meta name="description" content="问题提出 最近在自己的MAC上面提交Github代码的时候发现居然失败了： $ git push origin master Permission denied (publickey). fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists. 这不是坑爹吗" />
+
+  <meta name="keywords" content="Hugo, blog, keysaim, 窗外蟋蟀" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.37.1" />
+
+
+<link rel="canonical" href="https://keysaim.github.io/post/git/2017-08-15-how-to-git-with-specific-ssh-key/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" href="/favicon.ico" />
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+<link href="/dist/jane.min.css?v=2.7.0" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="如何使用特定的SSH Key提交GIT" />
+<meta property="og:description" content="问题提出 最近在自己的MAC上面提交Github代码的时候发现居然失败了： $ git push origin master Permission denied (publickey). fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists. 这不是坑爹吗" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://keysaim.github.io/post/git/2017-08-15-how-to-git-with-specific-ssh-key/" />
+
+
+
+<meta property="article:published_time" content="2017-08-15T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2017-08-15T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="如何使用特定的SSH Key提交GIT">
+<meta itemprop="description" content="问题提出 最近在自己的MAC上面提交Github代码的时候发现居然失败了： $ git push origin master Permission denied (publickey). fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists. 这不是坑爹吗">
+
+
+<meta itemprop="datePublished" content="2017-08-15T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2017-08-15T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1953">
+
+
+
+<meta itemprop="keywords" content="github,git,教程," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="如何使用特定的SSH Key提交GIT"/>
+<meta name="twitter:description" content="问题提出 最近在自己的MAC上面提交Github代码的时候发现居然失败了： $ git push origin master Permission denied (publickey). fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists. 这不是坑爹吗"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">keysaim</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">keysaim</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">如何使用特定的SSH Key提交GIT</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2017-08-15 </span>
+        
+        <span class="more-meta"> 1953 words </span>
+        <span class="more-meta"> 4 min read </span>
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#问题提出">问题提出</a></li>
+<li><a href="#指定-git-提交使用的ssh-key">指定<code>git</code>提交使用的ssh key</a></li>
+<li><a href="#结语">结语</a></li>
+<li><a href="#参考">参考</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<h1 id="问题提出">问题提出</h1>
+
+<p>最近在自己的MAC上面提交<code>Github</code>代码的时候发现居然失败了：</p>
+
+<pre><code class="language-console">$ git push origin master
+Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+</code></pre>
+
+<p>这不是坑爹吗，<code>Github</code>都提交过无数次了，咋就失败了呢？莫非<code>Github</code>上的ssh key被删掉了么。于是打开<a href="https://github.com/settings/keys">github ssh</a>，尝试再次把ssh key加上，却提示key已经存在了。于是赶紧回到本地repo查看下用户是不是对的:</p>
+
+<pre><code class="language-console">$ git config -l
+...
+user.email=keysaim@gmail.com
+user.name=keysaim
+</code></pre>
+
+<p>再查看下本地的ssh key：</p>
+
+<pre><code class="language-console">$ cat ~/.ssh/id_rsa.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCu4Jy/+uFGiC89luBejzCEyPbY0SRoppyzrB4g1v3zv1OleylMzdf+eTTRcYgMbYoY6ZQs4M2NHX20iO6vf6j2uPvUsB++pP0G6Q7+VlrUlC19B07IVx7Mo2xmHCe4bMshFSugqOl+hV6zVjGpYJcLI9XtWQ6F/br4tkYD/J8KWns+SNha8gJVBckV1ncGlR+Q7ji4OM4+eIhKEEK4Wo7Cf7KaT71fIVFl7XRx5kmdtEN3F+wT4LjNb2okl8Pu4mmxCMwJvXzj0Jr9PkVzhSAhDkWG3mMt3kC5PhhRhCP7uwkGFsOEm5uGS907wTxY9cJNIl8FikOfmvDa5XrfMbMx nbaoping@xxx.com
+</code></pre>
+
+<p>发现邮件居然是<code>nbaoping@xxx.com</code>（此处已打码），显然跟本地repo的<code>keysaim@gmail.com</code>不同，<code>git</code>提交的时候没有特殊配置，会使用默认的ssh key，也就是<code>~/.ssh/id_rsa.pub</code>，而提交的用户信息跟此key并不能对应上，故此<code>github</code>拒绝了此次提交。既然如此，那把本地repo的用户信息改成key所对应的信息不就好了吗？是的，但是此信息都已经打码了就充分说明本博主是十分不愿暴露它的，咱必须得想其它辙。</p>
+
+<p>好了，现在的问题就是，如何使用特定的ssh key提交Git？本文就来讲述一种通用的解决办法。</p>
+
+<h1 id="指定-git-提交使用的ssh-key">指定<code>git</code>提交使用的ssh key</h1>
+
+<ul>
+<li><p>查看repo对应的hostname</p>
+
+<pre><code class="language-console">$ git remote -v
+origin  git@github.com:keysaim/keysaim.github.io.git (fetch)
+origin  git@github.com:keysaim/keysaim.github.io.git (push)
+</code></pre>
+
+<p>其中<code>github.com</code>就是repo使用的<code>hostname</code>。</p></li>
+
+<li><p>查看repo的用户信息</p>
+
+<pre><code class="language-console">$ git config -l
+...
+user.email=keysaim@gmail.com
+user.name=keysaim
+</code></pre>
+
+<p>最关键的是邮件信息<code>keysaim@gmail.com</code>。如果没有用户信息，可以先配置：</p>
+
+<pre><code class="language-console">$ git config user.email &quot;keysaim@gmail.com&quot;
+$ git config user.name &quot;keysaim&quot;
+</code></pre>
+
+<p>注意，很多教程里面以及<code>git</code>的错误提示里面会建议在<code>git config</code>后面加入参数<code>git config --global</code>，这里，千万不要加入此参数，否则它会去尝试修改你的<code>git</code>的全局配置，也就是你所有repo默认的用户信息。你可以在文件<code>~/.git/config</code>查看你的全局配置，其中<code>[user]</code>段就是你的默认用户信息。咱们这里就是为了能够给这个repo指定特定的ssh key，显然不适合使用全局的配置。</p></li>
+
+<li><p>为repo的用户生成新的ssh key</p>
+
+<pre><code class="language-console">$ ssh-keygen -C &quot;keysaim@gmail.com&quot;
+Generating public/private rsa key pair.
+Enter file in which to save the key (/Users/nbaoping/.ssh/id_rsa): id_rsa.github
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in id_rsa.github.
+Your public key has been saved in id_rsa.github.pub.
+The key fingerprint is:
+SHA256:G0djI0bh+XwGcwOZ0AsbQ8ffB51pYrfSlRALNZw3igc keysaim@gmail.com
+The key's randomart image is:
++---[RSA 2048]----+
+|       .==o+o=+.+|
+|       o+o=E.=+Oo|
+|        ==Bo*oB.+|
+|       ..*.B.=.o.|
+|        S + + .. |
+|         + o     |
+|        .        |
+|                 |
+|                 |
++----[SHA256]-----+
+</code></pre>
+
+<p>其中，<code>-C</code>是用来指定该key的用户信息的，这里咱们使用了<code>keysaim@gmail.com</code>。该命令是一个交互式的命令，其中大部分你都可以直接回车，但是对于第一个提示<code>Enter file in which to save the key</code>，<strong><em>请务必输入你想要的文件名，否则它将覆盖你默认的ssh key，这个可是不可逆的</em></strong>。这里使用文件名<code>id_rsa.github</code>。如果没有指定文件夹在路径中，该命令会在当前目录下生成key文件：</p>
+
+<pre><code class="language-console">$ ls id_rsa.github*
+id_rsa.github  id_rsa.github.pub
+</code></pre>
+
+<p>其中<code>id_rsa.github</code>是私钥，而<code>id_rsa.github.pub</code>为公钥。将key文件移到ssh目录下<code>~/.ssh/</code>：</p>
+
+<pre><code class="language-console">$ mv id_rsa.github* ~/.ssh/
+</code></pre></li>
+
+<li><p>配置ssh以使用新的key</p>
+
+<p>修改ssh的配置文件<code>~/.ssh/config</code>，加入如下配置：</p>
+
+<pre><code>Host github.com
+    HostName github.com
+    User git
+    IdentityFile /Users/nbaoping/.ssh/id_rsa.github
+    IdentitiesOnly yes
+</code></pre>
+
+<p>下面逐行解释：</p>
+
+<ul>
+<li><p><code>Host github.com</code></p>
+
+<p>用来指定该key的Host名字，此处必须使用本地repo的hostname <code>github.com</code>。</p></li>
+
+<li><p><code>Hostname github.com</code></p>
+
+<p>此处指定<code>Host</code>对应的具体域名，这里跟<code>Host</code>保持一致。（<code>Host</code>跟<code>Hostname</code>可以不一致，但是<code>Host</code>必须跟repo的hostname保持一致，也就是git到时候会用自己repo的hostname来ssh配置文件里面找是不是有对应的<code>Host</code>，找到了就使用该配置，具体访问的域名会采用<code>HostName</code>）</p></li>
+
+<li><p><code>User git</code></p>
+
+<p>说明该配置的用户得是git</p></li>
+
+<li><p><code>IdentityFile /Users/nbaoping/.ssh/id_rsa.github</code></p>
+
+<p>这行最为关键，指定了该使用哪个ssh key文件，这里的key文件一定指的是私钥文件。之前我们生成了新的私钥文件<code>~/.ssh/id_rsa.github</code>，由于博主使用的是MAC，<code>~</code>被翻译成<code>/Users/nbaoping/</code>了，如果是在一般的Linux环境下，改路径前缀该是<code>/home/nbaoping/</code>。</p></li>
+
+<li><p><code>IdentitiesOnly yes</code></p>
+
+<p>请配置为<code>yes</code>，具体意义可以<a href="https://serverfault.com/questions/450796/how-could-i-stop-ssh-offering-a-wrong-key/450807#450807">参考讨论</a>。</p></li>
+</ul></li>
+
+<li><p>将生成的ssh key加入<code>github</code></p>
+
+<p>打开<a href="https://github.com/settings/keys">github ssh key</a>配置页面，点击<code>New SSH Key</code>，给刚刚生成的key取名，如<code>keysaim-mac</code>。把<code>~/.ssh/id_rsa.github.pub</code>（请务必注意是公钥文件，千万不要搞错了）里面的内容拷贝过来，点击<code>Add SSH Key</code>按钮保持。</p></li>
+
+<li><p>提交</p>
+
+<p>做完上面的步骤之后，就可以提交了：</p>
+
+<pre><code class="language-console">$ git push origin master
+Counting objects: 63, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (62/62), done.
+Writing objects: 100% (63/63), 838.96 KiB | 0 bytes/s, done.
+Total 63 (delta 2), reused 0 (delta 0)
+remote: Resolving deltas: 100% (2/2), done.
+To github.com:keysaim/keysaim.github.io.git
+   73a2043..88cacc1  master -&gt; master
+</code></pre>
+
+<p>可以看到，这次提交成功了。</p></li>
+</ul>
+
+<h1 id="结语">结语</h1>
+
+<p>当你需要把某些repo以不同的用户提交的时候，可以按照本文给他们配置特殊的ssh key，但是注意的一点就是，这种配置事基于<code>Host</code>，也就是repo的hostname，如果需要确保不同的repo使用不同的ssh key，需要每个repo使用不同的hostname。</p>
+
+<h1 id="参考">参考</h1>
+
+<ul>
+<li><a href="https://stackoverflow.com/questions/7927750/specify-an-ssh-key-for-git-push-for-a-given-domain">Specify an SSH key for git push for a given domain</a></li>
+</ul>
+
+    </div>
+
+    
+    
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/github/">github</a>
+          
+          <a href="/tags/git/">git</a>
+          
+          <a href="/tags/%E6%95%99%E7%A8%8B/">教程</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/blog/2017-08-16-how-to-add-comments/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">如何给自己的博客网站加入评论系统</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/blog/2017-08-15-how-to-setup-your-github-io-blog/">
+            <span class="next-text nav-default">如何快速搭建自己的github.io博客</span>
+            <span class="prev-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+    
+
+  
+
+  
+
+  <div id="comments-gitment"></div>
+  <link rel="stylesheet" href="/lib/gitment/gitment-0.0.3.min.css">
+    <script src="/lib/gitment/gitment-0.0.3.min.js"></script>
+  <script type="text/javascript">
+  const gitment = new Gitment({
+    id: '2017-08-15 00:00:00 \x2b0000 UTC',
+    title: '如何使用特定的SSH Key提交GIT',
+    link: decodeURI(location.href),
+    desc: '问题提出 最近在自己的MAC上面提交Github代码的时候发现居然失败了： $ git push origin master Permission denied (publickey). fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists. 这不是坑爹吗',
+    owner: 'keysaim',
+    repo: 'comments',
+    oauth: {
+      client_id: '8d920ad685683a529e83',
+      client_secret: 'ffabf134048e374883ee67d3786a9a6b7d8d3cdc'
+    }
+  })
+  gitment.render('comments-gitment')
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+  </article>
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:keysaim@gmail.com" rel="me" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/keysaim" rel="me" class="iconfont icon-github" title="github"></a>
+  <a href="https://keysaim.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2017 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">窗外蟋蟀(keysaim)</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+<script type="text/javascript" src="/dist/jane.min.js?v=2.7.0"></script>
+
+
+
+
+
+</body>
+</html>

@@ -24,31 +24,257 @@
     </item>
     
     <item>
-      <title>无服务（Serverless）Openfaas实战</title>
-      <link>https://keysaim.github.io/post/2017-12-21-openfaas-practise/</link>
-      <pubDate>Thu, 21 Dec 2017 00:00:00 +0000</pubDate>
+      <title>如何在github.io搭建Hugo博客站</title>
+      <link>https://keysaim.github.io/post/blog/deploy-hugo-blog-in-github.io/</link>
+      <pubDate>Thu, 22 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-12-21-openfaas-practise/</guid>
+      <guid>https://keysaim.github.io/post/blog/deploy-hugo-blog-in-github.io/</guid>
       
         <description>
 
-&lt;h1 id=&#34;简述&#34;&gt;简述&lt;/h1&gt;
+&lt;h1 id=&#34;摘要&#34;&gt;摘要&lt;/h1&gt;
 
-&lt;p&gt;技术的世界真的是一日千里，当有的人还满足与经典的C/S架构时，SOA（面向服务）架构已经遍地都是了；当很多人正打算将系统微服务改造的时候，别人都已经开始玩起无服务器（Serverless）架构了。随着2014年AWS发布Lambda，无服务器架构已经是越来越热了。那么，无服务器（Serverless）到底是个什么东东呢？这里推荐阅读以下这篇文章&lt;a href=&#34;https://aws.amazon.com/cn/blogs/china/iaas-faas-serverless/&#34;&gt;从IaaS到FaaS—— Serverless架构的前世今生&lt;/a&gt;，对于Serverless，目前业内并没有一个明确的定义，引用这篇文章中所采用的定义如下：“无服务器架构是基于互联网的系统，其中应用开发不使用常规的服务进程。相反，它们仅依赖于第三方服务（例如AWS Lambda服务），客户端逻辑和服务托管远程过程调用的组合。”这么说，估计很多人还是一头雾水，所以还请仔细阅读以下上面推荐的那篇文章。形象的来说，以后开发一个需要网络交互的移动APP，如果这个APP比较简单，基于Serverless架构，你甚至根本不需要进行服务端的开发，这放在以前是根本是无法想象的。当然，这可能是比较理想的情况，很多情况下，你可能还是需要参与服务端的开发，但跟以往决然不同的是，你并不需要开发一个完整的服务端，而只需要设计好几个函数，然后将这些函数上传到服务器提供商，如AWS的Lambda，服务器引擎便帮你提供完整的服务端功能，甚至包括了当流量激增时，需要动态的扩展服务器的数量等工作。虽然仍需要部分服务端的开发工作，但是毫无疑问，Serverless的架构将极大的减少服务端的开发量，同时也将极大的减少运维的工作量。&lt;/p&gt;
+&lt;p&gt;在&lt;a href=&#34;Jekyll blog&#34;&gt;前面的博文&lt;/a&gt;中介绍了如何在&lt;code&gt;github.io&lt;/code&gt;上搭建自己的博客站，基于的是&lt;a href=&#34;https://jekyllrb.com/&#34;&gt;Jekyll&lt;/a&gt;，这也是github中比较常用的方式，好处是github可以自动调用&lt;code&gt;Jekyll&lt;/code&gt;来帮你及时生成、更新你的博客站。本来一切还是挺美好的，随着使用的深入，博主发现有几点实在是不能忍：&lt;/p&gt;
 
-&lt;p&gt;对于Serverless，目前使用最多的是Faas（Function as a Service）范式。本文将基于开源项目&lt;a href=&#34;https://github.com/openfaas/faas&#34;&gt;Openfaas&lt;/a&gt;来讲述如何搭建一套Serverless系统。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;github上面的&lt;code&gt;Jekyll&lt;/code&gt;版本实在太低了，对于code block渲染问题严重。最受不了的一点就是很多种类型的code在里面被显示成一行&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Jekyll&lt;/code&gt;对文章的文件名有着严格的定义，且不能够放到不同的目录，这个在博文比较多的时候极为不便&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;TODO&lt;/p&gt;
+&lt;p&gt;博主平时喜欢关注各种新技术，较早的时候就曾关注过一个的博客建站的工具&lt;code&gt;Hugo&lt;/code&gt;，用Go语言（博主的最爱之一）写的，当时就觉得挺不错。经过这几年的发展已经非常成熟，Github上面的Stars截止本文已经24250了。在经过一段时间的&lt;code&gt;Jekyll&lt;/code&gt;的折磨之后，终于乘着最近稍微闲了一点，将&lt;code&gt;Jekyll&lt;/code&gt;彻底换成了&lt;code&gt;Hugo&lt;/code&gt;。本文就简单介绍一下，如何在github.io上部署你的&lt;code&gt;Hugo&lt;/code&gt;博客站。&lt;/p&gt;
+
+&lt;h1 id=&#34;准备工作&#34;&gt;准备工作&lt;/h1&gt;
+
+&lt;p&gt;跟基于&lt;code&gt;Jekyll&lt;/code&gt;一样，如果需要在github.io上部署的话，必须在github上创建你自己的&lt;code&gt;&amp;lt;username&amp;gt;.github.io&lt;/code&gt;的repo，详细过程请参见&lt;a href=&#34;Jekyll blog&#34;&gt;前面的博文&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h1 id=&#34;搭建-hugo-博客站&#34;&gt;搭建&lt;code&gt;Hugo&lt;/code&gt;博客站&lt;/h1&gt;
+
+&lt;h2 id=&#34;安装-hugo&#34;&gt;安装&lt;code&gt;Hugo&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;Hugo&lt;/code&gt;的安装非常简单，在MAC上执行：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;```sh
+brew install hugo
+```
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;其它安装方式，可以参见&lt;a href=&#34;https://gohugo.io/getting-started/installing/&#34;&gt;官网教程&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h2 id=&#34;创建你的博客站&#34;&gt;创建你的博客站&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;在github上面创建博客文章的repo&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Hugo&lt;/code&gt;的建站部署方式跟&lt;code&gt;Jekyll&lt;/code&gt;不同，github会自动的识别&lt;code&gt;Jekyll&lt;/code&gt;并调用&lt;code&gt;Jekyll&lt;/code&gt;工具帮你自动生成、更新博客站，所以我们只需要直接在自己的&lt;code&gt;&amp;lt;username&amp;gt;.github.io&lt;/code&gt;中编写文章并上传即可。但是github并不能直接识别&lt;code&gt;Hugo&lt;/code&gt;的内容，因此，这个博客站的生成、更新的工作得由你自己完成，&lt;code&gt;&amp;lt;username&amp;gt;.github.io&lt;/code&gt;只是用来托管你生成后的静态网站的内容（github支持托管静态网站，请参见&lt;a href=&#34;https://help.github.com/articles/user-organization-and-project-pages/#user--organization-pages&#34;&gt;这里&lt;/a&gt;)，因此，你还需要另一个git repo来真正的编辑、保存、管理你的博文。为此，博主创建了一个名为&lt;a href=&#34;https://github.com/keysaim/blogs&#34;&gt;blogs&lt;/a&gt;的repo，以下说到博文管理repo指的就是这个repo。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;用&lt;code&gt;Hugo&lt;/code&gt;建站&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;初始化博客站&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;hugo new site blogs
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;git init&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cd blogs
+git init
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;指定github源&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git remote add origin git@github.com:keysaim/blogs.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;这样，你本地的初始化的&lt;code&gt;Hugo&lt;/code&gt;博客站已经准备好了。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;添加一个主题&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Hugo&lt;/code&gt;官方有非常多的免费开源的主题，&lt;a href=&#34;https://themes.gohugo.io/&#34;&gt;猛击这里&lt;/a&gt;。博主选用的是国人开发的一款主题&lt;a href=&#34;https://themes.gohugo.io/hugo-theme-jane/&#34;&gt;Jane&lt;/a&gt;。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git submodule add -b master https://github.com/xianmin/hugo-theme-jane.git themes/jane
+cp -r themes/jane/exampleSite/content ./
+cp themes/jane/exampleSite/config.toml ./
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;本地测试&lt;/p&gt;
+
+&lt;p&gt;在部署之前，先本地测试一下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;hugo server
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后本地浏览器打开&lt;a href=&#34;http://localhost:1313&#34;&gt;http://localhost:1313&lt;/a&gt;，没有意外的话你将看到类似这样的：&lt;/p&gt;
+
+&lt;div style=&#34;text-align:center&#34;&gt;
+    &lt;img src=&#34;https://d33wubrfki0l68.cloudfront.net/9a581e943c0732d9c9852138ff0ad94f10b710a8/b6bf8/hugo-theme-jane/hugo-theme-jane/screenshot-hugo-theme-jane_huda38615ea8fd917fd31d36ba7a275d34_226834_1500x1000_fill_catmullrom_top_2.png&#34; alt=&#34;&#34; width=&#34;100%&#34;/&gt;
+&lt;/div&gt;
+
+&lt;p&gt;这是&lt;code&gt;Jane&lt;/code&gt;主题默认提供的样式跟内容，说明你的本地&lt;code&gt;Hugo&lt;/code&gt;站可以正常工作了。&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;修改默认的配置&#34;&gt;修改默认的配置&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;Hugo&lt;/code&gt;的默认配置文件是&lt;code&gt;config.toml&lt;/code&gt;，这里还是&lt;code&gt;Jane&lt;/code&gt;提供的默认配置，需要修改为你自己的信息，比如名字等，很多配置显而易见，这里不详述，只是着重指出几个有点困难或者比较重要的配置：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;修改&lt;code&gt;baseURL&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;baseURL&lt;/code&gt;是你博客最终部署的网站的url，基于github.io的话就应该是这样的&lt;a href=&#34;https://keysaim.github.io/&#34;&gt;https://keysaim.github.io/&lt;/a&gt;。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;启用gitment&lt;/p&gt;
+
+&lt;p&gt;关于gitment的详细教程，请参见&lt;a href=&#34;https://keysaim.github.io/post/2017-08-16-how-to-add-comments/&#34;&gt;这篇博文&lt;/a&gt;，按照教程准备好github的几个token之后，只需要修改&lt;code&gt;Hugo&lt;/code&gt;配置中的这几行：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-toml&#34;&gt;[params.gitment]          # Gitment is a comment system based on GitHub issues. see https://github.com/imsun/gitment
+    owner = &amp;quot;keysaim&amp;quot;              # Your GitHub ID
+    repo = &amp;quot;comments&amp;quot;               # The repo to store comments
+    clientId = &amp;quot;xxxx&amp;quot;           # Your client ID
+    clientSecret = &amp;quot;xxxx&amp;quot;       # Your client secret
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;其中，repo就是教程中所说的github上面为保存comments而创建的repo，clientId跟clientSecret就是你自己创建的oauth授权信息。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;修改页面博文数量显示&lt;/p&gt;
+
+&lt;p&gt;有几个参数会影响页面博文数的显示：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-toml&#34;&gt;paginate = 15               # 首页每页显示的文章数
+archive-paginate = 50       # 归档、标签、分类每页显示的文章数目
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;修改语言&lt;/p&gt;
+
+&lt;p&gt;如果你需要将博客站显示成中文，那么请这么修改：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-toml&#34;&gt;defaultContentLanguage = &amp;quot;zh-cn&amp;quot;
+[Languages.zh-cn]
+  languageCode = &amp;quot;zh-cn&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;编辑博文&#34;&gt;编辑博文&lt;/h2&gt;
+
+&lt;p&gt;默认情况下，&lt;code&gt;Jane&lt;/code&gt;主题将博文放在&lt;code&gt;content/post/&lt;/code&gt;下面，你需要在这下面编辑你的博文。&lt;code&gt;Hugo&lt;/code&gt;是支持分目录的，这点非常好，比如博主可以这么分：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-console&#34;&gt;$ ll
+total 4
+drwxr-xr-x 3 nbaoping staff  102 Mar 21 16:22 arch
+drwxr-xr-x 6 nbaoping staff  204 Mar 22 10:50 blog
+drwxr-xr-x 5 nbaoping staff  170 Mar 22 10:33 docker
+drwxr-xr-x 4 nbaoping staff  136 Mar 21 16:21 git
+drwxr-xr-x 9 nbaoping staff  306 Mar 21 16:20 linux
+drwxr-xr-x 3 nbaoping staff  102 Mar 21 16:22 note
+drwxr-xr-x 3 nbaoping staff  102 Mar 21 16:24 others
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;还有一点非常不错的就是&lt;code&gt;Hugo&lt;/code&gt;可以识别出&lt;code&gt;Jekyll&lt;/code&gt;的博文，包括里面的标题，时间跟标签等信息。这样博主非常方便的将之前的&lt;code&gt;Jekyll&lt;/code&gt;的所有博文直接迁移过来了，而无需做什么修改。当然，如果你新写博文的话，在博文的头部可以这样编写：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;---
+date: 2018-03-22
+title: &amp;quot;如何在github.io搭建Hugo博客&amp;quot;
+tags:
+    - 教程
+    - github
+categories:
+    - github
+comment: true
+---
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;编写完成之后，本地查看一下你的博文，没有问题的话先提交到你的博文管理的repo：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git add xxxx
+git commit -m &amp;quot;YOUR COMMIT MESSAGE&amp;quot;
+git push origin master
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;部署博客站&#34;&gt;部署博客站&lt;/h2&gt;
+
+&lt;p&gt;这一步很关键了，咱们需要将自己的&lt;code&gt;Hugo&lt;/code&gt;博文站部署到github.io。&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;添加你的github.io&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;git submodule add -b master git@github.com:keysaim/keysaim.github.io.git public
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这里将其作为submodule添加进来，且放到&lt;code&gt;public&lt;/code&gt;目录下面，&lt;code&gt;public&lt;/code&gt;目录是&lt;code&gt;Hugo&lt;/code&gt;生成静态文件的地方，这样的话咱们就可以把生成出来的静态文件直接上传到你的&lt;code&gt;&amp;lt;username&amp;gt;.github.io&lt;/code&gt;的repo里面了&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;生成静态博客站&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;hugo
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;直接运行&lt;code&gt;hugo&lt;/code&gt;命令，就会在&lt;code&gt;public&lt;/code&gt;目录下生成静态博客站。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;提交&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;cd public
+git add .
+git commit -m &amp;quot;YOUR COMMIT MESSAGE&amp;quot;
+git push origin master
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;查看你的github.io博客站&lt;/p&gt;
+
+&lt;p&gt;正常情况下，过一会你就可以看到你基于&lt;code&gt;Hugo&lt;/code&gt;的github.io博客站了，博主的是&lt;a href=&#34;https://keysaim.github.io/&#34;&gt;https://keysaim.github.io/&lt;/a&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;自动部署脚本&#34;&gt;自动部署脚本&lt;/h2&gt;
+
+&lt;p&gt;为了方便，&lt;code&gt;Hugo&lt;/code&gt;提供了一个&lt;a href=&#34;https://gohugo.io/hosting-and-deployment/hosting-on-github/#put-it-into-a-script&#34;&gt;自动部署的脚本&lt;/a&gt;，这里博主稍微修改了一点点用来同时提交这两个repo：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;#!/bin/bash
+
+if [ $# -lt  1 ]; then
+    echo &amp;quot;$0 &amp;lt;commit message&amp;gt;&amp;quot;
+    exit 1
+fi
+
+msg=&amp;quot;$1&amp;quot;
+git commit -m &amp;quot;$msg&amp;quot;
+if [ $? -ne 0 ]; then
+    echo &amp;quot;Commit failed&amp;quot;
+    exit 1
+fi
+git push origin master
+if [ $? -ne 0 ]; then
+    echo &amp;quot;Push failed&amp;quot;
+fi
+
+echo -e &amp;quot;\033[0;32mDeploying updates to GitHub...\033[0m&amp;quot;
+
+# Build the project.
+hugo # if using a theme, replace with `hugo -t &amp;lt;YOURTHEME&amp;gt;`
+
+# Go To Public folder
+cd public
+# Add changes to git.
+git add .
+
+# Commit changes.
+git commit -m &amp;quot;$msg&amp;quot;
+
+# Push source and build repos.
+git push origin master
+
+# Come Back up to the Project Root
+cd ..
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;至此，恭喜你已经完成了你的&lt;code&gt;Hugo&lt;/code&gt;博客站了。&lt;/p&gt;
 </description>
       
     </item>
     
     <item>
       <title>Linux系统介绍（五）常用命令</title>
-      <link>https://keysaim.github.io/post/2017-11-17-linux-study-common-tools/</link>
+      <link>https://keysaim.github.io/post/linux/2017-11-17-linux-study-common-tools/</link>
       <pubDate>Fri, 17 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-11-17-linux-study-common-tools/</guid>
+      <guid>https://keysaim.github.io/post/linux/2017-11-17-linux-study-common-tools/</guid>
       
         <description>
 
@@ -1070,10 +1296,10 @@ $ head -n 1 test.cpp
     
     <item>
       <title>Linux系统介绍（四）IO重定向与管道</title>
-      <link>https://keysaim.github.io/post/2017-11-16-linux-study-io-pipe/</link>
+      <link>https://keysaim.github.io/post/linux/2017-11-16-linux-study-io-pipe/</link>
       <pubDate>Thu, 16 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-11-16-linux-study-io-pipe/</guid>
+      <guid>https://keysaim.github.io/post/linux/2017-11-16-linux-study-io-pipe/</guid>
       
         <description>
 
@@ -1305,10 +1531,10 @@ ls: cannot access tttt*: No such file or directory
     
     <item>
       <title>GPS管理系统服务器迁移指南</title>
-      <link>https://keysaim.github.io/post/2017-10-11-rushgps-migrate/</link>
+      <link>https://keysaim.github.io/post/others/2017-10-11-rushgps-migrate/</link>
       <pubDate>Wed, 11 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-10-11-rushgps-migrate/</guid>
+      <guid>https://keysaim.github.io/post/others/2017-10-11-rushgps-migrate/</guid>
       
         <description>
 
@@ -1581,10 +1807,10 @@ mysqldump -u root -p rushgps &amp;gt; rushgps.sql
     
     <item>
       <title>Linux系统介绍（三）shell基础</title>
-      <link>https://keysaim.github.io/post/2017-10-10-linux-study-shell-basic/</link>
+      <link>https://keysaim.github.io/post/linux/2017-10-10-linux-study-shell-basic/</link>
       <pubDate>Tue, 10 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-10-10-linux-study-shell-basic/</guid>
+      <guid>https://keysaim.github.io/post/linux/2017-10-10-linux-study-shell-basic/</guid>
       
         <description>
 
@@ -2497,10 +2723,10 @@ Test1 test2
     
     <item>
       <title>Linux系统介绍（一）命令行</title>
-      <link>https://keysaim.github.io/post/2017-10-09-linux-study-command-line/</link>
+      <link>https://keysaim.github.io/post/linux/2017-10-09-linux-study-command-line/</link>
       <pubDate>Mon, 09 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-10-09-linux-study-command-line/</guid>
+      <guid>https://keysaim.github.io/post/linux/2017-10-09-linux-study-command-line/</guid>
       
         <description>
 
@@ -2798,10 +3024,10 @@ _init
     
     <item>
       <title>Linux系统介绍（二）文件系统结构</title>
-      <link>https://keysaim.github.io/post/2017-10-09-linux-study-file-system-hierarchy/</link>
+      <link>https://keysaim.github.io/post/linux/2017-10-09-linux-study-file-system-hierarchy/</link>
       <pubDate>Mon, 09 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-10-09-linux-study-file-system-hierarchy/</guid>
+      <guid>https://keysaim.github.io/post/linux/2017-10-09-linux-study-file-system-hierarchy/</guid>
       
         <description>
 
@@ -3114,10 +3340,10 @@ _init
     
     <item>
       <title>Linux系统介绍--综述</title>
-      <link>https://keysaim.github.io/post/2017-10-09-linux-study-overview/</link>
+      <link>https://keysaim.github.io/post/linux/2017-10-09-linux-study-overview/</link>
       <pubDate>Sun, 08 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-10-09-linux-study-overview/</guid>
+      <guid>https://keysaim.github.io/post/linux/2017-10-09-linux-study-overview/</guid>
       
         <description>
 
@@ -3146,10 +3372,10 @@ _init
     
     <item>
       <title>如何搭建本地的Git服务器</title>
-      <link>https://keysaim.github.io/post/2017-09-04-how-to-setup-git-server/</link>
+      <link>https://keysaim.github.io/post/git/2017-09-04-how-to-setup-git-server/</link>
       <pubDate>Mon, 04 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-09-04-how-to-setup-git-server/</guid>
+      <guid>https://keysaim.github.io/post/git/2017-09-04-how-to-setup-git-server/</guid>
       
         <description>
 
@@ -3262,10 +3488,10 @@ To 10.10.10.10:/home/git/mlc
     
     <item>
       <title>Linux学习从入门到精通推荐书籍</title>
-      <link>https://keysaim.github.io/post/2017-08-18-linux-learning-materials/</link>
+      <link>https://keysaim.github.io/post/linux/2017-08-18-linux-learning-materials/</link>
       <pubDate>Fri, 18 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-08-18-linux-learning-materials/</guid>
+      <guid>https://keysaim.github.io/post/linux/2017-08-18-linux-learning-materials/</guid>
       
         <description>
 
@@ -3439,10 +3665,10 @@ To 10.10.10.10:/home/git/mlc
     
     <item>
       <title>如何给自己的博客网站加入评论系统</title>
-      <link>https://keysaim.github.io/post/2017-08-16-how-to-add-comments/</link>
+      <link>https://keysaim.github.io/post/blog/2017-08-16-how-to-add-comments/</link>
       <pubDate>Wed, 16 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-08-16-how-to-add-comments/</guid>
+      <guid>https://keysaim.github.io/post/blog/2017-08-16-how-to-add-comments/</guid>
       
         <description>
 
@@ -3481,10 +3707,10 @@ To 10.10.10.10:/home/git/mlc
     
     <item>
       <title>如何使用特定的SSH Key提交GIT</title>
-      <link>https://keysaim.github.io/post/2017-08-15-how-to-git-with-specific-ssh-key/</link>
+      <link>https://keysaim.github.io/post/git/2017-08-15-how-to-git-with-specific-ssh-key/</link>
       <pubDate>Tue, 15 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-08-15-how-to-git-with-specific-ssh-key/</guid>
+      <guid>https://keysaim.github.io/post/git/2017-08-15-how-to-git-with-specific-ssh-key/</guid>
       
         <description>
 
@@ -3654,10 +3880,10 @@ To github.com:keysaim/keysaim.github.io.git
     
     <item>
       <title>如何快速搭建自己的github.io博客</title>
-      <link>https://keysaim.github.io/post/2017-08-15-how-to-setup-your-github-io-blog/</link>
+      <link>https://keysaim.github.io/post/blog/2017-08-15-how-to-setup-your-github-io-blog/</link>
       <pubDate>Tue, 15 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2017-08-15-how-to-setup-your-github-io-blog/</guid>
+      <guid>https://keysaim.github.io/post/blog/2017-08-15-how-to-setup-your-github-io-blog/</guid>
       
         <description>
 
@@ -3823,10 +4049,10 @@ $ jekyll serve --watch
     
     <item>
       <title>用docker搭建全栈式应用（三）管理篇</title>
-      <link>https://keysaim.github.io/post/2016-06-23-full-stack-demo3/</link>
+      <link>https://keysaim.github.io/post/docker/2016-06-23-full-stack-demo3/</link>
       <pubDate>Thu, 23 Jun 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2016-06-23-full-stack-demo3/</guid>
+      <guid>https://keysaim.github.io/post/docker/2016-06-23-full-stack-demo3/</guid>
       
         <description>
 
@@ -4228,10 +4454,10 @@ Commands:
     
     <item>
       <title>用docker搭建全栈式应用 (二）构建篇</title>
-      <link>https://keysaim.github.io/post/2016-05-30-full-stack-demo2/</link>
+      <link>https://keysaim.github.io/post/docker/2016-05-30-full-stack-demo2/</link>
       <pubDate>Mon, 30 May 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2016-05-30-full-stack-demo2/</guid>
+      <guid>https://keysaim.github.io/post/docker/2016-05-30-full-stack-demo2/</guid>
       
         <description>
 
@@ -4793,10 +5019,10 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
     
     <item>
       <title>用docker搭建全栈式应用（一）基础篇</title>
-      <link>https://keysaim.github.io/post/2016-05-16-full-stack-demo/</link>
+      <link>https://keysaim.github.io/post/docker/2016-05-16-full-stack-demo/</link>
       <pubDate>Mon, 16 May 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2016-05-16-full-stack-demo/</guid>
+      <guid>https://keysaim.github.io/post/docker/2016-05-16-full-stack-demo/</guid>
       
         <description>
 
@@ -5404,10 +5630,10 @@ root@7e0f805cd85c:/data#
     
     <item>
       <title>The golang programming language</title>
-      <link>https://keysaim.github.io/post/2016-04-23-the-golang-book/</link>
+      <link>https://keysaim.github.io/post/note/2016-04-23-the-golang-book/</link>
       <pubDate>Sat, 23 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://keysaim.github.io/post/2016-04-23-the-golang-book/</guid>
+      <guid>https://keysaim.github.io/post/note/2016-04-23-the-golang-book/</guid>
       
         <description>
 

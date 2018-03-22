@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>用docker搭建全栈式应用 (二）构建篇 - 窗外蟋蟀博客</title>
+  <link rel="alternate" hreflang="en" href="https://keysaim.github.io" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="keysaim" />
+  <meta name="description" content="用docker搭建全栈式应用 (二）—— 构建篇 简介 在上一篇中, 我们已经较为详细的描述如何基于docker，搭建一套全栈式应用。web端采用Dj" />
+
+  <meta name="keywords" content="Hugo, blog, keysaim, 窗外蟋蟀" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.37.1" />
+
+
+<link rel="canonical" href="https://keysaim.github.io/post/docker/2016-05-30-full-stack-demo2/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" href="/favicon.ico" />
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+<link href="/dist/jane.min.css?v=2.7.0" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="用docker搭建全栈式应用 (二）构建篇" />
+<meta property="og:description" content="用docker搭建全栈式应用 (二）—— 构建篇 简介 在上一篇中, 我们已经较为详细的描述如何基于docker，搭建一套全栈式应用。web端采用Dj" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://keysaim.github.io/post/docker/2016-05-30-full-stack-demo2/" />
+
+
+
+<meta property="article:published_time" content="2016-05-30T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2016-05-30T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="用docker搭建全栈式应用 (二）构建篇">
+<meta itemprop="description" content="用docker搭建全栈式应用 (二）—— 构建篇 简介 在上一篇中, 我们已经较为详细的描述如何基于docker，搭建一套全栈式应用。web端采用Dj">
+
+
+<meta itemprop="datePublished" content="2016-05-30T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2016-05-30T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="7269">
+
+
+
+<meta itemprop="keywords" content="docker,教程," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="用docker搭建全栈式应用 (二）构建篇"/>
+<meta name="twitter:description" content="用docker搭建全栈式应用 (二）—— 构建篇 简介 在上一篇中, 我们已经较为详细的描述如何基于docker，搭建一套全栈式应用。web端采用Dj"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">keysaim</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">keysaim</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">用docker搭建全栈式应用 (二）构建篇</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-05-30 </span>
+        
+        <span class="more-meta"> 7269 words </span>
+        <span class="more-meta"> 15 min read </span>
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#用docker搭建全栈式应用-二-构建篇">用docker搭建全栈式应用 (二）—— 构建篇</a>
+<ul>
+<li><a href="#简介">简介</a></li>
+<li><a href="#redis-master构建">Redis-master构建</a></li>
+<li><a href="#redis-slave1构建">redis-slave1构建</a></li>
+<li><a href="#redis-slave2构建">redis-slave2构建</a></li>
+<li><a href="#app1的构建">app1的构建</a></li>
+<li><a href="#app2的构建">app2的构建</a></li>
+<li><a href="#haproxy的构建">HaProxy的构建</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<h1 id="用docker搭建全栈式应用-二-构建篇">用docker搭建全栈式应用 (二）—— 构建篇</h1>
+
+<h2 id="简介">简介</h2>
+
+<p>在<a href="/2016/05/16/full-stack-demo/">上一篇</a>中, 我们已经较为详细的描述如何基于docker，搭建一套全栈式应用。web端采用Django，并使用HaProxy作为负载均衡。数据库采用redis，并使用master-slave的部署方式。前文基于从官方的docker registry的images，讲述了一步步如何启动配置各项服务。但是在实际部署中，不可能全部手动的完成这些事情，本文将讲述基于Dockerfile，来自动生成所需的Docker image，并将讲述基于构建的image如何启动服务。</p>
+
+<p>在前篇博文中，如何在docker中一步步部署服务。基本上主要包括了几个大的步骤：将配置拷贝到相应目录，同时做好修改；基于image启动docker container，同时挂载配置的目录；在container中启动服务。这样的部署方式有几个问题：
+* 全部手动操作，每次多事重复劳动
+* 需要手动进入container中启动服务，部署非常耗时
+* 配置需要在外面修改，极大地违背了docker隔离性的设计理念</p>
+
+<p>那么，如何解决这些问题呢？这里将引入本文将要讲述的Docker的自动化构建机制。所谓自动化构建，其实主要指的是基于Dockerfile的构建方式。利用Dockerfile，我们可以非常方便的构建一个独立完整的应用，同时集成一系列部署时候的操作，使得自动化的部署得以实现。Dockerfile是一个文本文件，里面记录了一系列的命令和操作，给出了一个docker image组成的完整定义。关于Dockerfile的详细介绍，请务必参考<a href="https://docs.docker.com/engine/reference/builder/">官方的文档</a>，千万不要用X度，官方的文档其实讲述的非常清楚，而且基本上就一页就讲完了。</p>
+
+<p>ok, 下面咱们就开始讲述Docker的自动化构建部分。讲述之前，这里还是引入一下前文中的应用架构图，方便讲述及阅读。</p>
+
+<div style="text-align:center">
+    <img src="/img/blog-demoarch.png" alt="" width="400"/>
+</div>
+
+<h2 id="redis-master构建">Redis-master构建</h2>
+
+<p>在<a href="/2016/05/16/full-stack-demo/">上一篇</a>中，redis-master的构建主要包括如下步骤：</p>
+
+<ul>
+<li><p>获取redis image</p>
+
+<pre><code># docker pull redis
+</code></pre></li>
+
+<li><p>启动redis master container</p>
+
+<pre><code># docker run -it --name redis-master -v `pwd`/master:/data redis /bin/bash
+</code></pre></li>
+
+<li><p>配置redis master</p>
+
+<p>主要是修改配置文件<code>master/redis.conf</code></p></li>
+
+<li><p>在container中启动redis service</p></li>
+</ul>
+
+<p>全部手动的操作比较繁琐，使用Dockerfile将可以实现自动化构建。这里先将构建redis-master的Dockerfile先列出，然后在详细介绍。</p>
+
+<pre><code>FROM redis
+COPY ./redis.conf /data/
+CMD redis-server /data/redis.conf
+</code></pre>
+
+<p>此Dockerfile主要采用了三个命令。
+* <code>FROM redis</code></p>
+
+<pre><code>对应于手动操作中的`docker pull redis`，表示构建此image是基于官方docker registry中的redis image。Docker看到这个指令之后会首先从本地的cache中查找是否已经存在，如果存在就直接使用本地cache，如果不存在将自动的从docker registry下载。
+</code></pre>
+
+<ul>
+<li><p><code>COPY ./redis.conf /data/</code></p>
+
+<p>COPY命令将指定的文件拷贝到docker image中。这里需要先配置好<code>redis.conf</code>，这点与手动的不一样，手动的可以先配置好，也可以启动container之后再行配置，但是在Dockerfile中，由于将构建新的docker image，通常来讲里面得包含必须的文件。所以可以先配置好，然后直接打包到所要构建的image中。</p></li>
+
+<li><p><code>CMD redis-server /data/redis.conf</code></p>
+
+<p><code>CMD</code>命令指定了基于此image启动的container运行时将启动什么服务命令。这里指定了将启动服务命令<code>redis-server /data/redis.conf</code>。</p></li>
+</ul>
+
+<p>接下来，咱们来基于这个Dockerfile来实际操作一下，看看具体的构建过程是如何进行的。</p>
+
+<ul>
+<li><p>为了节省时间，这里先假设依赖的image已经在本地cache中</p>
+
+<pre><code># docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+redis               latest              84dbf5edc313        2 weeks ago         184.8 MB
+</code></pre>
+
+<p>如果本地没有也没关系，docker的构建工具会自动下载。</p></li>
+
+<li><p>构建image</p>
+
+<pre><code># ls
+Dockerfile  redis.conf
+# docker build -t redis-master .
+Sending build context to Docker daemon 48.13 kB
+Step 1 : FROM redis
+ ---&gt; 84dbf5edc313
+Step 2 : COPY ./redis.conf /data/
+ ---&gt; 3cafd319458b
+Removing intermediate container c7c2fb33b52b
+Step 3 : CMD redis-server /data/redis.conf
+ ---&gt; Running in 30c859175110
+ ---&gt; 8c7a0742a542
+Removing intermediate container 30c859175110
+Successfully built 8c7a0742a542
+</code></pre>
+
+<p>构建的命令为<code>docker build -t redis-master .</code>，其中<code>-t</code>指定生成的image叫什么名字；<code>.</code>指的是在当前目录下执行，docker将在当前目录查找名为<code>Dockerfile</code>的文件，然后基于它进行构建。构建成功之后再看看本地的cache：</p>
+
+<pre><code># docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+redis-master        latest              8c7a0742a542        3 minutes ago       184.9 MB
+redis               latest              84dbf5edc313        2 weeks ago         184.8 MB
+</code></pre>
+
+<p>可以看到，本地的cache中增加了一个名为<code>redis-master</code>的image。</p></li>
+
+<li><p>启动container</p>
+
+<pre><code># docker run -d --name redis-master redis-master
+1ab87eaefaccc47f91063d27db124d5573932439a46ff15204580b8cbbf3b91a
+</code></pre>
+
+<p>其中，<code>-d</code>是让container运行在后台，<code>--name</code>则是指定container的名字。成功运行后，打印出来的就是container的ID。我们来看下当前运行的状态：</p>
+
+<pre><code># docker ps -a
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                     PORTS               NAMES
+1ab87eaefacc        redis-master        &quot;docker-entrypoint.sh&quot;   2 minutes ago       Exited (0) 2 minutes ago                       redis-master
+</code></pre>
+
+<p>我们可以看到，非常奇怪的是container虽然成功的创建出来了，但是状态却是<code>Exited</code>，似乎并没有成功的运行起来，其实准确来讲应该是自动退出了。一般情况下，如果一个container没有按照预想运行起来，咱们还是需要稍微的调试一番，这里最为常用的调试手段就是查看container运行的日志：</p>
+
+<pre><code># docker logs redis-master
+
+</code></pre>
+
+<p>我们发现，并没有任何的日志输出。这是怎么回事呢？其实对于container为什么会自动退出，可能的原因会有非常多。但是，最为基本的一点必须需要清楚，那就是container的生命周期。container在创建并启动之后会自动运行Dockerfile中指定的<code>CMD</code>，然后一直运行直到<code>CMD</code>命令退出，container也会退出，*请注意*，<strong><em>命令必须一直运行在前台</em></strong>，否则container将视为命令自动退出，也就跟着退出了。重新查看我们这里启动的命令<code>redis-server /data/redis.conf</code>，打开其中的配置文件可以发现其中一行配置如下：</p>
+
+<pre><code class="language-sh">daemonize yes
+</code></pre>
+
+<p>其意思就是指定redis-server以后台daemon的形式运行。这样我们就可以解释清楚了，当前的配置文件使得redis-server运行在后台，container肯定会自动退出了。</p>
+
+<p>那么问题来了，如何解决呢？很自然的我们会想到，修改配置让其运行在前台就好了，确实如此，修改如下：</p>
+
+<pre><code>daemonize no
+</code></pre>
+
+<p>我们在container外面修改了配置，很明显不会对已经存在的container有任何影响。当前的container是由当前的image生成的，因此，为了能够使得改动生效，咱们得重新构建image，并重新启动：</p>
+
+<ul>
+<li><p>首先，删除当前的container</p>
+
+<pre><code># docker rm redis-master
+redis-master
+</code></pre></li>
+
+<li><p>重新构建image</p>
+
+<pre><code># docker build -t redis-master .
+Sending build context to Docker daemon 48.13 kB
+Step 1 : FROM redis
+ ---&gt; 84dbf5edc313
+Step 2 : COPY ./redis.conf /data/
+ ---&gt; 82030daeddd8
+Removing intermediate container 22b9f260a3af
+Step 3 : CMD redis-server /data/redis.conf
+ ---&gt; Running in 8e90495733d8
+ ---&gt; 9893c50d215a
+Removing intermediate container 8e90495733d8
+Successfully built 9893c50d215a
+</code></pre></li>
+
+<li><p>启动container</p>
+
+<pre><code># docker run -d --name redis-master redis-master
+803073f7771f2f20e887423b0bee6823c0247a54c971db38dec675743ba2747c
+</code></pre></li>
+
+<li><p>检查状态</p>
+
+<pre><code># docker ps -a
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
+803073f7771f        redis-master        &quot;docker-entrypoint.sh&quot;   40 seconds ago      Up 37 seconds       6379/tcp            redis-master
+</code></pre>
+
+<p>可以看到，container成功运行起来了。</p></li>
+</ul>
+
+<p>修改配置，将service运行在前台确实是一种常用的解决办法，但是在有些情况下却并不适用，比如如果需要同时启动多个service，或者需要对service进行监控以确保在service crash的时候能够自动重启等。对于这些场景，可以考虑采用另一种解决方案：采用supervisord管理服务。关于如何使用supervisord，请参照<a href="https://docs.docker.com/engine/admin/using_supervisord/">官方的教程</a>。</p></li>
+
+<li><p>简单测试</p>
+
+<p>container虽然成功运行起来了，但还是需要简单的测试一下是否服务运行正常，这里咱们需要在container中启动一下<code>bash</code>调试一下：</p>
+
+<ul>
+<li><p>打开bash</p>
+
+<pre><code># docker exec -it redis-master bash
+root@803073f7771f:/data#
+</code></pre>
+
+<p><code>exec</code>命令将在container中运行指定的命令，<code>-it</code>其实是<code>-i -t</code>的缩写，<code>-i</code>意思是以交互的方式运行，<code>-t</code>指的是要attach到指定的container，这里运行的命令是bash。</p></li>
+
+<li><p>运行redis cli</p>
+
+<pre><code>root@803073f7771f:/data# redis-cli
+127.0.0.1:6379&gt; set redis_app test
+OK
+127.0.0.1:6379&gt; get redis_app
+&quot;test&quot;
+</code></pre>
+
+<p>可以看到，能够正常的设置并获取，说明运行正常。</p></li>
+</ul></li>
+</ul>
+
+<p>至此，redis-master已经构建并运行成功。接下来我们将讲述其它服务是如何构建的。</p>
+
+<h2 id="redis-slave1构建">redis-slave1构建</h2>
+
+<p>在上一节中，我们已经对基于Dockerfile的构建方式有了较为详细的介绍，这里将主要讲述不一样的地方。
+* 编写Dockerfile</p>
+
+<pre><code>```
+FROM redis
+COPY ./redis.conf /data/
+CMD redis-server /data/redis.conf
+```
+这里基本上与redis-master一模一样。
+</code></pre>
+
+<ul>
+<li><p>修改配置</p>
+
+<p>配置基本上跟<a href="/2016/05/16/full-stack-demo/">上一篇</a>中一样，唯一需要修改的跟redis-master一样，redis-server必须运行在前台：</p>
+
+<pre><code>daemonize no
+</code></pre></li>
+
+<li><p>构建image</p>
+
+<pre><code># docker build -t redis-slave1 .
+Sending build context to Docker daemon 48.13 kB
+Step 1 : FROM redis
+ ---&gt; 84dbf5edc313
+Step 2 : COPY ./redis.conf /data/
+ ---&gt; 98ae8ed20a4d
+Removing intermediate container 0c860e887400
+Step 3 : CMD redis-server /data/redis.conf
+ ---&gt; Running in d0f9370ca3e9
+ ---&gt; 8804bb83f02e
+Removing intermediate container d0f9370ca3e9
+Successfully built 8804bb83f02e
+</code></pre>
+
+<p>完成之后，本地cache如下：</p>
+
+<pre><code># docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED              VIRTUAL SIZE
+redis-slave1        latest              8804bb83f02e        About a minute ago   184.9 MB
+redis-master        latest              9893c50d215a        43 minutes ago       184.9 MB
+redis               latest              84dbf5edc313        2 weeks ago          184.8 MB
+</code></pre>
+
+<p>可以看出增加了一个名为redis-slave1的image。</p></li>
+
+<li><p>启动container</p>
+
+<pre><code># docker run -d --name redis-slave1 --link redis-master:master redis-slave1
+570c03cdb20cb34a688f9988b2283b42ee2b237986bb8713cc1ca2328b3e7a6b
+</code></pre>
+
+<p>这里特别注意的是，与<a href="/2016/05/16/full-stack-demo/">上一篇</a>中一样，必须将redis-master的container link起来。这里可以简单对比一下跟<a href="/2016/05/16/full-stack-demo/">上一篇</a>中运行container命令的区别，在上一篇中运行的命令为：</p>
+
+<pre><code># docker run -it --name redis-slave1 --link redis-master:master -v `pwd`/slave1:/data redis /bin/bash
+</code></pre>
+
+<p>可以看出，有了自动构建的image，就不再需要映射本地的配置目录了，也不需要直接运行一个交互式的bash了，container可以直接以<code>-d</code>的形式运行在后台。</p>
+
+<p>检查一下container的状态：</p>
+
+<pre><code># docker ps -a -f name=redis-slave1
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
+570c03cdb20c        redis-slave1        &quot;docker-entrypoint.sh&quot;   4 minutes ago       Up 4 minutes        6379/tcp            redis-slave1
+</code></pre>
+
+<p>请注意到，这里检查状态的命令与之前不通，采用了<code>-f</code>参数。<code>-f</code>参数表示使用过滤器，这里的过滤器为<code>name=redis-slave1</code>，意思为只显示名字中包括<code>redis-slave1</code>的所有containers，这里就会直接显示刚刚创建的<code>redis-slave1</code>的container。</p></li>
+
+<li><p>简单测试</p>
+
+<p>同样，需要对启动的服务进行简单的测试。redis-slave1由于是redis-master的一个slave，因此，我们刚刚在master中设置的<code>redis_app</code>值，在redis-slave1中也应该可以看到，我们来测试一下：</p>
+
+<pre><code># docker exec -it redis-slave1 /bin/bash
+root@570c03cdb20c:/data# redis-cli
+127.0.0.1:6379&gt; get redis_app
+&quot;test&quot;
+127.0.0.1:6379&gt;
+</code></pre>
+
+<p>与之前一样，我们也启动一个交互式的bash用来测试，这里可以看到，在redis-slave1，我们并没有做任何值得设置，却直接获取到了redis-master中设置的<code>redis_app</code>值。可见，redis-slave1工作正常。</p></li>
+</ul>
+
+<h2 id="redis-slave2构建">redis-slave2构建</h2>
+
+<p>redis-slave2的构建与redis-slave1除了名字不同之外基本上一模一样，这里讲不再赘述。</p>
+
+<h2 id="app1的构建">app1的构建</h2>
+
+<p>在<a href="/2016/05/16/full-stack-demo/">上一篇</a>中, 我们已经创建了一个Django的APP，本文中我们继续使用它，你可以<a href="https://github.com/keysaim/demos/tree/master/docker-redis-django/app/redisapp">在这里</a>找到APP的代码。假定代码放在<code>app/redisapp</code>下面。</p>
+
+<ul>
+<li><p>编写Dockerfile</p>
+
+<pre><code>FROM django
+COPY ./redisapp /data/redisapp
+WORKDIR /data/redisapp
+ENV https_proxy=&lt;replace with your proxy here&gt;
+RUN pip install redis
+RUN python manage.py migrate
+ENTRYPOINT [&quot;python&quot;, &quot;manage.py&quot;, &quot;runserver&quot;]
+CMD [&quot;0.0.0.0:8080&quot;]
+</code></pre>
+
+<p>这个Dockerfile比之前的要稍微复杂点，这里引入了几个新的命令，我们将逐一解释：</p>
+
+<ul>
+<li><p><code>WORKDIR /data/redisapp</code></p>
+
+<p><code>WORKDIR</code>指定了当前的工作目录，它将影响在这之后的命令的当前路径，如<code>RUN</code>命令、<code>COPY</code>命令，它们的当前路径都将为<code>WORKDIR</code>所指定的路径。在这里，由于已经将APP的代码拷贝到了<code>/data/redisapp</code>，因此，将工作目录设置到了<code>/data/redisapp</code>。</p></li>
+
+<li><p><code>ENV https_proxy=&lt;replace with your proxy here&gt;</code></p>
+
+<p>由于在后续的命令中需要在线下载，所以请务必根据你自身的网络及系统设置来决定是否需要设置网络代理，我这里的网络由于不能够直接访问https，所以设置了https的代理。<code>ENV</code>用来设置环境变量，设置的环境变量将存在于构建过程已经后面运行的container中。</p></li>
+
+<li><p><code>RUN pip install redis</code></p>
+
+<p>由于APP依赖于redis，所以必须在运行之前安装好所有的依赖包。<code>RUN</code>命令用于image的构建过程中执行某个命令，比如这里执行了<code>pip install redis</code>，那么在构建过程中会执行该命令。一个Dockerfile中可以执行任意多个<code>RUN</code>命令。</p></li>
+
+<li><p><code>RUN python manage.py migrate</code></p>
+
+<p>Django的APP在运行之前，必须保证数据库是准备好的。因此需要运行<code>python manage.py migrate</code>准备好数据库。</p></li>
+
+<li><p><code>ENTRYPOINT [&quot;python&quot;, &quot;manage.py&quot;, &quot;runserver&quot;]</code></p>
+
+<p>咋一眼看过去，这个<code>ENTRYPOINT</code>指令跟<code>CMD</code>有些类似，都可以用来指定container运行时候应该执行什么命令，但实际上两者还是有较大的区别的，这里我们将详细讲述两者的不同。</p>
+
+<p><code>ENTRYPOINT</code>指令有两种格式：</p>
+
+<ul>
+<li><p>执行格式：<code>ENTRYPOINT [&quot;executable&quot;, &quot;param1&quot;, &quot;param2&quot;]</code></p>
+
+<p>在执行格式中，可以指定运行的执行命令以及对应的参数，这种格式是推荐的格式。此格式中命令的定义必须是json array的格式，因此，必须使用双引号<code>&quot;</code>而不是单引号<code>'</code>。</p>
+
+<p><strong><em>特别需要注意的是</em></strong>，使用该格式时，不需要指定所有的参数，而可以选择两种不同的方式提供剩余的参数：</p>
+
+<p>一种是在运行container时，所有在<code>docker run &lt;image&gt;</code>后面的参数都将添加到<code>ENTRYPOINT</code>的最后面，例如，在本例中，<code>ENTRYPOINT</code>指定的命令为<code>python manage.py runserver</code>，如果运行<code>docker run app 0.0.0.0:8001</code>，那么在container中实际执行的命令将是<code>python manage.py runserver 0.0.0.0:8001</code>；</p>
+
+<p>另一种就是通过<code>CMD</code>指令提供剩余的默认参数，这点在接下来<code>CMD</code>的介绍中会详述。其实现的功能也是类似，只不过在Dockerfile中直接进行定义，而前面一种则可以在运行时动态改变。</p>
+
+<p>很明显，如果两种都提供了，前一种将覆盖后一种定义的参数。</p></li>
+
+<li><p>shell格式：<code>ENTRYPOINT command param1 param2</code></p>
+
+<p>在shell格式中，也可以指定运行时执行的命令及对应的参数，不同的是指定的命令将由<code>shell</code>启动。比如如果指定<code>ENTRYPOINT python manage.py runserver 0.0.0.0:8080</code>，那么其实相当于采用执行格式的定义：<code>ENTRYPOINT [&quot;/bin/sh&quot;, &quot;-c&quot;, &quot;python&quot;, &quot;manage.py&quot;, &quot;runserver&quot;, &quot;0.0.0.0:8080&quot;]</code>。</p>
+
+<p><strong><em>必须注意的是</em></strong>，在此格式下，运行的命令将不能够收到Unix signals，比如，在<code>docker stop</code>时将不会收到<code>SIGTERM</code>信号。另外，与执行格式不同的是，此格式也无法接受其它参数，必须在指令中定义所有的参数。</p></li>
+</ul>
+
+<p><code>CMD</code>命令有三种格式，分别代表了三种不同的用法：
+* 执行格式：<code>CMD [&quot;executable&quot;,&quot;param1&quot;,&quot;param2&quot;]</code></p>
+
+<pre><code>与`ENTRYPOINT`类似，在执行格式中，可以指定运行的执行命令以及对应的参数，这种格式是推荐的格式。改格式中命令的定义必须是json array的格式，因此，必须使用双引号`&quot;`而不是单引号`'`。
+</code></pre>
+
+<ul>
+<li><p>默认参数格式：<code>CMD [&quot;param1&quot;,&quot;param2&quot;]</code></p>
+
+<p>默认参数格式主要用来服务于<code>ENTRYPOINT</code>指令，我们知道，在<code>ENTRYPOINT</code>指令中，我们可以指定container运行时执行的命令以及相应的参数，但是有时候有些参数我们并不想直接在<code>ENTRYPOINT</code>中全部指定，这样的话我们可以使用<code>CMD</code>来存放其余的参数。<code>CMD</code>定义的参数将会直接加在<code>ENTRYPOINT</code>指令的后面。在外面的例子中，可以看到采用了默认参数格式，因此运行时默认的命令将是：<code>python manage.py runserver 0.0.0.0:8080</code>。</p></li>
+
+<li><p>shell格式：<code>CMD command param1 param2</code></p>
+
+<p>这个与<code>ENTRYPOINT</code>的shell格式基于类似。</p></li>
+</ul>
+
+<p>如果同时定义多个<code>CMD</code>指令时，只有最后一个有效。虽然<code>ENTRYPOINT</code>与<code>CMD</code>都可以直接定义执行的命令，但是如果同时两者存在，则只有<code>ENTRYPOINT</code>有效，而<code>CMD</code>则会以默认参数的形式添加到<code>ENTRYPOINT</code>之后，所以请务必注意这种情形。</p></li>
+
+<li><p><code>CMD [&quot;0.0.0.0:8080&quot;]</code></p>
+
+<p>这就是<code>CMD</code>的默认参数格式，这里指定APP默认运行时绑定的地址跟端口。</p></li>
+</ul></li>
+
+<li><p>构建image</p>
+
+<p>编写完Dockerfile之后，构建image如下：</p>
+
+<pre><code># docker build -t app .
+Sending build context to Docker daemon  21.5 kB
+Step 1 : FROM django
+ ---&gt; 3b0bc67346a2
+Step 2 : COPY ./redisapp /data/redisapp
+ ---&gt; 1a668d3c3bd9
+Removing intermediate container 3f3688a5c473
+Step 3 : WORKDIR /data/redisapp
+ ---&gt; Running in 8e8e88e9ff4d
+ ---&gt; 7a4a59e854e1
+Removing intermediate container 8e8e88e9ff4d
+Step 4 : ENV https_proxy http://proxy-rtp-1.cisco.com:80/
+ ---&gt; Running in b9a103263162
+ ---&gt; 77e7049eb696
+Removing intermediate container b9a103263162
+Step 5 : RUN pip install redis
+ ---&gt; Running in 0c63bf7804e9
+Collecting redis
+  Downloading redis-2.10.5-py2.py3-none-any.whl (60kB)
+Installing collected packages: redis
+Successfully installed redis-2.10.5
+You are using pip version 7.1.2, however version 8.1.2 is available.
+You should consider upgrading via the 'pip install --upgrade pip' command.
+ ---&gt; 5d20c0583060
+Removing intermediate container 0c63bf7804e9
+Step 6 : RUN python manage.py migrate
+ ---&gt; Running in a2310253ce5a
+Operations to perform:
+  Apply all migrations: auth, contenttypes, sessions, admin
+Running migrations:
+  Rendering model states... DONE
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying sessions.0001_initial... OK
+ ---&gt; 0019f76fcffc
+Removing intermediate container a2310253ce5a
+Step 7 : ENTRYPOINT python manage.py runserver
+ ---&gt; Running in d2ec8f7210d5
+ ---&gt; c40b9e6262df
+Removing intermediate container d2ec8f7210d5
+Step 8 : CMD 0.0.0.0:8080
+ ---&gt; Running in 262f54b7a3e4
+ ---&gt; e79f435e0ebe
+Removing intermediate container 262f54b7a3e4
+Successfully built e79f435e0ebe
+</code></pre>
+
+<p>看下当前的cache：</p>
+
+<pre><code># docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+app                 latest              e79f435e0ebe        58 minutes ago      434.2 MB
+redis-slave1        latest              8804bb83f02e        29 hours ago        184.9 MB
+redis-slave2        latest              8804bb83f02e        29 hours ago        184.9 MB
+redis-master        latest              9893c50d215a        29 hours ago        184.9 MB
+redis               latest              84dbf5edc313        2 weeks ago         184.8 MB
+django              latest              3b0bc67346a2        3 weeks ago         433.5 MB
+</code></pre></li>
+
+<li><p>启动container</p>
+
+<pre><code># docker run -d --name app1 --link redis-master:redis app 0.0.0.0:8001
+725e15a560bab804ec10a80d110fc872f0faa88155c5da6e5534574d45e1e657
+# docker ps -f name=app1
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
+725e15a560ba        app                 &quot;python manage.py run&quot;   12 seconds ago      Up 9 seconds                            app1
+</code></pre>
+
+<p>这里启动container <code>app1</code>时，传入参数<code>0.0.0.0:8001</code>使得其运行在8001端口上面。</p></li>
+</ul>
+
+<h2 id="app2的构建">app2的构建</h2>
+
+<p>app2的构建与app1一致，并且共用image <code>app</code>，只是在启动container的时候改用端口8002，因此这里不再赘述。</p>
+
+<pre><code># docker run -d --name app2 --link redis-master:redis app 0.0.0.0:8002
+d201177cdb941d2b399142c2fd13960c44eb88b98164d904b626c31f09277c40
+# docker ps -f name=app2
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
+d201177cdb94        app                 &quot;python manage.py run&quot;   20 seconds ago      Up 17 seconds                           app2
+</code></pre>
+
+<h2 id="haproxy的构建">HaProxy的构建</h2>
+
+<ul>
+<li><p>编写Dockerfile</p>
+
+<pre><code>FROM haproxy
+COPY ./haproxy.cfg /data/
+WORKDIR /data/
+ENTRYPOINT [&quot;haproxy&quot;, &quot;-f&quot;, &quot;haproxy.cfg&quot;]
+</code></pre>
+
+<p>主要就是把依赖的配置文件拷贝到合适的位置。</p></li>
+
+<li><p>构建image</p>
+
+<p>我们还记得在<a href="/2016/05/16/full-stack-demo/">上一篇</a>中，haproxy实际上是以daemon运行在后台的，为了防止container自动退出，必须得对<code>haproxy.cfg</code>进行修改，找到这样的行<code>daemon</code>删掉就好了。然后开始构建：</p>
+
+<pre><code># docker build -t ha-app .
+Sending build context to Docker daemon 4.096 kB
+Step 1 : FROM haproxy
+ ---&gt; 46bc5babcc18
+Step 2 : COPY ./haproxy.cfg /data/
+ ---&gt; 46af090db6f4
+Removing intermediate container 653e599fab22
+Step 3 : WORKDIR /data/
+ ---&gt; Running in 422b09b8ecac
+ ---&gt; 1e09826430a7
+Removing intermediate container 422b09b8ecac
+Step 4 : ENTRYPOINT haproxy -f haproxy.cfg
+ ---&gt; Running in 1d088bd54b55
+ ---&gt; ed5c3db7822b
+Removing intermediate container 1d088bd54b55
+Successfully built ed5c3db7822b
+</code></pre>
+
+<p>查看下本地的cache：</p>
+
+<pre><code># docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+ha-app              latest              ed5c3db7822b        7 minutes ago       139.1 MB
+app                 latest              e79f435e0ebe        About an hour ago   434.2 MB
+redis-slave1        latest              8804bb83f02e        29 hours ago        184.9 MB
+redis-slave2        latest              8804bb83f02e        29 hours ago        184.9 MB
+redis-master        latest              9893c50d215a        30 hours ago        184.9 MB
+haproxy             latest              46bc5babcc18        2 weeks ago         139.1 MB
+redis               latest              84dbf5edc313        2 weeks ago         184.8 MB
+django              latest              3b0bc67346a2        3 weeks ago         433.5 MB
+</code></pre>
+
+<p>可以看出增加了一个名为<code>ha-app</code>的image。</p></li>
+
+<li><p>启动container</p>
+
+<pre><code># docker run -d --name haproxy --link app1:app1 --link app2:app2 -p 6301:6301 ha-app
+3cdf747daa07e254da67a1b930e5ef728061bd0dabd598703ed47e9d6e59f104
+# docker ps -f name=haproxy
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
+3cdf747daa07        ha-app              &quot;haproxy -f haproxy.c&quot;   10 seconds ago      Up 7 seconds        0.0.0.0:6301-&gt;6301/tcp   haproxy
+</code></pre>
+
+<p>这里，为了能够访问服务，我们将haproxy的端口映射为本地的6301端口，这样我们可以通过这个端口访问我们的APP服务。</p></li>
+
+<li><p>测试服务</p>
+
+<p>打开浏览器，访问url: <code>http://&lt;host ip&gt;:6301/query/</code>，可以得到结果：</p>
+
+<pre><code>hello world from 725e15a560ba, with value: b'test'
+</code></pre>
+
+<p>可以看出，成功的从container<code>725e15a560ba</code>中成功查询了redis数据库并返回了应答。再次刷新一下可以得到：</p>
+
+<pre><code>hello world from d201177cdb94, with value: b'test'
+</code></pre>
+
+<p>可以看出，应答从上一个container变成了另外一台，可见haproxy正常工作了。</p></li>
+</ul>
+
+<p>至此，我们已经完成了采用Dockerfile来自动化构建我们之前的全栈式服务了。</p>
+
+    </div>
+
+    
+    
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/docker/">docker</a>
+          
+          <a href="/tags/%E6%95%99%E7%A8%8B/">教程</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/docker/2016-06-23-full-stack-demo3/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">用docker搭建全栈式应用（三）管理篇</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/docker/2016-05-16-full-stack-demo/">
+            <span class="next-text nav-default">用docker搭建全栈式应用（一）基础篇</span>
+            <span class="prev-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+    
+
+  
+
+  
+
+  <div id="comments-gitment"></div>
+  <link rel="stylesheet" href="/lib/gitment/gitment-0.0.3.min.css">
+    <script src="/lib/gitment/gitment-0.0.3.min.js"></script>
+  <script type="text/javascript">
+  const gitment = new Gitment({
+    id: '2016-05-30 00:00:00 \x2b0000 UTC',
+    title: '用docker搭建全栈式应用 (二）构建篇',
+    link: decodeURI(location.href),
+    desc: '用docker搭建全栈式应用 (二）—— 构建篇 简介 在上一篇中, 我们已经较为详细的描述如何基于docker，搭建一套全栈式应用。web端采用Dj',
+    owner: 'keysaim',
+    repo: 'comments',
+    oauth: {
+      client_id: '8d920ad685683a529e83',
+      client_secret: 'ffabf134048e374883ee67d3786a9a6b7d8d3cdc'
+    }
+  })
+  gitment.render('comments-gitment')
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+  </article>
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:keysaim@gmail.com" rel="me" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/keysaim" rel="me" class="iconfont icon-github" title="github"></a>
+  <a href="https://keysaim.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2017 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">窗外蟋蟀(keysaim)</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+<script type="text/javascript" src="/dist/jane.min.js?v=2.7.0"></script>
+
+
+
+
+
+</body>
+</html>
