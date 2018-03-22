@@ -20,15 +20,5 @@
       <description>Notes Section 2, Program Structure nested block in if-else if-else block if x, y := 100, 200; x &amp;gt; 1000 { } else if x := &amp;quot;hello&amp;quot;; y &amp;gt; 0 { //this x shadow the &#39;x&#39; in if fmt.Println(x, y) } scope shaw issue var cwd string func init() { cwd, err := os.Getwd() //compile error: the &#39;cwd&#39; declared but not used if err != nil { log.Fatalf(&amp;quot;os.Getwd failed: %v&amp;quot;,</description>
     </item>
     
-    <item>
-      <title>Sample test</title>
-      <link>https://keysaim.github.io/post/sample/</link>
-      <pubDate>Sun, 28 Sep 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://keysaim.github.io/post/sample/</guid>
-      <description>Introduction This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content. I&amp;rsquo;ll explain how Hugo uses templates and how you can organize your templates to create a theme. I won&amp;rsquo;t cover using CSS to style your theme.
-We&amp;rsquo;ll start with creating a new site with a very basic template.</description>
-    </item>
-    
   </channel>
 </rss>

@@ -129,13 +129,6 @@
   </url>
   
   <url>
-    <loc>https://keysaim.github.io/post/sample/</loc>
-    <lastmod>2014-09-28T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://keysaim.github.io/tags/blog/</loc>
     <lastmod>2017-08-16T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -144,13 +137,6 @@
   
   <url>
     <loc>https://keysaim.github.io/categories/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://keysaim.github.io/tags/development/</loc>
-    <lastmod>2014-09-28T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -191,13 +177,6 @@
   </url>
   
   <url>
-    <loc>https://keysaim.github.io/tags/golang/</loc>
-    <lastmod>2014-09-28T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://keysaim.github.io/tags/linux/</loc>
     <lastmod>2017-11-17T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -219,13 +198,6 @@
   </url>
   
   <url>
-    <loc>https://keysaim.github.io/categories/sample/</loc>
-    <lastmod>2014-09-28T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://keysaim.github.io/tags/study/</loc>
     <lastmod>2017-11-17T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -242,20 +214,6 @@
   <url>
     <loc>https://keysaim.github.io/tags/</loc>
     <lastmod>2017-08-16T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://keysaim.github.io/tags/templates/</loc>
-    <lastmod>2014-09-28T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://keysaim.github.io/tags/themes/</loc>
-    <lastmod>2014-09-28T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
