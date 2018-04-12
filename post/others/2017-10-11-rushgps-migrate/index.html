@@ -9,6 +9,11 @@
 <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 
@@ -16,6 +21,8 @@
 <meta name="msapplication-navbutton-color" content="#f8f5ec">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
 
 
 <meta name="author" content="keysaim" />
@@ -32,6 +39,8 @@
 
 
 <link rel="canonical" href="https://keysaim.github.io/post/others/2017-10-11-rushgps-migrate/" />
+
+
 
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -133,15 +142,25 @@
 <nav class="site-navbar">
   <ul id="menu" class="menu">
     <li class="menu-item">
+        
         <a class="menu-item-link" href="/">Home</a>
+        
       </li><li class="menu-item">
+        
         <a class="menu-item-link" href="/post/">Archives</a>
+        
       </li><li class="menu-item">
+        
         <a class="menu-item-link" href="/tags/">Tags</a>
+        
       </li><li class="menu-item">
+        
         <a class="menu-item-link" href="/categories/">Categories</a>
+        
       </li><li class="menu-item">
+        
         <a class="menu-item-link" href="/about/">About</a>
+        
       </li>
   </ul>
 </nav>
@@ -155,7 +174,7 @@
     
     <header class="post-header">
       <h1 class="post-title">GPS管理系统服务器迁移指南</h1>
-
+      
       <div class="post-meta">
         <span class="post-time"> 2017-10-11 </span>
         
@@ -168,8 +187,7 @@
     
 <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">Table of Contents</h2>
-  
-  <div class="post-toc-content always-active">
+  <div class="post-toc-content">
     <nav id="TableOfContents">
 <ul>
 <li><a href="#概述">概述</a></li>
@@ -510,7 +528,7 @@ mysqldump -u root -p rushgps &gt; rushgps.sql
     <script src="/lib/gitment/gitment-0.0.3.min.js"></script>
   <script type="text/javascript">
   const gitment = new Gitment({
-    id: '2017-10-11 00:00:00 \x2b0000 UTC',
+    id: '2017-10-11-rushgps-migrate.md',
     title: 'GPS管理系统服务器迁移指南',
     link: decodeURI(location.href),
     desc: '概述 本指南主要讲述如何将GPS管理系统服务器迁移到另一台新的服务器，假定要迁移的服务器为server1，新服务器为server2，假定的服务',
@@ -531,9 +549,15 @@ mysqldump -u root -p rushgps &gt; rushgps.sql
 
     <footer id="footer" class="footer">
       <div class="social-links">
-      <a href="mailto:keysaim@gmail.com" rel="me" class="iconfont icon-email" title="email"></a>
-      <a href="https://github.com/keysaim" rel="me" class="iconfont icon-github" title="github"></a>
-  <a href="https://keysaim.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="mailto:keysaim@gmail.com" rel="me" class="iconfont icon-email" 
+        title="email" target="_blank">
+      </a>
+      <a href="https://github.com/keysaim" rel="me" class="iconfont icon-github" 
+        title="github" target="_blank">
+      </a>
+  <a href="https://keysaim.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" 
+    title="rss" target="_blank">
+  </a>
 </div>
 
 <div class="copyright">

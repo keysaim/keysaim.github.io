@@ -10,6 +10,13 @@
   </url>
   
   <url>
+    <loc>https://keysaim.github.io/post/note/learn-python-books/</loc>
+    <lastmod>2018-04-12T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://keysaim.github.io/post/blog/deploy-hugo-blog-in-github.io/</loc>
     <lastmod>2018-03-22T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -185,7 +192,14 @@
   
   <url>
     <loc>https://keysaim.github.io/post/</loc>
-    <lastmod>2018-03-22T00:00:00+00:00</lastmod>
+    <lastmod>2018-04-12T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://keysaim.github.io/tags/python/</loc>
+    <lastmod>2018-04-12T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -249,6 +263,13 @@
   <url>
     <loc>https://keysaim.github.io/tags/%E6%8E%A8%E8%8D%90/</loc>
     <lastmod>2017-08-18T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://keysaim.github.io/tags/%E6%8E%A8%E8%8D%90%E4%B9%A6%E7%B1%8D/</loc>
+    <lastmod>2018-04-12T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>

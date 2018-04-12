@@ -24,6 +24,28 @@
     </item>
     
     <item>
+      <title>Python学习推荐书籍</title>
+      <link>https://keysaim.github.io/post/note/learn-python-books/</link>
+      <pubDate>Thu, 12 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/post/note/learn-python-books/</guid>
+      
+        <description>
+
+&lt;h1 id=&#34;入门&#34;&gt;入门&lt;/h1&gt;
+
+&lt;h1 id=&#34;进阶&#34;&gt;进阶&lt;/h1&gt;
+
+&lt;h2 id=&#34;fluent-python&#34;&gt;Fluent Python&lt;/h2&gt;
+
+&lt;p&gt;这本书是由奋战在Python开发一线近20年的Luciano Ramalho执笔，致力于帮助Python开发人员挖掘这门语言及相关程序库的优秀特性，写出简洁、流畅、易读、易维护的代码。书中从语言设计层面剖析编程细节，兼顾Python 3 和Python 2，同时有大量详尽的代码示例，并附有主题相关高质量的参考文献和视频链接。&lt;/p&gt;
+
+&lt;p&gt;书籍简介参考&lt;a href=&#34;http://shop.oreilly.com/product/0636920032519.do&#34;&gt;这里&lt;/a&gt;，可以在&lt;a href=&#34;http://www.foxebook.net/fluent-python/&#34;&gt;这里&lt;/a&gt;免费下载。&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
       <title>如何在github.io搭建Hugo博客站</title>
       <link>https://keysaim.github.io/post/blog/deploy-hugo-blog-in-github.io/</link>
       <pubDate>Thu, 22 Mar 2018 00:00:00 +0000</pubDate>
