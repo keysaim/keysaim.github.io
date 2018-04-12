@@ -21,6 +21,15 @@
     </item>
     
     <item>
+      <title>WebRTC资料整理</title>
+      <link>https://keysaim.github.io/post/note/webrtc-marterial/</link>
+      <pubDate>Thu, 12 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/post/note/webrtc-marterial/</guid>
+      <description>参考文章 技术简介 Web Real-Time Communication（WebRTC）技术概述 上手 Getting started with WebRTC WebRTC codelab, the old version is here Capturing Audio &amp;amp; Video in HTML5 WebRTC 的前世今生 WebRTC ppt 开发资讯 Google developers updates 书</description>
+    </item>
+    
+    <item>
       <title>如何在github.io搭建Hugo博客站</title>
       <link>https://keysaim.github.io/post/blog/deploy-hugo-blog-in-github.io/</link>
       <pubDate>Thu, 22 Mar 2018 00:00:00 +0000</pubDate>

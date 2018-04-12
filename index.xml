@@ -46,6 +46,68 @@
     </item>
     
     <item>
+      <title>WebRTC资料整理</title>
+      <link>https://keysaim.github.io/post/note/webrtc-marterial/</link>
+      <pubDate>Thu, 12 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://keysaim.github.io/post/note/webrtc-marterial/</guid>
+      
+        <description>
+
+&lt;h1 id=&#34;参考文章&#34;&gt;参考文章&lt;/h1&gt;
+
+&lt;h2 id=&#34;技术简介&#34;&gt;技术简介&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.miit.gov.cn/n1146312/n1146909/n1146991/n1648534/c3489337/content.html&#34;&gt;Web Real-Time Communication（WebRTC）技术概述&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;上手&#34;&gt;上手&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.html5rocks.com/en/tutorials/webrtc/basics/&#34;&gt;Getting started with WebRTC&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://codelabs.developers.google.com/codelabs/webrtc-web/#0&#34;&gt;WebRTC codelab&lt;/a&gt;, the old version is &lt;a href=&#34;https://bitbucket.org/webrtc/codelab&#34;&gt;here&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.html5rocks.com/en/tutorials/getusermedia/intro/&#34;&gt;Capturing Audio &amp;amp; Video in HTML5&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://blog.coding.net/blog/getting-started-with-webrtc&#34;&gt;WebRTC 的前世今生&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://io13webrtc.appspot.com/#1&#34;&gt;WebRTC ppt&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;开发资讯&#34;&gt;开发资讯&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://developers.google.com/s/results/?q=webrtc&amp;amp;p=%2Fweb%2F&#34;&gt;Google developers updates&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;书籍&#34;&gt;书籍&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.webrtcbook.com/&#34;&gt;WebRTC APIs and RTCWEB Protocols of the HTML5 Real-Time Web&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;视频&#34;&gt;视频&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.youtube.com/watch?v=E8C8ouiXHHk&#34;&gt;Google I/O presentation video&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://vimeo.com/47682405&#34;&gt;RTCWeb Explained&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;网站&#34;&gt;网站&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://io13webrtc.appspot.com/webrtc.org&#34;&gt;webrtc.org&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://groups.google.com/forum/?fromgroups#!forum/discuss-webrtc&#34;&gt;discuss-webrtc&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://plus.sandbox.google.com/113817074606039822053/posts&#34;&gt;+webrtc&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://twitter.com/webrtc&#34;&gt;@webrtc&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.crbug.com/new&#34;&gt;crbug.com/new&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://io13webrtc.appspot.com&#34;&gt;io13webrtc.appspot.com&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
+    
+    <item>
       <title>如何在github.io搭建Hugo博客站</title>
       <link>https://keysaim.github.io/post/blog/deploy-hugo-blog-in-github.io/</link>
       <pubDate>Thu, 22 Mar 2018 00:00:00 +0000</pubDate>
