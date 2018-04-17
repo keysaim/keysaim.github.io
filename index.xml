@@ -38,13 +38,36 @@
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://www.miit.gov.cn/n1146312/n1146909/n1146991/n1648534/c3489337/content.html&#34;&gt;Web Real-Time Communication（WebRTC）技术概述&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.wilddog.com/?p=2196&#34;&gt;WebRTC 是如何进行通信的，WebRCT 的三种网络结构&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;流程分析&#34;&gt;流程分析&lt;/h2&gt;
+
+&lt;h3 id=&#34;信令流程&#34;&gt;信令流程&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://blog.wilddog.com/?p=2206&#34;&gt;WebRTC 信令交互流程&lt;/a&gt;&lt;/p&gt;
+
+&lt;div style=&#34;align: center&#34;&gt;
+    &lt;img src=&#34;https://blog.wilddog.com/wp-content/uploads/2017/09/webrtc.png&#34;/&gt;
+&lt;/div&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/key1213/article/details/52441103&#34;&gt;WebRTC + 直播 + 连麦 = AnyRTC&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;质量控制&#34;&gt;质量控制&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.callstats.io/2015/07/06/basics-webrtc-getstats-api/&#34;&gt;Basics of WebRTC getStats() API&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&#34;上手&#34;&gt;上手&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.html5rocks.com/en/tutorials/webrtc/basics/&#34;&gt;Getting started with WebRTC&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.scaledrone.com/blog/posts/webrtc-tutorial-simple-video-chat&#34;&gt;WebRTC Tutorial: Simple video chat&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://codelabs.developers.google.com/codelabs/webrtc-web/#0&#34;&gt;WebRTC codelab&lt;/a&gt;, the old version is &lt;a href=&#34;https://bitbucket.org/webrtc/codelab&#34;&gt;here&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.tutorialspoint.com/webrtc/index.htm&#34;&gt;WebRTC Tutorial&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.html5rocks.com/en/tutorials/webrtc/basics/&#34;&gt;Getting started with WebRTC&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.html5rocks.com/en/tutorials/getusermedia/intro/&#34;&gt;Capturing Audio &amp;amp; Video in HTML5&lt;/a&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://blog.coding.net/blog/getting-started-with-webrtc&#34;&gt;WebRTC 的前世今生&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
@@ -52,10 +75,25 @@
 &lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://io13webrtc.appspot.com/#1&#34;&gt;WebRTC ppt&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;开发资讯&#34;&gt;开发资讯&lt;/h2&gt;
+&lt;h3 id=&#34;guide&#34;&gt;Guide&lt;/h3&gt;
 
 &lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.agora.io/cn/blog/courses-webrtc/&#34;&gt;从事WebRTC之前必读的一些教程&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;开发资讯&#34;&gt;开发资讯&lt;/h2&gt;
+
+&lt;h3 id=&#34;互动直播整体方案&#34;&gt;互动直播整体方案&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://netease.im/dev-blog&#34;&gt;网易云博客&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://developers.google.com/s/results/?q=webrtc&amp;amp;p=%2Fweb%2F&#34;&gt;Google developers updates&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;webrtc&#34;&gt;WebRTC&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.agora.io/cn/blog/category/webrtc/&#34;&gt;agora.io&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h1 id=&#34;书籍&#34;&gt;书籍&lt;/h1&gt;
@@ -74,12 +112,105 @@
 &lt;h1 id=&#34;网站&#34;&gt;网站&lt;/h1&gt;
 
 &lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://webrtc.org.cn/&#34;&gt;webrtc.org.cn&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://io13webrtc.appspot.com/webrtc.org&#34;&gt;webrtc.org&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;社区&#34;&gt;社区&lt;/h1&gt;
+
+&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://groups.google.com/forum/?fromgroups#!forum/discuss-webrtc&#34;&gt;discuss-webrtc&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://plus.sandbox.google.com/113817074606039822053/posts&#34;&gt;+webrtc&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://twitter.com/webrtc&#34;&gt;@webrtc&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://www.crbug.com/new&#34;&gt;crbug.com/new&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://io13webrtc.appspot.com&#34;&gt;io13webrtc.appspot.com&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;开源项目&#34;&gt;开源项目&lt;/h1&gt;
+
+&lt;h2 id=&#34;stun-turn&#34;&gt;STUN/TURN&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/coturn/coturn&#34;&gt;coturn&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This project evolved from rfc5766-turn-server project.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://www.creytiv.com/restund.html&#34;&gt;restund&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;media-server&#34;&gt;Media Server&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;SFU (Selective Forwarding Unit)&lt;/li&gt;
+&lt;li&gt;MCU (Multipoint Control Unit)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;server&lt;/th&gt;
+&lt;th&gt;SFU&lt;/th&gt;
+&lt;th&gt;MCU&lt;/th&gt;
+&lt;th&gt;recording&lt;/th&gt;
+&lt;th&gt;lang&lt;/th&gt;
+&lt;th&gt;OSS&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Janus&lt;/td&gt;
+&lt;td&gt;Y&lt;/td&gt;
+&lt;td&gt;Y&lt;/td&gt;
+&lt;td&gt;Y&lt;/td&gt;
+&lt;td&gt;C&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/meetecho/janus-gateway&#34;&gt;github&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Jitsi&lt;/td&gt;
+&lt;td&gt;Y&lt;/td&gt;
+&lt;td&gt;N&lt;/td&gt;
+&lt;td&gt;Y&lt;/td&gt;
+&lt;td&gt;Java&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/jitsi/jitsi-videobridge&#34;&gt;github&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Kurento&lt;/td&gt;
+&lt;td&gt;Y&lt;/td&gt;
+&lt;td&gt;Y&lt;/td&gt;
+&lt;td&gt;Y&lt;/td&gt;
+&lt;td&gt;C++&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/Kurento/kurento-media-server&#34;&gt;github&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Licode&lt;/td&gt;
+&lt;td&gt;Y&lt;/td&gt;
+&lt;td&gt;Y&lt;/td&gt;
+&lt;td&gt;Y&lt;/td&gt;
+&lt;td&gt;C++&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/lynckia/licode&#34;&gt;github&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;非开源的有：
+&lt;a href=&#34;http://www.tokbox.com/blog/mantis-next-generation-cloud-technology-for-webrtc/&#34;&gt;Mantis&lt;/a&gt;, &lt;a href=&#34;https://software.intel.com/en-us/webrtc-sdk&#34;&gt;Intel Collaboration Suite for WebRTC&lt;/a&gt;(Licode based)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;关于各种Media Server比较的文章：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://webrtcbydralex.com/index.php/2016/12/13/overview-of-webrtc-media-servers/&#34;&gt;Overview of WebRTC Media Servers&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;美颜&#34;&gt;美颜&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/BradLarson/GPUImage&#34;&gt;GPUImage&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
       
