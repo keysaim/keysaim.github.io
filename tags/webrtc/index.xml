@@ -6,10 +6,19 @@
     <description>Recent content in Webrtc on 窗外蟋蟀博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 12 Apr 2018 20:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 17 Apr 2018 16:30:00 +0800</lastBuildDate>
     
 	<atom:link href="https://keysaim.github.io/tags/webrtc/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>SQL Proxy资料整理</title>
+      <link>https://keysaim.github.io/post/note/sql-proxy/</link>
+      <pubDate>Tue, 17 Apr 2018 16:30:00 +0800</pubDate>
+      
+      <guid>https://keysaim.github.io/post/note/sql-proxy/</guid>
+      <description> SQL Proxy  ProxySQL Maxscale  </description>
+    </item>
     
     <item>
       <title>WebRTC资料整理</title>
@@ -17,7 +26,7 @@
       <pubDate>Thu, 12 Apr 2018 20:00:00 +0800</pubDate>
       
       <guid>https://keysaim.github.io/post/note/webrtc-marterial/</guid>
-      <description>参考文章 技术简介 Web Real-Time Communication（WebRTC）技术概述 WebRTC 是如何进行通信的，WebRCT 的三种网络结构 流程分析 信令流程 WebRTC 信令交</description>
+      <description>参考文章 技术简介 Web Real-Time Communication（WebRTC）技术概述 WebRTC 是如何进行通信的，WebRCT 的三种网络结构 互动直播 互动直播的技术细</description>
     </item>
     
   </channel>

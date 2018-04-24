@@ -6,10 +6,37 @@
     <description>Recent content in 资料 on 窗外蟋蟀博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 12 Apr 2018 20:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 24 Apr 2018 13:45:05 +0800</lastBuildDate>
     
 	<atom:link href="https://keysaim.github.io/tags/%E8%B5%84%E6%96%99/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>开源项目整理</title>
+      <link>https://keysaim.github.io/post/note/opensource/</link>
+      <pubDate>Tue, 24 Apr 2018 13:45:05 +0800</pubDate>
+      
+      <guid>https://keysaim.github.io/post/note/opensource/</guid>
+      <description>Micro-service API Gateway Kong, in Lua tyk, in Golang References: * 谈谈微服务中的 API 网关（API Gateway） Memory cache Redis ledisdb tidis, in Golang PAAS Kubernetes 时序数据库 InfluxDB References: * 时序数据库技术体系 – InfluxDB TSM存储引擎之数</description>
+    </item>
+    
+    <item>
+      <title>区块链资料整理</title>
+      <link>https://keysaim.github.io/post/note/blockchain-marterial/</link>
+      <pubDate>Tue, 24 Apr 2018 12:00:05 +0800</pubDate>
+      
+      <guid>https://keysaim.github.io/post/note/blockchain-marterial/</guid>
+      <description>Guide 以太坊官方文档中文版 以太坊白皮书中文版 Solidity的官方文档中文版 Truffle的官方文档中文版 区块链技术指南 精通比特币中文版 Practise 一个适</description>
+    </item>
+    
+    <item>
+      <title>SQL Proxy资料整理</title>
+      <link>https://keysaim.github.io/post/note/sql-proxy/</link>
+      <pubDate>Tue, 17 Apr 2018 16:30:00 +0800</pubDate>
+      
+      <guid>https://keysaim.github.io/post/note/sql-proxy/</guid>
+      <description> SQL Proxy  ProxySQL Maxscale  </description>
+    </item>
     
     <item>
       <title>WebRTC资料整理</title>
@@ -17,7 +44,7 @@
       <pubDate>Thu, 12 Apr 2018 20:00:00 +0800</pubDate>
       
       <guid>https://keysaim.github.io/post/note/webrtc-marterial/</guid>
-      <description>参考文章 技术简介 Web Real-Time Communication（WebRTC）技术概述 WebRTC 是如何进行通信的，WebRCT 的三种网络结构 流程分析 信令流程 WebRTC 信令交</description>
+      <description>参考文章 技术简介 Web Real-Time Communication（WebRTC）技术概述 WebRTC 是如何进行通信的，WebRCT 的三种网络结构 互动直播 互动直播的技术细</description>
     </item>
     
   </channel>

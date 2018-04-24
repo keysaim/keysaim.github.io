@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>区块链 on 窗外蟋蟀博客</title>
+    <link>https://keysaim.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</link>
+    <description>Recent content in 区块链 on 窗外蟋蟀博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 24 Apr 2018 12:00:05 +0800</lastBuildDate>
+    
+	<atom:link href="https://keysaim.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>区块链资料整理</title>
+      <link>https://keysaim.github.io/post/note/blockchain-marterial/</link>
+      <pubDate>Tue, 24 Apr 2018 12:00:05 +0800</pubDate>
+      
+      <guid>https://keysaim.github.io/post/note/blockchain-marterial/</guid>
+      <description>Guide 以太坊官方文档中文版 以太坊白皮书中文版 Solidity的官方文档中文版 Truffle的官方文档中文版 区块链技术指南 精通比特币中文版 Practise 一个适</description>
+    </item>
+    
+  </channel>
+</rss>
