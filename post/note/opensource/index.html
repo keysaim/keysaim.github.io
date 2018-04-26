@@ -26,7 +26,7 @@
 
 
 <meta name="author" content="keysaim" />
-  <meta name="description" content="Micro-service API Gateway Kong, in Lua tyk, in Golang References: * 谈谈微服务中的 API 网关（API Gateway） Memory cache Redis ledisdb tidis, in Golang PAAS Kubernetes 时序数据库 InfluxDB References: * 时序数据库技术体系 – InfluxDB TSM存储引擎之数" />
+  <meta name="description" content="Micro-service API Gateway Kong, in Lua tyk, in Golang References: * 谈谈微服务中的 API 网关（API Gateway） Memory cache Redis ledisdb tidis, in Golang PAAS Kubernetes pouch, from Alibaba 有待观察的 rainbond, 国人开发 大数据&amp;amp;AI Spark Ray, WIP Monitor ELK" />
 
   <meta name="keywords" content="Hugo, blog, keysaim, 窗外蟋蟀" />
 
@@ -59,7 +59,7 @@
 
 
 <meta property="og:title" content="开源项目整理" />
-<meta property="og:description" content="Micro-service API Gateway Kong, in Lua tyk, in Golang References: * 谈谈微服务中的 API 网关（API Gateway） Memory cache Redis ledisdb tidis, in Golang PAAS Kubernetes 时序数据库 InfluxDB References: * 时序数据库技术体系 – InfluxDB TSM存储引擎之数" />
+<meta property="og:description" content="Micro-service API Gateway Kong, in Lua tyk, in Golang References: * 谈谈微服务中的 API 网关（API Gateway） Memory cache Redis ledisdb tidis, in Golang PAAS Kubernetes pouch, from Alibaba 有待观察的 rainbond, 国人开发 大数据&amp;AI Spark Ray, WIP Monitor ELK" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://keysaim.github.io/post/note/opensource/" />
 
@@ -80,19 +80,19 @@
 
 
 <meta itemprop="name" content="开源项目整理">
-<meta itemprop="description" content="Micro-service API Gateway Kong, in Lua tyk, in Golang References: * 谈谈微服务中的 API 网关（API Gateway） Memory cache Redis ledisdb tidis, in Golang PAAS Kubernetes 时序数据库 InfluxDB References: * 时序数据库技术体系 – InfluxDB TSM存储引擎之数">
+<meta itemprop="description" content="Micro-service API Gateway Kong, in Lua tyk, in Golang References: * 谈谈微服务中的 API 网关（API Gateway） Memory cache Redis ledisdb tidis, in Golang PAAS Kubernetes pouch, from Alibaba 有待观察的 rainbond, 国人开发 大数据&amp;AI Spark Ray, WIP Monitor ELK">
 
 
 <meta itemprop="datePublished" content="2018-04-24T13:45:05&#43;08:00" />
 <meta itemprop="dateModified" content="2018-04-24T13:45:05&#43;08:00" />
-<meta itemprop="wordCount" content="70">
+<meta itemprop="wordCount" content="176">
 
 
 
 <meta itemprop="keywords" content="Opensource,资料," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="开源项目整理"/>
-<meta name="twitter:description" content="Micro-service API Gateway Kong, in Lua tyk, in Golang References: * 谈谈微服务中的 API 网关（API Gateway） Memory cache Redis ledisdb tidis, in Golang PAAS Kubernetes 时序数据库 InfluxDB References: * 时序数据库技术体系 – InfluxDB TSM存储引擎之数"/>
+<meta name="twitter:description" content="Micro-service API Gateway Kong, in Lua tyk, in Golang References: * 谈谈微服务中的 API 网关（API Gateway） Memory cache Redis ledisdb tidis, in Golang PAAS Kubernetes pouch, from Alibaba 有待观察的 rainbond, 国人开发 大数据&amp;AI Spark Ray, WIP Monitor ELK"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -178,7 +178,7 @@
       <div class="post-meta">
         <span class="post-time"> 2018-04-24 </span>
         
-        <span class="more-meta"> 70 words </span>
+        <span class="more-meta"> 176 words </span>
         <span class="more-meta"> 1 min read </span>
       </div>
     </header>
@@ -195,8 +195,20 @@
 <li><a href="#api-gateway">API Gateway</a></li>
 </ul></li>
 <li><a href="#memory-cache">Memory cache</a></li>
-<li><a href="#paas">PAAS</a></li>
+<li><a href="#paas">PAAS</a>
+<ul>
+<li><a href="#有待观察的">有待观察的</a></li>
+</ul></li>
+<li><a href="#大数据-ai">大数据&amp;AI</a></li>
+<li><a href="#monitor">Monitor</a></li>
+<li><a href="#alarms">Alarms</a></li>
+<li><a href="#load-balancer">Load Balancer</a></li>
 <li><a href="#时序数据库">时序数据库</a></li>
+<li><a href="#benchmark-tools">Benchmark Tools</a>
+<ul>
+<li><a href="#dns-performance">DNS performance</a></li>
+</ul></li>
+<li><a href="#室内定位">室内定位</a></li>
 </ul>
 </nav>
   </div>
@@ -230,6 +242,45 @@
 
 <ul>
 <li><a href="https://github.com/kubernetes/kubernetes">Kubernetes</a></li>
+<li><a href="https://github.com/alibaba/pouch">pouch</a>, from Alibaba</li>
+</ul>
+
+<h2 id="有待观察的">有待观察的</h2>
+
+<ul>
+<li><a href="https://github.com/goodrain/rainbond">rainbond</a>, 国人开发</li>
+</ul>
+
+<h1 id="大数据-ai">大数据&amp;AI</h1>
+
+<ul>
+<li><a href="https://github.com/apache/spark">Spark</a></li>
+<li><a href="https://github.com/ray-project/ray">Ray</a>, WIP</li>
+</ul>
+
+<h1 id="monitor">Monitor</h1>
+
+<ul>
+<li>ELK</li>
+</ul>
+
+<h1 id="alarms">Alarms</h1>
+
+<ul>
+<li><a href="https://github.com/prometheus/prometheus">Prometheus</a></li>
+</ul>
+
+<p>References:</p>
+
+<ul>
+<li><a href="https://mp.weixin.qq.com/s/MJwJTKXX41Dy-stlVElBDQ">这里有7种主流案例，告诉你调度器架构设计通用法则</a></li>
+<li><a href="https://mp.weixin.qq.com/s/BoLsVKYyu8yRXZbxd1uuQw">史上最全Redis高可用技术解决方案大全</a></li>
+</ul>
+
+<h1 id="load-balancer">Load Balancer</h1>
+
+<ul>
+<li><a href="https://github.com/openresty/openresty">openresty</a>, 国人开发，Nginx Based</li>
 </ul>
 
 <h1 id="时序数据库">时序数据库</h1>
@@ -240,6 +291,20 @@
 
 <p>References:
 * <a href="https://mp.weixin.qq.com/s/8oxknZqRbeLi4iUlC7lQtg">时序数据库技术体系 – InfluxDB TSM存储引擎之数据写入</a></p>
+
+<h1 id="benchmark-tools">Benchmark Tools</h1>
+
+<h2 id="dns-performance">DNS performance</h2>
+
+<ul>
+<li><a href="https://github.com/turbobytes/dnsperfbench">dnsperfbench</a></li>
+</ul>
+
+<h1 id="室内定位">室内定位</h1>
+
+<ul>
+<li><a href="https://github.com/schollz/find3">Find3</a>, High-precision indoor positioning framework</li>
+</ul>
 
     </div>
 
@@ -261,6 +326,11 @@
       
       <nav class="post-nav">
         
+          <a class="prev" href="/post/note/mq-choose/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">消息队列研究</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
         
           <a class="next" href="/post/note/blockchain-marterial/">
             <span class="next-text nav-default">区块链资料整理</span>
@@ -283,7 +353,7 @@
     id: 'opensource.md',
     title: '开源项目整理',
     link: decodeURI(location.href),
-    desc: 'Micro-service API Gateway Kong, in Lua tyk, in Golang References: * 谈谈微服务中的 API 网关（API Gateway） Memory cache Redis ledisdb tidis, in Golang PAAS Kubernetes 时序数据库 InfluxDB References: * 时序数据库技术体系 – InfluxDB TSM存储引擎之数',
+    desc: 'Micro-service API Gateway Kong, in Lua tyk, in Golang References: * 谈谈微服务中的 API 网关（API Gateway） Memory cache Redis ledisdb tidis, in Golang PAAS Kubernetes pouch, from Alibaba 有待观察的 rainbond, 国人开发 大数据\x26amp;AI Spark Ray, WIP Monitor ELK',
     owner: 'keysaim',
     repo: 'comments',
     oauth: {

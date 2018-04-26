@@ -10,6 +10,20 @@
   </url>
   
   <url>
+    <loc>https://keysaim.github.io/post/note/im-study/</loc>
+    <lastmod>2018-04-26T11:27:05+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://keysaim.github.io/post/note/mq-choose/</loc>
+    <lastmod>2018-04-25T13:45:05+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://keysaim.github.io/post/note/opensource/</loc>
     <lastmod>2018-04-24T13:45:05+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -191,14 +205,14 @@
   </url>
   
   <url>
-    <loc>https://keysaim.github.io/tags/github/</loc>
+    <loc>https://keysaim.github.io/categories/github/</loc>
     <lastmod>2018-03-22T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://keysaim.github.io/categories/github/</loc>
+    <loc>https://keysaim.github.io/tags/github/</loc>
     <lastmod>2018-03-22T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
@@ -212,8 +226,22 @@
   </url>
   
   <url>
+    <loc>https://keysaim.github.io/tags/im/</loc>
+    <lastmod>2018-04-26T11:27:05+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://keysaim.github.io/tags/linux/</loc>
     <lastmod>2017-11-17T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://keysaim.github.io/tags/mq/</loc>
+    <lastmod>2018-04-25T13:45:05+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -227,7 +255,7 @@
   
   <url>
     <loc>https://keysaim.github.io/post/</loc>
-    <lastmod>2018-04-24T13:45:05+08:00</lastmod>
+    <lastmod>2018-04-26T11:27:05+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -361,6 +389,13 @@
   <url>
     <loc>https://keysaim.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2016-04-23T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://keysaim.github.io/tags/%E8%B0%83%E7%A0%94/</loc>
+    <lastmod>2018-04-26T11:27:05+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>

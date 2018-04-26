@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mq on 窗外蟋蟀博客</title>
+    <link>https://keysaim.github.io/tags/mq/</link>
+    <description>Recent content in Mq on 窗外蟋蟀博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 25 Apr 2018 13:45:05 +0800</lastBuildDate>
+    
+	<atom:link href="https://keysaim.github.io/tags/mq/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>消息队列研究</title>
+      <link>https://keysaim.github.io/post/note/mq-choose/</link>
+      <pubDate>Wed, 25 Apr 2018 13:45:05 +0800</pubDate>
+      
+      <guid>https://keysaim.github.io/post/note/mq-choose/</guid>
+      <description>Rabbitmq 性能限制 内部原理： 每个queue会有一个Erlang协程，每个queue可以处理50K/s的消息 保持跟CPU Core数量一致的queue数</description>
+    </item>
+    
+  </channel>
+</rss>

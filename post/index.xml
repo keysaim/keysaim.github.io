@@ -6,10 +6,28 @@
     <description>Recent content in Posts on 窗外蟋蟀博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 24 Apr 2018 13:45:05 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 26 Apr 2018 11:27:05 +0800</lastBuildDate>
     
 	<atom:link href="https://keysaim.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>IM系统研究</title>
+      <link>https://keysaim.github.io/post/note/im-study/</link>
+      <pubDate>Thu, 26 Apr 2018 11:27:05 +0800</pubDate>
+      
+      <guid>https://keysaim.github.io/post/note/im-study/</guid>
+      <description>原理及架构 References: 现代IM系统中消息推送和存储架构的实现</description>
+    </item>
+    
+    <item>
+      <title>消息队列研究</title>
+      <link>https://keysaim.github.io/post/note/mq-choose/</link>
+      <pubDate>Wed, 25 Apr 2018 13:45:05 +0800</pubDate>
+      
+      <guid>https://keysaim.github.io/post/note/mq-choose/</guid>
+      <description>Rabbitmq 性能限制 内部原理： 每个queue会有一个Erlang协程，每个queue可以处理50K/s的消息 保持跟CPU Core数量一致的queue数</description>
+    </item>
     
     <item>
       <title>开源项目整理</title>
@@ -17,7 +35,7 @@
       <pubDate>Tue, 24 Apr 2018 13:45:05 +0800</pubDate>
       
       <guid>https://keysaim.github.io/post/note/opensource/</guid>
-      <description>Micro-service API Gateway Kong, in Lua tyk, in Golang References: * 谈谈微服务中的 API 网关（API Gateway） Memory cache Redis ledisdb tidis, in Golang PAAS Kubernetes 时序数据库 InfluxDB References: * 时序数据库技术体系 – InfluxDB TSM存储引擎之数</description>
+      <description>Micro-service API Gateway Kong, in Lua tyk, in Golang References: * 谈谈微服务中的 API 网关（API Gateway） Memory cache Redis ledisdb tidis, in Golang PAAS Kubernetes pouch, from Alibaba 有待观察的 rainbond, 国人开发 大数据&amp;amp;AI Spark Ray, WIP Monitor ELK</description>
     </item>
     
     <item>
@@ -26,7 +44,7 @@
       <pubDate>Tue, 24 Apr 2018 12:00:05 +0800</pubDate>
       
       <guid>https://keysaim.github.io/post/note/blockchain-marterial/</guid>
-      <description>Guide 以太坊官方文档中文版 以太坊白皮书中文版 Solidity的官方文档中文版 Truffle的官方文档中文版 区块链技术指南 精通比特币中文版 Practise 一个适</description>
+      <description>介绍 公有链 以太坊 私有链 R3 Corda 联盟链 Hyperledger Fabric References: * IBM技术专家：Hyperleger Fabric 架构与部署实例解析 Guide 以太坊官方文档中文版 以太坊白皮书中文版 So</description>
     </item>
     
     <item>
@@ -171,24 +189,6 @@
       
       <guid>https://keysaim.github.io/post/blog/2017-08-15-how-to-setup-your-github-io-blog/</guid>
       <description>闲聊一下 在这知识剧烈膨胀的时代，如何记录、整理、分享自己的所学所感无疑显得十分重要，而博客便是最好的方式之一。现在已经有了各式各样的博客平台</description>
-    </item>
-    
-    <item>
-      <title>用docker搭建全栈式应用（三）管理篇</title>
-      <link>https://keysaim.github.io/post/docker/2016-06-23-full-stack-demo3/</link>
-      <pubDate>Thu, 23 Jun 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://keysaim.github.io/post/docker/2016-06-23-full-stack-demo3/</guid>
-      <description>用docker搭建全栈式应用 (三）—— 管理篇 简介 在上一篇我们讲述了如何基于Dockerfile实现docker image的自动构建，并基于此</description>
-    </item>
-    
-    <item>
-      <title>用docker搭建全栈式应用 (二）构建篇</title>
-      <link>https://keysaim.github.io/post/docker/2016-05-30-full-stack-demo2/</link>
-      <pubDate>Mon, 30 May 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://keysaim.github.io/post/docker/2016-05-30-full-stack-demo2/</guid>
-      <description>用docker搭建全栈式应用 (二）—— 构建篇 简介 在上一篇中, 我们已经较为详细的描述如何基于docker，搭建一套全栈式应用。web端采用Dj</description>
     </item>
     
   </channel>

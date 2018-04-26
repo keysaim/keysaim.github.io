@@ -24,6 +24,60 @@
     </item>
     
     <item>
+      <title>IM系统研究</title>
+      <link>https://keysaim.github.io/post/note/im-study/</link>
+      <pubDate>Thu, 26 Apr 2018 11:27:05 +0800</pubDate>
+      
+      <guid>https://keysaim.github.io/post/note/im-study/</guid>
+      
+        <description>
+
+&lt;h1 id=&#34;原理及架构&#34;&gt;原理及架构&lt;/h1&gt;
+
+&lt;p&gt;References:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://yq.aliyun.com/articles/253242&#34;&gt;现代IM系统中消息推送和存储架构的实现&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>消息队列研究</title>
+      <link>https://keysaim.github.io/post/note/mq-choose/</link>
+      <pubDate>Wed, 25 Apr 2018 13:45:05 +0800</pubDate>
+      
+      <guid>https://keysaim.github.io/post/note/mq-choose/</guid>
+      
+        <description>
+
+&lt;h1 id=&#34;rabbitmq&#34;&gt;Rabbitmq&lt;/h1&gt;
+
+&lt;h2 id=&#34;性能限制&#34;&gt;性能限制&lt;/h2&gt;
+
+&lt;p&gt;内部原理：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;每个queue会有一个Erlang协程，每个queue可以处理50K/s的消息&lt;/li&gt;
+&lt;li&gt;保持跟CPU Core数量一致的queue数量会带来更好的性能&lt;/li&gt;
+&lt;li&gt;每个Client订阅者都至少有一个TCP Connection, 每个Connection消耗至少100KB，最好是确保每个Client只有一条连接，对于不同的queue复用这条连接&lt;/li&gt;
+&lt;li&gt;尽量确保Connection keep-alive&lt;/li&gt;
+&lt;li&gt;每个TCP Connection也可能产生多个Erlang协程&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;References:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.cloudamqp.com/blog/2017-12-29-part1-rabbitmq-best-practice.html&#34;&gt;RabbitMQ Best Practice&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://rabbitmq.1065348.n5.nabble.com/Max-messages-allowed-in-a-queue-in-RabbitMQ-td26063.html&#34;&gt;Max messages allowed in a queue in RabbitMQ?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://dzone.com/articles/how-many-queues-are-best-max&#34;&gt;How Many Queues Are Best For Max Performance? RabbitMQ&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
+    
+    <item>
       <title>开源项目整理</title>
       <link>https://keysaim.github.io/post/note/opensource/</link>
       <pubDate>Tue, 24 Apr 2018 13:45:05 +0800</pubDate>
@@ -56,6 +110,45 @@
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/kubernetes/kubernetes&#34;&gt;Kubernetes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/alibaba/pouch&#34;&gt;pouch&lt;/a&gt;, from Alibaba&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;有待观察的&#34;&gt;有待观察的&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/goodrain/rainbond&#34;&gt;rainbond&lt;/a&gt;, 国人开发&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;大数据-ai&#34;&gt;大数据&amp;amp;AI&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/apache/spark&#34;&gt;Spark&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/ray-project/ray&#34;&gt;Ray&lt;/a&gt;, WIP&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;monitor&#34;&gt;Monitor&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ELK&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;alarms&#34;&gt;Alarms&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/prometheus/prometheus&#34;&gt;Prometheus&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;References:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://mp.weixin.qq.com/s/MJwJTKXX41Dy-stlVElBDQ&#34;&gt;这里有7种主流案例，告诉你调度器架构设计通用法则&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://mp.weixin.qq.com/s/BoLsVKYyu8yRXZbxd1uuQw&#34;&gt;史上最全Redis高可用技术解决方案大全&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;load-balancer&#34;&gt;Load Balancer&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/openresty/openresty&#34;&gt;openresty&lt;/a&gt;, 国人开发，Nginx Based&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h1 id=&#34;时序数据库&#34;&gt;时序数据库&lt;/h1&gt;
@@ -66,6 +159,20 @@
 
 &lt;p&gt;References:
 * &lt;a href=&#34;https://mp.weixin.qq.com/s/8oxknZqRbeLi4iUlC7lQtg&#34;&gt;时序数据库技术体系 – InfluxDB TSM存储引擎之数据写入&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;benchmark-tools&#34;&gt;Benchmark Tools&lt;/h1&gt;
+
+&lt;h2 id=&#34;dns-performance&#34;&gt;DNS performance&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/turbobytes/dnsperfbench&#34;&gt;dnsperfbench&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;室内定位&#34;&gt;室内定位&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/schollz/find3&#34;&gt;Find3&lt;/a&gt;, High-precision indoor positioning framework&lt;/li&gt;
+&lt;/ul&gt;
 </description>
       
     </item>
@@ -78,6 +185,29 @@
       <guid>https://keysaim.github.io/post/note/blockchain-marterial/</guid>
       
         <description>
+
+&lt;h1 id=&#34;介绍&#34;&gt;介绍&lt;/h1&gt;
+
+&lt;h2 id=&#34;公有链&#34;&gt;公有链&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;以太坊&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;私有链&#34;&gt;私有链&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;R3 Corda&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;联盟链&#34;&gt;联盟链&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Hyperledger Fabric&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;References:
+* &lt;a href=&#34;http://www.infoq.com/cn/articles/ibm-hyperleger-fabric-achitecture-deployment&#34;&gt;IBM技术专家：Hyperleger Fabric 架构与部署实例解析&lt;/a&gt;&lt;/p&gt;
 
 &lt;h1 id=&#34;guide&#34;&gt;Guide&lt;/h1&gt;
 
@@ -4195,580 +4325,6 @@ To github.com:keysaim/keysaim.github.io.git
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://stackoverflow.com/questions/7927750/specify-an-ssh-key-for-git-push-for-a-given-domain&#34;&gt;Specify an SSH key for git push for a given domain&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>如何快速搭建自己的github.io博客</title>
-      <link>https://keysaim.github.io/post/blog/2017-08-15-how-to-setup-your-github-io-blog/</link>
-      <pubDate>Tue, 15 Aug 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://keysaim.github.io/post/blog/2017-08-15-how-to-setup-your-github-io-blog/</guid>
-      
-        <description>
-
-&lt;h1 id=&#34;闲聊一下&#34;&gt;闲聊一下&lt;/h1&gt;
-
-&lt;p&gt;在这知识剧烈膨胀的时代，如何记录、整理、分享自己的所学所感无疑显得十分重要，而博客便是最好的方式之一。现在已经有了各式各样的博客平台，有基于第三方的平台的（如&lt;a href=&#34;https://www.cnblogs.com/&#34;&gt;博客园&lt;/a&gt;等），也有自己搭建的（如基于&lt;a href=&#34;https://ghost.org/&#34;&gt;Ghost&lt;/a&gt;等，当然，也有很多干脆自己动手DIY了）。总之，博客的世界已然丰富多彩，留给咱们更多的不是有没有，而是哪个好。这里咱不讨论博客哪家强的问题，只推荐一款博主觉得不错的选择：&lt;code&gt;github.io&lt;/code&gt;。&lt;/p&gt;
-
-&lt;p&gt;要问全球最大的基佬交友网站是哪个，我相信不少答案必须是咱们的&lt;a href=&#34;https://github.com&#34;&gt;github&lt;/a&gt;。而&lt;code&gt;github.io&lt;/code&gt;便是其出品，品质必须是有保证的，最重要的一点是基于github的repo管理，这意味着咱们对其是有觉得的控制，这个跟放在第三方的平台比，可控性要好太多。下面咱们将详细讲述如何基于&lt;code&gt;github.io&lt;/code&gt;打造属于自己的博客网站。&lt;/p&gt;
-
-&lt;p&gt;要完成自己的&lt;code&gt;github.io&lt;/code&gt;博客网站，总共分三步：&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;开通自己的&lt;code&gt;github.io&lt;/code&gt; repo&lt;/li&gt;
-&lt;li&gt;选择一款Jekyll的主题&lt;/li&gt;
-&lt;li&gt;编写发布博客&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;开通自己的-github-io-repo&#34;&gt;开通自己的&lt;code&gt;github.io&lt;/code&gt; repo&lt;/h1&gt;
-
-&lt;p&gt;&lt;code&gt;github.io&lt;/code&gt;是完全基于github创建的，其本质上是在你的github账户下创建一个特殊的repo。你可以参照&lt;a href=&#34;https://pages.github.com/&#34;&gt;如下步骤&lt;/a&gt;完成：&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;创建repo&lt;/p&gt;
-
-&lt;p&gt;当然，一切的前提是你得首先有个github的账户，这里还请自行解决。登陆你的账户后，你可以&lt;a href=&#34;https://github.com/new&#34;&gt;创建一个新的repo&lt;/a&gt;。&lt;strong&gt;&lt;em&gt;请务必注意该repo的名字，必须保持格式&lt;code&gt;&amp;lt;username&amp;gt;.github.io&lt;/code&gt;，其中&lt;code&gt;&amp;lt;username&amp;gt;&lt;/code&gt;替换成你的github账户名&lt;/em&gt;&lt;/strong&gt;，这里假定创建的repo为&lt;code&gt;tobiasalin.github.io&lt;/code&gt;&lt;/p&gt;
-
-&lt;div style=&#34;text-align: center&#34;&gt;
-    &lt;img src=&#34;https://pages.github.com/images/user-repo@2x.png&#34; alt=&#34;&#34;/&gt;
-&lt;/div&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;把你创建的repo clone到本地&lt;/p&gt;
-
-&lt;p&gt;本文假定你已经有一定的&lt;code&gt;git&lt;/code&gt;使用基础了，如果没有也没关系，Google一下，&lt;code&gt;git&lt;/code&gt;的基本使用极为简单。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ git clone https://github.com/tobiasalin/tobiasalin.github.io
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;编写简单的博客首页&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ cd tobiasalin.github.io
-$ echo &amp;quot;Hello World!&amp;quot; &amp;gt; index.html
-$ git add index.html
-$ git commit -m &amp;quot;Init commit&amp;quot;
-$ git push origin master
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;打开博客网站&lt;code&gt;https://&amp;lt;username&amp;gt;.github.io&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;不出意外，你就可以看到你的&lt;code&gt;Hello World!&lt;/code&gt;博客首页了。如果不小心出了意外，通常情况下，你只需等一会再刷新就会好，要是还没好，通常说明你的运气实在太背，请自行了断。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;选择一款-jekyll-的主题&#34;&gt;选择一款&lt;code&gt;Jekyll&lt;/code&gt;的主题&lt;/h1&gt;
-
-&lt;p&gt;&lt;code&gt;github.io&lt;/code&gt;默认采用&lt;code&gt;Jekyll&lt;/code&gt;作为建站工具。&lt;a href=&#34;https://jekyllrb.com/&#34;&gt;Jekyll&lt;/a&gt;是一款当前火热的开源的静态网站建站工具，拥有非常庞大的使用群里和社区，其&lt;a href=&#34;https://github.com/jekyll/jekyll&#34;&gt;Github&lt;/a&gt;截止本文，已经有超过3W+的star，拥有丰富的插件，丰富的主题，并且有无数的人已经帮你早出了无数的轮子可供参考。&lt;code&gt;Jekyll&lt;/code&gt;自身的强大功能已经足够你打造自己心仪的静态网站（这里注意的是&lt;code&gt;静态网站&lt;/code&gt;，&lt;code&gt;Jekyll&lt;/code&gt;没有任何的后台数据库），然而前提是你自己还是得有一定的前端功底，而为了不至于长的太难看，你还得有一定的设计能力。这一下子把大部分人给难住了，咱们只是为了单纯的写写博客啊，至于有这么多要求吗？看到这里，很多人可能觉得此法不怎么方便啊，然则，正如刚刚反复强调的，&lt;code&gt;Jekyll&lt;/code&gt;已经有一个非常庞大的社区，这就意味着，你完全可以借鉴别人已经造好的轮子，放在&lt;code&gt;Jekyll&lt;/code&gt;这里，咱们应该成为主体（Theme）比较合适。本文推荐国内用户可以考虑一款&lt;a href=&#34;https://github.com/Huxpro/huxpro.github.io&#34;&gt;国人开发的主题&lt;/a&gt;。&lt;strong&gt;&lt;em&gt;本博客即是采用了这个主题&lt;/em&gt;&lt;/strong&gt;。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Fork出自己的repo&lt;/p&gt;
-
-&lt;p&gt;为了便于管理，建议先把&lt;a href=&#34;https://github.com/Huxpro/huxpro.github.io&#34;&gt;Huxpro&lt;/a&gt; fork到自己的账户下&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;clone主题&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ git clone git@github.com:keysaim/huxpro.github.io.git
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;当然，你也可以直接clone它的样板repo&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ git clone git@github.com:Huxpro/huxblog-boilerplate.git
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;添加自己的github.io repo&lt;/p&gt;
-
-&lt;p&gt;clone了Huxpro的repo之后，还需要将自己的github.io repo添加到Huxpro repo中，以方便后面讲修改同步到自己的repo中：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ git remote add mine https://github.com/tobiasalin/tobiasalin.github.io
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;其中，&lt;code&gt;mine&lt;/code&gt;是你自己repo的别名，当然，你完全可以用其它任何合法的名字。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;修改必要的配置&lt;/p&gt;
-
-&lt;p&gt;clone之后的repo其实是Huxpro自己的博客网站，里面有非常多作者自己的博文，可根据自己的需要进行必要的删减。基于&lt;code&gt;Jekyll&lt;/code&gt;的博客网站，对于配置，非常重要的一个文件是&lt;code&gt;_config.yml&lt;/code&gt;文件，代开这个文件进行必要的修改：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;# Site settings
-title: 窗外蟋蟀
-SEOTitle: 窗外蟋蟀的博客 | Keysaim Blog
-header-img: img/home-bg-hill.jpg
-email: keysaim@gmail.com
-description: &amp;quot;描述&amp;quot;
-keyword: &amp;quot;窗外蟋蟀, keysaim&amp;quot;
-url: &amp;quot;https://keysaim.github.io&amp;quot;
-baseurl: &amp;quot;&amp;quot;
-...
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;编写发布博客&#34;&gt;编写发布博客&lt;/h1&gt;
-
-&lt;p&gt;&lt;code&gt;Jekyll&lt;/code&gt;对于博文，都是要求放在&lt;code&gt;_posts&lt;/code&gt;目录下面，同时对博文的文件名有&lt;a href=&#34;https://jekyllrb.com/docs/posts/#creating-post-files&#34;&gt;严格的规定&lt;/a&gt;，必须保持格式&lt;code&gt;YEAR-MONTH-DAY-title.MARKUP&lt;/code&gt;，通常情况下，咱们采用推荐的&lt;code&gt;Markdown&lt;/code&gt;撰写博文，基于该格式，本博文的文件名为&lt;code&gt;2017-08-15-how-to-setup-your-github-io-blog.md&lt;/code&gt;。&lt;/p&gt;
-
-&lt;p&gt;写好博文之后，就可以通过&lt;code&gt;git&lt;/code&gt;提交博文了：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ git add _posts/2017-08-15-how-to-setup-your-github-io-blog.md
-$ git commit -m &amp;quot;Add how to setup your github.io blog&amp;quot;
-$ git push mine master
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;*请务必注意，这里提交的repo是&lt;code&gt;mine&lt;/code&gt;，也就是你自己的github.io repo。*等一会（通常几秒到几十秒不等），就可以打开自己的博客网站查看博文了，这里是我的博客网站&lt;code&gt;https://keysaim.github.io&lt;/code&gt;。&lt;/p&gt;
-
-&lt;h2 id=&#34;本地查看自己的博客&#34;&gt;本地查看自己的博客&lt;/h2&gt;
-
-&lt;p&gt;有时候，在提交到&lt;code&gt;github&lt;/code&gt;之前，咱们总想先看看博文的效果如何，既然&lt;code&gt;github&lt;/code&gt;采用的也是&lt;code&gt;Jekyll&lt;/code&gt;，那么咱们完全可以采用&lt;code&gt;Jekyll&lt;/code&gt;在本地构建网站，查看博文效果。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;按照&lt;code&gt;Ruby&lt;/code&gt;（请务必确保版本在&lt;code&gt;1.9.3&lt;/code&gt;以上）&lt;/p&gt;
-
-&lt;p&gt;可以参照&lt;a href=&#34;https://www.ruby-lang.org/en/downloads/&#34;&gt;官网教程&lt;/a&gt;进行安装，这里，如果你使用的是Mac，可以安装如下：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ brew install ruby
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;安装&lt;code&gt;Github pages&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;Github pages&lt;/code&gt;其实就是&lt;code&gt;github&lt;/code&gt;基于&lt;code&gt;Jekyll&lt;/code&gt;用来构建&lt;code&gt;github.io&lt;/code&gt;的工具，安装好Ruby之后可以执行：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ gem install github-pages
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;开启&lt;code&gt;Jekyll&lt;/code&gt;本地服务&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ cd keysaim.github.io
-$ jekyll serve --watch
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;默认情况下，该服务会侦听在本地&lt;code&gt;4000&lt;/code&gt;的端口上，可以打开浏览器访问&lt;code&gt;http://127.0.0.1:4000&lt;/code&gt;，这样就可以在本地查看自己的博文效果了。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;结语&#34;&gt;结语&lt;/h1&gt;
-
-&lt;p&gt;&lt;code&gt;github.io&lt;/code&gt;通过基于&lt;code&gt;Jekyll&lt;/code&gt;工具的&lt;a href=&#34;https://pages.github.com/&#34;&gt;Github pages&lt;/a&gt;来自动构建网站，同时本身又是&lt;code&gt;github&lt;/code&gt;的repo，为使用者提供完全的内容控制，十分便利灵活。当然，要用好这个工具，还是对你有一定的要求：&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;必须得有基本的&lt;code&gt;git&lt;/code&gt;使用基础&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;必须对前端有一定的概念&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;必须较为熟悉&lt;code&gt;Markdown&lt;/code&gt;撰写&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;不过，幸运的是，这三点不论哪一点，其实都是相对较为简单的，&lt;code&gt;git&lt;/code&gt;的基本使用，Google一下，我相信1小时学会不是太大问题；对前端的要求，由于前人已经造了足够多的轮子，咱们完全可以先借鉴别人的，等以后慢慢熟悉起来之后再考虑自己DIY；对于&lt;code&gt;Markdown&lt;/code&gt;，个人觉得其语法真的是非常的简单，只要静下心来，一个下午足够让你编写基本的文章了。&lt;/p&gt;
-
-&lt;p&gt;最后，这里再次感谢&lt;a href=&#34;https://github.com/Huxpro/huxpro.github.io&#34;&gt;Huxpro&lt;/a&gt;提供本站的&lt;code&gt;Jekyll&lt;/code&gt;主题。&lt;/p&gt;
-
-&lt;h1 id=&#34;参考&#34;&gt;参考&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.smashingmagazine.com/2014/08/build-blog-jekyll-github-pages/&#34;&gt;Build A Blog With Jekyll And GitHub Pages&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://pages.github.com/&#34;&gt;Github pages&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>用docker搭建全栈式应用（三）管理篇</title>
-      <link>https://keysaim.github.io/post/docker/2016-06-23-full-stack-demo3/</link>
-      <pubDate>Thu, 23 Jun 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://keysaim.github.io/post/docker/2016-06-23-full-stack-demo3/</guid>
-      
-        <description>
-
-&lt;h1 id=&#34;用docker搭建全栈式应用-三-管理篇&#34;&gt;用docker搭建全栈式应用 (三）—— 管理篇&lt;/h1&gt;
-
-&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
-
-&lt;p&gt;在&lt;a href=&#34;https://keysaim.github.io/2016/05/30/full-stack-demo2/&#34;&gt;上一篇&lt;/a&gt;我们讲述了如何基于Dockerfile实现docker image的自动构建，并基于此重新实现了咱们本系列中的全栈式应用。然而，虽然构建过程实现了自动化，但是在实际部署的时候我们还是需要手动的理清所有服务的依赖关系，并依次启动所有服务，更严重的是，每次重启的时候，我们都需要重复这些操作，这个是不能接受的。&lt;/p&gt;
-
-&lt;p&gt;那么有啥办法改善么？记得业内似乎总有这么个说法，大凡超过重复操作必须得用脚本实现自动化，此谓IT男的基本素养。既然如此，咱们也得用脚本自动化咱们的操作了。非常直接的一种方案就是咱自己写个shell的脚本，如下：
-* 启动脚本&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;```shell
-docker run -d --name redis-master redis-master
-docker run -d --name redis-slave1 --link redis-master:master redis-slave1
-docker run -d --name redis-slave2 --link redis-master:master redis-slave2
-docker run -d --name app2 --link redis-master:redis app 0.0.0.0:8002
-docker run -d --name haproxy --link app1:app1 --link app2:app2 -p 6301:6301 ha-app
-```
-看起来还可以吗，简单的几条语句。但是，咱可不要忘了一点，每个语句咱还木有检查执行的结果。还有这个只是启动的脚本，还有停止的脚本，清除的脚本等等。更要命的是，如果下次我部署其它类型的应用，尼玛还得把这一些列的脚本复制并修改一通，这个有点弱爆了的感觉啊。
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;一般来讲，IT界总是存在这一的规律，当一个烦恼只是你一个人的时候，OK你可以随便整了；当你觉得可能会是很多人的烦恼的时候，这时必须得已经有人提供了解决方案了。所以，在当下技术更新如此剧烈的年代，切记不要随便就自己吭哧吭哧的闷声瞎搞了，第一要务就是google之。一般情况下，总是与大神提供了解决方案，如果真心没有，那么恭喜你，赶紧自己整一个并开放出来，那么你就是那个大神了。&lt;/p&gt;
-
-&lt;p&gt;同样，在咱们本文碰到的问题中，早就有对应的解决方案了，那就是基于Docker compose工具的服务管理。本文将详述如何基于Docker compose管理服务。当然，例子还是那个例子咯。&lt;/p&gt;
-
-&lt;h2 id=&#34;docker-compose工具简介&#34;&gt;Docker Compose工具简介&lt;/h2&gt;
-
-&lt;p&gt;关于Docker Compose，&lt;a href=&#34;https://docs.docker.com/compose/overview/&#34;&gt;官方&lt;/a&gt;其实有非常详尽的介绍。这里就简单的总结一下。&lt;/p&gt;
-
-&lt;p&gt;那么，Docker Compose是什么呢？
-* Docker的一个工具
-* 定义，运行并管理多个容器应用
-* 基于Compose文件
-* 通常应用于开发、测试、CI环境&lt;/p&gt;
-
-&lt;p&gt;Compose的使用一般与Dockerfile结合，包括三个步骤：
-* 定义好所有应用的Dockerfile
-* 在Compose文件中定义、配置好所有服务
-* &lt;code&gt;docker-compose up&lt;/code&gt;启动你的服务&lt;/p&gt;
-
-&lt;p&gt;下面，咱们就以本系列的经典例子：全栈式应用，来讲述Docker Compose的使用。&lt;/p&gt;
-
-&lt;h2 id=&#34;基于docker-compose搭建-管理全栈式应用&#34;&gt;基于Docker Compose搭建、管理全栈式应用&lt;/h2&gt;
-
-&lt;h3 id=&#34;docker-compose的安装&#34;&gt;Docker Compose的安装&lt;/h3&gt;
-
-&lt;p&gt;安装过程其实非常简单，&lt;a href=&#34;https://docs.docker.com/compose/install/&#34;&gt;官方&lt;/a&gt;提供了非常详细的安装过程。这里讲述其中一种基于command line的安装方式。
-* 使用curl下载Compose工具&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;```
-curl -L https://github.com/docker/compose/releases/download/1.7.1/docker-compose-`uname -s`-`uname -m` &amp;gt; /usr/local/bin/docker-compose
-```
-当然，这里使用的是1.7.1版本，如果有新版本发布了，你只需要修改成相应的版本即可。
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;添加Compose工具执行权限&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;chmod +x /usr/local/bin/docker-compose
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;测试一下是否下载成功&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ docker-compose --version
-docker-compose version: 1.7.1
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;compose文件的编写&#34;&gt;Compose文件的编写&lt;/h3&gt;
-
-&lt;p&gt;前面我们讲了，一般来说，Compose的使用包括了三个步骤。由于在&lt;a href=&#34;https://keysaim.github.io/2016/05/30/full-stack-demo2/&#34;&gt;上一篇&lt;/a&gt;已经编写好了Dockerfile文件，这里咱们就直接开始Compose文件的编写这一步骤了。Docker默认使用的compose文件名字为&lt;code&gt;docker-compose.yml&lt;/code&gt;，这里还是老规矩，先列出本例子中使用的&lt;code&gt;docker-compose.yml&lt;/code&gt;文件，然后再详细解释。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;version: &amp;quot;2&amp;quot;
-services:
-    redis-master:
-        build: master
-        image: redis-master
-        container_name: redis-master
-        volumes:
-            - /opt/demo/redis:/data
-
-    redis-slave1:
-        build: slave1
-        image: redis-slave1
-        container_name: redis-slave1
-        links:
-            - redis-master:master
-
-    redis-slave2:
-        build: slave2
-        image: redis-slave2
-        container_name: redis-slave2
-        links:
-            - redis-master:master
-
-    app1:
-        build: app
-        image: app
-        container_name: app1
-        links:
-            - redis-master:redis
-        command: 0.0.0.0:8001
-
-    app2:
-        build: app
-        image: app
-        container_name: app2
-        links:
-            - redis-master:redis
-        command: 0.0.0.0:8002
-
-    haproxy:
-        build: haproxy
-        image: haapp
-        container_name: haproxy
-        links:
-            - app1:app1
-            - app2:app2
-        ports:
-            - 6301:6301
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;仔细瞅一下这个文件，其实还是蛮一目了然的，不过这里现在咱们开始一点点进行解释吧。&lt;/p&gt;
-
-&lt;p&gt;首先，必须注意到的是，docker compose文件其实采用的是常用的yaml文件格式进行定义，因此所有的定义必须符合yaml文件的规范。接下来分别解释每个yaml section。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;version&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;顾名思义，这个表示当前的&lt;code&gt;docker-compose.yml&lt;/code&gt;文件采用哪个版本的格式。这里采用了截止本文最新的版本2，至于跟版本1有啥不同，还请参考&lt;a href=&#34;https://docs.docker.com/compose/compose-file/#versioning&#34;&gt;官方文档&lt;/a&gt;。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;code&gt;services&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;services&lt;/code&gt;部分定义了需要管理的所有的服务，docker compose将根据这部分的定义对它们进行管理，包括所有service对应的containers的启动、停止等。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;code&gt;redis-master&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;这部分定义了&lt;code&gt;redis-master&lt;/code&gt;的container。在&lt;a href=&#34;https://keysaim.github.io/2016/05/30/full-stack-demo2/&#34;&gt;上一篇&lt;/a&gt;中，我们已经介绍了如何通过Dockerfile构建image，并手动启动了相应的container。这里，通过docker compose工具，我们可以将这两个过程都交给docker compose自动完成。这部分则对这两个过程进行了定义，包括如何构建以及如何启动。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;build&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;这部分定义了该服务构建时的目录，docker compose会首先查找本地cache是否以及有了所需要的image，如果没有，则根据这里提供的目录，找到对应的Dockerfile，然后构建出相应的image。所以，这部分其实是可选的。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;code&gt;image&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;这部分定义了该服务所需要的image的名字，如前述，docker compose会先查找本地cache有没有image定义的名字对应的image，如果有则直接启动，如果没有则会试图构建，构建出来的image名字为这部分定义的名字。这部分必须定义。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;code&gt;container_name&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;这部分定义了启动container之后，container的名字。这部分也是可选的，如果没有定义则会自动生成一个名字。如果定义了，必须保证名字在所有的services中都是唯一的。另外，如果定义了，也就意味着docker compose只能根据这个服务定义启动一个container了。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;code&gt;volumes&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;还记得在&lt;a href=&#34;https://keysaim.github.io/2016/05/30/full-stack-demo2/&#34;&gt;上一篇&lt;/a&gt;中介绍了在启动container时候如何挂载volumes，这里既是定义了该服务需要挂载的volumes，其格式跟之前讲述的一样。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;可以看到，其它services的定义其实跟上面的基本差不多，另外多了其它几个定义。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;links&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;这部分其实对应了咱们启动container时提供的&lt;code&gt;--link&lt;/code&gt;参数，可以在&lt;a href=&#34;https://keysaim.github.io/2016/05/16/full-stack-demo/&#34;&gt;第一篇&lt;/a&gt;中找到其详细解释。这里以列表的形式可以定义多个&lt;code&gt;--link&lt;/code&gt;，其格式也跟&lt;code&gt;--link&lt;/code&gt;的格式相同。需要注意的是，&lt;code&gt;links&lt;/code&gt;其实也定义了containers之间的依赖了，只有当&lt;code&gt;links&lt;/code&gt;中所需要的containers已经启动了，才可能建立这个link。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;code&gt;command&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;在&lt;a href=&#34;https://keysaim.github.io/2016/05/30/full-stack-demo2/&#34;&gt;上一篇&lt;/a&gt;我们详细解释了Dockerfile中的&amp;rsquo;command&amp;rsquo;命令，这里的command定义将覆盖Dockerfile中定义的&lt;code&gt;command&lt;/code&gt;命令。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;code&gt;ports&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;从字面上可以很容易联想到这个对应于启动container时需要publish的端口。这部分同样以列表的形式提供了端口的定义。端口的具体格式跟启动container时候的一样，可以参考&lt;a href=&#34;https://keysaim.github.io/2016/05/30/full-stack-demo2/&#34;&gt;上一篇&lt;/a&gt;中的定义。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;至此，我们已经清楚如何编写本例子对应的docker compose文件了，本系列中的例子所对应的docker compose文件其实也基本上表达了大多数情形下得使用。接下来，咱们看看如何利用docker compose工具根据这个compose文件管理所有服务了。&lt;/p&gt;
-
-&lt;h3 id=&#34;用docker-compose管理服务&#34;&gt;用Docker compose管理服务&lt;/h3&gt;
-
-&lt;p&gt;还记得&lt;a href=&#34;https://keysaim.github.io/2016/05/30/full-stack-demo2/&#34;&gt;上一篇&lt;/a&gt;中，咱们对containers的管理都是通过docker的各种命令进行的：run, stop, start, rm等等。同时，咱们还必须记住各种服务的依赖关系，每次根据依赖顺序启动各种服务。有了docker compose已经上面定义的compose文件，对服务的管理就变得非常的简单了。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;运行service&lt;/p&gt;
-
-&lt;p&gt;手动运行的时候，我们采用的是&lt;code&gt;docker run&lt;/code&gt;命令，借助docker compose，假定我们要启动app1，运行的命令为：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# docker-compose up app1
-Creating network &amp;quot;dockerfullstackdemo_default&amp;quot; with the default driver
-Creating redis-master
-Creating app1
-Attaching to app1
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;我们使用了docker compose的&lt;code&gt;up&lt;/code&gt;命令，后面的参数是我们需要启动的service。这里是&lt;code&gt;app1&lt;/code&gt;，可以看到，docker compose工具会自动的计算出依赖关系，所以首先启动了&lt;code&gt;redis-master&lt;/code&gt;container，然后再启动了&lt;code&gt;app1&lt;/code&gt;container，最后attach到&lt;code&gt;app1&lt;/code&gt;container上面。一般情况下，我们都希望container运行在后台，这里可以加入&lt;code&gt;-d&lt;/code&gt;选项以后台的形式运行。&lt;/p&gt;
-
-&lt;p&gt;如果&lt;code&gt;up&lt;/code&gt;命令后面不加任何的service，那么docker compose将启动compose文件中所有的服务。当然，它同样会自动计算好依赖关系，并按照顺序启动。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# docker-compose up -d
-Creating network &amp;quot;dockerfullstackdemo_default&amp;quot; with the default driver
-Creating redis-master
-Creating redis-slave2
-Creating redis-slave1
-Creating app1
-Creating app2
-Creating haproxy
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;查看一下当前的状态：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# docker ps
-CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS                    NAMES
-87eaa9cbf5a3        haapp               &amp;quot;haproxy -f haproxy.c&amp;quot;   About a minute ago   Up 57 seconds       0.0.0.0:6301-&amp;gt;6301/tcp   haproxy
-7d6f46db93f0        app                 &amp;quot;python manage.py run&amp;quot;   About a minute ago   Up 59 seconds                                app2
-899ca6403216        app                 &amp;quot;python manage.py run&amp;quot;   About a minute ago   Up About a minute                            app1
-3d654392e255        redis-slave1        &amp;quot;docker-entrypoint.sh&amp;quot;   About a minute ago   Up About a minute   6379/tcp                 redis-slave1
-56db43752731        redis-slave2        &amp;quot;docker-entrypoint.sh&amp;quot;   About a minute ago   Up About a minute   6379/tcp                 redis-slave2
-dad9dd44a314        redis-master        &amp;quot;docker-entrypoint.sh&amp;quot;   About a minute ago   Up About a minute   6379/tcp                 redis-master
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;可以看到，不加任何service的时候，&lt;code&gt;up&lt;/code&gt;命令启动了所有的服务。&lt;/p&gt;
-
-&lt;p&gt;另外，&lt;code&gt;up&lt;/code&gt;命令还有个非常方便的特性，就是它会检查当前服务是否需要更新（所谓更新，其实指的是服务对应的image是否更新了），需要更新它会重启服务，同时还会检查是否某个服务不在运行，那么它也会把它启动起来。这里咱们做个简单的实验，先手动停掉一个服务，比如&lt;code&gt;app1&lt;/code&gt;，然后再次执行&lt;code&gt;up&lt;/code&gt;命令，看看结果如何。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;先停掉&lt;code&gt;app1&lt;/code&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# docker stop app1
-app1
-# docker ps
-CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
-d6a21457ffae        haapp               &amp;quot;haproxy -f haproxy.c&amp;quot;   26 seconds ago      Up 23 seconds       0.0.0.0:6301-&amp;gt;6301/tcp   haproxy
-69392ab206f3        app                 &amp;quot;python manage.py run&amp;quot;   29 seconds ago      Up 26 seconds                                app2
-a98dc1605c92        redis-slave1        &amp;quot;docker-entrypoint.sh&amp;quot;   33 seconds ago      Up 31 seconds       6379/tcp                 redis-slave1
-457b08940a6f        redis-slave2        &amp;quot;docker-entrypoint.sh&amp;quot;   36 seconds ago      Up 33 seconds       6379/tcp                 redis-slave2
-b35ec7b3ef59        redis-master        &amp;quot;docker-entrypoint.sh&amp;quot;   39 seconds ago      Up 35 seconds       6379/tcp                 redis-master
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;再执行&lt;code&gt;up&lt;/code&gt;命令&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# docker-compose up -d
-redis-master is up-to-date
-redis-slave2 is up-to-date
-redis-slave1 is up-to-date
-Starting app1
-app2 is up-to-date
-haproxy is up-to-date
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;检查一下&lt;code&gt;app1&lt;/code&gt;是否被重新启动了&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# docker ps
-CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
-d6a21457ffae        haapp               &amp;quot;haproxy -f haproxy.c&amp;quot;   38 seconds ago      Up 35 seconds       0.0.0.0:6301-&amp;gt;6301/tcp   haproxy
-69392ab206f3        app                 &amp;quot;python manage.py run&amp;quot;   41 seconds ago      Up 38 seconds                                app2
-f9adfb75b10e        app                 &amp;quot;python manage.py run&amp;quot;   43 seconds ago      Up 4 seconds                                 app1
-a98dc1605c92        redis-slave1        &amp;quot;docker-entrypoint.sh&amp;quot;   45 seconds ago      Up 43 seconds       6379/tcp                 redis-slave1
-457b08940a6f        redis-slave2        &amp;quot;docker-entrypoint.sh&amp;quot;   48 seconds ago      Up 45 seconds       6379/tcp                 redis-slave2
-b35ec7b3ef59        redis-master        &amp;quot;docker-entrypoint.sh&amp;quot;   51 seconds ago      Up 47 seconds       6379/tcp                 redis-master
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;可以看到，确实&lt;code&gt;app1&lt;/code&gt;被重新启动了。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;撤销服务&lt;/p&gt;
-
-&lt;p&gt;与&lt;code&gt;up&lt;/code&gt;相反的是撤销服务，采用的是&lt;code&gt;down&lt;/code&gt;命令。但是与&lt;code&gt;up&lt;/code&gt;命令不同的是，&lt;code&gt;down&lt;/code&gt;不接受某个service作为参数，而是直接停止掉所有的服务。当然，它同样会自动计算好依赖关系，并按照启动的相反顺序撤销服务。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# docker-compose down
-Stopping haproxy ... done
-Stopping app2 ... done
-Stopping app1 ... done
-Stopping redis-slave1 ... done
-Stopping redis-slave2 ... done
-Stopping redis-master ... done
-Removing haproxy ... done
-Removing app2 ... done
-Removing app1 ... done
-Removing redis-slave1 ... done
-Removing redis-slave2 ... done
-Removing redis-master ... done
-Removing network dockerfullstackdemo_default
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;查看一下当前的状态：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# docker ps -a
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;所有containers不仅被停掉了，而且被删掉了。可见&lt;code&gt;down&lt;/code&gt;命令首先会停掉所有的containers，然后会把所有停掉的containers全部删掉。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;停止服务&lt;/p&gt;
-
-&lt;p&gt;停止服务跟撤销不同，它对应于&lt;code&gt;docker stop&lt;/code&gt;命令，而撤销则相当于先&lt;code&gt;stop&lt;/code&gt;，然后再&lt;code&gt;rm&lt;/code&gt;了。docker compose采用&lt;code&gt;stop&lt;/code&gt;命令来停止某个服务，与&lt;code&gt;down&lt;/code&gt;不同的是，它不会计算依赖关系，而是直接强行停止所指定的服务。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# docker-compose stop redis-master
-Stopping redis-master ... done
-# docker ps -a
-CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
-d6a21457ffae        haapp               &amp;quot;haproxy -f haproxy.c&amp;quot;   9 minutes ago       Up 9 minutes        0.0.0.0:6301-&amp;gt;6301/tcp   haproxy
-69392ab206f3        app                 &amp;quot;python manage.py run&amp;quot;   10 minutes ago      Up 9 minutes                                 app2
-f9adfb75b10e        app                 &amp;quot;python manage.py run&amp;quot;   10 minutes ago      Up 9 minutes                                 app1
-a98dc1605c92        redis-slave1        &amp;quot;docker-entrypoint.sh&amp;quot;   10 minutes ago      Up 10 minutes       6379/tcp                 redis-slave1
-457b08940a6f        redis-slave2        &amp;quot;docker-entrypoint.sh&amp;quot;   10 minutes ago      Up 10 minutes       6379/tcp                 redis-slave2
-b35ec7b3ef59        redis-master        &amp;quot;docker-entrypoint.sh&amp;quot;   12 minutes ago      Exited (137) 2 minutes ago                            redis-master
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;很明显，这里停掉&lt;code&gt;redis-master&lt;/code&gt;，它是&lt;code&gt;app1&lt;/code&gt;跟&lt;code&gt;app2&lt;/code&gt;的依赖，但是&lt;code&gt;stop&lt;/code&gt;命令并没有理会这些依赖，而是直接停掉了&lt;code&gt;redis-master&lt;/code&gt;服务，可以看到它的状态已经变为Exited状态了，基本上相当于直接手动调用&lt;code&gt;docker stop&lt;/code&gt;了。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;启动服务&lt;/p&gt;
-
-&lt;p&gt;与停止服务相对应，docker compose采用&lt;code&gt;start&lt;/code&gt;命令来启动某个停止的服务。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# docker-compose start redis-master
-Starting redis-master
-# docker ps
-CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
-d6a21457ffae        haapp               &amp;quot;haproxy -f haproxy.c&amp;quot;   15 minutes ago      Up 14 minutes       0.0.0.0:6301-&amp;gt;6301/tcp   haproxy
-69392ab206f3        app                 &amp;quot;python manage.py run&amp;quot;   15 minutes ago      Up 15 minutes                                app2
-f9adfb75b10e        app                 &amp;quot;python manage.py run&amp;quot;   15 minutes ago      Up 14 minutes                                app1
-a98dc1605c92        redis-slave1        &amp;quot;docker-entrypoint.sh&amp;quot;   15 minutes ago      Up 15 minutes       6379/tcp                 redis-slave1
-457b08940a6f        redis-slave2        &amp;quot;docker-entrypoint.sh&amp;quot;   15 minutes ago      Up 15 minutes       6379/tcp                 redis-slave2
-b35ec7b3ef59        redis-master        &amp;quot;docker-entrypoint.sh&amp;quot;   15 minutes ago      Up 3 seconds        6379/tcp                 redis-master
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;当试图启动某个被删掉的服务的时候，docker compose会报错：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# docker-compose stop redis-master
-Stopping redis-master ... done
-# docker rm redis-master
-redis-master
-# docker-compose start redis-master
-ERROR: No containers to start
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;因此，这种时候采用&lt;code&gt;up&lt;/code&gt;命令就可以了，不管服务是被停掉或者被删掉了，它都会正确的运行该服务。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# docker-compose start redis-master
-ERROR: No containers to start
-# docker-compose up -d redis-master
-Creating redis-master
-# docker ps
-CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
-a2ade91f045b        redis-master        &amp;quot;docker-entrypoint.sh&amp;quot;   29 seconds ago      Up 25 seconds       6379/tcp                 redis-master
-d6a21457ffae        haapp               &amp;quot;haproxy -f haproxy.c&amp;quot;   19 minutes ago      Up 19 minutes       0.0.0.0:6301-&amp;gt;6301/tcp   haproxy
-69392ab206f3        app                 &amp;quot;python manage.py run&amp;quot;   19 minutes ago      Up 19 minutes                                app2
-f9adfb75b10e        app                 &amp;quot;python manage.py run&amp;quot;   19 minutes ago      Up 18 minutes                                app1
-a98dc1605c92        redis-slave1        &amp;quot;docker-entrypoint.sh&amp;quot;   19 minutes ago      Up 19 minutes       6379/tcp                 redis-slave1
-457b08940a6f        redis-slave2        &amp;quot;docker-entrypoint.sh&amp;quot;   19 minutes ago      Up 19 minutes       6379/tcp                 redis-slave2
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;当然，docker compose提供了非常多的命令，可以通过查看帮助看到：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# docker-compose --help
-Define and run multi-container applications with Docker.
-
-Usage:
-  docker-compose [-f=&amp;lt;arg&amp;gt;...] [options] [COMMAND] [ARGS...]
-  docker-compose -h|--help
-
-Options:
-  -f, --file FILE           Specify an alternate compose file (default: docker-compose.yml)
-  -p, --project-name NAME   Specify an alternate project name (default: directory name)
-  --verbose                 Show more output
-  -v, --version             Print version and exit
-
-Commands:
-  build              Build or rebuild services
-  config             Validate and view the compose file
-  create             Create services
-  down               Stop and remove containers, networks, images, and volumes
-  events             Receive real time events from containers
-  help               Get help on a command
-  kill               Kill containers
-  logs               View output from containers
-  pause              Pause services
-  port               Print the public port for a port binding
-  ps                 List containers
-  pull               Pulls service images
-  restart            Restart services
-  rm                 Remove stopped containers
-  run                Run a one-off command
-  scale              Set number of containers for a service
-  start              Start services
-  stop               Stop services
-  unpause            Unpause services
-  up                 Create and start containers
-  version            Show the Docker-Compose version information
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;可见，它提供了非常多的命令，基本上docker有的主要命令，它都有对应的命令。但是基本如此，在使用过程中，使用最多的是&lt;code&gt;up&lt;/code&gt;命令跟&lt;code&gt;down&lt;/code&gt;命令，前者可以非常方便的启动任何的服务，后者则会把所有服务撤销确保非常干净的使用环境。&lt;/p&gt;
-
-&lt;p&gt;至此，咱们的docker compose就介绍到这里了。&lt;/p&gt;
 </description>
       
     </item>
