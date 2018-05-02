@@ -151,6 +151,15 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/openresty/openresty&#34;&gt;openresty&lt;/a&gt;, 国人开发，Nginx Based&lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;h1 id=&#34;nosql&#34;&gt;NoSQL&lt;/h1&gt;
+
+&lt;h2 id=&#34;列存储&#34;&gt;列存储&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/scylladb/scylla&#34;&gt;Scylla&lt;/a&gt;, in C++&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/apache/cassandra&#34;&gt;Cassandra&lt;/a&gt;, in Java&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h1 id=&#34;时序数据库&#34;&gt;时序数据库&lt;/h1&gt;
 
 &lt;ul&gt;
@@ -172,6 +181,12 @@
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/schollz/find3&#34;&gt;Find3&lt;/a&gt;, High-precision indoor positioning framework&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;异步框架&#34;&gt;异步框架&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/scylladb/seastar&#34;&gt;Seastar&lt;/a&gt;, in C++&lt;/li&gt;
 &lt;/ul&gt;
 </description>
       
