@@ -10,6 +10,13 @@
   </url>
   
   <url>
+    <loc>https://keysaim.github.io/post/note/awesome-study/</loc>
+    <lastmod>2018-05-04T10:38:05+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://keysaim.github.io/post/note/im-study/</loc>
     <lastmod>2018-04-26T11:27:05+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -255,7 +262,7 @@
   
   <url>
     <loc>https://keysaim.github.io/post/</loc>
-    <lastmod>2018-04-26T11:27:05+08:00</lastmod>
+    <lastmod>2018-05-04T10:38:05+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -326,6 +333,13 @@
   <url>
     <loc>https://keysaim.github.io/tags/%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2017-11-17T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://keysaim.github.io/tags/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/</loc>
+    <lastmod>2018-05-04T10:38:05+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
